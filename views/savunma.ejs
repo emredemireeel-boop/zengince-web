@@ -1,0 +1,83 @@
+
+<%- include('partials/header') %>
+
+<style>
+  :root {
+    --danger-red: #ff3333;
+    --danger-dark: #1a0505;
+  }
+  .danger-header {
+    background: linear-gradient(135deg, var(--danger-dark) 0%, var(--dark-bg) 100%);
+    border-bottom: 1px solid rgba(255,51,51,0.2);
+  }
+  .danger-badge {
+    background: rgba(255,51,51,0.1);
+    color: var(--danger-red);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,51,51,0.3);
+    display: inline-block;
+  }
+  .savunma-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .savunma-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--danger-red);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+  .savunma-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,51,51,0.4);
+    box-shadow: 0 10px 30px rgba(255,51,51,0.1);
+  }
+  .savunma-card:hover::before {
+    transform: scaleX(1);
+  }
+  .savunma-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+</style>
+
+<section class="page-header danger-header">
+  <div class="container">
+    <span class="danger-badge">🛡️ Karanlık Finans</span>
+    <h1 class="section-title" style="margin-top:12px; color: #fff;">Finansal <span style="color: var(--danger-red);">Savunma Sanatı</span></h1>
+    <p class="section-desc" style="margin:8px auto 0;">Zengin olmak sadece para kazanmak değil, kazandığını dolandırıcılardan ve manipülasyonlardan koruma sanatıdır.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-3 stagger-children">
+      <% savunmalar.forEach(function(s) { %>
+        <a href="/finansal-savunma/<%= s.slug %>" class="savunma-card">
+          <div class="savunma-icon"><%= s.ikon %></div>
+          <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 15px; color: #fff;"><%= s.baslik %></h2>
+          <p style="color: #aaa; margin-bottom: 20px; line-height: 1.6;"><%= s.kisaOzet %></p>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;">
+            <span style="color: var(--danger-red); font-weight: bold; font-size: 0.9rem;">Tehlike: <%= s.tehlikeSeviyesi %></span>
+            <span style="color: var(--gold-500); font-size: 0.9rem;">Anatomiyi İncele &rarr;</span>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

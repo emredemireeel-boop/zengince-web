@@ -1,0 +1,192 @@
+<%- include('partials/header') %>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-particles"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">✦ Finansal Özgürlük Rehberiniz</div>
+        <h1 class="hero-title">
+          Zenginlik Bir<br>
+          <span class="hero-gold">Zihniyet Değişimiyle</span> Başlar
+        </h1>
+        <p class="hero-subtitle">
+          Dünyanın en başarılı insanlarının öğretileri, mutlaka okunması gereken kitaplar, 
+          izlenmesi gereken filmler ve kanıtlanmış zenginlik alışkanlıkları — hepsi bir arada.
+        </p>
+        <div class="hero-actions">
+          <a href="/ogretiler" class="btn btn-gold">Öğretileri Keşfet ✦</a>
+          <a href="/kitaplar" class="btn btn-outline">Kitaplara Göz At →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="18" data-suffix="+">0+</div>
+            <div class="hero-stat-label">Kitap Önerisi</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="15" data-suffix="+">0+</div>
+            <div class="hero-stat-label">Film & Belgesel</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="50" data-suffix="+">0+</div>
+            <div class="hero-stat-label">Altın Söz</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="10">0</div>
+            <div class="hero-stat-label">Temel Öğreti</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HIZLI KEŞİF (YENİ EKLENEN BÖLÜMLER)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section" style="padding-top: 40px; padding-bottom: 80px;">
+    <div class="container">
+      <div class="grid-3 stagger-children">
+        <!-- Podcastler -->
+        <a href="/podcastler" class="card" style="text-align: center; padding: 24px; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(20,20,20,0.9) 100%);">
+          <span style="font-size: 3rem; margin-bottom: 12px;">🎧</span>
+          <h3 style="font-family: var(--font-display); color: var(--white); font-size: 1.3rem; margin-bottom: 8px;">Podcastler</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">En iyi zenginlik ve zihniyet podcastleri</p>
+        </a>
+
+        <!-- Girişimciler -->
+        <a href="/girisimciler" class="card" style="text-align: center; padding: 24px; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(20,20,20,0.9) 100%);">
+          <span style="font-size: 3rem; margin-bottom: 12px;">🧠</span>
+          <h3 style="font-family: var(--font-display); color: var(--white); font-size: 1.3rem; margin-bottom: 8px;">Usta Girişimciler</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Milyarderlerin karar mekanizmaları</p>
+        </a>
+
+        <!-- Hesaplayıcı -->
+        <a href="/hesaplayici" class="card" style="text-align: center; padding: 24px; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
+          <span style="font-size: 3rem; margin-bottom: 12px;">📈</span>
+          <h3 style="font-family: var(--font-display); color: var(--gold-200); font-size: 1.3rem; margin-bottom: 8px;">Bileşik Getiri</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Gelecekteki servetinizi simüle edin</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       ÖNE ÇIKAN ÖĞRETİLER
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="ogretiler-ozet">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">✦ Temel Öğretiler</span>
+        <h2 class="section-title">Zenginliğin <span class="gold">Temel Taşları</span></h2>
+        <p class="section-desc">Finansal özgürlüğe giden yolda bilmeniz gereken en önemli prensipler</p>
+      </div>
+      <div class="grid-3 stagger-children">
+        <% ogretiler.slice(0, 6).forEach(function(o) { %>
+        <div class="card">
+          <span class="card-icon"><%= o.ikon %></span>
+          <h3 class="card-title"><%= o.baslik %></h3>
+          <p class="card-text"><%= o.kisa %></p>
+          <a href="/ogretiler" class="btn btn-outline mt-3" style="font-size:0.82rem;padding:8px 18px;">Detayları Gör →</a>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HAFTANIN KİTABI
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section section--alt" id="haftanin-kitabi">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">📖 Haftanın Kitabı</span>
+        <h2 class="section-title">Bu Hafta <span class="gold">Okumanız Gereken</span></h2>
+      </div>
+      <div class="featured-card reveal">
+        <div class="featured-card-visual">
+          <span style="position:relative;z-index:1"><%= haftaninKitabi.emoji %></span>
+        </div>
+        <div class="featured-card-content">
+          <span class="featured-card-label">📚 Öne Çıkan Kitap</span>
+          <h3 class="featured-card-title"><%= haftaninKitabi.baslik %></h3>
+          <p class="featured-card-author"><%= haftaninKitabi.yazar %> · <%= haftaninKitabi.yil %></p>
+          <p class="featured-card-desc"><%= haftaninKitabi.ozet %></p>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <a href="/kitaplar" class="btn btn-gold" style="font-size:0.88rem;padding:12px 24px;">Tüm Kitapları Gör →</a>
+            <span style="color:var(--gold-200);font-weight:600;">⭐ <%= haftaninKitabi.puan %>/5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       FİLM ÖNERİSİ
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="film-onerisi">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">🎬 Film Önerisi</span>
+        <h2 class="section-title">Bu Hafta <span class="gold">İzlemeniz Gereken</span></h2>
+      </div>
+      <div class="featured-card reveal">
+        <div class="featured-card-visual" style="background:linear-gradient(135deg, rgba(50,50,50,0.4) 0%, var(--dark-700) 100%);">
+          <span style="position:relative;z-index:1"><%= haftaninFilmi.emoji %></span>
+        </div>
+        <div class="featured-card-content">
+          <span class="featured-card-label">🎬 Öne Çıkan Film</span>
+          <h3 class="featured-card-title"><%= haftaninFilmi.baslik %></h3>
+          <p class="featured-card-author"><%= haftaninFilmi.turkceBaslik %> · <%= haftaninFilmi.yonetmen %> · <%= haftaninFilmi.yil %></p>
+          <p class="featured-card-desc"><%= haftaninFilmi.zenginlikDersi %></p>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <a href="/filmler" class="btn btn-gold" style="font-size:0.88rem;padding:12px 24px;">Tüm Filmleri Gör →</a>
+            <span style="color:var(--gold-200);font-weight:600;">⭐ IMDb <%= haftaninFilmi.imdb %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       ALTIN SÖZLER CAROUSEL
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section section--alt" id="altin-sozler">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">💎 Altın Sözler</span>
+        <h2 class="section-title">İlham Veren <span class="gold">Bilgelik</span></h2>
+      </div>
+      <div class="quote-carousel reveal">
+        <% carouselAlintilar.forEach(function(a, i) { %>
+        <div class="quote-carousel-item<%= i === 0 ? ' active' : '' %>">
+          <p class="quote-carousel-text">"<%= a.soz %>"</p>
+          <p class="quote-carousel-author"><%= a.emoji %> <%= a.kisi %></p>
+          <p class="quote-carousel-unvan"><%= a.unvan %></p>
+        </div>
+        <% }); %>
+        <div class="quote-carousel-dots">
+          <% carouselAlintilar.forEach(function(a, i) { %>
+          <button class="quote-carousel-dot<%= i === 0 ? ' active' : '' %>" aria-label="Alıntı <%= i + 1 %>"></button>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       CTA
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2 class="cta-title">Zenginlik Yolculuğunuza <span class="gold">Bugün</span> Başlayın</h2>
+      <p class="cta-desc">Kitaplar, filmler, öğretiler ve alışkanlıklarla donanın. Finansal özgürlük bir karar uzağınızda.</p>
+      <div class="hero-actions">
+        <a href="/ogretiler" class="btn btn-gold">Öğretilere Başla ✦</a>
+        <a href="/aliskanliklar" class="btn btn-outline">Alışkanlıkları Keşfet →</a>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

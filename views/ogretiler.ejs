@@ -1,0 +1,76 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-badge">🏛️ Zenginlik Akademisi</span>
+      <h1 class="section-title" style="margin-top:12px;">Zenginlik <span class="gold">Öğretileri</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Finansal özgürlüğe giden yolda bilmeniz gereken temel prensipler ve stratejiler</p>
+    </div>
+  </section>
+
+  <!-- Öğretiler Section -->
+  <section class="section">
+    <div class="container">
+      <!-- Filter Bar -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="tumu">✦ Tümü</button>
+        <% Object.keys(kategoriler).forEach(function(key) { %>
+        <button class="filter-btn" data-filter="<%= key %>"><%= kategoriler[key].emoji %> <%= kategoriler[key].baslik %></button>
+        <% }); %>
+      </div>
+
+      <!-- Teachings Grid -->
+      <div class="grid-2 stagger-children" id="ogretiler-grid">
+        <% ogretiler.forEach(function(o) { %>
+        <div class="teaching-card" data-kategori="<%= o.kategori %>">
+          <div class="teaching-card-header">
+            <span class="teaching-card-icon"><%= o.ikon %></span>
+            <div>
+              <h2 class="teaching-card-title"><%= o.baslik %></h2>
+              <p class="teaching-card-subtitle"><%= o.altBaslik %></p>
+            </div>
+          </div>
+          <div class="teaching-card-body">
+            <p class="teaching-card-text"><%= o.kisa %></p>
+
+            <!-- Expandable detail -->
+            <div class="teaching-card-detail"><%= o.detay %></div>
+
+            <!-- Golden Rule -->
+            <div class="teaching-card-golden">
+              <span class="teaching-card-golden-icon">🔑</span>
+              <span class="teaching-card-golden-text"><%= o.altin_kural %></span>
+            </div>
+
+            <!-- Stats -->
+            <div class="teaching-card-stats">
+              <% o.rakamlar.forEach(function(r) { %>
+              <div class="teaching-card-stat">
+                <span class="teaching-card-stat-value"><%= r.deger %></span>
+                <span class="teaching-card-stat-label"><%= r.etiket %></span>
+              </div>
+              <% }); %>
+            </div>
+
+            <button class="teaching-card-toggle">
+              <span class="toggle-text">Detayları Gör</span>
+              <span class="arrow">▼</span>
+            </button>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2 class="cta-title">Bilgi Güçtür, <span class="gold">Uygulama Zenginliktir</span></h2>
+      <p class="cta-desc">Öğretileri okumak yetmez — alışkanlıklarınıza dönüştürün.</p>
+      <a href="/aliskanliklar" class="btn btn-gold">Alışkanlıkları Keşfet ✦</a>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-badge">⚡ Günlük Ritüeller</span>
+      <h1 class="section-title" style="margin-top:12px;">Zenginlik <span class="gold">Alışkanlıkları</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Milyonerlerin kanıtlanmış günlük alışkanlıklarını keşfedin ve hayatınıza entegre edin</p>
+    </div>
+  </section>
+
+  <!-- Alışkanlıklar Section -->
+  <section class="section">
+    <div class="container">
+      <!-- Filter Bar -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="tumu">✦ Tümü</button>
+        <% Object.keys(kategoriler).forEach(function(key) { %>
+        <button class="filter-btn" data-filter="<%= key %>"><%= kategoriler[key].emoji %> <%= kategoriler[key].baslik %></button>
+        <% }); %>
+      </div>
+
+      <!-- Habits Grid -->
+      <div class="grid-2 stagger-children" id="aliskanliklar-grid">
+        <% aliskanliklar.forEach(function(a) { %>
+        <a href="/aliskanliklar/<%= a.slug %>" class="habit-card" data-kategori="<%= a.kategori %>" style="text-decoration: none; color: inherit; display: block; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
+          <div class="habit-card-header">
+            <span class="habit-card-icon"><%= a.ikon %></span>
+            <div>
+              <h2 class="habit-card-title"><%= a.baslik %></h2>
+              <p class="habit-card-saat">⏱ <%= a.saat %></p>
+            </div>
+          </div>
+          <p class="habit-card-aciklama"><%= a.aciklama %></p>
+          <ul class="habit-card-nasil">
+            <% a.nasil.forEach(function(n) { %>
+            <li><%= n %></li>
+            <% }); %>
+          </ul>
+          <div class="habit-card-stat">
+            <div>
+              <p class="habit-card-stat-text">📊 <%= a.istatistik %></p>
+              <p class="habit-card-stat-kaynak">Kaynak: <%= a.kaynak %></p>
+            </div>
+          </div>
+          <div style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.05); padding-top:15px; text-align:right; color:var(--gold-500); font-weight:600;">
+            Detayları İncele &rarr;
+          </div>
+        </a>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2 class="cta-title">Alışkanlıklar <span class="gold">Kaderi</span> Belirler</h2>
+      <p class="cta-desc">Aristoteles: "Mükemmellik bir eylem değil, bir alışkanlıktır." Bugün başlayın.</p>
+      <a href="/ogretiler" class="btn btn-gold">Öğretilere Dön ✦</a>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

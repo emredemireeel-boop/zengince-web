@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : 'Zengince — Zenginlik Eğitim Platformu' %></title>
+  <meta name="description" content="<%= typeof desc !== 'undefined' ? desc : 'Zenginlik öğretileri, kitap ve film önerileri ile finansal özgürlük yolculuğunuza başlayın. Zengince.com' %>">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="<%= typeof canonical !== 'undefined' ? canonical : 'https://www.zengince.com' %>">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'Zengince — Zenginlik Eğitim Platformu' %>">
+  <meta property="og:description" content="<%= typeof desc !== 'undefined' ? desc : 'Zenginlik öğretileri, kitap ve film önerileri ile finansal özgürlük yolculuğunuza başlayın.' %>">
+  <meta property="og:url" content="<%= typeof canonical !== 'undefined' ? canonical : 'https://www.zengince.com' %>">
+  <meta property="og:site_name" content="Zengince">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title : 'Zengince — Zenginlik Eğitim Platformu' %>">
+  <meta name="twitter:description" content="<%= typeof desc !== 'undefined' ? desc : 'Zenginlik öğretileri, kitap ve film önerileri ile finansal özgürlük yolculuğunuza başlayın.' %>">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- ── Navbar ────────────────────────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="/" class="navbar-brand">
+        <span class="z-icon">Z</span>
+        Zengince
+      </a>
+      <div class="navbar-nav" id="navMenu">
+        <a href="/">Ana Sayfa</a>
+        
+        <div class="nav-dropdown">
+          <a href="#" class="nav-dropbtn">Kütüphane ▾</a>
+          <div class="nav-dropdown-content">
+            <a href="/kitaplar">Kitaplar</a>
+            <a href="/filmler">Filmler</a>
+            <a href="/diziler">Diziler</a>
+            <a href="/podcastler">Podcastler</a>
+          </div>
+        </div>
+
+        <div class="nav-dropdown">
+          <a href="#" class="nav-dropbtn">Bilgelik ▾</a>
+          <div class="nav-dropdown-content">
+            <a href="/ogretiler">Temel Öğretiler</a>
+            <a href="/girisimciler">Usta Girişimciler</a>
+            <a href="/aliskanliklar">Alışkanlıklar</a>
+            <a href="/alintilar">Altın Sözler</a>
+            <a href="/finansal-savunma" style="color: #ff4d4d; font-weight: bold;">Finansal Savunma</a>
+          </div>
+        </div>
+
+        <a href="/makaleler" class="<%= typeof path !== 'undefined' && path === '/makaleler' ? 'active' : '' %>">Makaleler</a>
+        <a href="/sozluk" class="<%= typeof path !== 'undefined' && path === '/sozluk' ? 'active' : '' %>">Sözlük</a>
+
+        <div class="nav-dropdown">
+          <a href="#" class="nav-dropbtn">Hesaplamalar ▾</a>
+          <div class="nav-dropdown-content">
+            <a href="/hesaplayici">Bileşik Getiri</a>
+            <a href="/fire-hesaplayici" style="color: var(--emerald);">Özgürlük (FIRE)</a>
+          </div>
+        </div>
+
+        <a href="/hakkinda">Hakkında</a>
+      </div>
+      <button class="navbar-toggle" id="navToggle" aria-label="Menüyü aç">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>

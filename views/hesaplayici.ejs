@@ -1,0 +1,232 @@
+<%- include('partials/header') %>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Page Header -->
+  <section class="page-header" style="padding-bottom: 40px;">
+    <div class="container">
+      <span class="section-badge">📈 Finansal Araçlar</span>
+      <h1 class="section-title" style="margin-top:12px;">Bileşik Getiri <span class="gold">Hesaplayıcı</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Einstein'ın dediği gibi: "Bileşik getiri dünyanın 8. harikasıdır. Anlayan kazanır, anlamayan öder."</p>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-2" style="gap: 40px;">
+        
+        <!-- Hesaplama Formu -->
+        <div class="card" style="padding: 32px;">
+          <h2 style="font-family: var(--font-display); color: var(--white); font-size: 1.4rem; margin-bottom: 24px;">Yatırım Parametreleri</h2>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">Başlangıç Sermayesi (₺)</label>
+            <input type="number" id="baslangic" value="10000" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-family: var(--font-body); font-size: 1.1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold-300)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">Aylık Ek Yatırım (₺)</label>
+            <input type="number" id="aylikYatirim" value="2000" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-family: var(--font-body); font-size: 1.1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold-300)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">Yıllık Beklenen Getiri Oranı (%)</label>
+            <input type="number" id="yillikGetiri" value="15" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-family: var(--font-body); font-size: 1.1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold-300)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <label style="display: block; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">Yatırım Süresi (Yıl)</label>
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <input type="range" id="yilSlider" min="1" max="40" value="10" style="flex: 1; accent-color: var(--gold-300);">
+              <span id="yilGosterge" style="color: var(--gold-200); font-weight: 600; font-size: 1.2rem; min-width: 40px; text-align: right;">10 Yıl</span>
+            </div>
+          </div>
+
+          <button id="hesaplaBtn" class="btn btn-gold" style="width: 100%; justify-content: center; font-size: 1.1rem;">Hesapla ✦</button>
+        </div>
+
+        <!-- Sonuç Grafiği -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <div class="card" style="padding: 24px; text-align: center; background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, var(--dark-700) 100%);">
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 4px;">Toplam Ulaşılacak Servet</p>
+            <h2 id="toplamServet" style="font-family: var(--font-display); font-size: 2.8rem; color: var(--gold-200); font-weight: 600;">₺0</h2>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+              <div>
+                <p style="color: var(--text-muted); font-size: 0.8rem;">Toplam Ana Para</p>
+                <p id="toplamAnaPara" style="color: var(--white); font-weight: 500; font-size: 1.1rem;">₺0</p>
+              </div>
+              <div>
+                <p style="color: var(--text-muted); font-size: 0.8rem;">Kazanılan Faiz/Getiri</p>
+                <p id="toplamGetiri" style="color: var(--emerald); font-weight: 500; font-size: 1.1rem;">₺0</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 24px; flex: 1;">
+            <canvas id="getiriGrafigi"></canvas>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const baslangicInp = document.getElementById('baslangic');
+      const aylikYatirimInp = document.getElementById('aylikYatirim');
+      const yillikGetiriInp = document.getElementById('yillikGetiri');
+      const yilSlider = document.getElementById('yilSlider');
+      const yilGosterge = document.getElementById('yilGosterge');
+      const hesaplaBtn = document.getElementById('hesaplaBtn');
+
+      const toplamServetEl = document.getElementById('toplamServet');
+      const toplamAnaParaEl = document.getElementById('toplamAnaPara');
+      const toplamGetiriEl = document.getElementById('toplamGetiri');
+
+      let chart = null;
+
+      // Format currency
+      const formatPara = (num) => {
+        return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(num);
+      };
+
+      // Update slider text
+      yilSlider.addEventListener('input', (e) => {
+        yilGosterge.textContent = e.target.value + ' Yıl';
+      });
+
+      const hesapla = () => {
+        const baslangic = parseFloat(baslangicInp.value) || 0;
+        const aylikYatirim = parseFloat(aylikYatirimInp.value) || 0;
+        const yillikOran = (parseFloat(yillikGetiriInp.value) || 0) / 100;
+        const yillar = parseInt(yilSlider.value);
+
+        let anaPara = baslangic;
+        let toplam = baslangic;
+        
+        const yillarDizisi = [0];
+        const anaParaDizisi = [baslangic];
+        const toplamDizisi = [baslangic];
+
+        const aylikOran = yillikOran / 12;
+
+        for (let y = 1; y <= yillar; y++) {
+          for (let a = 1; a <= 12; a++) {
+            toplam += aylikYatirim;
+            toplam = toplam * (1 + aylikOran);
+            anaPara += aylikYatirim;
+          }
+          yillarDizisi.push(y);
+          anaParaDizisi.push(Math.round(anaPara));
+          toplamDizisi.push(Math.round(toplam));
+        }
+
+        // DOM Update
+        toplamServetEl.textContent = formatPara(toplam);
+        toplamAnaParaEl.textContent = formatPara(anaPara);
+        toplamGetiriEl.textContent = formatPara(toplam - anaPara);
+
+        // Chart Update
+        updateChart(yillarDizisi, anaParaDizisi, toplamDizisi);
+      };
+
+      const updateChart = (labels, anaParaData, toplamData) => {
+        const ctx = document.getElementById('getiriGrafigi').getContext('2d');
+        
+        if (chart) {
+          chart.destroy();
+        }
+
+        Chart.defaults.color = '#a0a0a0';
+        Chart.defaults.font.family = "'Outfit', sans-serif";
+
+        chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels.map(y => y === 0 ? 'Başlangıç' : y + '. Yıl'),
+            datasets: [
+              {
+                label: 'Toplam Servet',
+                data: toplamData,
+                borderColor: '#D4AF37',
+                backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 0
+              },
+              {
+                label: 'Yatırılan Ana Para',
+                data: anaParaData,
+                borderColor: '#666666',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.4,
+                pointRadius: 0
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            },
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { padding: 20, usePointStyle: true }
+              },
+              tooltip: {
+                backgroundColor: 'rgba(10, 10, 10, 0.9)',
+                titleFont: { size: 14, family: "'Outfit', sans-serif" },
+                bodyFont: { size: 14, family: "'Outfit', sans-serif" },
+                padding: 16,
+                borderColor: 'rgba(212, 175, 55, 0.3)',
+                borderWidth: 1,
+                callbacks: {
+                  label: function(context) {
+                    let label = context.dataset.label || '';
+                    if (label) label += ': ';
+                    if (context.parsed.y !== null) {
+                      label += formatPara(context.parsed.y);
+                    }
+                    return label;
+                  }
+                }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                ticks: {
+                  callback: function(value) {
+                    if (value >= 1000000) return '₺' + (value / 1000000).toFixed(1) + 'M';
+                    if (value >= 1000) return '₺' + (value / 1000).toFixed(0) + 'K';
+                    return '₺' + value;
+                  }
+                }
+              },
+              x: {
+                grid: { display: false }
+              }
+            }
+          }
+        });
+      };
+
+      // Initial calc
+      hesaplaBtn.addEventListener('click', hesapla);
+      hesapla();
+    });
+  </script>
+
+<%- include('partials/footer') %>

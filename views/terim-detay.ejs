@@ -1,0 +1,119 @@
+<%- include('partials/header') %>
+
+<section class="page-header" style="padding-bottom: 40px; text-align: left;">
+  <div class="container">
+    <a href="/sozluk" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px; color: var(--gold-200); font-weight: 600; text-decoration: none;">
+      <span>←</span> Sözlüğe Dön
+    </a>
+    <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 16px;">
+      <div style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.2); border-radius: 16px;">
+        <span style="font-family: var(--font-display); font-size: 3rem; color: var(--gold-200); line-height: 1; font-weight: 700;">
+          <%= terim.harf %>
+        </span>
+      </div>
+      <div>
+        <h1 class="section-title" style="margin-bottom: 6px; font-size: clamp(2rem, 4vw, 3rem);"><%= terim.kavram %></h1>
+        <span style="display: inline-block; padding: 4px 12px; background: rgba(255,255,255,0.05); border-radius: 6px; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;">
+          ENG: <%= terim.ingilizce %>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="grid-2" style="gap: 48px; display: flex; flex-wrap: wrap;">
+      
+      <!-- Sol Taraf: İçerik -->
+      <div style="flex: 1; min-width: 300px; max-width: 800px;">
+        
+        <!-- Kapsamlı Açıklama -->
+        <div class="card" style="margin-bottom: 40px; padding: 32px;">
+          <h3 style="color: var(--white); font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 20px;">Tanım ve Detaylar</h3>
+          <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary);">
+            <p><%= terim.detayliAciklama || terim.aciklama %></p>
+          </div>
+        </div>
+
+        <!-- Örnek Kutusu -->
+        <% if(terim.ornek) { %>
+        <div class="card" style="background: linear-gradient(145deg, rgba(46, 204, 113, 0.08) 0%, rgba(20, 20, 20, 0.9) 100%); border-color: rgba(46, 204, 113, 0.2); padding: 32px; margin-bottom: 40px; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -20px; right: -20px; font-size: 8rem; opacity: 0.05;">💡</div>
+          <h3 style="color: var(--emerald); font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 16px; position: relative; z-index: 1;">Somut Örnek (Vaka Çalışması)</h3>
+          <p style="color: var(--text-primary); line-height: 1.7; font-size: 1.05rem; position: relative; z-index: 1;"><%= terim.ornek %></p>
+        </div>
+        <% } %>
+
+        <!-- Grafik Alanı -->
+        <% if(terim.grafikTipi) { %>
+        <div class="card" style="margin-bottom: 40px; padding: 32px;">
+          <h3 style="color: var(--gold-200); font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 24px;">📊 Veri Grafiği</h3>
+          <canvas id="terimGrafik" width="100%" height="50"></canvas>
+        </div>
+        
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('terimGrafik').getContext('2d');
+            const grafikTipi = '<%= terim.grafikTipi %>';
+            const rawData = <%- JSON.stringify(terim.grafikVerisi || {}) %>;
+            
+            new Chart(ctx, {
+              type: grafikTipi,
+              data: {
+                labels: rawData.labels,
+                datasets: [{
+                  label: rawData.datasetLabel,
+                  data: rawData.data,
+                  backgroundColor: 'rgba(212,175,55,0.2)',
+                  borderColor: '#F5D061',
+                  borderWidth: 2,
+                  tension: 0.4,
+                  fill: true
+                }]
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: { labels: { color: '#a0a0a0', font: { family: "'Outfit', sans-serif" } } }
+                },
+                scales: {
+                  y: {
+                    grid: { color: 'rgba(255,255,255,0.05)' },
+                    ticks: { color: '#a0a0a0', font: { family: "'Outfit', sans-serif" } }
+                  },
+                  x: {
+                    grid: { color: 'rgba(255,255,255,0.05)' },
+                    ticks: { color: '#a0a0a0', font: { family: "'Outfit', sans-serif" } }
+                  }
+                }
+              }
+            });
+          });
+        </script>
+        <% } %>
+      </div>
+
+      <!-- Sağ Taraf: İlgili Terimler (Sidebar) -->
+      <div style="width: 100%; max-width: 320px;">
+        <div class="card" style="padding: 24px; position: sticky; top: 100px;">
+          <h3 style="color: var(--white); font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 16px; border-bottom: 1px solid var(--glass-border); padding-bottom: 12px;">Daha Fazla Keşfet</h3>
+          <ul style="display: flex; flex-direction: column; gap: 8px;">
+            <% rastgeleTerimler.forEach(t => { %>
+              <li>
+                <a href="/sozluk/<%= t.slug %>" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid transparent; border-radius: 8px; font-size: 0.95rem; color: var(--text-secondary); transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(212,175,55,0.05)'; this.style.borderColor='rgba(212,175,55,0.2)'; this.style.color='var(--gold-200)';" onmouseout="this.style.background='rgba(0,0,0,0.3)'; this.style.borderColor='transparent'; this.style.color='var(--text-secondary)';">
+                  <span style="color: var(--gold-200); font-weight: 800;">→</span> <%= t.kavram %>
+                </a>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

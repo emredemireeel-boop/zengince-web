@@ -1,0 +1,70 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-badge">🎧 Sesli Bilgelik</span>
+      <h1 class="section-title" style="margin-top:12px;">Zenginlik <span class="gold">Podcastleri</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Dünyanın en iyi girişimcilerini, yatırımcılarını ve düşünürlerini dinleyerek zihniyetinizi geliştirin</p>
+    </div>
+  </section>
+
+  <!-- Podcastler Section -->
+  <section class="section">
+    <div class="container">
+      <!-- Filter Bar -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="tumu">✦ Tümü</button>
+        <% Object.keys(kategoriler).forEach(function(key) { %>
+        <button class="filter-btn" data-filter="<%= key %>"><%= kategoriler[key].emoji %> <%= kategoriler[key].baslik %></button>
+        <% }); %>
+      </div>
+
+      <!-- Podcast Grid -->
+      <div class="grid-2 stagger-children" id="podcastler-grid">
+        <% podcastler.forEach(function(p) { %>
+        <div class="habit-card" data-kategori="<%= p.kategori %>">
+          <div class="habit-card-header">
+            <span class="habit-card-icon"><%= p.emoji %></span>
+            <div>
+              <h2 class="habit-card-title"><%= p.baslik %></h2>
+              <p class="habit-card-saat"><%= p.sunucular %> · ⏱ <%= p.sure %></p>
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 12px;">
+            <span style="font-size: 0.75rem; padding: 3px 10px; border-radius: 6px; font-weight: 600; text-transform: uppercase; background: <%= kategoriler[p.kategori].renk %>18; color: <%= kategoriler[p.kategori].renk %>;">
+              <%= p.dil %>
+            </span>
+            <span style="font-size: 0.75rem; padding: 3px 10px; border-radius: 6px; font-weight: 600; text-transform: uppercase; background: var(--dark-400); color: var(--text-secondary); margin-left: 8px;">
+              <%= p.platform %>
+            </span>
+          </div>
+
+          <p class="habit-card-aciklama"><%= p.ozet %></p>
+          
+          <div class="habit-card-stat" style="margin-bottom: 16px;">
+            <div>
+              <p class="habit-card-stat-text">🎓 <strong>Zenginlik Dersi:</strong> <%= p.zenginlikDersi %></p>
+            </div>
+          </div>
+
+          <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+            💡 Neden Dinlemeli: <%= p.nedenDinle %>
+          </p>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2 class="cta-title">Yolda, Sporda, <span class="gold">Her Yerde Öğrenin</span></h2>
+      <p class="cta-desc">Warren Buffett zamanının %80'ini okuyarak ve düşünerek geçirir. Siz de boş zamanlarınızı sesli bilgelikle doldurun.</p>
+      <a href="/girisimciler" class="btn btn-gold">Girişimcileri Keşfet ✦</a>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,96 @@
+<%- include('partials/header') %>
+
+<style>
+  /* Makale İçi Özel Stiller */
+  .article-content {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+  .article-content p {
+    margin-bottom: 24px;
+  }
+  .article-content h2, .article-content h3 {
+    font-family: var(--font-display);
+    color: var(--white);
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+  .article-content h2 { font-size: 2rem; }
+  .article-content h3 { font-size: 1.5rem; color: var(--gold-200); }
+  
+  .dropcap {
+    float: left;
+    font-size: 4.5rem;
+    line-height: 0.8;
+    margin-right: 12px;
+    margin-top: 4px;
+    color: var(--gold-300);
+    font-family: var(--font-display);
+  }
+  
+  .article-alert {
+    background: rgba(212,175,55,0.08);
+    border-left: 4px solid var(--gold-300);
+    padding: 24px;
+    border-radius: 0 12px 12px 0;
+    margin: 32px 0;
+    color: var(--white);
+    font-size: 1.05rem;
+  }
+
+  .article-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 24px;
+  }
+  
+  .article-content ul li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+  }
+  
+  .article-content ul li::before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: var(--gold-300);
+  }
+</style>
+
+<div style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+  <a href="/makaleler" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 32px; color: var(--gold-200); font-weight: 600; text-decoration: none;">
+    <span>←</span> Tüm Makaleler
+  </a>
+
+  <!-- Makale Başlığı -->
+  <div style="display: inline-block; background: <%= kategori_bilgisi.renk %>20; color: <%= kategori_bilgisi.renk %>; padding: 6px 16px; border-radius: 100px; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px;">
+    <%= kategori_bilgisi.emoji %> <%= makale.kategori %>
+  </div>
+  
+  <h1 style="font-family: var(--font-display); font-size: 3rem; color: var(--white); line-height: 1.2; margin-bottom: 24px;"><%= makale.baslik %></h1>
+  
+  <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 32px;"><%= makale.ozet %></p>
+  
+  <!-- Yazar ve Tarih -->
+  <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); padding: 16px 0;">
+    <div style="width: 48px; height: 48px; background: var(--gradient-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--dark-900);">Z</div>
+    <div>
+      <div style="color: var(--white); font-weight: 600; font-size: 1.1rem;"><%= makale.yazar %></div>
+      <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2px;"><%= makale.tarih %> · ⏳ <%= makale.okumaSuresi %> Okuma</div>
+    </div>
+  </div>
+
+  <!-- Kapak Görseli -->
+  <div style="width: 100%; height: 400px; border-radius: 16px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 12px 32px rgba(0,0,0,0.5);">
+    <img src="<%= makale.kapakGorseli %>" alt="<%= makale.baslik %>" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+
+  <!-- Makale İçeriği -->
+  <div class="article-content">
+    <%- makale.icerik %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

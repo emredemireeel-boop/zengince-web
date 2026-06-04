@@ -1,0 +1,74 @@
+<%- include('partials/header') %>
+
+<section class="page-header" style="padding-bottom: 40px; text-align: left;">
+  <div class="container">
+    <a href="/kitaplar" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px; color: var(--gold-200); font-weight: 600; text-decoration: none;">
+      <span>←</span> Kütüphaneye Dön
+    </a>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div style="display: flex; gap: 60px; flex-wrap: wrap;">
+      
+      <!-- Sol Taraf: Kitap Kapağı (Gerçek Görsel) -->
+      <div style="width: 320px; flex-shrink: 0;">
+        <div class="card" style="padding: 16px; position: sticky; top: 100px;">
+          <img src="<%= kitap.kapakGorseli %>" alt="<%= kitap.baslik %>" style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-lg); margin-bottom: 24px; display: block;">
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--glass-border);">
+              <span style="color: var(--text-muted); font-size: 0.9rem;">Yazar</span>
+              <strong style="color: var(--white);"><%= kitap.yazar %></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--glass-border);">
+              <span style="color: var(--text-muted); font-size: 0.9rem;">Yayın Yılı</span>
+              <strong style="color: var(--white);"><%= kitap.yil %></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: var(--text-muted); font-size: 0.9rem;">Puan</span>
+              <strong style="color: var(--gold-200); display: flex; align-items: center; gap: 4px;">⭐ <%= kitap.puan %>/5</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sağ Taraf: İçerik -->
+      <div style="flex: 1; min-width: 300px; max-width: 800px;">
+        <h1 class="section-title" style="margin-bottom: 16px; font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.1;"><%= kitap.baslik %></h1>
+        <div style="margin-bottom: 40px; display: flex; gap: 12px;">
+          <span style="display: inline-block; padding: 6px 16px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 100px; color: var(--gold-200); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+            <%= kategori.baslik %>
+          </span>
+        </div>
+        
+        <!-- Kapsamlı Özet -->
+        <div class="card" style="margin-bottom: 40px; padding: 40px;">
+          <h3 style="color: var(--white); font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 24px;">Detaylı İnceleme</h3>
+          <div style="font-size: 1.1rem; line-height: 1.85; color: var(--text-secondary);">
+            <p><%= kitap.detayliOzet %></p>
+          </div>
+        </div>
+
+        <!-- Temel Öğrenimler Listesi -->
+        <div class="card" style="background: linear-gradient(145deg, rgba(46, 204, 113, 0.08) 0%, rgba(20, 20, 20, 0.9) 100%); border-color: rgba(46, 204, 113, 0.2); padding: 40px; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -10px; right: 10px; font-size: 8rem; opacity: 0.05;">💎</div>
+          <h3 style="color: var(--emerald); font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 24px; position: relative; z-index: 1;">Bu Kitaptan Ne Öğreneceksiniz?</h3>
+          <ul style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 16px;">
+            <% kitap.temelOgrenimler.forEach(function(madde) { %>
+              <li style="display: flex; gap: 12px; font-size: 1.05rem; color: var(--text-primary); line-height: 1.6;">
+                <span style="color: var(--emerald); font-weight: 800;">✓</span>
+                <span><%= madde %></span>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

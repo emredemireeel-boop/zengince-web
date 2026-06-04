@@ -1,0 +1,29 @@
+{
+  "name": "zengince-web",
+  "version": "1.0.0",
+  "description": "Zengince.com - Zenginlik Eğitim Platformu",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "echo 'Zengince SSR projesi: Build islemine gerek yoktur.' && exit 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "zenginlik",
+    "finans",
+    "kitap",
+    "film"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "compression": "^1.8.1",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

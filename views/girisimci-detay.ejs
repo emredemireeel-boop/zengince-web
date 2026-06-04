@@ -1,0 +1,78 @@
+<%- include('partials/header') %>
+
+<section class="page-header" style="padding-bottom: 40px; text-align: left;">
+  <div class="container">
+    <a href="/girisimciler" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px; color: var(--gold-200); font-weight: 600; text-decoration: none;">
+      <span>←</span> Ustalara Dön
+    </a>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div style="display: flex; gap: 60px; flex-wrap: wrap;">
+      
+      <!-- Sol Taraf: Girişimci Portresi -->
+      <div style="width: 320px; flex-shrink: 0;">
+        <div class="card" style="padding: 32px 24px; position: sticky; top: 100px; text-align: center; background: linear-gradient(135deg, rgba(212,175,55,0.05) 0%, var(--dark-700) 100%);">
+          <div style="width: 180px; height: 180px; margin: 0 auto 24px; border-radius: 50%; overflow: hidden; border: 4px solid var(--gold-300); box-shadow: 0 12px 32px rgba(212,175,55,0.25);">
+            <img src="<%= g.foto %>" alt="<%= g.isim %>" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+          </div>
+          
+          <h2 style="font-size: 2rem; color: var(--white); margin-bottom: 8px; font-family: var(--font-display);"><%= g.isim %></h2>
+          <p style="color: var(--gold-300); font-size: 1rem; margin-bottom: 24px; font-weight: 500;"><%= g.unvan %></p>
+          
+          <div style="display: inline-block; background: var(--gradient-gold); color: var(--dark-900); font-weight: 800; padding: 8px 24px; border-radius: 100px; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(212,175,55,0.3);">
+            💰 <%= g.netDeger %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sağ Taraf: İçerik -->
+      <div style="flex: 1; min-width: 300px; max-width: 800px;">
+        
+        <!-- Altın Söz -->
+        <div style="margin-bottom: 40px; padding: 32px; background: rgba(212,175,55,0.05); border-left: 4px solid var(--gold-300); border-radius: 0 16px 16px 0;">
+          <p style="font-style: italic; color: var(--white); font-size: 1.6rem; line-height: 1.5; font-family: var(--font-display);">
+            "<%= g.altinSoz %>"
+          </p>
+        </div>
+        
+        <!-- Kapsamlı Biyografi -->
+        <div class="card" style="margin-bottom: 40px; padding: 40px;">
+          <h3 style="color: var(--white); font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 24px;">Zenginliğin Mimarı</h3>
+          <div style="font-size: 1.1rem; line-height: 1.85; color: var(--text-secondary);">
+            <p><%= g.detayliHikaye %></p>
+          </div>
+        </div>
+
+        <!-- Temel Zihin Modelleri -->
+        <div class="card" style="background: linear-gradient(145deg, rgba(46, 204, 113, 0.08) 0%, rgba(20, 20, 20, 0.9) 100%); border-color: rgba(46, 204, 113, 0.2); padding: 40px; position: relative; overflow: hidden; margin-bottom: 40px;">
+          <div style="position: absolute; top: -10px; right: 10px; font-size: 8rem; opacity: 0.05;">🧠</div>
+          <h3 style="color: var(--emerald); font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 24px; position: relative; z-index: 1;">Mental Modelleri & Stratejileri</h3>
+          <ul style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 24px;">
+            <% g.zihinYapisi.forEach(function(z) { %>
+              <li style="display: flex; flex-direction: column; gap: 6px;">
+                <span style="color: var(--emerald); font-weight: 800; font-size: 1.15rem;">■ <%= z.baslik %></span>
+                <span style="color: var(--text-primary); font-size: 1.05rem; line-height: 1.6; margin-left: 20px;"><%= z.aciklama %></span>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <!-- Kitap Önerisi -->
+        <div style="display: flex; align-items: center; gap: 16px; padding: 24px; background: var(--dark-800); border-radius: 12px; border: 1px solid var(--glass-border);">
+          <span style="font-size: 2.5rem;">📚</span>
+          <div>
+            <span style="display: block; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Tavsiye Ettiği Veya Onu Anlatan Kitap</span>
+            <strong style="color: var(--gold-200); font-size: 1.2rem;"><%= g.kitapOnerisi %></strong>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-badge">📚 Zenginlik Kütüphanesi</span>
+      <h1 class="section-title" style="margin-top:12px;">Zenginlik <span class="gold">Kitapları</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Finansal özgürlüğe giden yolda okumanız gereken en etkili kitaplar</p>
+    </div>
+  </section>
+
+  <!-- Kitaplar Section -->
+  <section class="section">
+    <div class="container">
+      <!-- Filter Bar -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="tumu">✦ Tümü</button>
+        <% Object.keys(kategoriler).forEach(function(key) { %>
+        <button class="filter-btn" data-filter="<%= key %>"><%= kategoriler[key].emoji %> <%= kategoriler[key].baslik %></button>
+        <% }); %>
+      </div>
+
+      <!-- Books Grid -->
+      <div class="grid-3 stagger-children">
+        <% kitaplar.forEach(function(kitap) { %>
+        <a href="/kitaplar/<%= kitap.slug %>" style="text-decoration: none; display: block;" class="book-card" data-kategori="<%= kitap.kategori %>">
+          <div class="book-card-cover" style="height: 300px; padding: 0; position: relative;">
+            <img src="<%= kitap.kapakGorseli %>" alt="<%= kitap.baslik %>" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: opacity 0.3s;" onmouseover="this.style.opacity='1';" onmouseout="this.style.opacity='0.9';">
+          </div>
+          <div class="book-card-body">
+            <span class="book-card-kategori" style="background: <%= kategoriler[kitap.kategori].renk %>15; color: <%= kategoriler[kitap.kategori].renk %>;">
+              <%= kategoriler[kitap.kategori].baslik %>
+            </span>
+            <h3 class="book-card-title"><%= kitap.baslik %></h3>
+            <p class="book-card-author"><%= kitap.yazar %></p>
+            <p class="book-card-ozet"><%= kitap.ozet %></p>
+            <div class="book-card-footer">
+              <span class="book-card-rating">⭐ <%= kitap.puan %>/5</span>
+              <span class="book-card-year"><%= kitap.yil %></span>
+            </div>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; color: var(--gold-200); font-weight: 600; display: flex; align-items: center; justify-content: space-between;">
+              <span>Detaylı İncele</span>
+              <span style="font-size: 1.1rem;">→</span>
+            </div>
+          </div>
+        </a>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2 class="cta-title">Okumak <span class="gold">Zenginliğin</span> Temelidir</h2>
+      <p class="cta-desc">Warren Buffett günde 5-6 saat okur. Zenginlerin %88'i her gün en az 30 dakika eğitim amaçlı okur.</p>
+      <a href="/ogretiler" class="btn btn-gold">Öğretileri Keşfet ✦</a>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>
