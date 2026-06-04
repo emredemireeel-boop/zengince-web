@@ -19,6 +19,7 @@ const { OGRETILER, OGRETI_KATEGORILER } = require('./data/ogretiler-data');
 const { ALINTILAR, ALINTI_KATEGORILER } = require('./data/alintilar-data');
 const { ALISKANLIKLAR, ALISKANLIK_KATEGORILER } = require('./data/aliskanliklar-data');
 const { SAVUNMA_YONTEMLERI } = require('./data/savunma-data');
+const { MAKALELER, MAKALE_KATEGORILERI } = require('./data/makaleler-data');
 
 // ── Gzip Sıkıştırma ──────────────────────────────────────────────────────
 app.use(compression());
