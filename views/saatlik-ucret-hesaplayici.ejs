@@ -1,0 +1,169 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="padding-bottom: 40px;">
+    <div class="container">
+      <span class="section-badge">⏳ Finansal Araçlar</span>
+      <h1 class="section-title" style="margin-top:12px;">Gerçek Saatlik Ücret <span class="gold">(Hayat Enerjisi)</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Maaşınız göründüğü kadar yüksek mi? Yolda geçen süreleri ve iş masraflarını düştükten sonra hayatınızın 1 saatini aslında kaç paraya satıyorsunuz? Acı gerçekle yüzleşin.</p>
+    </div>
+  </section>
+
+  <!-- Hesaplayıcı Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-2" style="gap: 40px;">
+        
+        <!-- Girdiler -->
+        <div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+          <h3 style="color: var(--white); font-family: var(--font-display); font-size: 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 16px;">Maaş ve Mesai Bilgileri</h3>
+          
+          <div class="input-group">
+            <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.95rem;">Aylık Net Maaşınız (₺)</label>
+            <input type="number" id="aylikMaas" value="40000" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none; transition: border-color 0.3s ease;">
+          </div>
+          
+          <div class="input-group">
+            <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.95rem;">Haftalık Resmi Çalışma Saatiniz</label>
+            <input type="number" id="haftalikSaat" value="45" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none; transition: border-color 0.3s ease;">
+          </div>
+
+          <h3 style="color: var(--ruby); font-family: var(--font-display); font-size: 1.2rem; margin-top: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 16px;">Görünmez Maliyetler (Zaman & Para)</h3>
+
+          <div class="input-group">
+            <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.95rem;">Haftalık Yolda/Trafikte Geçen Süre (Saat)</label>
+            <input type="number" id="yolSaati" value="10" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none; transition: border-color 0.3s ease;">
+          </div>
+
+          <div class="input-group">
+            <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.95rem;">Haftalık İşe Hazırlanma (Giyinme, Makyaj vs.) (Saat)</label>
+            <input type="number" id="hazirlikSaati" value="5" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none; transition: border-color 0.3s ease;">
+          </div>
+
+          <div class="input-group">
+            <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.95rem;">Aylık İş İçin Yapılan Ekstra Harcama (₺) <br><small style="color: var(--text-muted);">(Yol, dışarıdan yemek, iş kıyafeti, kahve vb.)</small></label>
+            <input type="number" id="isMasrafi" value="5000" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none; transition: border-color 0.3s ease;">
+          </div>
+
+        </div>
+
+        <!-- Sonuçlar -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card" style="padding: 32px; text-align: center; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+            <div style="position: absolute; top:0; left:0; right:0; height: 4px; background: linear-gradient(90deg, var(--ruby) 0%, var(--gold-400) 100%);"></div>
+            
+            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 8px;">Görünürdeki Saatlik Ücretiniz</p>
+            <h3 id="gorunurUcret" style="font-family: var(--font-display); font-size: 2rem; color: var(--text-muted); text-decoration: line-through; margin-bottom: 24px;">₺0</h3>
+
+            <p style="color: var(--gold-300); font-size: 1.2rem; margin-bottom: 8px; font-weight: 500;">Gerçek Saatlik Ücretiniz</p>
+            <h2 id="gercekUcret" style="font-family: var(--font-display); font-size: 4.5rem; color: var(--ruby); font-weight: 600; margin-bottom: 16px; letter-spacing: -2px;">₺0</h2>
+            <p id="durumMesaji" style="color: var(--ruby); font-size: 1.1rem; font-weight: 500; padding: 0 20px;">Hayatınızın en değerli kaynağını ucuza satıyorsunuz.</p>
+            
+            <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); text-align: left;">
+              <h4 style="color: var(--white); margin-bottom: 16px; font-size: 1.1rem;">📊 Acı Tablo</h4>
+              
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="color: var(--text-secondary);">Aylık Gerçek Net Kazanç:</span>
+                <span id="gercekKazanc" style="color: var(--white); font-weight: bold;">₺0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="color: var(--text-secondary);">Aylık İş İçin Harcanan Toplam Saat:</span>
+                <span id="toplamAylikSaat" style="color: var(--white); font-weight: bold;">0 Saat</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,0.1);">
+                <span style="color: var(--text-secondary);">Bir iPhone (80.000₺) Almak İçin:</span>
+                <span id="iphoneIcin" style="color: var(--ruby); font-weight: bold;">0 Saat Çalışmalısınız</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = [
+        document.getElementById('aylikMaas'),
+        document.getElementById('haftalikSaat'),
+        document.getElementById('yolSaati'),
+        document.getElementById('hazirlikSaati'),
+        document.getElementById('isMasrafi')
+      ];
+
+      const gorunurUcretEl = document.getElementById('gorunurUcret');
+      const gercekUcretEl = document.getElementById('gercekUcret');
+      const durumMesajiEl = document.getElementById('durumMesaji');
+      const gercekKazancEl = document.getElementById('gercekKazanc');
+      const toplamAylikSaatEl = document.getElementById('toplamAylikSaat');
+      const iphoneIcinEl = document.getElementById('iphoneIcin');
+
+      const formatPara = (num) => {
+        return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 1 }).format(num);
+      };
+
+      const hesapla = () => {
+        const maas = parseFloat(inputs[0].value) || 0;
+        const hSaat = parseFloat(inputs[1].value) || 0;
+        const yol = parseFloat(inputs[2].value) || 0;
+        const hazirlik = parseFloat(inputs[3].value) || 0;
+        const masraf = parseFloat(inputs[4].value) || 0;
+
+        // 1 ay = ~4.33 hafta
+        const HAFTA_SAYISI = 4.333;
+
+        // Görünür Hesaplar
+        const aylikResmiSaat = hSaat * HAFTA_SAYISI;
+        const gorunurSaatlik = aylikResmiSaat > 0 ? maas / aylikResmiSaat : 0;
+
+        // Gerçek Hesaplar
+        const haftalikToplamSaat = hSaat + yol + hazirlik;
+        const aylikToplamSaat = haftalikToplamSaat * HAFTA_SAYISI;
+        
+        const gercekAylikKazanc = maas - masraf;
+        const gercekSaatlik = aylikToplamSaat > 0 ? gercekAylikKazanc / aylikToplamSaat : 0;
+
+        // iPhone (80K) almak için feda edilecek saat
+        const iphoneSaat = gercekSaatlik > 0 ? (80000 / gercekSaatlik).toFixed(0) : 0;
+
+        // DOM Update
+        gorunurUcretEl.textContent = formatPara(gorunurSaatlik);
+        gercekUcretEl.textContent = formatPara(gercekSaatlik);
+        gercekKazancEl.textContent = formatPara(gercekAylikKazanc);
+        toplamAylikSaatEl.textContent = Math.round(aylikToplamSaat) + " Saat";
+        iphoneIcinEl.textContent = Number(iphoneSaat).toLocaleString('tr-TR') + " Saat Çalışmalısınız";
+
+        // Psikolojik Mesajlar
+        const farkYuzde = gorunurSaatlik > 0 ? ((gorunurSaatlik - gercekSaatlik) / gorunurSaatlik) * 100 : 0;
+
+        if (farkYuzde > 40) {
+          durumMesajiEl.textContent = "Korkunç bir kayıp! Maaşınızın saatlik değeri yol ve masraflarla yarı yarıya eriyor.";
+          gercekUcretEl.style.color = "var(--ruby)";
+        } else if (farkYuzde > 20) {
+          durumMesajiEl.textContent = "Gizli maliyetleriniz çok yüksek. Gerçekte sandığınızdan çok daha az kazanıyorsunuz.";
+          gercekUcretEl.style.color = "var(--gold-400)";
+        } else {
+          durumMesajiEl.textContent = "İyi optimize edilmiş. Ancak zamanınızın değerini asla unutmayın.";
+          gercekUcretEl.style.color = "var(--emerald)";
+        }
+      };
+
+      // Dinleyiciler
+      inputs.forEach(inp => {
+        inp.addEventListener('input', hesapla);
+        inp.addEventListener('focus', function() {
+          this.style.borderColor = 'var(--gold-400)';
+        });
+        inp.addEventListener('blur', function() {
+          this.style.borderColor = 'rgba(255,255,255,0.1)';
+        });
+      });
+
+      // İlk yükleme
+      hesapla();
+    });
+  </script>
+
+<%- include('partials/footer') %>

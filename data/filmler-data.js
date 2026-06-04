@@ -281,6 +281,106 @@ const FILMLER = [
       "Açgözlülük, hırs ve etik değerler arasındaki ince çizgiyi fark etmek.",
       "Para kazanma hırsının insan ilişkilerine ve kişisel psikolojiye yansımalarını anlamak."
     ]
+  },
+  {
+    "slug": "wall-street",
+    "baslik": "Wall Street",
+    "turkceBaslik": "Borsa",
+    "yonetmen": "Oliver Stone",
+    "yil": 1987,
+    "tur": "drama",
+    "imdb": 7.4,
+    "ozet": "Hırslı ve genç bir borsa simsarı olan Bud Fox'un, acımasız ve efsanevi yatırımcı Gordon Gekko'nun kanatları altına girmesiyle değişen hayatı.",
+    "zenginlikDersi": "Açgözlülük sizi zirveye taşıyabilir ama etik değerleri kaybettiğiniz an, düşüşünüz çok daha hızlı ve acı verici olacaktır.",
+    "izlesebebi": "Gordon Gekko'nun efsanevi 'Greed is good' (Açgözlülük iyidir) felsefesini ve finansal hırsın karanlık yüzünü anlamak için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Wall%20Street%201987%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Hırslı ve genç bir borsa simsarı olan Bud Fox'un, acımasız ve efsanevi yatırımcı Gordon Gekko'nun kanatları altına girmesiyle değişen hayatı. Gordon Gekko'nun efsanevi 'Greed is good' (Açgözlülük iyidir) felsefesini ve finansal hırsın karanlık yüzünü anlamak için izlenmelidir. İş dünyasına ve yatırımlara bakış açınızı değiştirecek sahnelerle dolu klasikleşmiş bir yapıt.",
+    "temelOgrenimler": [
+      "Açgözlülük sizi zirveye taşıyabilir ama etik değerleri kaybettiğiniz an, düşüşünüz çok daha hızlı ve acı verici olacaktır.",
+      "İçeriden öğrenenlerin ticareti (Insider trading) ve manipülasyonun tehlikeleri.",
+      "Kolay yoldan kazanılan paranın ahlaki bedeli.",
+      "Büyük servetlerin arkasındaki strateji ve güç savaşlarını gözlemlemek."
+    ]
+  },
+  {
+    "slug": "boiler-room",
+    "baslik": "Boiler Room",
+    "turkceBaslik": "Kazan Dairesi",
+    "yonetmen": "Ben Younger",
+    "yil": 2000,
+    "tur": "drama",
+    "imdb": 7.0,
+    "ozet": "Kısa yoldan zengin olmak isteyen genç bir adamın, 'Pump and dump' taktiğiyle sahte hisseler satan bir aracı kuruma katılması.",
+    "zenginlikDersi": "Eğer bir fırsat gerçek olamayacak kadar iyi görünüyorsa, büyük ihtimalle gerçek değildir. Telefonun ucundaki satıcılara güvenmeyin.",
+    "izlesebebi": "Yatırımcıların nasıl manipüle edildiğini ve 'fırsat kaçırma korkusunun (FOMO)' satış taktiği olarak nasıl kullanıldığını görmek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Boiler%20Room%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Kısa yoldan zengin olmak isteyen genç bir adamın, 'Pump and dump' (Pompala ve Boşalt) taktiğiyle değersiz hisseleri yatırımcılara pazarlayan agresif bir aracı kuruma katılmasını konu alıyor. Yatırımcıların nasıl manipüle edildiğini ve FOMO'nun nasıl silahlaştırıldığını göstermesi açısından kritik bir film. Kurtlar Vadisi'nden (Wolf of Wall Street) önceki neslin vahşi kapitalizm eleştirisi.",
+    "temelOgrenimler": [
+      "Eğer bir fırsat gerçek olamayacak kadar iyi görünüyorsa, büyük ihtimalle gerçek değildir.",
+      "Pump and dump manipülasyonunun nasıl çalıştığını öğrenmek.",
+      "Telefondaki agresif satıcıların (boiler room) psikolojik manipülasyon tekniklerini tanımak.",
+      "Gerçek değer üretemeyen sistemlerin er ya da geç çökmeye mahkum olduğu."
+    ]
+  },
+  {
+    "slug": "enron",
+    "baslik": "Enron: The Smartest Guys in the Room",
+    "turkceBaslik": "Enron: Odadaki En Akıllı Adamlar",
+    "yonetmen": "Alex Gibney",
+    "yil": 2005,
+    "tur": "belgesel",
+    "imdb": 7.6,
+    "ozet": "Amerikan tarihindeki en büyük şirket iflaslarından biri olan enerji devi Enron'un sahte bilançolarla yükselişini ve çöküşünü anlatan ödüllü belgesel.",
+    "zenginlikDersi": "Muhasebe hileleri ve kibir, kısa vadede devasa servetler yaratsa da, uzun vadede yıkım kaçınılmazdır.",
+    "izlesebebi": "Finansal tabloların nasıl manipüle edilebildiğini ve kurumsal denetimin neden hayati olduğunu anlamak için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Enron%3A%20The%20Smartest%20Guys%20in%20the%20Room%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Amerikan tarihindeki en büyük şirket iflaslarından biri olan enerji devi Enron'un sahte bilançolar, muhasebe hileleri ve kurumsal kibirle nasıl yükselip çöktüğünü anlatan ödüllü bir belgesel. 'Akıllı' yöneticilerin sistemi nasıl kandırdığını gözler önüne seriyor. Sadece yatırımcıların değil, çalışanların da bu yıkımdan nasıl etkilendiğini anlatan bir ibret hikayesi.",
+    "temelOgrenimler": [
+      "Karmaşık finansal raporların ve muhasebe oyunlarının ardındaki gerçekleri sorgulamak.",
+      "Aşırı kibrin (Hubris) ve 'herkesten zekiyim' yanılgısının şirketleri nasıl yıktığı.",
+      "Kurumsal denetim mekanizmalarının ve bağımsız denetçilerin önemini kavramak.",
+      "Bir şirketin kâr modelini tam olarak anlamadan asla yatırım yapılmaması gerektiği."
+    ]
+  },
+  {
+    "slug": "glengarry-glen-ross",
+    "baslik": "Glengarry Glen Ross",
+    "turkceBaslik": "Glengarry Glen Ross",
+    "yonetmen": "James Foley",
+    "yil": 1992,
+    "tur": "drama",
+    "imdb": 7.7,
+    "ozet": "İşlerini kaybetmemek için birbirleriyle kıyasıya rekabet etmek zorunda bırakılan gayrimenkul satıcılarının psikolojik gerilimi.",
+    "zenginlikDersi": "Acımasız rekabet ve aşırı baskı altında çalışan satıcıların size sunduğu teklifler, sizin değil, onların çıkarınadır.",
+    "izlesebebi": "Satış psikolojisini, baskı altında alınan yanlış kararları ve 'Always Be Closing' zihniyetini incelemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Glengarry%20Glen%20Ross%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Patronları tarafından bir ay içinde en çok satışı yapmamaları halinde işten atılmakla tehdit edilen gayrimenkul satıcılarının hikayesi. İnsan psikolojisinin köşeye sıkıştığında ne kadar manipülatif ve acımasız olabileceğini gösteriyor. Satış dünyasının karanlık yüzünü anlamak ve size bir şey 'satmaya' çalışan kişilerin psikolojisini okumak için başucu eseridir.",
+    "temelOgrenimler": [
+      "Acımasız rekabet ve aşırı baskı altında çalışan satıcıların size sunduğu teklifler, sizin değil, onların çıkarınadır.",
+      "'Always Be Closing' (Her zaman satışı kapat) stratejisinin yarattığı toksik ortamı tanımak.",
+      "Çaresizliğin ve hedefleri tutturma baskısının etik dışı kararlara nasıl yol açtığı.",
+      "Satın alırken duygusal kararlar yerine mantıklı analiz yapmanın önemi."
+    ]
+  },
+  {
+    "slug": "the-founder",
+    "baslik": "Kurucu",
+    "turkceBaslik": "The Founder",
+    "yonetmen": "John Lee Hancock",
+    "yil": 2016,
+    "tur": "drama",
+    "imdb": 7.2,
+    "ozet": "Süt sarsıntısı makinesi satıcısı Ray Kroc'un, yenilikçi bir fast-food restoranı işleten McDonald kardeşlerle tanışması ve onların iş modelini devralarak dünyanın en büyük restoran imparatorluğuna dönüştürmesinin hikayesi.",
+    "zenginlikDersi": "Fikirler değil, sistemi kusursuz bir şekilde ölçeklendirebilme yeteneği milyarlar eder. Gerçek işinizin ne olduğunu doğru analiz edin (McDonald's hamburger değil, emlak şirketidir).",
+    "izlesebebi": "Sıfırdan kurulan devasa bir markanın büyüme stratejilerini, sözleşmelerin önemini ve iş dünyasındaki acımasız rekabeti izlemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=The%20Founder%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "52 yaşında, başarısızlıklarla dolu bir kariyere sahip Ray Kroc'un, California'da muazzam bir hız sistemine sahip yerel bir hamburgerci keşfetmesiyle başlıyor hikaye. McDonald kardeşlerin mükemmel sistemini alıp, imtiyaz (franchise) yöntemiyle önce Amerika'ya, sonra dünyaya yaymasını anlatıyor. Ancak film sadece bir başarı öyküsü değil; sözleşme boşluklarının, hukuki manevraların ve iş dünyasındaki acımasız hırsların nasıl orijinal kurucuları denklemden silebildiğinin çarpıcı bir portresi.",
+    "temelOgrenimler": [
+      "Ölçeklenebilirlik (Scalability): Çok iyi bir ürün yapmak yetmez; onu binlerce noktada aynı kalitede kopyalayabilmek zenginliği getirir.",
+      "İş modelini doğru okumak: McDonald's restoranlardan değil, restoranların bulunduğu arazileri satın alıp franchisee'lere kiralayarak zengin olmuştur.",
+      "İş sözleşmelerinde her detayın hayati önemi (Asla el sıkışarak iş yapmamak).",
+      "Girişimcilikte yaşın hiçbir önemi olmadığı; başarının ısrar ve vizyonla geldiği."
+    ]
   }
 ];
 

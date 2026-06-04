@@ -305,6 +305,38 @@ app.get('/hesaplayici', (req, res) => {
   });
 });
 
+app.get('/butce-hesaplayici', (req, res) => {
+  res.render('butce-hesaplayici', {
+    title: 'Gelir Gider Dengesi ve Nakit Akışı Hesaplayıcı | Zengince',
+    desc: 'Kişisel aylık bütçenizi planlayın, gelir ve giderlerinizi hesaplayarak net nakit akışınızı ve tasarruf oranınızı anında görün.',
+    canonical: SITE_URL + '/butce-hesaplayici'
+  });
+});
+
+app.get('/saatlik-ucret-hesaplayici', (req, res) => {
+  res.render('saatlik-ucret-hesaplayici', {
+    title: 'Gerçek Saatlik Ücret (Hayat Enerjisi) Hesaplayıcısı | Zengince',
+    desc: 'Maaşınızın saatlik değeri gerçekten sandığınız kadar yüksek mi? İşe gidiş süreleri ve görünmez masraflarla hayat enerjinizi ucuza satıp satmadığınızı hesaplayın.',
+    canonical: SITE_URL + '/saatlik-ucret-hesaplayici'
+  });
+});
+
+app.get('/aliskanlik-maliyeti', (req, res) => {
+  res.render('aliskanlik-maliyeti', {
+    title: 'Alışkanlık Maliyeti Hesaplayıcısı | Zengince',
+    desc: 'Günlük önemsiz gördüğünüz küçük harcamaların bileşik getiriyle gelecekteki milyonluk servetinizi nasıl yok ettiğini hesaplayın.',
+    canonical: SITE_URL + '/aliskanlik-maliyeti'
+  });
+});
+
+app.get('/sigara-alkol-hesaplayici', (req, res) => {
+  res.render('sigara-alkol-hesaplayici', {
+    title: 'Sigara ve Alkol Maliyeti Hesaplayıcısı | Zengince',
+    desc: 'Hem sağlığınızı hem de servetinizi nasıl yok ediyorsunuz? Sigara ve alkole harcadığınız paranın gerçek fırsat maliyetini hesaplayın.',
+    canonical: SITE_URL + '/sigara-alkol-hesaplayici'
+  });
+});
+
 // ── Finansal Özgürlük (FIRE) Hesaplayıcı ────────────────────────────────
 app.get('/fire-hesaplayici', (req, res) => {
   res.render('fire-hesaplayici', {
@@ -387,6 +419,10 @@ app.get('/sitemap.xml', (req, res) => {
     { loc: '/finansal-savunma', priority: '0.9', changefreq: 'monthly' },
     { loc: '/makaleler', priority: '0.9', changefreq: 'weekly' },
     { loc: '/hesaplayici', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/butce-hesaplayici', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/saatlik-ucret-hesaplayici', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/aliskanlik-maliyeti', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/sigara-alkol-hesaplayici', priority: '0.7', changefreq: 'monthly' },
     { loc: '/fire-hesaplayici', priority: '0.7', changefreq: 'monthly' },
     { loc: '/hakkinda', priority: '0.5', changefreq: 'yearly' }
   ];

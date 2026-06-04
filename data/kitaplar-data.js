@@ -342,6 +342,63 @@ const KITAPLAR = [
       "Zamanınızı ve enerjinizi sadece anlık tüketimlere değil, size pasif gelir getirecek uzun vadeli sistemler kurmaya harcamak.",
       "Öğrenilenleri sadece teoride bırakmayıp, risk alarak günlük hayatta uygulamaya geçirebilmek."
     ]
+  },
+  {
+    "slug": "milyonerligin-hizli-seridi",
+    "baslik": "Milyonerliğin Hızlı Şeridi",
+    "yazar": "MJ DeMarco",
+    "kategori": "girisimcilik",
+    "puan": 4.9,
+    "yil": 2011,
+    "ozet": "'Yavaş yavaş zengin ol' (Get Rich Slow) efsanesini yıkan, geleneksel tasarruf ve emeklilik planlarının bir tuzak olduğunu savunan sert bir finansal manifesto.",
+    "nedenOku": "40 yıl boyunca kuruş biriktirerek 65 yaşında tekerlekli sandalyede zengin olmak yerine, gençken nasıl milyonlar kazanacağınızı (Hızlı Şerit) öğrenmek için.",
+    "onemliDers": "Tüketici takımından üretici takımına geçin. İnsanların sorunlarını ölçeklenebilir şekilde çözerseniz para kendiliğinden gelir.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=The%20Millionaire%20Fastlane%20MJ%20DeMarco%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Wall Street ve geleneksel finans gurularının size sattığı 'yavaş yavaş zengin ol' yalanını ifşa eden bir kitap. DeMarco, zamanınızı satarak veya maaşınızdan %10 tasarruf ederek genç yaşta finansal özgürlüğe ulaşamayacağınızı matematiksel olarak kanıtlıyor. Bunun yerine, kontrolün tamamen sizde olduğu, kâr marjının tavan yapabileceği 'Hızlı Şerit' (Girişimcilik ve değer üretimi) yol haritasını çiziyor.",
+    "temelOgrenimler": [
+      "Bileşik getiri maaşlı çalışanları değil, kendi sistemlerini kuranları zengin eder.",
+      "İhtiyaç Emirleri: Etki, Kontrol, Giriş engeli, İhtiyaç ve Zaman (CENTS) kuralları.",
+      "Tüketici olmaktan çıkıp, tüketicilere ürün/hizmet sunan üretici pozisyonuna geçmek.",
+      "Zaman ile gelir arasındaki bağı koparmak (Ayrıştırma - Decoupling)."
+    ]
+  },
+  {
+    "slug": "ayakkabi-gurusu",
+    "baslik": "Ayakkabı Gurusu",
+    "yazar": "Phil Knight",
+    "kategori": "girisimcilik",
+    "puan": 4.8,
+    "yil": 2016,
+    "ozet": "Nike'ın kurucusu Phil Knight'ın, babasından aldığı 50 dolar borçla bagajında ayakkabı satmaktan 30 milyar dolarlık bir imparatorluğa uzanan gerçek hayat hikayesi.",
+    "nedenOku": "Gerçek bir dünya markası yaratmanın kan, ter ve gözyaşı dolu perde arkasını tüm şeffaflığıyla okumak için.",
+    "onemliDers": "İş kurmak bir savaş gibidir. Teslim olmayı aklınızdan bile geçirmeyin, sadece hayatta kalmanın ve bir sonraki adımı atmanın bir yolunu bulun.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=Shoe%20Dog%20Phil%20Knight%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Nike şirketinin kurucusu Phil Knight'ın kendi kaleminden yazdığı anı kitabı. Bir girişimcinin yaşayabileceği tüm felaketleri (tedarikçi ihanetleri, nakit akışı krizleri, gümrük davaları, bankalarla kavgalar) nasıl aştığını ve sıfırdan bir kültür ikonunu nasıl inşa ettiğini anlatıyor. İş dünyasının teoriden ibaret olmadığını gösteren bir başyapıt.",
+    "temelOgrenimler": [
+      "Nakitin kraliçe olduğu gerçeği: Hızla büyüyen bir şirketin sürekli nakit krizinde yaşaması.",
+      "Vizyonunuza tutkuyla inanan bir 'uyumsuzlar' ekibi kurmanın önemi.",
+      "Rekabetin acımasızlığı ve rakiplerle savaşırken zihinsel sağlığı korumak.",
+      "Ürünü sadece satmak değil, ona bir 'ruh' ve 'hikaye' yüklemek."
+    ]
+  },
+  {
+    "slug": "ilkeler",
+    "baslik": "İlkeler",
+    "yazar": "Ray Dalio",
+    "kategori": "mindset",
+    "puan": 4.6,
+    "yil": 2017,
+    "ozet": "Dünyanın en büyük hedge fonu Bridgewater Associates'in kurucusu Ray Dalio'nun hayat, yönetim ve yatırım kararları alırken kullandığı algoritmik prensipler.",
+    "nedenOku": "Duygularla değil, rasyonel ve test edilmiş prensiplerle (bir makine gibi) karar vermeyi ve şirket yönetmeyi öğrenmek için.",
+    "onemliDers": "Acı + Derin Düşünme (Reflection) = Gelişim. Hatalarınızı sistematik olarak analiz etmezseniz asla büyümezsiniz.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=Principles%20Ray%20Dalio%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Tarihin en başarılı yatırımcılarından biri olan Ray Dalio, hem hayatı hem de ekonomiyi bir 'makine' olarak görüyor. Bu kitapta, Bridgewater'da uyguladığı 'Radikal Şeffaflık' ve 'Radikal Gerçekçilik' kültürünü anlatıyor. Kararlarınızı hislerinize göre değil, test edilmiş ve kurallara bağlanmış ilkelere göre almanızı sağlayan devasa bir rehber.",
+    "temelOgrenimler": [
+      "Radikal şeffaflık: Gerçeği ne kadar acı olursa olsun kabul etmek ve saklamamak.",
+      "Egonuzu karar verme sürecinin dışında bırakmak (Idea Meritocracy).",
+      "Hataların birer ceza değil, sisteminizi geliştirmek için birer fırsat olduğunu anlamak.",
+      "Sistematik karar verme algoritmaları oluşturmak."
+    ]
   }
 ];
 

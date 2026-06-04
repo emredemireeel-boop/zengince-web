@@ -416,6 +416,87 @@ const DIZILER = [
       "Büyük risklerin arkasındaki stratejik düşünceyi ve risk yönetimi becerisini gözlemlemek.",
       "Güç mücadelesinde zihinsel dayanıklılığın (mental resilience) sermayeden çok daha önemli bir silah olduğunu kavramak."
     ]
+  },
+  {
+    "slug": "peaky-blinders",
+    "baslik": "Peaky Blinders",
+    "turkceBaslik": "Peaky Blinders",
+    "yapimc": "Steven Knight",
+    "yil": "2013–2022",
+    "sezon": 6,
+    "tur": "drama",
+    "imdb": 8.8,
+    "platform": "BBC / Netflix",
+    "ozet": "1920'lerin İngiltere'sinde küçük bir bahis çetesinden ulusal bir iş imparatorluğuna dönüşen Shelby ailesinin ve Thomas Shelby'nin stratejik dehasının hikayesi.",
+    "zenginlikDersi": "Küçük başlayın ama büyük düşünün. Rakiplerinizden her zaman bir adım önde olmak için strateji ve acımasızlık bazen kaçınılmazdır.",
+    "nedenIzle": "Sıfırdan bir imparatorluk kurmanın, müzakere sanatının ve kriz yönetiminin en acımasız hallerini görmek için.",
+    "karakterler": [
+      "Thomas Shelby",
+      "Arthur Shelby",
+      "Polly Gray",
+      "Alfie Solomons"
+    ],
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Peaky%20Blinders%20tv%20series%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "1920'lerin İngiltere'sinde küçük bir bahis çetesinden ulusal bir iş imparatorluğuna dönüşen Shelby ailesinin ve Thomas Shelby'nin stratejik dehasının hikayesi. Sıfırdan bir imparatorluk kurmanın, müzakere sanatının ve kriz yönetiminin en acımasız hallerini görmek için muazzam bir kaynak. Dizi, güç dinamiklerini, paranın insan psikolojisi üzerindeki etkisini ve büyüme stratejilerini eşsiz bir şekilde sunuyor.",
+    "temelOgrenimler": [
+      "Küçük başlayın ama büyük düşünün. Rakiplerinizden her zaman bir adım önde olmak için strateji şarttır.",
+      "Müzakere masasında duygusuz kalabilmenin ve poker suratını korumanın önemi.",
+      "Büyümenin getirdiği yasal ve yasadışı riskleri nasıl hedge (yönetim) edeceğinizi öğrenmek.",
+      "Liderlikte vizyoner olmanın ve aileyi (veya şirketi) bir arada tutmanın zorlukları."
+    ]
+  },
+  {
+    "slug": "industry",
+    "baslik": "Industry",
+    "turkceBaslik": "Endüstri",
+    "yapimc": "Mickey Down, Konrad Kay",
+    "yil": "2020–devam",
+    "sezon": 3,
+    "tur": "drama",
+    "imdb": 7.2,
+    "platform": "HBO",
+    "ozet": "Londra'daki prestijli bir yatırım bankasında (Pierpoint & Co) kalıcı bir pozisyon kapmak için acımasızca rekabet eden yeni mezunların toksik ve stresli dünyası.",
+    "zenginlikDersi": "Yüksek finans dünyasında hayatta kalmak sadece zeka ile değil, ofis politikalarını okumak ve mental dayanıklılıkla mümkündür.",
+    "nedenIzle": "Modern yatırım bankacılığının gerçek, acımasız ve filtresiz yüzünü; Z kuşağının finans dünyasındaki varoluş savaşını görmek için.",
+    "karakterler": [
+      "Harper Stern",
+      "Yasmin Kara-Hanani",
+      "Robert Spearing",
+      "Eric Tao"
+    ],
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Industry%20HBO%20tv%20series%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Londra'daki prestijli bir yatırım bankasında kalıcı bir pozisyon kapmak için acımasızca rekabet eden yeni mezunların hikayesi. Modern yatırım bankacılığının stresli ortamını ve ofis politikalarını filtresiz bir şekilde aktarıyor. Sadece finansal bilgi değil, üstlerin psikolojisini yönetme, müşteri ilişkileri ve kurumsal hayatta hayatta kalma taktikleri üzerine sert bir yapım.",
+    "temelOgrenimler": [
+      "Yüksek finans dünyasında yetenek kadar ofis politikaları ve insan ilişkileri de hayati önem taşır.",
+      "Satış ve trading masalarındaki muazzam stres ve saniyeler içinde alınan milyon dolarlık kararlar.",
+      "Kurumsal şirketlerin acımasız meritokrasi (liyakat) ve adam kayırma ikilemi.",
+      "Mental dayanıklılığın zekadan bile daha belirleyici olduğu durumlar."
+    ]
+  },
+  {
+    "slug": "dirty-money",
+    "baslik": "Kirli Para",
+    "turkceBaslik": "Dirty Money",
+    "yapimc": "Alex Gibney",
+    "yil": "2018–2020",
+    "sezon": 2,
+    "tur": "belgesel",
+    "imdb": 8.1,
+    "platform": "Netflix",
+    "ozet": "Büyük şirketlerin, bankaların ve milyarderlerin kârlarını maksimize etmek için başvurdukları yolsuzlukları, sahtekarlıkları ve etik dışı uygulamaları anlatan belgesel serisi.",
+    "zenginlikDersi": "Dünyayı yöneten dev şirketlerin vitrini her zaman parlaktır ama arka odalarında karanlık anlaşmalar döner. Yatırım yaparken her zaman sorgulayıcı olun.",
+    "nedenIzle": "Volkswagen emisyon skandalından, dev bankaların kara para aklamasına kadar kapitalizmin en kirli sırlarını öğrenmek için.",
+    "karakterler": [
+      "Farklı araştırmacı gazeteciler"
+    ],
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Dirty%20Money%20Netflix%20documentary%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Büyük şirketlerin, bankaların ve milyarderlerin kârlarını maksimize etmek için başvurdukları yolsuzlukları, sahtekarlıkları ve etik dışı uygulamaları anlatan araştırma belgeseli serisi. Yatırımcıların ve tüketicilerin nasıl kandırıldığını gözler önüne seriyor. Ekonomik okuryazarlığı bir adım öteye taşıyıp 'sorgulayıcı' bir zihniyet geliştirmek için mutlaka izlenmeli.",
+    "temelOgrenimler": [
+      "Büyük markalara körü körüne güvenmenin tehlikeleri.",
+      "Şirket yöneticilerinin kısa vadeli bonuslar uğruna şirketin uzun vadeli geleceğini nasıl feda ettiği.",
+      "Regülatörlerin (denetleyicilerin) şirketlerle olan karmaşık ilişkileri.",
+      "Kurumsal açgözlülüğün hem ekonomiye hem de çevreye/topluma verdiği geri dönülmez zararlar."
+    ]
   }
 ];
 

@@ -275,6 +275,21 @@ const GIRISIMCILER = [
     "altinSoz": "En büyük risk, hiç risk almamaktır. Sürekli değişen bir dünyada başarısız olması garanti olan tek strateji budur.",
     "foto": "https://tse2.mm.bing.net/th?q=Mark%20Zuckerberg%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
     "detayliHikaye": "Mark Zuckerberg, sadece para kazanmakla kalmadı, dünyayı yeniden şekillendirdi. Üniversite yurdunda kodladığı platformu, dünya nüfusunun yarısının kullandığı milyarlarca dolarlık bir reklam ve iletişim imparatorluğuna dönüştürdü. \nİnsanlar genellikle başarılı liderlerin son ulaştıkları noktayı görürler; milyarlarca dolarlık şirketler, lüks bir yaşam, bitmek tükenmek bilmeyen bir güç. Ancak Mark Zuckerberg gibilerinin gerçek sırrı ulaştıkları servet değil, bu serveti inşa ederken kullandıkları zihinsel altyapıdır. \nSıradan insanlar riskten kaçarken, o riski yönetmeyi öğrendi. Kriz anlarında kalabalığın paniğe kapıldığı yerde, o en büyük fırsatları gördü. Zamanının büyük bir kısmını karar mekanizmalarını keskinleştirmeye ve dünyayı rakiplerinden daha farklı bir perspektifle okumaya ayırdı. Öğrendiği her yeni bilgiyi, şirketini büyütmek için bir kaldıraca (leverage) çevirdi. Bu detay sayfasındaki prensipleri sadece okumakla kalmayın, kendi iş hayatınıza nasıl entegre edebileceğinizi düşünün."
+  },
+  {
+    "slug": "ray-kroc",
+    "isim": "Ray Kroc",
+    "unvan": "McDonald's'ın Küresel Kurucusu",
+    "soz": "Eğer risk almaktan korkuyorsanız, ticaretten defolun gidin.",
+    "anaFelsefe": "Israr (Persistence) ve Ölçeklenebilirlik",
+    "sirri": "Dünyanın en iyi hamburgerini yapmak değil, dünyanın en iyi kopyalanabilir restoran ve emlak sistemini kurmak.",
+    "ogutler": [
+      "Bir işin asıl gelir modelinin ne olduğunu keşfedin (McDonald's hamburger satmaz, emlak kiralar).",
+      "Yeteneğin, eğitimin veya dehanın yerini hiçbir şey 'ısrar' kadar dolduramaz.",
+      "İki küçük restoranda mükemmel olan bir sistemi, on binlerce restorana hatasız şekilde ölçeklendirin."
+    ],
+    "foto": "https://tse2.mm.bing.net/th?q=Ray%20Kroc%20McDonalds%20founder%20portrait%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "detayliHikaye": "Ray Kroc'un hikayesi, başarının gençlikle ilgili olduğu efsanesini yerle bir eder. 52 yaşına kadar kağıt bardak ve mikser satıcısı olarak kapı kapı dolaşan Kroc, şeker hastası, eklem ağrıları çeken sıradan bir adamdı. Ancak McDonald kardeşlerin California'daki o yenilikçi restoranını gördüğünde, hayatı değişti.\n\nRay Kroc'un asıl dehası, harika bir yemek tarifi bulmak değil, o yemeğin her restoranda, dünyanın her yerinde, saniyeler içinde tam olarak aynı lezzette ve kalitede nasıl üretilebileceğinin 'sistemini' kopyalamaktı. O bir yemek şefi değildi, o bir sistem mimarıydı. \n\nDaha sonra fark ettiği emlak stratejisi ise onu milyarder yaptı: Franchisee'lere (bayilere) sadece isim hakkı satmak yerine, restoranların kurulacağı arsaları bizzat satın aldı ve onlara kiraya verdi. Bugün McDonald's, dünyanın en büyük fast-food zinciri olmasının yanı sıra, dünyanın en büyük özel gayrimenkul şirketlerinden biridir."
   }
 ];
 

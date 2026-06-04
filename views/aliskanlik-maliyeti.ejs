@@ -1,0 +1,155 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="padding-bottom: 40px;">
+    <div class="container">
+      <span class="section-badge">☕ Finansal Araçlar</span>
+      <h1 class="section-title" style="margin-top:12px;">Alışkanlık Maliyeti <span class="gold">(Görünmez Delik)</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">"Alt tarafı bir kahve parası" veya "Küçük bir keyif" diyerek küçümsediğiniz düzenli harcamaların, bileşik getiri gücüyle gelecekteki milyonluk servetinizi nasıl yok ettiğini hesaplayın.</p>
+    </div>
+  </section>
+
+  <!-- Hesaplayıcı Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-2" style="gap: 40px;">
+        
+        <!-- Girdiler -->
+        <div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+          <h3 style="color: var(--white); font-family: var(--font-display); font-size: 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 16px;">Kaçak Noktalarını Belirle</h3>
+          
+          <div class="input-group">
+            <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.95rem;">Günlük Gereksiz Harcamanız (₺) <br><small style="color: var(--text-muted);">(Kahve, sigara, dışarıdan yemek, abonelikler vs.)</small></label>
+            <input type="number" id="gunlukHarcama" value="150" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none; transition: border-color 0.3s ease;">
+          </div>
+          
+          <div class="input-group">
+            <label style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.95rem;">Yıllık Beklenen Yatırım Getirisi (%) <br><small style="color: var(--text-muted);">(Örn: S&P 500 için %10, Mevduat/Borsa için %40-60 vs.)</small></label>
+            <input type="number" id="yillikGetiri" value="45" style="width: 100%; padding: 12px 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none; transition: border-color 0.3s ease;">
+          </div>
+
+          <div class="input-group" style="margin-top: 16px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.95rem;">Zaman Ufku (Yıl)</label>
+              <span id="yilGosterge" style="color: var(--gold-400); font-weight: 600;">10 Yıl</span>
+            </div>
+            <input type="range" id="yilSlider" min="1" max="40" value="10" style="width: 100%; accent-color: var(--gold-400);">
+          </div>
+
+        </div>
+
+        <!-- Sonuçlar -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card" style="padding: 32px; text-align: center; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+            <div style="position: absolute; top:0; left:0; right:0; height: 4px; background: linear-gradient(90deg, var(--ruby) 0%, var(--gold-400) 100%);"></div>
+            
+            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 8px;">Sadece Çekmecede Biriktirseydiniz</p>
+            <h3 id="sadeceBirikim" style="font-family: var(--font-display); font-size: 1.8rem; color: var(--text-muted); margin-bottom: 24px;">₺0</h3>
+
+            <p style="color: var(--gold-300); font-size: 1.2rem; margin-bottom: 8px; font-weight: 500;">Yatırım Yapsaydınız Ulaşacağınız Servet</p>
+            <h2 id="gelecekServet" style="font-family: var(--font-display); font-size: 4rem; color: var(--emerald); font-weight: 600; margin-bottom: 16px; letter-spacing: -1px;">₺0</h2>
+            <p id="durumMesaji" style="color: var(--gold-400); font-size: 1.1rem; font-weight: 500; padding: 0 20px;">Bu parayı tüketim şirketlerine hediye ettiniz.</p>
+            
+            <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); text-align: left;">
+              <h4 style="color: var(--white); margin-bottom: 16px; font-size: 1.1rem;">📉 Fırsat Maliyeti</h4>
+              
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="color: var(--text-secondary);">Aylık Çöpe Giden Tutar:</span>
+                <span id="aylikCop" style="color: var(--ruby); font-weight: bold;">₺0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="color: var(--text-secondary);">Yıllık Çöpe Giden Tutar:</span>
+                <span id="yillikCop" style="color: var(--ruby); font-weight: bold;">₺0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,0.1);">
+                <span style="color: var(--text-secondary);">Kaçırılan Bileşik Getiri (Kar):</span>
+                <span id="kacirilanKar" style="color: var(--emerald); font-weight: bold;">₺0</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const gunlukInp = document.getElementById('gunlukHarcama');
+      const getiriInp = document.getElementById('yillikGetiri');
+      const yilSlider = document.getElementById('yilSlider');
+      const yilGosterge = document.getElementById('yilGosterge');
+
+      const sadeceBirikimEl = document.getElementById('sadeceBirikim');
+      const gelecekServetEl = document.getElementById('gelecekServet');
+      const durumMesajiEl = document.getElementById('durumMesaji');
+      const aylikCopEl = document.getElementById('aylikCop');
+      const yillikCopEl = document.getElementById('yillikCop');
+      const kacirilanKarEl = document.getElementById('kacirilanKar');
+
+      const formatPara = (num) => {
+        return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(num);
+      };
+
+      const hesapla = () => {
+        const gunluk = parseFloat(gunlukInp.value) || 0;
+        const yillikGetiriOrani = parseFloat(getiriInp.value) || 0;
+        const yillar = parseInt(yilSlider.value) || 0;
+
+        yilGosterge.textContent = yillar + " Yıl";
+
+        // Harcama verileri
+        const aylik = gunluk * 30;
+        const yillik = gunluk * 365;
+        const toplamAnaPara = yillik * yillar;
+
+        // Bileşik Getiri Hesabı (Aylık yatırımlı)
+        const aylikGetiriOrani = (yillikGetiriOrani / 100) / 12;
+        const toplamAy = yillar * 12;
+        let toplamServet = 0;
+
+        for (let i = 0; i < toplamAy; i++) {
+          toplamServet += aylik;
+          toplamServet = toplamServet * (1 + aylikGetiriOrani);
+        }
+
+        const kacirilanKar = toplamServet - toplamAnaPara;
+
+        // DOM Update
+        sadeceBirikimEl.textContent = formatPara(toplamAnaPara);
+        gelecekServetEl.textContent = formatPara(toplamServet);
+        aylikCopEl.textContent = formatPara(aylik);
+        yillikCopEl.textContent = formatPara(yillik);
+        kacirilanKarEl.textContent = formatPara(kacirilanKar);
+
+        // Psikolojik Mesaj
+        if (toplamServet > 5000000) {
+          durumMesajiEl.textContent = "Tebrikler! Küçük keyifleriniz uğruna devasa bir serveti çöpe attınız.";
+          durumMesajiEl.style.color = "var(--ruby)";
+        } else if (toplamServet > 1000000) {
+          durumMesajiEl.textContent = "Bu parayla yıllarca çalışmadan yaşayabilirdiniz. Zenginliğinizi tüketiyorsunuz.";
+          durumMesajiEl.style.color = "var(--gold-400)";
+        } else if (toplamServet > 0) {
+          durumMesajiEl.textContent = "Bu ufak sızıntı, geminizi yavaş yavaş batırıyor.";
+          durumMesajiEl.style.color = "var(--text-secondary)";
+        } else {
+          durumMesajiEl.textContent = "Harcama girmediniz.";
+        }
+      };
+
+      // Dinleyiciler
+      [gunlukInp, getiriInp].forEach(inp => {
+        inp.addEventListener('input', hesapla);
+        inp.addEventListener('focus', function() { this.style.borderColor = 'var(--gold-400)'; });
+        inp.addEventListener('blur', function() { this.style.borderColor = 'rgba(255,255,255,0.1)'; });
+      });
+
+      yilSlider.addEventListener('input', hesapla);
+
+      // İlk yükleme
+      hesapla();
+    });
+  </script>
+
+<%- include('partials/footer') %>

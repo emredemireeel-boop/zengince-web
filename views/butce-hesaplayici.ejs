@@ -1,0 +1,202 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="padding-bottom: 40px;">
+    <div class="container">
+      <span class="section-badge">📈 Finansal Araçlar</span>
+      <h1 class="section-title" style="margin-top:12px;">Gelir Gider Dengesi <span class="gold">Hesaplayıcı</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Zenginlik ne kadar kazandığınızla değil, elinizde ne kadar tutabildiğinizle ölçülür. Aylık nakit akışınızı kontrol altına alın.</p>
+    </div>
+  </section>
+
+  <!-- Bütçe Hesaplayıcı Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-2" style="gap: 40px;">
+        <!-- Gelir Gider Formları -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Gelirler -->
+          <div class="card" style="padding: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 style="color: var(--emerald); font-family: var(--font-display); font-size: 1.2rem;">🟢 Aylık Gelirler</h3>
+              <button id="addGelirBtn" class="btn btn-outline" style="padding: 4px 12px; font-size: 0.8rem; border-color: var(--emerald); color: var(--emerald);">+ Ekle</button>
+            </div>
+            <div id="gelirListesi" style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="budget-row" style="display: flex; gap: 12px;">
+                <input type="text" placeholder="Maaş, Kira, Ek İş..." value="Maaş" style="flex: 2; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--white); outline: none;">
+                <input type="number" class="gelir-miktar" placeholder="0 ₺" value="50000" style="flex: 1; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--white); outline: none;" oninput="hesaplaButce()">
+                <button class="remove-btn" style="background: none; border: none; color: transparent; cursor: default; padding: 0 8px;">✕</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Giderler -->
+          <div class="card" style="padding: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 style="color: var(--ruby); font-family: var(--font-display); font-size: 1.2rem;">🔴 Aylık Giderler</h3>
+              <button id="addGiderBtn" class="btn btn-outline" style="padding: 4px 12px; font-size: 0.8rem; border-color: var(--ruby); color: var(--ruby);">+ Ekle</button>
+            </div>
+            <div id="giderListesi" style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="budget-row" style="display: flex; gap: 12px;">
+                <input type="text" placeholder="Kira, Fatura..." value="Kira" style="flex: 2; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--white); outline: none;">
+                <input type="number" class="gider-miktar" placeholder="0 ₺" value="15000" style="flex: 1; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--white); outline: none;" oninput="hesaplaButce()">
+                <button class="remove-btn" style="background: none; border: none; color: var(--ruby); cursor: pointer; padding: 0 8px;" onclick="this.parentElement.remove(); hesaplaButce();">✕</button>
+              </div>
+              <div class="budget-row" style="display: flex; gap: 12px;">
+                <input type="text" placeholder="Market, Mutfak..." value="Market & Mutfak" style="flex: 2; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--white); outline: none;">
+                <input type="number" class="gider-miktar" placeholder="0 ₺" value="10000" style="flex: 1; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--white); outline: none;" oninput="hesaplaButce()">
+                <button class="remove-btn" style="background: none; border: none; color: var(--ruby); cursor: pointer; padding: 0 8px;" onclick="this.parentElement.remove(); hesaplaButce();">✕</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bütçe Sonuçları -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card" style="padding: 32px; text-align: center; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+            <div style="position: absolute; top:0; left:0; right:0; height: 4px; background: linear-gradient(90deg, var(--emerald) 0%, var(--gold-400) 100%);" id="netKalanCizgi"></div>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 8px;">Aylık Net Kalan (Nakit Akışı)</p>
+            <h2 id="netKalan" style="font-family: var(--font-display); font-size: 4rem; color: var(--emerald); font-weight: 600; margin-bottom: 12px; letter-spacing: -1px;">₺0</h2>
+            <p id="netKalanMesaj" style="color: var(--emerald); font-size: 1rem; font-weight: 500;">Harika! Birikim yapıyorsunuz.</p>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+              <div style="text-align: left;">
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 4px;">Toplam Gelir</p>
+                <p id="toplamGelirYazi" style="color: var(--emerald); font-weight: 600; font-size: 1.4rem;">₺0</p>
+              </div>
+              <div style="text-align: right;">
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 4px;">Toplam Gider</p>
+                <p id="toplamGiderYazi" style="color: var(--ruby); font-weight: 600; font-size: 1.4rem;">₺0</p>
+              </div>
+            </div>
+            
+            <div style="margin-top: 32px; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 12px; text-align: left;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;">
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Tasarruf Oranı</p>
+                <span id="tasarrufOraniYazi" style="color: var(--gold-300); font-weight: 600; font-size: 1.2rem;">%0</span>
+              </div>
+              <div style="height: 10px; background: rgba(0,0,0,0.5); border-radius: 5px; overflow: hidden;">
+                <div id="tasarrufBari" style="height: 100%; width: 0%; background: var(--emerald); transition: width 0.5s ease, background 0.5s ease;"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Format currency
+      const formatPara = (num) => {
+        return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(num);
+      };
+
+      // Bütçe Hesaplayıcı Script
+      const addGelirBtn = document.getElementById('addGelirBtn');
+      const gelirListesi = document.getElementById('gelirListesi');
+      const addGiderBtn = document.getElementById('addGiderBtn');
+      const giderListesi = document.getElementById('giderListesi');
+
+      const netKalanEl = document.getElementById('netKalan');
+      const toplamGelirYazi = document.getElementById('toplamGelirYazi');
+      const toplamGiderYazi = document.getElementById('toplamGiderYazi');
+      const netKalanMesaj = document.getElementById('netKalanMesaj');
+      const netKalanCizgi = document.getElementById('netKalanCizgi');
+      const tasarrufBari = document.getElementById('tasarrufBari');
+      const tasarrufOraniYazi = document.getElementById('tasarrufOraniYazi');
+
+      const createRow = (type) => {
+        const div = document.createElement('div');
+        div.className = 'budget-row';
+        div.style.cssText = 'display: flex; gap: 12px; margin-top: 12px; animation: fadeIn 0.3s ease;';
+        
+        const placeholderName = type === 'gelir' ? 'Ek Gelir, Kira...' : 'Fatura, Abonelik...';
+        const inputClass = type === 'gelir' ? 'gelir-miktar' : 'gider-miktar';
+
+        div.innerHTML = `
+          <input type="text" placeholder="${placeholderName}" style="flex: 2; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--white); outline: none;">
+          <input type="number" class="${inputClass}" placeholder="0 ₺" style="flex: 1; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: var(--white); outline: none;" oninput="hesaplaButce()">
+          <button class="remove-btn" style="background: none; border: none; color: var(--ruby); cursor: pointer; padding: 0 8px; font-size: 1.1rem;" onclick="this.parentElement.remove(); hesaplaButce();">✕</button>
+        `;
+        return div;
+      };
+
+      addGelirBtn.addEventListener('click', () => {
+        gelirListesi.appendChild(createRow('gelir'));
+      });
+
+      addGiderBtn.addEventListener('click', () => {
+        giderListesi.appendChild(createRow('gider'));
+      });
+
+      window.hesaplaButce = () => {
+        let toplamGelir = 0;
+        let toplamGider = 0;
+
+        document.querySelectorAll('.gelir-miktar').forEach(inp => {
+          toplamGelir += parseFloat(inp.value) || 0;
+        });
+
+        document.querySelectorAll('.gider-miktar').forEach(inp => {
+          toplamGider += parseFloat(inp.value) || 0;
+        });
+
+        const net = toplamGelir - toplamGider;
+        let tasarrufOrani = 0;
+        if (toplamGelir > 0) {
+          tasarrufOrani = (net / toplamGelir) * 100;
+        }
+
+        toplamGelirYazi.textContent = formatPara(toplamGelir);
+        toplamGiderYazi.textContent = formatPara(toplamGider);
+        netKalanEl.textContent = formatPara(net);
+
+        if (net > 0) {
+          netKalanEl.style.color = 'var(--emerald)';
+          netKalanCizgi.style.background = 'linear-gradient(90deg, var(--emerald) 0%, var(--gold-400) 100%)';
+          
+          if (tasarrufOrani >= 20) {
+            netKalanMesaj.textContent = "Mükemmel! Finansal özgürlük yolundasınız.";
+            netKalanMesaj.style.color = "var(--gold-300)";
+          } else {
+            netKalanMesaj.textContent = "Harika! Ancak tasarruf oranını %20'ye çıkarmaya çalışın.";
+            netKalanMesaj.style.color = "var(--emerald)";
+          }
+          
+          tasarrufBari.style.width = Math.min(Math.max(tasarrufOrani, 0), 100) + '%';
+          tasarrufBari.style.background = 'var(--emerald)';
+          tasarrufOraniYazi.textContent = '%' + Math.max(tasarrufOrani, 0).toFixed(1);
+          tasarrufOraniYazi.style.color = 'var(--emerald)';
+
+        } else if (net < 0) {
+          netKalanEl.style.color = 'var(--ruby)';
+          netKalanCizgi.style.background = 'var(--ruby)';
+          netKalanMesaj.textContent = "Tehlike! Giderleriniz gelirinizi aşıyor (Borçlanıyorsunuz).";
+          netKalanMesaj.style.color = "var(--ruby)";
+          
+          tasarrufBari.style.width = '100%';
+          tasarrufBari.style.background = 'var(--ruby)';
+          tasarrufOraniYazi.textContent = '%0.0';
+          tasarrufOraniYazi.style.color = 'var(--ruby)';
+        } else {
+          netKalanEl.style.color = 'var(--text-secondary)';
+          netKalanCizgi.style.background = 'var(--text-secondary)';
+          netKalanMesaj.textContent = "Sıfıra sıfır (Fare Yarışı). Hiç birikim yapmıyorsunuz.";
+          netKalanMesaj.style.color = "var(--text-muted)";
+          
+          tasarrufBari.style.width = '0%';
+          tasarrufOraniYazi.textContent = '%0.0';
+          tasarrufOraniYazi.style.color = 'var(--text-muted)';
+        }
+      };
+
+      // Call once to initialize Bütçe
+      hesaplaButce();
+    });
+  </script>
+
+<%- include('partials/footer') %>
