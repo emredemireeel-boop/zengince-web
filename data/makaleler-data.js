@@ -2,6 +2,56 @@
 
 const MAKALELER = [
   {
+    "slug": "zenginlerin-asla-satin-almadigi-7-sey-fakirlik-tuzaklari",
+    "baslik": "Zenginlerin Asla Satın Almadığı 7 Şey: Orta Sınıfın Fakirlik Tuzakları",
+    "yazar": "Zengince Akademi",
+    "tarih": "17 Kasım 2024",
+    "okumaSuresi": "10 Dakika",
+    "kategori": "Finansal Zeka",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=luxury%20trap%20debt%20wealth%20finance%20high%20resolution&w=800&h=400&c=7&rs=1&p=0",
+    "ozet": "Toplumun size 'başarı sembolü' olarak sattığı şeylerin aslında birer finansal pranga olduğunu biliyor muydunuz? Gerçek zenginlerin yanına bile yaklaşmadığı o 7 lüks tuzak ve perde arkasındaki acı finansal gerçekler.",
+    "icerik": `
+      <p><span class="dropcap">O</span>rta sınıf ile gerçek zenginler arasındaki en büyük fark, parayı kazanma şekilleri değil, <strong>parayı harcama şekilleridir.</strong> Toplum ve reklam endüstrisi, bize zenginliğin gösterişli eşyalara sahip olmakla ilgili olduğu yalanını aşılar. Oysa dünyanın en varlıklı insanlarının bilançolarını (balance sheet) incelediğinizde, sıradan insanların uğruna yıllarca borçlandığı birçok \"statü sembolünden\" tiksinerek uzak durduklarını görürsünüz.</p>
+      
+      <p>Gerçek zenginlik, banka hesabınızdaki rakam değil, <em>satın alabildiğiniz özgürlük zamanıdır.</em> Orta sınıf, kazandığı parayla \"zengin görünmeye\" çalışırken, gerçek zenginler o parayla \"daha fazla özgürlük\" satın alırlar. İşte finansal okuryazarlığı yüksek zenginlerin yanına bile yaklaşmadığı, orta sınıfı ise borç batağına sürükleyen 7 büyük fakirlik tuzağı.</p>
+
+      <h2 style="margin-top: 40px; color: var(--gold-200);">1. Sıfır Kilometre (Bayiden) Lüks Otomobiller</h2>
+      <p>Finans dünyasındaki en acımasız ve net kurallardan biri şudur: <strong>Sıfır bir otomobil, bayinin kapısından çıktığı ilk saniyede değerinin %20'sini kaybeder.</strong></p>
+      <p>Orta sınıf bir vatandaş, sırf komşularına veya iş arkadaşlarına hava atmak için 5 yıllık faizli taşıt kredisine girerek sıfır bir Alman arabası alır. Zenginler ise arabaların bir \"yatırım aracı\" değil, hızla değer kaybeden bir \"gider kalemi\" (Liability) olduğunu bilirler. Dünyanın en zengin adamlarından Warren Buffett, yıllarca ikinci el, hafif hasar kayıtlı arabalara bindi. Facebook'un kurucusu Mark Zuckerberg, servetine rağmen manuel vitesli sıradan bir Volkswagen kullanıyor. Zenginler, değer kaybeden varlıklara (araba) borçlanmazlar; değer kazanan varlıklara (hisse senedi, gayrimenkul) yatırım yaparlar.</p>
+
+      <h2 style="margin-top: 40px; color: var(--gold-200);">2. \"Hızlı Moda\" ve Logolu Tasarımcı Kıyafetleri</h2>
+      <p>Göğsünde devasa marka logoları olan 1.000 Dolarlık tişörtleri kim satın alır? İronik bir şekilde, milyarderler değil; o markalara parasını vererek kendini zengin hissetmeye çalışan orta gelir grubu. Bu duruma sosyolojide <strong>Gösterişçi Tüketim (Conspicuous Consumption)</strong> denir.</p>
+      <p>Gerçekten varlıklı insanların gardırobunda dev logolar göremezsiniz. \"Sessiz Lüks\" (Quiet Luxury) denilen bir kavramı benimserler. Steve Jobs'un efsanevi siyah balıkçı yaka kazağı, Bill Gates'in sıradan V yaka süveterleri bunun kanıtıdır. Onlar <em>\"Ben çok zenginim\"</em> diye bağıran markalara ihtiyaç duymazlar çünkü statülerini banka hesapları, sahip oldukları şirketler ve inşa ettikleri sistemler belirler.</p>
+
+      <h2 style="margin-top: 40px; color: var(--gold-200);">3. Standart 30 Yıllık (Mortgage) Ev Kredileri</h2>
+      <p>Evinize sahip olmak harika bir duygudur, ancak zenginler 30 yıllık, maaşınızın yarısına el koyan devasa konut kredilerinden uzak dururlar. Finansal matematikte 30 yıllık bir kredinin faiziyle, o evin bedelini bankaya genellikle <strong>2 ila 3 katı</strong> olarak geri ödersiniz.</p>
+      <p>Bunun yerine zenginler, nakit akışı üreten yatırımlara odaklanırlar. Kendilerini bir eve 30 yıl bağlamak yerine, o sermayeyi ticarette veya temettü hisselerinde kullanıp, o yatırımların getirdiği kâr ile kiralarını veya evin kredisini öderler. Onlar için ev duygusal bir yuva değil, tamamen matematiksel bir hesap tablosudur.</p>
+
+      <div class="article-alert">
+        <strong>Fakirlik Tuzağı Kuralı:</strong> Bir varlık (Asset) cebinize her ay para koyar. Bir yükümlülük (Liability) ise cebinizden her ay para çıkarır. İçinde oturduğunuz ev, size para kazandırmadığı gibi vergi, aidat ve onarım masraflarıyla sürekli para çıkardığı için zenginlerin gözünde bir varlık değil, bir yükümlülüktür.
+      </div>
+
+      <h2 style="margin-top: 40px; color: var(--gold-200);">4. Zaman Çalan \"Ucuz\" Hizmetler</h2>
+      <p>Fakir veya orta sınıf zihniyeti <strong>zamanını verip para kazanmaya</strong> programlanmıştır. Bu yüzden evdeki bozulan musluğu kendisi tamir etmeye çalışır, sırf 200 TL kargo parası vermemek için trafiğe girip ürünü mağazadan teslim alır.</p>
+      <p>Zengin zihniyeti ise <strong>parasını verip zaman satın alır.</strong> Bir iş adamı için zamanın saatlik değeri 5.000 TL ise, 500 TL ödeyerek yaptırabileceği bir iş için asla kendi zamanını harcamaz. Bahçıvan, temizlikçi veya asistan tutmak zenginler için bir \"lüks\" değil, kendi ana işlerine odaklanıp çok daha fazlasını kazanabilmek için yapılan bir \"yatırımdır\". Zenginlerin asla satın almadığı şey <em>ucuzluk uğruna kaybedilen zamandır.</em></p>
+
+      <h2 style="margin-top: 40px; color: var(--gold-200);">5. En Son Çıkan Teknoloji Ürünleri (Aşırı Yükseltmeler)</h2>
+      <p>Her Eylül ayında iPhone'un yeni modeli çıktığında Apple mağazalarının önünde çadır kuranlar genellikle milyon dolarlık şirket sahipleri değildir. Şirket CEO'ları ve yatırımcılar teknolojiyi sadece bir \"üretim aracı\" olarak kullanırlar.</p>
+      <p>Mevcut telefonu işini kusursuz görürken sırf \"kamerası %10 daha iyi\" diye bir telefona asgari ücretin 3 katını vermek tam bir orta sınıf hastalığıdır. Gerçek zenginler, sadece teknolojinin onlara sağladığı hız veya veri analizi artışı, ödedikleri paraya değecekse (ROI) teknoloji yenilerler.</p>
+
+      <h2 style="margin-top: 40px; color: var(--gold-200);">6. Aşırı Garantili ama Düşük Getirili Finansal Ürünler</h2>
+      <p>Banka şubesindeki müşteri temsilcisinin size satmaya çalıştığı o \"Riski sıfır, yıllık %3 getiri garantili\" paketler zenginlerin asla yüzüne bakmadığı enstrümanlardır. Zenginler, enflasyonun olduğu bir dünyada \"risk almamanın\" aslında <strong>en büyük risk</strong> olduğunu çok iyi bilirler.</p>
+      <p>Sıradan insan korktuğu için parasını enflasyona ezdiren sabit getirili mevduatlara veya yastık altına hapsederken; zenginler borsa (S&P 500), girişim sermayesi, start-up yatırımları veya gayrimenkul gibi yüksek getiri potansiyelli gerçek varlıklara yönelirler. Korku, finansal özgürlüğün en büyük düşmanıdır.</p>
+
+      <h2 style="margin-top: 40px; color: var(--gold-200);">7. Piyango Biletleri ve Şans Oyunları</h2>
+      <p>Şans oyunları, matematik bilmeyenlerin ödediği gönüllü bir vergidir. Milyarderlerin gidip benzinlikten kazı-kazan veya loto bileti aldığını asla göremezsiniz. Çünkü onlar, kazanma şansının 14 milyonda bir olduğu bir sisteme para bağlamanın zihinsel bir yıkım olduğunu bilirler.</p>
+      <p>Piyango, <em>\"Ben kendi kaderimi kontrol edemiyorum, zengin olmak için mucizeye ihtiyacım var\"</em> diyen çaresiz zihniyetin afyonudur. Zenginler mucizelere değil, matematiğe, istatistiğe, piyasa okumasına ve çalışmaya güvenirler. Kendi piyangolarını kendi kurdukları iş sistemleriyle kendileri yaratırlar.</p>
+
+      <h2 style="margin-top: 40px; color: var(--gold-200);">Sonuç Olarak</h2>
+      <p>Eğer finansal olarak seviye atlamak istiyorsanız, paranızı neye harcadığınıza çok dikkat edin. Unutmayın, lüks arabalar ve kıyafetler sizi sadece \"zengin gösterir\". Sizi gerçekten zengin yapacak olan şey; paranızı gösterişe değil, sizin için çalışacak varlıklara (hisse senedi, eğitim, gayrimenkul, iş kurma) yatırmaktır. Harcama yaparken kendinize hep şu soruyu sorun: <em>\"Bu harcama bana özgürlük mü satın alıyor, yoksa beni sisteme daha çok mu köle ediyor?\"</em></p>
+    `
+  },
+  {
     "slug": "kutsal-kitaplarda-zenginlik-ogutleri",
     "baslik": "Kutsal Kitaplarda Zenginliğin Şifreleri: İlahi Finansal Öğütler",
     "yazar": "Zengince Akademi",
