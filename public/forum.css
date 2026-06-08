@@ -1,29 +1,20 @@
 /* ── FORUM STYLES ── */
 
 :root {
-  --forum-card-bg: #ffffff;
-  --forum-card-border: #e2e8f0;
-  --forum-hover-primary: rgba(212, 175, 55, 0.1);
-  --forum-primary: #D4AF37;
-  --forum-secondary: #f0f2f5;
-  --forum-foreground: #1a1a2e;
-  --forum-text-muted: #64748b;
-  --forum-success: #22c55e;
-  --forum-danger: #ef4444;
-  --forum-card-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.04), 0 2px 8px -2px rgba(0, 0, 0, 0.02);
-  --forum-card-shadow-hover: 0 16px 32px -4px rgba(212, 175, 55, 0.15), 0 8px 16px -4px rgba(212, 175, 55, 0.08);
-}
-
-body.dark-theme,
-.dark {
   --forum-card-bg: #111111;
   --forum-card-border: #222222;
   --forum-hover-primary: rgba(212, 175, 55, 0.15);
   --forum-primary: #D4AF37;
-  --forum-secondary: #1a1a2e;
+  --forum-secondary: #1a1a1a;
   --forum-foreground: #ededed;
   --forum-text-muted: #888888;
+  --forum-success: #22c55e;
+  --forum-danger: #ef4444;
+  --forum-card-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4), 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+  --forum-card-shadow-hover: 0 16px 32px -4px rgba(212, 175, 55, 0.15), 0 8px 16px -4px rgba(212, 175, 55, 0.08);
 }
+
+
 
 .forum-topic-card {
   background: var(--forum-card-bg);

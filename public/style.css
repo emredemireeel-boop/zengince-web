@@ -8,6 +8,15 @@
 
 /* ── CSS Custom Properties ─────────────────────────────────────────────── */
 :root {
+  /* Global UI Missing Vars */
+  --card-bg: #111111;
+  --card-border: #222222;
+  --top-bar-bg: #0a0a0a;
+  --foreground: #e8e8e3;
+  --background: #0a0a0a;
+  --success: #22c55e;
+  --danger: #ef4444;
+
   /* Gold Palette */
   --gold-100: #FFF8E7;
   --gold-200: #F5D061;

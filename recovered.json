@@ -1,0 +1,13 @@
+[
+  {
+    "name": "write_to_file",
+    "args": {
+      "CodeContent": "\"const fs = require('fs');\\nconst readline = require('readline');\\nconst path = 'C:\\\\\\\\Users\\\\\\\\GAMER\\\\\\\\.gemini\\\\\\\\antigravity-ide\\\\\\\\brain\\\\\\\\52165ffc-f10d-4bd1-ab8b-e689cbe8014b\\\\\\\\.system_generated\\\\\\\\logs\\\\\\\\transcript.jsonl';\\n\\nconst rl = readline.createInterface({\\n    input: fs.createReadStream(path),\\n    crlfDelay: Infinity\\n});\\n\\nlet matches = [];\\n\\nrl.on('line', (line) => {\\n    if (line.includes('makaleler-data.js') && line.includes('Pasif Gelir Kaynakları')) {\\n        matches.push(line);\\n    }\\n});\\n\\nrl.on('close', () => {\\n    if (matches.length > 0) {\\n        // Just save the last match's tool_calls to a file to inspect it\\n        try {\\n            const obj = JSON.parse(matches[matches.length - 1]);\\n            fs.writeFileSync('recovered.json', JSON.stringify(obj.tool_calls, null, 2));\\n            console.log('Saved to recovered.json');\\n        } catch(e) {\\n            console.log('Failed to parse json');\\n        }\\n    } else {\\n        console.log('No matches found.');\\n    }\\n});\\n\"",
+      "IsArtifact": "false",
+      "Overwrite": "true",
+      "TargetFile": "\"c:\\\\Users\\\\GAMER\\\\Desktop\\\\Projelerim\\\\zengince-web\\\\recover.js\"",
+      "toolAction": "\"Writing recovery script\"",
+      "toolSummary": "\"Write recover.js\""
+    }
+  }
+]

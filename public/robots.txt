@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /mesajlar
+Disallow: /profil/
+
 Sitemap: https://www.zengince.com/sitemap.xml

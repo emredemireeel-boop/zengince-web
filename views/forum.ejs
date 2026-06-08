@@ -53,26 +53,12 @@
 
       <!-- Ticker -->
       <div class="fuel-ticker-wrapper glass" style="flex: 1; margin: 0 32px; overflow: hidden; border-radius: 12px; height: 44px; display: flex; align-items: center; position: relative;">
-        <div style="display:flex; padding-left: 16px; align-items:center; gap: 32px; white-space: nowrap; overflow:hidden;">
+        <div style="display:flex; padding-left: 16px; align-items:center; gap: 32px; white-space: nowrap; overflow:hidden;" id="market-ticker-container">
           <span style="font-size: 11px; color: var(--gold-200); font-weight: 700; font-family: monospace; padding: 4px 8px; background: rgba(212,175,55,0.1); border-radius: 6px;">
             PİYASALAR
           </span>
           <span style="width: 1px; height: 18px; background: var(--card-border); display: inline-block; margin: 0 8px;"></span>
-          <div style="display:flex; gap: 8px; font-size:12px;">
-            <span style="color:var(--text-muted); font-weight:600;">BIST 100</span>
-            <span style="font-weight:700; font-family:monospace;">10.450</span>
-            <span style="color:var(--success);">▲ %1.2</span>
-          </div>
-          <div style="display:flex; gap: 8px; font-size:12px;">
-            <span style="color:var(--text-muted); font-weight:600;">Bitcoin</span>
-            <span style="font-weight:700; font-family:monospace;">$64,300</span>
-            <span style="color:var(--danger);">▼ %0.5</span>
-          </div>
-          <div style="display:flex; gap: 8px; font-size:12px;">
-            <span style="color:var(--text-muted); font-weight:600;">Gram Altın</span>
-            <span style="font-weight:700; font-family:monospace;">2.450 ₺</span>
-            <span style="color:var(--success);">▲ %0.8</span>
-          </div>
+          <span style="color:var(--text-muted); font-size:12px;" id="ticker-loading">Canlı Veriler Yükleniyor...</span>
         </div>
       </div>
 
@@ -437,6 +423,55 @@
       btn.textContent = 'Başlığı Oluştur';
     }
   }
+</script>
+
+
+<script>
+  async function loadLiveTicker() {
+    try {
+      const res = await fetch('/api/ticker');
+      const json = await res.json();
+      if (json.success && json.data) {
+        const d = json.data;
+        const container = document.getElementById('market-ticker-container');
+        
+        const formatMoney = (val, currency) => {
+          return new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 2 }).format(val) + ' ' + currency;
+        };
+
+        const formatChange = (change) => {
+          const sign = change >= 0 ? '▲' : '▼';
+          const color = change >= 0 ? 'var(--success)' : 'var(--danger)';
+          return `<span style="color:${color};">${sign} %${Math.abs(change).toFixed(2)}</span>`;
+        };
+
+        container.innerHTML = `
+          <span style="font-size: 11px; color: var(--gold-200); font-weight: 700; font-family: monospace; padding: 4px 8px; background: rgba(212,175,55,0.1); border-radius: 6px;">
+            PİYASALAR (CANLI)
+          </span>
+          <span style="width: 1px; height: 18px; background: var(--card-border); display: inline-block; margin: 0 8px;"></span>
+          <div style="display:flex; gap: 8px; font-size:12px;">
+            <span style="color:var(--text-muted); font-weight:600;">BIST 100</span>
+            <span style="font-weight:700; font-family:monospace;">${formatMoney(d.bist.price, '')}</span>
+            ${formatChange(d.bist.change)}
+          </div>
+          <div style="display:flex; gap: 8px; font-size:12px;">
+            <span style="color:var(--text-muted); font-weight:600;">Bitcoin</span>
+            <span style="font-weight:700; font-family:monospace;">${new Intl.NumberFormat('en-US').format(d.btc.price)}</span>
+            ${formatChange(d.btc.change)}
+          </div>
+          <div style="display:flex; gap: 8px; font-size:12px;">
+            <span style="color:var(--text-muted); font-weight:600;">Gram Altın</span>
+            <span style="font-weight:700; font-family:monospace;">${formatMoney(d.gold.price, '₺')}</span>
+            ${formatChange(d.gold.change)}
+          </div>
+        `;
+      }
+    } catch(e) {
+      document.getElementById('ticker-loading').textContent = 'Piyasa verileri alınamadı.';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', loadLiveTicker);
 </script>
 
 <%- include('partials/footer') %>

@@ -351,6 +351,43 @@ app.get('/profil/:username', (req, res) => {
   });
 });
 
+
+// ── API: Piyasa Verileri (Ticker) ─────────────────────────────────────────────
+app.get('/api/ticker', async (req, res) => {
+  try {
+    const btcRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
+    const btcData = await btcRes.json();
+    
+    const bistRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/XU100.IS');
+    const bistData = await bistRes.json();
+    const bistMeta = bistData.chart.result[0].meta;
+    
+    const goldRes = await fetch('https://finans.truncgil.com/v3/today.json');
+    const goldData = await goldRes.json();
+    
+    res.json({
+      success: true,
+      data: {
+        btc: {
+          price: parseFloat(btcData.lastPrice),
+          change: parseFloat(btcData.priceChangePercent)
+        },
+        bist: {
+          price: bistMeta.regularMarketPrice,
+          change: ((bistMeta.regularMarketPrice - bistMeta.chartPreviousClose) / bistMeta.chartPreviousClose) * 100
+        },
+        gold: {
+          price: parseFloat(goldData['gram-altin'].Selling.replace('.','').replace(',','.')),
+          change: parseFloat(goldData['gram-altin'].Change.replace('%','').replace(',','.'))
+        }
+      }
+    });
+  } catch(e) {
+    console.error("Ticker fetch error:", e);
+    res.status(500).json({success: false});
+  }
+});
+
 // ── Auth İşlemleri ────────────────────────────────────────────────────────────
 app.get('/giris', (req, res) => {
   res.render('giris', {
