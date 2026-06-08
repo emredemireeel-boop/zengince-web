@@ -51,6 +51,70 @@
       </div>
     </div>
   </footer>
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <style>
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 9999;
+    }
+    .z-toast {
+      background: rgba(20, 20, 20, 0.9);
+      backdrop-filter: blur(10px);
+      border-left: 4px solid var(--gold-200);
+      color: #fff;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateX(120%);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .z-toast.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .z-toast.success { border-color: #22c55e; }
+    .z-toast.error { border-color: #ef4444; }
+  </style>
+
+  <script>
+    window.showToast = function(message, type = 'default') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `z-toast ${type}`;
+      
+      let icon = '🔔';
+      if (type === 'success') icon = '✅';
+      if (type === 'error') icon = '❌';
+
+      toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+      container.appendChild(toast);
+
+      // Trigger animation
+      setTimeout(() => toast.classList.add('show'), 10);
+
+      // Remove after 3 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      }, 3000);
+    }
+    
+    // Geçici olarak window.alert'i override et, eğer istersen
+    // window.alert = function(msg) { showToast(msg, 'default'); }
+  </script>
 
   <!-- Client JS -->
   <script src="/app.js"></script>

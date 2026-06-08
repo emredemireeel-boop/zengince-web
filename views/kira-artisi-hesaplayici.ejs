@@ -1,0 +1,110 @@
+<%- include('partials/header') %>
+
+<style>
+  .calculator-section { padding: 120px 0 80px; }
+  .calc-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .calc-panel { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+  .form-group { margin-bottom: 24px; }
+  .form-label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
+  .form-control { width: 100%; padding: 16px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; font-family: var(--font-body); }
+  .form-control:focus { outline: none; border-color: #9B59B6; box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.2); }
+  
+  .result-box { text-align: center; margin-bottom: 30px; }
+  .result-title { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .result-value { font-size: 3.5rem; font-weight: 800; color: #9B59B6; font-family: var(--font-heading); line-height: 1; }
+  
+  .breakdown-list { list-style: none; padding: 0; margin: 0; }
+  .breakdown-item { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); }
+  .breakdown-item:last-child { border-bottom: none; }
+  .bd-label { color: var(--text-secondary); font-size: 1.05rem; }
+  .bd-value { color: var(--white); font-weight: 700; font-size: 1.1rem; }
+
+  .btn-calc { background: #9B59B6; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; }
+  .btn-calc:hover { background: #8e44ad; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(155,89,182,0.3); }
+
+  @media (max-width: 768px) {
+    .calc-container { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="calculator-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <span style="background: rgba(155, 89, 182, 0.1); color: #9B59B6; padding: 8px 16px; border-radius: 100px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 16px; display: inline-block;">🏠 Emlak & Gayrimenkul</span>
+      <h1 class="section-title">Kira Artış Oranı (TÜFE) <span style="color: #9B59B6;">Hesaplayıcı</span></h1>
+      <p class="section-desc" style="max-width: 700px; margin: 0 auto;">TÜİK'in açıkladığı 12 aylık TÜFE (Enflasyon) ortalamasına göre yasal yeni kira bedelinizi kolayca hesaplayın.</p>
+    </div>
+
+    <div class="calc-container">
+      
+      <!-- Girdi Paneli -->
+      <div class="calc-panel">
+        <h2 style="font-size: 1.5rem; margin-bottom: 30px; color: var(--white);">Kira Bilgileri</h2>
+        
+        <div class="form-group">
+          <label class="form-label">Mevcut Kira Bedeli (TL)</label>
+          <input type="number" id="mevcutKira" class="form-control" value="15000" min="0">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">TÜFE 12 Aylık Ortalama (%)</label>
+          <input type="number" id="tufeOrani" class="form-control" value="65.07" min="0" step="0.01">
+          <small style="color: var(--text-muted); margin-top: 6px; display: block;">Örn: Temmuz 2024 için TÜFE 12 aylık ortalaması %65.07'dir.</small>
+        </div>
+
+        <button onclick="hesaplaKira()" class="btn-calc" style="width: 100%; font-size: 1.2rem; padding: 18px; margin-top: 20px;">Yeni Kirayı Hesapla</button>
+      </div>
+
+      <!-- Sonuç Paneli -->
+      <div class="calc-panel">
+        <div class="result-box">
+          <div class="result-title">Yasal Yeni Kira Bedeliniz</div>
+          <div class="result-value" id="yeniKira">0 ₺</div>
+        </div>
+
+        <ul class="breakdown-list" style="margin-top: 40px;">
+          <li class="breakdown-item">
+            <span class="bd-label">Mevcut Kira Bedeli</span>
+            <span class="bd-value" id="eskiKira">0 ₺</span>
+          </li>
+          <li class="breakdown-item">
+            <span class="bd-label" style="color: #e74c3c;">Artış Miktarı</span>
+            <span class="bd-value" id="artisMiktari" style="color: #e74c3c;">+ 0 ₺</span>
+          </li>
+          <li class="breakdown-item" style="border-top: 2px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 8px;">
+            <span class="bd-label" style="color: #9B59B6; font-weight: 800;">Yeni Toplam Kira</span>
+            <span class="bd-value" id="yeniKiraAlt" style="color: #9B59B6;">0 ₺</span>
+          </li>
+        </ul>
+
+        <div style="margin-top: 30px; padding: 20px; background: rgba(155, 89, 182, 0.1); border-left: 4px solid #9B59B6; border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6;">
+          <strong>💡 Yasal Uyarı:</strong> Borçlar Kanunu'na göre işyeri ve konut kiralarında yasal artış oranı, ilgili ayda açıklanan TÜFE'nin 12 aylık ortalamasıdır. 2024 Temmuz itibarıyla %25 sınırlaması kalkmış ve TÜFE sistemine geri dönülmüştür.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function formatCurrency(num) {
+    return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(num);
+  }
+
+  function hesaplaKira() {
+    const mevcutKira = parseFloat(document.getElementById('mevcutKira').value) || 0;
+    const tufeOrani = parseFloat(document.getElementById('tufeOrani').value) || 0;
+
+    const artisMiktari = mevcutKira * (tufeOrani / 100);
+    const yeniKiraBedeli = mevcutKira + artisMiktari;
+
+    document.getElementById('yeniKira').innerText = formatCurrency(yeniKiraBedeli);
+    document.getElementById('eskiKira').innerText = formatCurrency(mevcutKira);
+    document.getElementById('artisMiktari').innerText = "+ " + formatCurrency(artisMiktari);
+    document.getElementById('yeniKiraAlt').innerText = formatCurrency(yeniKiraBedeli);
+  }
+
+  window.onload = hesaplaKira;
+</script>
+
+<%- include('partials/footer') %>

@@ -1,451 +1,174 @@
-
 'use strict';
 
-const SOZLUK = [
+const SOZLUK_TERIMLERI = [
   {
-    "kavram": "%4 Kuralı (Safe Withdrawal Rate)",
-    "aciklama": "Emeklilikte yatırımlarınızın her yıl %4'ünü çekerseniz, paranızın (tarihsel borsa verilerine göre) ömrünüz boyunca hiç bitmeyeceğini varsayan meşhur finans kuralıdır. (Örn: Yılda 400.000₺ harcıyorsanız, 10.000.000₺ yatırımınız olması gerekir).",
-    "ingilizce": "4% Rule",
-    "harf": "%",
-    "slug": "4-kurali-safe-withdrawal-rate",
-    "detayliAciklama": "Emeklilikte yatırımlarınızın her yıl %4'ünü çekerseniz, paranızın (tarihsel borsa verilerine göre) ömrünüz boyunca hiç bitmeyeceğini varsayan meşhur finans kuralıdır. (Örn: Yılda 400.000₺ harcıyorsanız, 10.000.000₺ yatırımınız olması gerekir).",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
+    slug: 'aciga-satis-short-selling',
+    terim: 'Açığa Satış (Short Selling)',
+    kategori: 'Borsa & Yatırım',
+    kisaTanim: 'Sahip olunmayan bir hisse senedini ödünç alıp satarak, fiyat düştüğünde daha ucuza yerine koyma ve aradaki farktan kâr etme stratejisi.',
+    detay: `
+      <p>Açığa satış (Short Selling), finansal piyasalarda yatırımcıların bir varlığın fiyatının <strong>düşeceğine</strong> dair bahis oynadığı agresif bir yatırım stratejisidir. Geleneksel yatırımcılar "ucuzdan al, pahalıdan sat" mantığıyla çalışırken, açığa satış yapanlar "pahalıdan sat, ucuzdan al" mantığıyla çalışır.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Nasıl Çalışır?</h3>
+      <p>Diyelim ki X şirketinin hissesi şu an 100 TL ve siz şirketin kötü bir bilanço açıklayacağını, hissenin düşeceğini düşünüyorsunuz.</p>
+      <ol>
+        <li>Aracı kurumunuzdan X şirketine ait 1.000 adet hisseyi (size ait olmayan) <strong>ödünç alırsınız</strong>.</li>
+        <li>Bu hisseleri piyasada anında 100 TL'den satarsınız. (Cebinize 100.000 TL nakit girer, ancak kuruma 1.000 hisse borçlusunuzdur).</li>
+        <li>Tahmininiz doğru çıkar ve bir ay sonra hisse fiyatı 60 TL'ye düşer.</li>
+        <li>Piyasadan 60 TL'ye 1.000 adet hisseyi geri satın alırsınız (Cebinizden 60.000 TL çıkar).</li>
+        <li>Aracı kuruma baştaki 1.000 adet hisse borcunuzu iade edersiniz.</li>
+        <li><strong>Sonuç:</strong> 100.000 TL gelir, 60.000 TL gider. Aradaki 40.000 TL sizin net kârınızdır.</li>
+      </ol>
+
+      <h3 style="margin-top: 30px; color: var(--gold-200);">En Büyük Riski (Sonsuz Kayıp)</h3>
+      <p>Normal bir hisse satın aldığınızda, hisse sıfıra düşse bile en fazla yatırdığınız parayı (%100'ünü) kaybedersiniz. Ancak açığa satışta zarar potansiyeli <strong>matematiksel olarak sonsuzdur.</strong> Eğer hisse fiyatı 100 TL'den 1.000 TL'ye çıkarsa, o hisseleri kuruma geri vermek için her fiyattan almak zorunda kalırsınız ve yatırdığınız paranın katbekat fazlasını kaybedebilirsiniz. (Bkz: Porsche - Volkswagen Short Squeeze veya GameStop olayı).</p>
+    `,
+    ilgiliTerimler: ['Kaldiracli Islem', 'Hedge Fon', 'Ayı Piyasası']
   },
   {
-    "kavram": "Açığa Satış (Short Selling)",
-    "aciklama": "Bir yatırımcının, fiyatının düşeceğini öngördüğü bir varlığı ödünç alıp anında piyasada satması ve düştüğünde daha ucuzdan geri alarak aradaki farktan kâr elde etme stratejisidir. Riskli bir işlemdir.",
-    "ingilizce": "Short Selling",
-    "harf": "A",
-    "slug": "aciga-satis-short-selling",
-    "detayliAciklama": "Bir yatırımcının, fiyatının düşeceğini öngördüğü bir varlığı ödünç alıp anında piyasada satması ve düştüğünde daha ucuzdan geri alarak aradaki farktan kâr elde etme stratejisidir. Riskli bir işlemdir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
+    slug: 'bilesik-faiz-compound-interest',
+    terim: 'Bileşik Faiz (Compound Interest)',
+    kategori: 'Temel Finans',
+    kisaTanim: 'Hem anaparanın hem de önceki dönemlerde kazanılmış olan faizlerin üzerinden hesaplanan faizdir. "Faizin faiz getirmesi" olarak bilinir.',
+    detay: `
+      <p>Bileşik faiz, Albert Einstein'ın "Dünyanın 8. harikası" olarak adlandırdığı söylenen, küçük birikimleri yıllar içinde devasa servetlere dönüştüren finansal bir güçtür. Paranızın kendi kendine para doğurma sürecidir.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Basit Faiz vs. Bileşik Faiz</h3>
+      <p>10.000 TL'yi yıllık %10 getiri ile yatırdığınızı varsayalım:</p>
+      <ul>
+        <li><strong>Basit Faiz:</strong> Her yıl sadece anapara (10.000 TL) üzerinden 1.000 TL faiz alırsınız. 20 yılın sonunda toplam 30.000 TL'niz olur. Kazanç tamamen doğrusaldır.</li>
+        <li><strong>Bileşik Faiz:</strong> İlk yıl 1.000 TL kazanırsınız ve toplamınız 11.000 TL olur. Ancak ikinci yıl, %10'luk getiri 10.000 üzerinden değil, 11.000 üzerinden (anapara + ilk yılın faizi) hesaplanır. Yani 2. yıl kazancınız 1.100 TL olur. 20 yılın sonunda (kazanılan faizler anaparaya eklenerek büyüdüğü için) paranız yaklaşık <strong>67.275 TL</strong> olur!</li>
+      </ul>
+
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Bileşik Faizin En Büyük Dostu: Zaman</h3>
+      <p>Bileşik faiz grafiklerine bakıldığında büyüme ilk yıllarda yavaş ve düz gibidir. Asıl "patlama" (hokey sopası eğrisi) uzun yıllar sonra başlar. Bu yüzden yatırım yapmaya 20 yaşında başlamakla 30 yaşında başlamak arasındaki fark ufak bir rakam değil, kelimenin tam anlamıyla milyonlarca liradır.</p>
+    `,
+    ilgiliTerimler: ['Enflasyon', 'Temettü Verimi', 'Pasif Gelir']
   },
   {
-    "kavram": "Amortisman",
-    "aciklama": "Bir varlığın kullanıldıkça veya zaman geçtikçe değer kaybetmesidir. Örneğin sıfır bir araba galeriden çıktığı an amortisman yüzünden %15 değer kaybeder. Zenginler amortismanı vergi avantajına dönüştürür.",
-    "ingilizce": "Depreciation",
-    "harf": "A",
-    "slug": "amortisman",
-    "detayliAciklama": "Bir varlığın kullanıldıkça veya zaman geçtikçe değer kaybetmesidir. Örneğin sıfır bir araba galeriden çıktığı an amortisman yüzünden %15 değer kaybeder. Zenginler amortismanı vergi avantajına dönüştürür.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
+    slug: 'ebitda-favok',
+    terim: 'EBITDA (FAVÖK)',
+    kategori: 'Kurumsal Finansman',
+    kisaTanim: 'Faiz, Amortisman ve Vergi Öncesi Kâr. Bir şirketin operasyonel nakit üretme gücünü gösteren en temel metriklerden biridir.',
+    detay: `
+      <p>EBITDA (Earnings Before Interest, Taxes, Depreciation, and Amortization), Türkçe karşılığıyla <strong>FAVÖK</strong> (Faiz, Amortisman ve Vergi Öncesi Kâr), yatırımcıların ve analistlerin bir şirketi değerlerken en çok kullandıkları bilanço göstergelerinden biridir.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Neden Net Kâr Yerine EBITDA Kullanılır?</h3>
+      <p>İki farklı şirketi karşılaştırdığınızı düşünün. Biri çok borçludur (çok faiz öder), diğeri borçsuzdur. Biri farklı bir vergi rejimine tabidir, diğeri bambaşka. Eğer sadece "Net Kâr"a bakarsanız, borçlu veya farklı vergi dilimindeki şirketin asıl "iş yapma becerisini" doğru göremezsiniz.</p>
+      <p>EBITDA; vergi, kredi faizi gibi "finansal ve yasal" yükleri tablodan çıkartır. Sadece şirketin "Çekirdek Operasyonunun" (örneğin ayakkabı üretip satmanın) kendi başına ne kadar para ürettiğine odaklanır.</p>
+
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Tehlikesi Nedir?</h3>
+      <p>Warren Buffett, EBITDA rakamlarından nefret etmesiyle ünlüdür. Çünkü "Amortismanları" (yani eskimiş bir fabrikayı veya yazılımı yenilemek için harcanması gereken gerçek parayı) hesaba katmaz. Bir şirket çok yüksek EBITDA açıklayabilir ancak makineleri paslanmak üzere olduğu için gelecek yıl devasa bir sermaye harcaması yapmak zorunda kalabilir.</p>
+    `,
+    ilgiliTerimler: ['Net Kar', 'Nakit Akışı (Cash Flow)', 'LBO (Leveraged Buyout)']
   },
   {
-    "kavram": "Arbitraj",
-    "aciklama": "Aynı varlığın veya malın iki farklı piyasadaki fiyat farkından (fiyat uyuşmazlığından) faydalanarak, ucuz olan yerden alıp anında pahalı olan yere satarak risksiz kâr elde etme işlemidir.",
-    "ingilizce": "Arbitrage",
-    "harf": "A",
-    "slug": "arbitraj",
-    "detayliAciklama": "Aynı varlığın veya malın iki farklı piyasadaki fiyat farkından (fiyat uyuşmazlığından) faydalanarak, ucuz olan yerden alıp anında pahalı olan yere satarak risksiz kâr elde etme işlemidir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
+    slug: 'fiat-para',
+    terim: 'Fiat Para (İtibari Para)',
+    kategori: 'Makroekonomi',
+    kisaTanim: 'Altın veya gümüş gibi fiziksel bir varlık tarafından desteklenmeyen, değerini sadece hükümetin yasal bir ödeme aracı olarak kabul etmesinden (ve halkın güveninden) alan para birimi.',
+    detay: `
+      <p>Cebinizdeki Dolar, Euro, Türk Lirası veya Yen... Bunların tamamı "Fiat" paradır. Fiat kelimesi Latince'de "Öyle olsun" veya "Kararname" anlamına gelir. Yani devlet bir kağıt parçasına basarak "Bu 100 değerindedir" der ve öyle olur.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Geçmişte Nasıldı? (Altın Standardı)</h3>
+      <p>1971 yılına kadar ABD Doları doğrudan altına endeksliydi. (Bretton Woods sistemi). 35 ABD Doları her zaman 1 ons altına eşitti. Yani devlet kafasına göre sınırsız dolar basamazdı; kasasındaki altın kadar basabilirdi. O dönemdeki paralar, birer "borç senedi" değil, kasadaki altının birer makbuzuydu.</p>
+
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Modern Fiat Sisteminin Sorunu</h3>
+      <p>1971'de Başkan Nixon "Altın standardını" iptal ettiğinden beri dünya fiat para sistemiyle işlemektedir. Devletler veya Merkez Bankaları, herhangi bir karşılık (altın vb.) göstermeksizin istedikleri kadar para basabilirler (Para Arzı - Money Supply). Sınırsız basılabilen her şeyin değeri matematiksel olarak düşmeye mahkumdur. İşte bu "gizli vergi"ye Enflasyon denir.</p>
+      <p>Zenginlerin nakit para yerine sürekli gayrimenkul, hisse senedi veya Bitcoin gibi "Sınırlı/Üretimi Zor Varlıklara" (Hard Assets) yatırım yapmasının temel sebebi, Fiat paranın zamanla eriyen bir buz küpü olduğunu bilmeleridir.</p>
+    `,
+    ilgiliTerimler: ['Enflasyon', 'Altın Standardı', 'Kripto Para']
   },
   {
-    "kavram": "Ayı Piyasası",
-    "aciklama": "Piyasalarda karamsarlığın hakim olduğu, fiyatların uzun süre düşüş trendinde kaldığı (genellikle zirveden %20'den fazla düşüş) dönemdir. Pençesiyle yukarıdan aşağıya vuran ayıdan ilham alır.",
-    "ingilizce": "Bear Market",
-    "harf": "A",
-    "slug": "ayi-piyasasi",
-    "detayliAciklama": "Piyasalarda karamsarlığın hakim olduğu, fiyatların uzun süre düşüş trendinde kaldığı (genellikle zirveden %20'den fazla düşüş) dönemdir. Pençesiyle yukarıdan aşağıya vuran ayıdan ilham alır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
+    slug: 'kaldirac-leverage',
+    terim: 'Kaldıraç (Leverage)',
+    kategori: 'Finansal Strateji',
+    kisaTanim: 'Başkalarının parasını, zamanını veya emeğini kullanarak kendi özkaynağınızın çok ötesinde pozisyon alma ve getiri potansiyelini katlama sanatı.',
+    detay: `
+      <p>Kaldıraç (Leverage), zenginliğin temel yapı taşlarından biridir. Fizikte olduğu gibi finansta da kaldıraç, ufak bir kuvvet uygulayarak devasa yükleri kaldırmanızı sağlar.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Finansal Kaldıraç (Borç ile Büyümek)</h3>
+      <p>1 Milyon TL nakdiniz var. Bu parayla 1 Milyon TL'lik bir ev alırsanız kaldıraç kullanmamış olursunuz. Ev %20 değer kazanırsa 200 Bin TL kâr edersiniz (%20 getiri).</p>
+      <p>Ancak, 1 Milyon TL nakdinizle bankadan 4 Milyon TL kredi çekip, <strong>5 Milyon TL'lik</strong> bir ev aldığınızı varsayalım. Eğer bu ev %20 değer kazanırsa (5 Milyon -> 6 Milyon), elde ettiğiniz kâr 1 Milyon TL olur. Kendi koyduğunuz özsermaye sadece 1 Milyon TL olduğu için, paranızı %100 oranında katlamış olursunuz! Bu, borcun kaldıraç etkisidir.</p>
+
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Kaldıracın Karanlık Yüzü</h3>
+      <p>Warren Buffett'ın dediği gibi: <em>"Zeki insanları iflasa sürükleyen 3 şey vardır: Likör, kadınlar ve kaldıraç."</em></p>
+      <p>Kaldıraç kârı katladığı gibi zararı da katlar. Eğer o 5 Milyonluk ev %20 değer kaybederse, 4 Milyona düşer. Sizin koyduğunuz 1 Milyon TL sermayenin tamamı silinir (%100 zarar) ve bankaya devasa faiz ödemekle baş başa kalırsınız. 2008 Küresel Krizi, tamamen aşırı kullanılmış finansal kaldıraçların patlamasıyla oluşmuştur.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Modern Kaldıraç Türleri</h3>
+      <p>Borç dışında modern zamanların en tehlikesiz ve güçlü kaldıraçları <strong>Kod ve Medya</strong>dır. Bir yazılımı 1 kişi için yazmakla 10 milyon kişi için kopyalamak arasında ekstra bir maliyet (marjinal maliyet) yoktur. Bu yüzden yazılımcılar ve içerik üreticileri asimetrik olarak çok zenginleşmektedir.</p>
+    `,
+    ilgiliTerimler: ['LBO (Leveraged Buyout)', 'Marjin Çağrısı', 'İyi Borç']
   },
   {
-    "kavram": "Bilanço",
-    "aciklama": "Bir şirketin belirli bir tarihte sahip olduğu tüm varlıkları (parası, demirbaşları) ve yükümlülükleri (borçları, kredileri) gösteren finansal röntgendir.",
-    "ingilizce": "Balance Sheet",
-    "harf": "B",
-    "slug": "bilanco",
-    "detayliAciklama": "Bir şirketin belirli bir tarihte sahip olduğu tüm varlıkları (parası, demirbaşları) ve yükümlülükleri (borçları, kredileri) gösteren finansal röntgendir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
+    slug: 'lbo-kalkiracli-satin-alma',
+    terim: 'LBO (Kaldıraçlı Satın Alma)',
+    kategori: 'Şirket Birleşmeleri',
+    kisaTanim: 'Bir şirketi satın alırken, paranın çok büyük bir kısmını borçlanarak (krediyle) bulmak ve bu kredi borcunu doğrudan satın alınan şirketin sırtına yükleme operasyonu.',
+    detay: `
+      <p>LBO (Leveraged Buyout), Wall Street'in Özel Sermaye Fonları (Private Equity) tarafından sıklıkla kullanılan "başkalarının parasıyla şirket alma" oyunudur.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Nasıl Yapılır?</h3>
+      <p>Diyelim ki 100 Milyon Dolarlık istikrarlı bir şirket var.</p>
+      <ol>
+        <li>Özel sermaye fonu masaya kendi cebinden sadece 20 Milyon Dolar koyar.</li>
+        <li>Kalan 80 Milyon Doları devasa bankalardan kredi (borç) olarak alır.</li>
+        <li>Şirketi satın alır almaz, çekilen 80 Milyon Dolarlık banka kredisi borcunu ve faizini doğrudan "şirketin kendi bilançosuna" transfer eder. (Şirketin varlıklarını ipotek gösterir).</li>
+        <li>Şirket artık kazandığı tüm kârı, yeni sahibinin onu alırken çektiği kredinin faizini ödemek için bankalara yollar.</li>
+        <li>Birkaç yıl sonra, şirket biraz toparlanırsa fon bu şirketi 150 Milyon Dolara satar. Kendi koyduğu 20 Milyon Doları birkaç yıl içinde katlar.</li>
+      </ol>
+
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Sonuçları Nelerdir?</h3>
+      <p>LBO operasyonları, satın alınan şirketin nakit akışını adeta bir parazit gibi emer. Şirketin tüm kârı AR-GE'ye, işçilere veya mağaza yenilemelerine gitmek yerine banka faizlerine gider. Çoğu devasa perakende zinciri (örneğin Toys "R" Us veya Sears), bir LBO kurbanı olmuş, aşırı borç yükünün altında kalarak iflas etmiştir.</p>
+    `,
+    ilgiliTerimler: ['EBITDA (FAVÖK)', 'Açığa Satış (Short Selling)', 'Kaldıraç (Leverage)']
   },
   {
-    "kavram": "Bileşik Getiri",
-    "aciklama": "Sadece ana paranın değil, daha önce kazanılmış faizin/getirinin de tekrar faiz/getiri kazandırması durumudur. Uzun vadede servet yaratmanın en büyük sırrıdır (\"Dünyanın 8. Harikası\").",
-    "ingilizce": "Compound Interest",
-    "harf": "B",
-    "slug": "bilesik-getiri",
-    "detayliAciklama": "Sadece ana paranın değil, daha önce kazanılmış faizin/getirinin de tekrar faiz/getiri kazandırması durumudur. Uzun vadede servet yaratmanın en büyük sırrıdır (\"Dünyanın 8. Harikası\"). Bileşik getiri, matematikteki üstel büyümenin finansal dünyadaki karşılığıdır. Paranız sadece sizin yatırdığınız miktar üzerinden değil, o zamana kadar kazandırdığı kazanç üzerinden de kâr sağlamaya devam eder. Einstein'ın dediği gibi: 'Bileşik getiri dünyanın sekizinci harikasıdır. Onu anlayan kazanır, anlamayan bedelini öder.' Zaman, bileşik getirinin en büyük dostudur; bu yüzden ne kadar erken yatırım yapmaya başlarsanız o kadar zengin olursunuz.",
-    "ornek": "Diyelim ki 25 yaşındasınız ve her ay borsaya sadece 2.000 TL yatırım yapıyorsunuz (yıllık ortalama %10 getiri ile). 65 yaşına geldiğinizde toplam cebinizden çıkan para sadece 960.000 TL olacaktır. Ancak bileşik getiri sayesinde portföyünüzün toplam değeri inanılmaz bir şekilde 12.600.000 TL civarına ulaşır! Bu aradaki 11.6 Milyon TL tamamen 'paranın kendi kendine doğurduğu' bir servettir.",
-    "grafikTipi": "line",
-    "grafikVerisi": {
-      "labels": [
-        "1. Yıl",
-        "10. Yıl",
-        "20. Yıl",
-        "30. Yıl",
-        "40. Yıl"
-      ],
-      "datasetLabel": "Portföy Değeri (Milyon TL)",
-      "data": [
-        0.02,
-        0.4,
-        1.5,
-        4.5,
-        12.6
-      ]
-    }
+    slug: 'temettu-dividend',
+    terim: 'Temettü (Dividend)',
+    kategori: 'Borsa & Yatırım',
+    kisaTanim: 'Bir şirketin elde ettiği net kârın belirli bir kısmını hissedarlarına (ortaklarına) nakit olarak dağıtmasıdır.',
+    detay: `
+      <p>Temettü (Kâr Payı), borsa yatırımcılarının hisse senedi alırken fiyatın yükselmesi dışında para kazanmalarının en temel ikinci yoludur. Bir hisse senedi alarak şirkete ortak olursunuz; şirket para kazandığında bu kârı sizinle paylaşır.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Nasıl Çalışır?</h3>
+      <p>Eğer Coca-Cola hissesinden 1.000 adet aldıysanız ve Coca-Cola o yıl hisse başına 2 Dolar temettü dağıtma kararı alırsa, hisse fiyatı hiç değişmese (hatta düşse bile) cebinize 2.000 Dolar nakit para girer. Bu para doğrudan banka hesabınıza yatar.</p>
+
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Zenginlikteki Rolü: Temettü Kartopu Etkisi</h3>
+      <p>Finansal özgürlüğün sırrı, aldığınız bu temettü nakdini harcamak yerine <strong>tekrar o şirketin hissesini almak için</strong> kullanmaktır (DRIP - Dividend Reinvestment Plan). Böylece ertesi yıl daha fazla hisseniz olur, daha fazla temettü alırsınız. Bu süreç bir kar topu gibi yıllarca büyür ve bileşik faizin mucizesini çalıştırır.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Her Şirket Temettü Verir mi?</h3>
+      <p>Hayır. Özellikle teknoloji şirketleri (örneğin Amazon, Tesla, Meta) yıllarca temettü vermemiştir. Çünkü bu şirketler kazandıkları parayı hissedarlara dağıtmak yerine, yapay zeka veya yeni sunucular almak için "şirketin içine" (AR-GE) geri yatırmayı tercih ederler ki şirket daha çok büyüsün. Genelde büyümesini tamamlamış, köklü, "nakit ineği" olarak adlandırılan şirketler (Bankalar, Telekom şirketleri, FMCG markaları) düzenli temettü öderler.</p>
+    `,
+    ilgiliTerimler: ['Bileşik Faiz (Compound Interest)', 'Nakit Akışı (Cash Flow)', 'EBITDA (FAVÖK)']
   },
   {
-    "kavram": "Blokzincir",
-    "aciklama": "Verilerin merkezi bir sunucu yerine dünya geneline yayılmış binlerce bilgisayara aynı anda kaydedildiği, değiştirilmesi ve hacklenmesi neredeyse imkansız olan dağıtık bir dijital kayıt defteri teknolojisidir.",
-    "ingilizce": "Blockchain",
-    "harf": "B",
-    "slug": "blokzincir",
-    "detayliAciklama": "Verilerin merkezi bir sunucu yerine dünya geneline yayılmış binlerce bilgisayara aynı anda kaydedildiği, değiştirilmesi ve hacklenmesi neredeyse imkansız olan dağıtık bir dijital kayıt defteri teknolojisidir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Boğa Piyasası",
-    "aciklama": "Piyasalarda fiyatların gelecekte yükseleceği beklentisinin hakim olduğu, iyimserliğin tavan yaptığı ve varlıkların sürekli değer kazandığı döneme verilen addır. Boynuzlarıyla aşağıdan yukarı vuran boğadan ilham alır.",
-    "ingilizce": "Bull Market",
-    "harf": "B",
-    "slug": "boga-piyasasi",
-    "detayliAciklama": "Piyasalarda fiyatların gelecekte yükseleceği beklentisinin hakim olduğu, iyimserliğin tavan yaptığı ve varlıkların sürekli değer kazandığı döneme verilen addır. Boynuzlarıyla aşağıdan yukarı vuran boğadan ilham alır.",
-    "ornek": "Örneğin 2020'nin sonlarından 2021'in sonuna kadar kripto para piyasasında çılgın bir boğa sezonu yaşandı. Bitcoin 10 bin dolardan 69 bin dolara çıkarken, piyasadaki hemen hemen herkes çok zeki bir yatırımcı olduğuna inanmıştı. Warren Buffett'ın dediği gibi: 'Suların çekildiğinde kimin çıplak yüzdüğünü görürüz.' Boğa piyasalarında herkes kâr eder."
-  },
-  {
-    "kavram": "Bootstrapping",
-    "aciklama": "Bir girişimi kurarken dışarıdan hiçbir melek yatırım veya risk sermayesi almadan, tamamen kendi öz kaynaklarınızla ve müşteriden gelen ilk gelirlerle şirketi büyütme stratejisidir.",
-    "ingilizce": "Bootstrapping",
-    "harf": "B",
-    "slug": "bootstrapping",
-    "detayliAciklama": "Bir girişimi kurarken dışarıdan hiçbir melek yatırım veya risk sermayesi almadan, tamamen kendi öz kaynaklarınızla ve müşteriden gelen ilk gelirlerle şirketi büyütme stratejisidir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Çeşitlendirme",
-    "aciklama": "Tüm yumurtaları aynı sepete koymamaktır. Riskleri azaltmak için yatırım portföyünü hisse senedi, tahvil, altın, emlak gibi farklı varlık sınıflarına paylaştırma sanatıdır.",
-    "ingilizce": "Diversification",
-    "harf": "Ç",
-    "slug": "cesitlendirme",
-    "detayliAciklama": "Tüm yumurtaları aynı sepete koymamaktır. Riskleri azaltmak için yatırım portföyünü hisse senedi, tahvil, altın, emlak gibi farklı varlık sınıflarına paylaştırma sanatıdır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "DCA (Dolar Maliyeti Ortalaması)",
-    "aciklama": "Piyasanın o anki durumunu (yüksek veya düşük) umursamadan, belirli periyotlarla (örneğin her ayın 1'inde) aynı miktarda yatırımı istikrarlı şekilde yapmaktır. Stresi azaltan en güvenli uzun vade stratejilerinden biridir.",
-    "ingilizce": "Dollar Cost Averaging",
-    "harf": "D",
-    "slug": "dca-dolar-maliyeti-ortalamasi",
-    "detayliAciklama": "Piyasanın o anki durumunu (yüksek veya düşük) umursamadan, belirli periyotlarla (örneğin her ayın 1'inde) aynı miktarda yatırımı istikrarlı şekilde yapmaktır. Stresi azaltan en güvenli uzun vade stratejilerinden biridir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Değer Yatırımı",
-    "aciklama": "Bir şirketin hisse fiyatının, şirketin \"gerçek içsel değerinin\" çok altına düştüğü anlarda satın almayı öngören yatırım stratejisidir. Benjamin Graham ve Warren Buffett bu ekolün öncüleridir.",
-    "ingilizce": "Value Investing",
-    "harf": "D",
-    "slug": "deger-yatirimi",
-    "detayliAciklama": "Bir şirketin hisse fiyatının, şirketin \"gerçek içsel değerinin\" çok altına düştüğü anlarda satın almayı öngören yatırım stratejisidir. Benjamin Graham ve Warren Buffett bu ekolün öncüleridir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Enflasyon",
-    "aciklama": "Paranın satın alma gücünün zamanla düşmesi, fiyatların genel düzeyinin artmasıdır. Nakit parada beklemek, enflasyon yüzünden garantili olarak para kaybetmek demektir.",
-    "ingilizce": "Inflation",
-    "harf": "E",
-    "slug": "enflasyon",
-    "detayliAciklama": "Paranın satın alma gücünün zamanla düşmesi, fiyatların genel düzeyinin artmasıdır. Nakit parada beklemek, enflasyon yüzünden garantili olarak para kaybetmek demektir. Enflasyon kısaca paranızın 'erimesidir'. Piyasaya çok fazla para basıldığında veya üretim azaldığında her bir para biriminin değeri düşer. Nakit para aslında bir varlık değil, buz küpüdür; sıcakta (enflasyonda) tutarsanız zamanla su olur. Zenginler enflasyondan korkmaz, aksine enflasyonu kendi lehlerine bir silah (kaldıraç ve iyi borç) olarak kullanmayı bilirler.",
-    "ornek": "Yıllar önce dedeniz yastık altına 100.000 TL saklamış olsun. O yıllarda o parayla belki bir ev veya araba alabiliyordu. Ancak bugün, 30 yıllık enflasyon yüzünden o 100.000 TL'nin alım gücü belki de sadece güzel bir akşam yemeğine denktir. Nakitte kalmak %100 oranında para kaybetme garantisidir.",
-    "grafikTipi": "bar",
-    "grafikVerisi": {
-      "labels": [
-        "2010",
-        "2015",
-        "2020",
-        "2023",
-        "2026"
-      ],
-      "datasetLabel": "100 TL'nin Alım Gücü Endeksi",
-      "data": [
-        100,
-        80,
-        50,
-        20,
-        8
-      ]
-    }
-  },
-  {
-    "kavram": "ETF (Borsa Yatırım Fonu)",
-    "aciklama": "İçerisinde yüzlerce şirketin hissesini barındıran ve tek bir hisse senedi gibi borsada alınıp satılabilen fonlardır (Örn: S&P 500 ETF'i). Warren Buffett, sıradan yatırımcılar için en iyi yatırımın geniş endeks ETF'leri olduğunu söyler.",
-    "ingilizce": "Exchange Traded Fund",
-    "harf": "E",
-    "slug": "etf-borsa-yatirim-fonu",
-    "detayliAciklama": "İçerisinde yüzlerce şirketin hissesini barındıran ve tek bir hisse senedi gibi borsada alınıp satılabilen fonlardır (Örn: S&P 500 ETF'i). Warren Buffett, sıradan yatırımcılar için en iyi yatırımın geniş endeks ETF'leri olduğunu söyler.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Fare Yarışı (Rat Race)",
-    "aciklama": "Maaş al, faturaları öde, paran bitsin, tekrar maaş al döngüsüne verilen isimdir. Gelir arttıkça giderlerin de lüks tüketimle artması sonucu bu yarıştan çıkmak yatırım yapmadan imkansızlaşır.",
-    "ingilizce": "Rat Race",
-    "harf": "F",
-    "slug": "fare-yarisi-rat-race",
-    "detayliAciklama": "Maaş al, faturaları öde, paran bitsin, tekrar maaş al döngüsüne verilen isimdir. Gelir arttıkça giderlerin de lüks tüketimle artması sonucu bu yarıştan çıkmak yatırım yapmadan imkansızlaşır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Fırsat Maliyeti",
-    "aciklama": "Bir seçeneği tercih ettiğinizde, vazgeçtiğiniz en iyi alternatif seçeneğin size sağlayacağı fayda veya gelirdir. Parayı bankada tutmanın fırsat maliyeti, o parayı borsada yatırıp kazanabileceğiniz olası getiridir.",
-    "ingilizce": "Opportunity Cost",
-    "harf": "F",
-    "slug": "firsat-maliyeti",
-    "detayliAciklama": "Bir seçeneği tercih ettiğinizde, vazgeçtiğiniz en iyi alternatif seçeneğin size sağlayacağı fayda veya gelirdir. Parayı bankada tutmanın fırsat maliyeti, o parayı borsada yatırıp kazanabileceğiniz olası getiridir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Fiat Para (İtibari Para)",
-    "aciklama": "Altın veya gümüş gibi fiziksel bir karşılığı olmayan, sadece devletin \"Bu paradır\" demesiyle ve yasalarla (kanun hükmünde) değeri korunan Dolar, TL, Euro gibi geleneksel para birimleridir.",
-    "ingilizce": "Fiat Currency",
-    "harf": "F",
-    "slug": "fiat-para-itibari-para",
-    "detayliAciklama": "Altın veya gümüş gibi fiziksel bir karşılığı olmayan, sadece devletin \"Bu paradır\" demesiyle ve yasalarla (kanun hükmünde) değeri korunan Dolar, TL, Euro gibi geleneksel para birimleridir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Finansal Özgürlük (FIRE)",
-    "aciklama": "Çalışmak zorunda kalmadan, sadece varlıklarınızdan elde ettiğiniz pasif gelirle yaşam standartlarınızı ömür boyu sürdürebilme durumudur. FIRE (Financial Independence, Retire Early) bu akımın dünyadaki adıdır.",
-    "ingilizce": "Financial Independence",
-    "harf": "F",
-    "slug": "finansal-ozgurluk-fire",
-    "detayliAciklama": "Çalışmak zorunda kalmadan, sadece varlıklarınızdan elde ettiğiniz pasif gelirle yaşam standartlarınızı ömür boyu sürdürebilme durumudur. FIRE (Financial Independence, Retire Early) bu akımın dünyadaki adıdır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Fiyat/Kazanç Oranı (F/K)",
-    "aciklama": "Bir hisse senedinin pahalı mı yoksa ucuz mu olduğunu anlamak için kullanılan en temel metriktir. Yatırımcıların o şirketin 1 liralık kazancı için borsada kaç lira ödemeye razı olduğunu gösterir.",
-    "ingilizce": "P/E Ratio",
-    "harf": "F",
-    "slug": "fiyat-kazanc-orani-f-k",
-    "detayliAciklama": "Bir hisse senedinin pahalı mı yoksa ucuz mu olduğunu anlamak için kullanılan en temel metriktir. Yatırımcıların o şirketin 1 liralık kazancı için borsada kaç lira ödemeye razı olduğunu gösterir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "FOMO (Fırsatı Kaçırma Korkusu)",
-    "aciklama": "Bir hissenin, projenin veya piyasanın çok hızlı yükseldiğini görüp, \"herkes zengin oluyor ben geride kaldım\" paniğiyle araştırmadan en tepeden yatırım yapma psikolojisidir.",
-    "ingilizce": "Fear Of Missing Out",
-    "harf": "F",
-    "slug": "fomo-firsati-kacirma-korkusu",
-    "detayliAciklama": "Bir hissenin, projenin veya piyasanın çok hızlı yükseldiğini görüp, \"herkes zengin oluyor ben geride kaldım\" paniğiyle araştırmadan en tepeden yatırım yapma psikolojisidir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Gelir Tablosu",
-    "aciklama": "Bir şirketin belirli bir dönemde (örneğin 1 yıl içinde) elde ettiği tüm satış gelirlerini, giderlerini ve sonucunda ne kadar net kâr veya zarar ettiğini gösteren rapordur.",
-    "ingilizce": "Income Statement",
-    "harf": "G",
-    "slug": "gelir-tablosu",
-    "detayliAciklama": "Bir şirketin belirli bir dönemde (örneğin 1 yıl içinde) elde ettiği tüm satış gelirlerini, giderlerini ve sonucunda ne kadar net kâr veya zarar ettiğini gösteren rapordur.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Halka Arz (IPO)",
-    "aciklama": "Özel bir şirketin hisselerini ilk kez borsada işlem görmesi için genel halka ve yatırımcılara satmasıdır. Şirketler genellikle yeni yatırımlar için sermaye toplamak amacıyla halka açılırlar.",
-    "ingilizce": "Initial Public Offering",
-    "harf": "H",
-    "slug": "halka-arz-ipo",
-    "detayliAciklama": "Özel bir şirketin hisselerini ilk kez borsada işlem görmesi için genel halka ve yatırımcılara satmasıdır. Şirketler genellikle yeni yatırımlar için sermaye toplamak amacıyla halka açılırlar.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Hedge Fon",
-    "aciklama": "Genellikle sadece yüksek net değere sahip bireylerin (ultra zenginlerin) yatırım yapabildiği, riskten korunma veya piyasa ortalamasının çok üzerinde getiri sağlama amacıyla agresif ve karmaşık finansal stratejiler kullanan özel yatırım fonlarıdır.",
-    "ingilizce": "Hedge Fund",
-    "harf": "H",
-    "slug": "hedge-fon",
-    "detayliAciklama": "Genellikle sadece yüksek net değere sahip bireylerin (ultra zenginlerin) yatırım yapabildiği, riskten korunma veya piyasa ortalamasının çok üzerinde getiri sağlama amacıyla agresif ve karmaşık finansal stratejiler kullanan özel yatırım fonlarıdır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Hisse Senedi",
-    "aciklama": "Anonim şirketlerin sermayesini oluşturan eşit paylardan her biridir. Bir şirketin hisse senedini aldığınızda, yasal olarak o şirketin küçük bir bölümüne ortak olmuş olursunuz.",
-    "ingilizce": "Stock / Equity",
-    "harf": "H",
-    "slug": "hisse-senedi",
-    "detayliAciklama": "Anonim şirketlerin sermayesini oluşturan eşit paylardan her biridir. Bir şirketin hisse senedini aldığınızda, yasal olarak o şirketin küçük bir bölümüne ortak olmuş olursunuz.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "İyi Borç / Kötü Borç",
-    "aciklama": "Kötü borç, değeri düşen şeyler (TV, araba, tatil) almak için yüksek faizle alınan kredidir. İyi borç ise, borçlanma maliyetinden daha fazla gelir getirecek yatırımlar (kiralık ev, iş kurma) yapmak için alınan düşük faizli borçtur.",
-    "ingilizce": "Good Debt / Bad Debt",
-    "harf": "İ",
-    "slug": "iyi-borc-kotu-borc",
-    "detayliAciklama": "Kötü borç, değeri düşen şeyler (TV, araba, tatil) almak için yüksek faizle alınan kredidir. İyi borç ise, borçlanma maliyetinden daha fazla gelir getirecek yatırımlar (kiralık ev, iş kurma) yapmak için alınan düşük faizli borçtur.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Kaldıraç (Leverage)",
-    "aciklama": "Daha az kendi kaynağınızı kullanarak (başkalarının parası, başkalarının zamanı, kod veya medya) çok daha büyük bir sonuç veya getiri elde etme gücüdür. Kod yazmak ve video çekmek günümüzün en büyük bedava kaldıraçlarıdır.",
-    "ingilizce": "Leverage",
-    "harf": "K",
-    "slug": "kaldirac-leverage",
-    "detayliAciklama": "Daha az kendi kaynağınızı kullanarak (başkalarının parası, başkalarının zamanı, kod veya medya) çok daha büyük bir sonuç veya getiri elde etme gücüdür. Kod yazmak ve video çekmek günümüzün en büyük bedava kaldıraçlarıdır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Kripto Para",
-    "aciklama": "Blokzincir teknolojisini kullanan, herhangi bir merkez bankasına bağlı olmayan tamamen merkeziyetsiz dijital varlıklardır. Bitcoin, bu varlık sınıfının dijital altın olarak kabul edilen ilk örneğidir.",
-    "ingilizce": "Cryptocurrency",
-    "harf": "K",
-    "slug": "kripto-para",
-    "detayliAciklama": "Blokzincir teknolojisini kullanan, herhangi bir merkez bankasına bağlı olmayan tamamen merkeziyetsiz dijital varlıklardır. Bitcoin, bu varlık sınıfının dijital altın olarak kabul edilen ilk örneğidir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Likidite",
-    "aciklama": "Sahip olduğunuz bir varlığın ne kadar hızlı ve değer kaybetmeden nakit paraya çevrilebildiğidir. Hisse senetleri yüksek likiditeye sahipken, gayrimenkuller düşük likiditeye sahiptir.",
-    "ingilizce": "Liquidity",
-    "harf": "L",
-    "slug": "likidite",
-    "detayliAciklama": "Sahip olduğunuz bir varlığın ne kadar hızlı ve değer kaybetmeden nakit paraya çevrilebildiğidir. Hisse senetleri yüksek likiditeye sahipken, gayrimenkuller düşük likiditeye sahiptir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Melek Yatırımcı",
-    "aciklama": "Bir girişime henüz kuruluş (fikir veya tohum) aşamasındayken kendi kişisel servetiyle sermaye sağlayan, karşılığında hisse alan zengin ve genellikle tecrübeli bireylerdir.",
-    "ingilizce": "Angel Investor",
-    "harf": "M",
-    "slug": "melek-yatirimci",
-    "detayliAciklama": "Bir girişime henüz kuruluş (fikir veya tohum) aşamasındayken kendi kişisel servetiyle sermaye sağlayan, karşılığında hisse alan zengin ve genellikle tecrübeli bireylerdir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Mental Model",
-    "aciklama": "Dünyanın nasıl işlediğini anlamak için farklı disiplinlerden (biyoloji, fizik, ekonomi vb.) ödünç alınmış düşünce çerçeveleridir. Başarılı kararlar almak için alet çantanızdaki temel araçlardır.",
-    "ingilizce": "Mental Model",
-    "harf": "M",
-    "slug": "mental-model",
-    "detayliAciklama": "Dünyanın nasıl işlediğini anlamak için farklı disiplinlerden (biyoloji, fizik, ekonomi vb.) ödünç alınmış düşünce çerçeveleridir. Başarılı kararlar almak için alet çantanızdaki temel araçlardır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Ölçeklenebilirlik",
-    "aciklama": "Bir iş modelinin veya sistemin, maliyetleri aynı hızda artırmadan gelirlerini ve kullanıcı sayısını eksponansiyel olarak büyütebilme kapasitesidir. Yazılım ve medya en ölçeklenebilir işlerdir.",
-    "ingilizce": "Scalability",
-    "harf": "Ö",
-    "slug": "olceklenebilirlik",
-    "detayliAciklama": "Bir iş modelinin veya sistemin, maliyetleri aynı hızda artırmadan gelirlerini ve kullanıcı sayısını eksponansiyel olarak büyütebilme kapasitesidir. Yazılım ve medya en ölçeklenebilir işlerdir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Pasif Gelir",
-    "aciklama": "Aktif olarak zaman ve emek harcamadan (veya çok az harcayarak) düzenli olarak elde edilen gelirdir. Kira gelirleri, temettüler, kitap veya yazılım telifleri pasif gelirdir.",
-    "ingilizce": "Passive Income",
-    "harf": "P",
-    "slug": "pasif-gelir",
-    "detayliAciklama": "Aktif olarak zaman ve emek harcamadan (veya çok az harcayarak) düzenli olarak elde edilen gelirdir. Kira gelirleri, temettüler, kitap veya yazılım telifleri pasif gelirdir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Portföy",
-    "aciklama": "Bir bireyin veya kurumun sahip olduğu finansal yatırımların bütünüdür. Bir yatırımcının portföyünde hisseler, tahviller, emlak, altın ve nakit aynı anda bulunabilir.",
-    "ingilizce": "Portfolio",
-    "harf": "P",
-    "slug": "portfoy",
-    "detayliAciklama": "Bir bireyin veya kurumun sahip olduğu finansal yatırımların bütünüdür. Bir yatırımcının portföyünde hisseler, tahviller, emlak, altın ve nakit aynı anda bulunabilir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Resesyon (Durgunluk)",
-    "aciklama": "Bir ülkenin ekonomisinin üst üste iki çeyrek (6 ay) boyunca küçülmesi, işsizliğin artması ve ticari faaliyetlerin yavaşlaması durumudur.",
-    "ingilizce": "Recession",
-    "harf": "R",
-    "slug": "resesyon-durgunluk",
-    "detayliAciklama": "Bir ülkenin ekonomisinin üst üste iki çeyrek (6 ay) boyunca küçülmesi, işsizliğin artması ve ticari faaliyetlerin yavaşlaması durumudur.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Risk Sermayesi (Venture Capital)",
-    "aciklama": "Gelecek vaat eden, yüksek büyüme potansiyeline sahip ancak henüz yolun başındaki teknoloji veya inovasyon odaklı girişimlere (start-up) yapılan profesyonel finansal yatırımlardır.",
-    "ingilizce": "Venture Capital",
-    "harf": "R",
-    "slug": "risk-sermayesi-venture-capital",
-    "detayliAciklama": "Gelecek vaat eden, yüksek büyüme potansiyeline sahip ancak henüz yolun başındaki teknoloji veya inovasyon odaklı girişimlere (start-up) yapılan profesyonel finansal yatırımlardır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Stagflasyon",
-    "aciklama": "Ekonomik olarak en kötü senaryolardan biridir. Ekonomik durgunluğun (işsizlik, büyümemezlik) yüksek enflasyonla (sürekli artan fiyatlar) aynı anda yaşandığı ekonomik kriz durumudur.",
-    "ingilizce": "Stagflation",
-    "harf": "S",
-    "slug": "stagflasyon",
-    "detayliAciklama": "Ekonomik olarak en kötü senaryolardan biridir. Ekonomik durgunluğun (işsizlik, büyümemezlik) yüksek enflasyonla (sürekli artan fiyatlar) aynı anda yaşandığı ekonomik kriz durumudur.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Tahvil",
-    "aciklama": "Devletlerin veya büyük şirketlerin yatırımcılardan borç almak için çıkardıkları, belirli bir süre sonunda anaparayı ve vaat edilen faizi geri ödeme garantisi sunan resmi borç senetleridir.",
-    "ingilizce": "Bond",
-    "harf": "T",
-    "slug": "tahvil",
-    "detayliAciklama": "Devletlerin veya büyük şirketlerin yatırımcılardan borç almak için çıkardıkları, belirli bir süre sonunda anaparayı ve vaat edilen faizi geri ödeme garantisi sunan resmi borç senetleridir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Teknik Analiz",
-    "aciklama": "Bir varlığın (hisse senedi, döviz, altın) geçmişteki fiyat hareketlerini ve işlem hacimlerini gösteren grafiklere bakarak, gelecekteki fiyat yönünü matematiksel formüllerle tahmin etme sanatıdır.",
-    "ingilizce": "Technical Analysis",
-    "harf": "T",
-    "slug": "teknik-analiz",
-    "detayliAciklama": "Bir varlığın (hisse senedi, döviz, altın) geçmişteki fiyat hareketlerini ve işlem hacimlerini gösteren grafiklere bakarak, gelecekteki fiyat yönünü matematiksel formüllerle tahmin etme sanatıdır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Temel Analiz",
-    "aciklama": "Bir şirketin finansal tablolarını (bilanço, gelir tablosu), yönetim kadrosunu, sektördeki rakiplerini ve ekonomik durumu inceleyerek şirketin gerçek değerini (içsel değerini) bulma yöntemidir.",
-    "ingilizce": "Fundamental Analysis",
-    "harf": "T",
-    "slug": "temel-analiz",
-    "detayliAciklama": "Bir şirketin finansal tablolarını (bilanço, gelir tablosu), yönetim kadrosunu, sektördeki rakiplerini ve ekonomik durumu inceleyerek şirketin gerçek değerini (içsel değerini) bulma yöntemidir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Temettü (Kâr Payı)",
-    "aciklama": "Bir şirketin elde ettiği kârın, vergi ve yedek akçeler ayrıldıktan sonra hisse senedi sahiplerine nakit olarak dağıttığı paydır. Temettü emekliliği, pasif gelir stratejilerinden biridir.",
-    "ingilizce": "Dividend",
-    "harf": "T",
-    "slug": "temettu-k-r-payi",
-    "detayliAciklama": "Bir şirketin elde ettiği kârın, vergi ve yedek akçeler ayrıldıktan sonra hisse senedi sahiplerine nakit olarak dağıttığı paydır. Temettü emekliliği, pasif gelir stratejilerinden biridir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Teminat Çağrısı (Margin Call)",
-    "aciklama": "Kaldıraçlı veya kredili işlem yapan bir yatırımcının zarar etmesi sonucunda, aracı kurumun \"Paran sıfırlanmak üzere, hesabına acilen nakit ekle\" diyerek yaptığı finansal kabus uyarısıdır.",
-    "ingilizce": "Margin Call",
-    "harf": "T",
-    "slug": "teminat-cagrisi-margin-call",
-    "detayliAciklama": "Kaldıraçlı veya kredili işlem yapan bir yatırımcının zarar etmesi sonucunda, aracı kurumun \"Paran sıfırlanmak üzere, hesabına acilen nakit ekle\" diyerek yaptığı finansal kabus uyarısıdır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Varlık (Asset)",
-    "aciklama": "Kendi kendine cebinize para koyan şeylerdir. Hisse senetleri, kira getiren gayrimenkuller, telif hakları veya kâr eden bir işletme varlıktır. Zenginler varlık satın alır.",
-    "ingilizce": "Asset",
-    "harf": "V",
-    "slug": "varlik-asset",
-    "detayliAciklama": "Kendi kendine cebinize para koyan şeylerdir. Hisse senetleri, kira getiren gayrimenkuller, telif hakları veya kâr eden bir işletme varlıktır. Zenginler varlık satın alır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Volatilite",
-    "aciklama": "Bir varlığın fiyatının belirli bir zaman dilimindeki dalgalanma şiddetidir. Kripto paralar çok yüksek volatiliteye (oynaklığa) sahipken, devlet tahvilleri düşük volatiliteye sahiptir.",
-    "ingilizce": "Volatility",
-    "harf": "V",
-    "slug": "volatilite",
-    "detayliAciklama": "Bir varlığın fiyatının belirli bir zaman dilimindeki dalgalanma şiddetidir. Kripto paralar çok yüksek volatiliteye (oynaklığa) sahipken, devlet tahvilleri düşük volatiliteye sahiptir.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
-  },
-  {
-    "kavram": "Yükümlülük (Liability)",
-    "aciklama": "Cebinizden para çıkaran şeylerdir. Kredi kartı borcu, ihtiyaç dışı alınan lüks araba veya oturmak için alınan kredi ödemeli devasa bir ev yükümlülüktür. Fakirler ve orta sınıf yükümlülük satın alır ve bunları varlık sanır.",
-    "ingilizce": "Liability",
-    "harf": "Y",
-    "slug": "yukumluluk-liability",
-    "detayliAciklama": "Cebinizden para çıkaran şeylerdir. Kredi kartı borcu, ihtiyaç dışı alınan lüks araba veya oturmak için alınan kredi ödemeli devasa bir ev yükümlülüktür. Fakirler ve orta sınıf yükümlülük satın alır ve bunları varlık sanır.",
-    "ornek": "Henüz detaylı bir vaka örneği eklenmedi. Zengince.com'u takip etmeye devam edin."
+    slug: 'marjin-cagrisi-margin-call',
+    terim: 'Marjin Çağrısı (Margin Call)',
+    kategori: 'Borsa & Yatırım',
+    kisaTanim: 'Kaldıraçlı veya kredili işlem yapan bir yatırımcının hesabındaki teminat miktarının kritik seviyenin altına düşmesi sonucu, aracı kurumun "Acil para yatır yoksa pozisyonunu zararına kapatacağım" uyarısı.',
+    detay: `
+      <p>Finans dünyasının en korkutucu uyarılarından biridir. Yatırımcıların telefonlarının ter içinde kalmasına sebep olur.</p>
+      
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Olayın Mantığı</h3>
+      <p>Kaldıraçlı işlem yaparken aracı kuruma belirli bir miktar para yatırırsınız (Buna Marjin veya Teminat denir). Örneğin cebinizdeki 10.000 Doları teminat göstererek kurumdan krediyle 100.000 Dolarlık Bitcoin aldınız.</p>
+      <p>Eğer Bitcoin düşmeye başlarsa, aracı kurum kurum kendi verdiği kredinin risk altına girmesine izin vermez. Zarar 8.000 Dolara ulaştığında (yani cebinizdeki 10.000 Dolarlık teminatınız erimek üzereyken), kurum size telefon açar (veya mail atar):</p>
+      <p><em>"Sayın yatırımcı, Margin Call yemiş bulunmaktasınız. Hesabınızdaki teminat sınırın altına düştü. Hemen 5.000 Dolar nakit eklemezseniz, tüm zararınızı kesinleştirip Bitcoinlerinizi otomatik olarak (Liquidate) satacağız."</em></p>
+
+      <h3 style="margin-top: 30px; color: var(--gold-200);">Piyasaları Çökerten Domino Etkisi</h3>
+      <p>Piyasalar aniden ve sert bir şekilde düşmeye başladığında yüz binlerce yatırımcı aynı anda Margin Call yer. Birçoğunun hesaba yatıracak ekstra nakdi olmadığı için aracı kurumlar herkesin malını aynı anda zorla ve panikle satmaya başlar. Herkes satmaya zorlandığı için fiyatlar daha da düşer, daha çok kişi Margin Call yer. 2008 krizi, 2020 Pandemi çöküşü ve kriptodaki ani çöküş şelaleleri tamamen bu "Marjin Patlaması" zincirleme reaksiyonuyla oluşur.</p>
+    `,
+    ilgiliTerimler: ['Kaldıraç (Leverage)', 'Açığa Satış (Short Selling)', 'Fiat Para']
   }
 ];
 
-// Alfabetik sıralama için hazırlık
-SOZLUK.sort((a, b) => a.kavram.localeCompare(b.kavram, 'tr'));
+const SOZLUK_KATEGORILERI = {
+  'Borsa & Yatırım': { renk: '#3498DB', emoji: '📈' },
+  'Temel Finans': { renk: '#2ECC71', emoji: '🏛️' },
+  'Kurumsal Finansman': { renk: '#9B59B6', emoji: '🏢' },
+  'Makroekonomi': { renk: '#E74C3C', emoji: '🌍' },
+  'Finansal Strateji': { renk: '#F1C40F', emoji: '♟️' },
+  'Şirket Birleşmeleri': { renk: '#34495E', emoji: '🤝' }
+};
 
-module.exports = { SOZLUK };
+module.exports = { SOZLUK_TERIMLERI, SOZLUK_KATEGORILERI };

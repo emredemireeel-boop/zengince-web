@@ -101,27 +101,6 @@ const FILMLER = [
       "Para kazanma hırsının insan ilişkilerine ve kişisel psikolojiye yansımalarını anlamak."
     ]
   },
-
-  {
-    "slug": "inside-job",
-    "baslik": "Inside Job",
-    "turkceBaslik": "İç İş",
-    "yonetmen": "Charles Ferguson",
-    "yil": 2010,
-    "tur": "belgesel",
-    "imdb": 8.2,
-    "ozet": "Oscar ödüllü belgesel. 2008 küresel finansal krizinin kökenlerini, sorumlularını ve sistemik yolsuzlukları detaylıca ortaya koyuyor.",
-    "zenginlikDersi": "Finansal sistemi anlamadan yatırım yapmak, gözü bağlı araba kullanmaktır. Parayı yönetenlerin motivasyonlarını sorgulayın.",
-    "izlesebebi": "Finansal sistemin karanlık tarafını ve kendi paranızı neden kendinizin yönetmesi gerektiğini öğretir.",
-    "afisGorseli": "https://tse2.mm.bing.net/th?q=Inside%20Job%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
-    "detayliOzet": "Oscar ödüllü belgesel. 2008 küresel finansal krizinin kökenlerini, sorumlularını ve sistemik yolsuzlukları detaylıca ortaya koyuyor. Finansal sistemin karanlık tarafını ve kendi paranızı neden kendinizin yönetmesi gerektiğini öğretir. Bu yapım, sinematik kalitesinin yanı sıra finansal dünyayı, insan psikolojisini ve paranın insan doğası üzerindeki etkilerini ustalıkla işliyor. İş dünyasına ve yatırımlara bakış açınızı değiştirecek sahnelerle dolu gerçek bir başyapıt.",
-    "temelOgrenimler": [
-      "Finansal sistemi anlamadan yatırım yapmak, gözü bağlı araba kullanmaktır. Parayı yönetenlerin motivasyonlarını sorgulayın.",
-      "Sistemin açıklarını bulmak ve kalabalığın tersine hareket edebilmek (Contrarian düşünce).",
-      "Açgözlülük, hırs ve etik değerler arasındaki ince çizgiyi fark etmek.",
-      "Para kazanma hırsının insan ilişkilerine ve kişisel psikolojiye yansımalarını anlamak."
-    ]
-  },
   {
     "slug": "founder",
     "baslik": "The Founder",
@@ -177,46 +156,6 @@ const FILMLER = [
     "detayliOzet": "Joy Mangano'nun \"Miracle Mop\" icadıyla sıradan bir ev kadınından milyoner bir iş kadınına dönüşüm hikayesi. Sıradan insanların olağanüstü başarılar elde edebileceğinin ilham verici kanıtı. Bu yapım, sinematik kalitesinin yanı sıra finansal dünyayı, insan psikolojisini ve paranın insan doğası üzerindeki etkilerini ustalıkla işliyor. İş dünyasına ve yatırımlara bakış açınızı değiştirecek sahnelerle dolu gerçek bir başyapıt.",
     "temelOgrenimler": [
       "Büyük iş fikirleri günlük hayattaki problemlerin çözümünden doğar. Herkesin içinde bir girişimci vardır.",
-      "Sistemin açıklarını bulmak ve kalabalığın tersine hareket edebilmek (Contrarian düşünce).",
-      "Açgözlülük, hırs ve etik değerler arasındaki ince çizgiyi fark etmek.",
-      "Para kazanma hırsının insan ilişkilerine ve kişisel psikolojiye yansımalarını anlamak."
-    ]
-  },
-  {
-    "slug": "becoming-warren-buffett",
-    "baslik": "Becoming Warren Buffett",
-    "turkceBaslik": "Warren Buffett Olmak",
-    "yonetmen": "Peter Kunhardt",
-    "yil": 2017,
-    "tur": "belgesel",
-    "imdb": 7.7,
-    "ozet": "Dünyanın en başarılı yatırımcısı Warren Buffett'ın hayatını, yatırım felsefesini ve alçakgönüllü yaşam tarzını anlatan HBO belgeseli.",
-    "zenginlikDersi": "Tutumlu yaşam, sürekli öğrenme ve uzun vadeli düşünce, zenginliğin temel direkleridir.",
-    "izlesebebi": "Tarihin en başarılı yatırımcısının zihnine girmek ve yaşam felsefesini anlamak için.",
-    "afisGorseli": "https://tse2.mm.bing.net/th?q=Becoming%20Warren%20Buffett%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
-    "detayliOzet": "Dünyanın en başarılı yatırımcısı Warren Buffett'ın hayatını, yatırım felsefesini ve alçakgönüllü yaşam tarzını anlatan HBO belgeseli. Tarihin en başarılı yatırımcısının zihnine girmek ve yaşam felsefesini anlamak için. Bu yapım, sinematik kalitesinin yanı sıra finansal dünyayı, insan psikolojisini ve paranın insan doğası üzerindeki etkilerini ustalıkla işliyor. İş dünyasına ve yatırımlara bakış açınızı değiştirecek sahnelerle dolu gerçek bir başyapıt.",
-    "temelOgrenimler": [
-      "Tutumlu yaşam, sürekli öğrenme ve uzun vadeli düşünce, zenginliğin temel direkleridir.",
-      "Sistemin açıklarını bulmak ve kalabalığın tersine hareket edebilmek (Contrarian düşünce).",
-      "Açgözlülük, hırs ve etik değerler arasındaki ince çizgiyi fark etmek.",
-      "Para kazanma hırsının insan ilişkilerine ve kişisel psikolojiye yansımalarını anlamak."
-    ]
-  },
-  {
-    "slug": "minimalism",
-    "baslik": "Minimalism: A Documentary",
-    "turkceBaslik": "Minimalizm",
-    "yonetmen": "Matt D'Avella",
-    "yil": 2015,
-    "tur": "belgesel",
-    "imdb": 6.7,
-    "ozet": "Daha az eşyayla daha anlamlı bir hayat sürmenin mümkün olduğunu gösteren, tüketim kültürünü sorgulatan belgesel.",
-    "zenginlikDersi": "Gerçek zenginlik, daha çok eşya biriktirmek değil; neyin gerçekten önemli olduğunu bilmektir.",
-    "izlesebebi": "Zenginliğin maddi olmayan boyutunu keşfetmek ve tüketim tuzağından kurtulmak için.",
-    "afisGorseli": "https://tse2.mm.bing.net/th?q=Minimalism%3A%20A%20Documentary%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
-    "detayliOzet": "Daha az eşyayla daha anlamlı bir hayat sürmenin mümkün olduğunu gösteren, tüketim kültürünü sorgulatan belgesel. Zenginliğin maddi olmayan boyutunu keşfetmek ve tüketim tuzağından kurtulmak için. Bu yapım, sinematik kalitesinin yanı sıra finansal dünyayı, insan psikolojisini ve paranın insan doğası üzerindeki etkilerini ustalıkla işliyor. İş dünyasına ve yatırımlara bakış açınızı değiştirecek sahnelerle dolu gerçek bir başyapıt.",
-    "temelOgrenimler": [
-      "Gerçek zenginlik, daha çok eşya biriktirmek değil; neyin gerçekten önemli olduğunu bilmektir.",
       "Sistemin açıklarını bulmak ve kalabalığın tersine hareket edebilmek (Contrarian düşünce).",
       "Açgözlülük, hırs ve etik değerler arasındaki ince çizgiyi fark etmek.",
       "Para kazanma hırsının insan ilişkilerine ve kişisel psikolojiye yansımalarını anlamak."
@@ -309,7 +248,7 @@ const FILMLER = [
     "yonetmen": "Ben Younger",
     "yil": 2000,
     "tur": "drama",
-    "imdb": 7.0,
+    "imdb": 7,
     "ozet": "Kısa yoldan zengin olmak isteyen genç bir adamın, 'Pump and dump' taktiğiyle sahte hisseler satan bir aracı kuruma katılması.",
     "zenginlikDersi": "Eğer bir fırsat gerçek olamayacak kadar iyi görünüyorsa, büyük ihtimalle gerçek değildir. Telefonun ucundaki satıcılara güvenmeyin.",
     "izlesebebi": "Yatırımcıların nasıl manipüle edildiğini ve 'fırsat kaçırma korkusunun (FOMO)' satış taktiği olarak nasıl kullanıldığını görmek için.",
@@ -320,26 +259,6 @@ const FILMLER = [
       "Pump and dump manipülasyonunun nasıl çalıştığını öğrenmek.",
       "Telefondaki agresif satıcıların (boiler room) psikolojik manipülasyon tekniklerini tanımak.",
       "Gerçek değer üretemeyen sistemlerin er ya da geç çökmeye mahkum olduğu."
-    ]
-  },
-  {
-    "slug": "enron",
-    "baslik": "Enron: The Smartest Guys in the Room",
-    "turkceBaslik": "Enron: Odadaki En Akıllı Adamlar",
-    "yonetmen": "Alex Gibney",
-    "yil": 2005,
-    "tur": "belgesel",
-    "imdb": 7.6,
-    "ozet": "Amerikan tarihindeki en büyük şirket iflaslarından biri olan enerji devi Enron'un sahte bilançolarla yükselişini ve çöküşünü anlatan ödüllü belgesel.",
-    "zenginlikDersi": "Muhasebe hileleri ve kibir, kısa vadede devasa servetler yaratsa da, uzun vadede yıkım kaçınılmazdır.",
-    "izlesebebi": "Finansal tabloların nasıl manipüle edilebildiğini ve kurumsal denetimin neden hayati olduğunu anlamak için.",
-    "afisGorseli": "https://tse2.mm.bing.net/th?q=Enron%3A%20The%20Smartest%20Guys%20in%20the%20Room%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
-    "detayliOzet": "Amerikan tarihindeki en büyük şirket iflaslarından biri olan enerji devi Enron'un sahte bilançolar, muhasebe hileleri ve kurumsal kibirle nasıl yükselip çöktüğünü anlatan ödüllü bir belgesel. 'Akıllı' yöneticilerin sistemi nasıl kandırdığını gözler önüne seriyor. Sadece yatırımcıların değil, çalışanların da bu yıkımdan nasıl etkilendiğini anlatan bir ibret hikayesi.",
-    "temelOgrenimler": [
-      "Karmaşık finansal raporların ve muhasebe oyunlarının ardındaki gerçekleri sorgulamak.",
-      "Aşırı kibrin (Hubris) ve 'herkesten zekiyim' yanılgısının şirketleri nasıl yıktığı.",
-      "Kurumsal denetim mekanizmalarının ve bağımsız denetçilerin önemini kavramak.",
-      "Bir şirketin kâr modelini tam olarak anlamadan asla yatırım yapılmaması gerektiği."
     ]
   },
   {
@@ -381,6 +300,306 @@ const FILMLER = [
       "İş sözleşmelerinde her detayın hayati önemi (Asla el sıkışarak iş yapmamak).",
       "Girişimcilikte yaşın hiçbir önemi olmadığı; başarının ısrar ve vizyonla geldiği."
     ]
+  },
+  {
+    "slug": "catch-me-if-you-can",
+    "baslik": "Catch Me If You Can",
+    "turkceBaslik": "Sıkıysa Yakala",
+    "yonetmen": "Steven Spielberg",
+    "yil": 2002,
+    "tur": "drama",
+    "imdb": 8.1,
+    "ozet": "Genç yaşta FBI'ın en çok arananlar listesine giren ve sahte çeklerle milyonlarca dolar kazanan Frank Abagnale Jr.'ın gerçek hikayesi.",
+    "zenginlikDersi": "Zeka ve ikna kabiliyeti büyük kapılar açabilir, ancak bunlar yasal ve etik temeller üzerine inşa edilmezse sonu hüsrandır.",
+    "izlesebebi": "Karizma, özgüven ve ikna yeteneğinin insanları nasıl etkileyebileceğini görmek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Catch%20Me%20If%20You%20Can%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Zeki ve karizmatik bir genç olan Frank Abagnale Jr.'ın, henüz 19 yaşına bile basmadan Pan Am pilotu, doktor ve savcı kılığına girerek milyonlarca dolarlık sahte çek vurgunu yapmasını anlatıyor. Zekanın, güvenin ve insan psikolojisini okuma becerisinin ticaretteki (ve dolandırıcılıktaki) inanılmaz etkisini gözler önüne seriyor. Sonunda bu dehasını FBI için güvenlik danışmanı olarak kullanarak meşru servet ve başarıya ulaşıyor.",
+    "temelOgrenimler": [
+      "İnsanlar görünüme ve özgüvene yatırım yaparlar. Kendinizi nasıl sunduğunuz, başkalarının size nasıl davranacağını belirler.",
+      "Güçlü iletişim ve ikna becerileri dünyanın en karlı yetenekleridir.",
+      "Her sistemin bir açığı vardır; önemli olan bu açığı yıkıcı değil, yapıcı şekilde kullanmaktır.",
+      "Suç üzerine kurulan servet geçicidir ve daima korkuyla yaşatır."
+    ]
+  },
+  {
+    "slug": "steve-jobs",
+    "baslik": "Steve Jobs",
+    "turkceBaslik": "Steve Jobs",
+    "yonetmen": "Danny Boyle",
+    "yil": 2015,
+    "tur": "drama",
+    "imdb": 7.2,
+    "ozet": "Apple'ın kurucu ortağı Steve Jobs'un üç ikonik ürün lansmanı (Macintosh, NeXT, iMac) arkasındaki perde arkası ve teknoloji devrimini nasıl şekillendirdiği.",
+    "zenginlikDersi": "Kusursuzluk arayışı ve vizyonunuzdan taviz vermemek, devasa endüstriler yaratabilir, ancak süreçteki insan ilişkilerinizi zedeleyebilir.",
+    "izlesebebi": "İnovasyonun, takıntının ve vizyoner liderliğin perde arkasını izlemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Steve%20Jobs%202015%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Film, geleneksel bir biyografi yerine Jobs'un kariyerindeki üç kritik ürün lansmanının sahne arkasına odaklanıyor. Kod yazamayan ama olağanüstü bir orkestra şefi olan Jobs'un, etrafındaki mühendislerden en iyisini nasıl çıkardığını, pazarlama dehasını ve inatçı doğasını gösteriyor. Vizyoner bir dehanın ürün odaklı yaklaşımının nasıl trilyon dolarlık bir şirket yarattığının hikayesi.",
+    "temelOgrenimler": [
+      "Müşteriler ne istediklerini bilmezler, onlara ne isteyeceklerini sizin göstermeniz gerekir.",
+      "İyi bir ürün tasarımının temeli sadelik ve kullanıcı deneyimidir.",
+      "Liderlik her zaman sevilmek değildir; bazen insanların sınırlarını zorlamak ve onları rahatsız etmektir.",
+      "Teknik beceriler (kod yazmak) kadar vizyonu satabilmek (pazarlama) de kritiktir."
+    ]
+  },
+  {
+    "slug": "there-will-be-blood",
+    "baslik": "There Will Be Blood",
+    "turkceBaslik": "Kan Dökülecek",
+    "yonetmen": "Paul Thomas Anderson",
+    "yil": 2007,
+    "tur": "drama",
+    "imdb": 8.2,
+    "ozet": "20. yüzyılın başlarında, acımasız bir petrol arayıcısının servet ve güç hırsıyla nasıl bir imparatorluk kurduğunu ve bu süreçte ruhunu nasıl yavaş yavaş kaybettiğini anlatan destansı yapım.",
+    "zenginlikDersi": "Sınırsız hırs ve rekabet sizi maddi olarak zirveye taşıyabilir, ancak bu süreçte insanlığınızı ve sevdiklerinizi yok edebilir.",
+    "izlesebebi": "Vahşi kapitalizmin doğasını ve servet hırsının psikolojik yıkımını usta bir sinema diliyle görmek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=There%20Will%20Be%20Blood%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Daniel Plainview karakteri üzerinden, Amerika'nın petrol zengini olma sürecindeki vahşi kapitalizmi ele alıyor. Küçük bir madenciden dev bir petrol tröstü sahibine dönüşen Plainview, zenginleştikçe çevresindeki herkese ve hatta oğluna bile yabancılaşıyor. 'Benim rekabetimde başkalarının başarısız olduğunu görmeliyim' diyen sıfır toplamlı (zero-sum) bir zihniyetin anatomisi.",
+    "temelOgrenimler": [
+      "Aşırı hırs ve sıfır toplamlı oyun zihniyeti, servet getirse de sonunda mutlak bir yalnızlık yaratır.",
+      "Fırsatları erkenden görüp risk almak büyük kazançların anahtarıdır (Petrol arazilerini ucuza kapatmak).",
+      "İş dünyasında duygulara yer vermemek acımasız ama etkili bir büyüme stratejisidir.",
+      "Paranın ve gücün, din ve ahlak gibi kurumlarla girdiği yozlaştırıcı ilişki."
+    ]
+  },
+  {
+    "slug": "the-aviator",
+    "baslik": "The Aviator",
+    "turkceBaslik": "Göklerin Hakimi",
+    "yonetmen": "Martin Scorsese",
+    "yil": 2004,
+    "tur": "drama",
+    "imdb": 7.5,
+    "ozet": "Havacılık ve sinema dünyasının efsanevi girişimcisi Howard Hughes'un takıntıları, büyük riskleri ve muazzam servetiyle dolu fırtınalı gençlik yılları.",
+    "zenginlikDersi": "İnovasyon risk almayı gerektirir. Sınırları zorlamak devasa servetler yaratabilir ama zihinsel sağlığınızı korumak her şeyden önemlidir.",
+    "izlesebebi": "Çılgınlıkla deha arasındaki ince çizgiyi ve limitsiz bir vizyonun gücünü izlemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=The%20Aviator%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Miras kalan bir serveti güvenli limanlarda tutmak yerine, dünyanın en hızlı uçaklarını üretmek ve en büyük filmlerini çekmek için çılgınca risklere giren Howard Hughes'un hikayesi. Hughes, tekelci şirketlere ve hükümet bürokrasisine karşı savaşarak kendi vizyonunu gerçekleştiriyor. Tutkunun, bitmek bilmeyen mükemmeliyetçiliğin ve yenilikçiliğin hem yapıcı hem de yıkıcı doğasını harika bir şekilde sergiliyor.",
+    "temelOgrenimler": [
+      "Statükoya ve tekelci yapılara meydan okumak ilerlemenin ve büyük servetin motorudur.",
+      "Mükemmeliyetçilik en iyi ürünleri yaratır ancak aynı zamanda sizi tüketebilir.",
+      "Her şeyi kontrol etme arzusu ve takıntılar, başarı getirse de psikolojik sağlığı tehdit eder.",
+      "Gerçek bir vizyoner, imkansız denileni gerçeğe dönüştürmek için tüm servetini riske atmaktan korkmaz."
+    ]
+  },
+  {
+    "slug": "jerry-maguire",
+    "baslik": "Jerry Maguire",
+    "turkceBaslik": "Yeni Bir Başlangıç (Jerry Maguire)",
+    "yonetmen": "Cameron Crowe",
+    "yil": 1996,
+    "tur": "drama",
+    "imdb": 7.3,
+    "ozet": "Ahlaki bir aydınlanma yaşadıktan sonra işinden kovulan bir spor menajerinin, sadece tek bir müşteriyle sıfırdan kendi şirketini kurma mücadelesi.",
+    "zenginlikDersi": "İş dünyası sadece rakamlar ve komisyonlar değildir. Gerçek ve kalıcı değer, insanlara değer vermek ve derin bağlar kurmakla yaratılır.",
+    "izlesebebi": "İş hayatında nicelik yerine niteliğin (daha az müşteri, daha fazla ilgi) nasıl kazandırdığını görmek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Jerry%20Maguire%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Başarılı ama ruhsuz bir spor menajeri olan Jerry, 'Daha Az Müşteri, Daha Az Para, Daha Fazla İlgi' fikrini savunan bir manifesto yazınca sektör devi şirketinden kovulur. Geriye sadık kalan tek bir asistan ve tek bir sporcu müşterisiyle kendi işini kurar. Film, kurumsal açgözlülüğe karşı insani değerlerin ve tutkunun zaferini anlatan, 'Bana parayı göster!' repliğiyle efsaneleşmiş bir girişimcilik yolculuğudur.",
+    "temelOgrenimler": [
+      "Müşterilerinize sadece bir gelir kaynağı olarak değil, insan olarak değer verin (Kalite > Nicelik).",
+      "Kişisel markanızı ve işinizi inşa ederken, inandığınız ilkeler uğruna her şeyi sıfırlamayı göze alabilmek.",
+      "Başarı, çevrenizde vizyonunuza inanan ve size sadık kalan o 'birkaç' kişiyle gelir.",
+      "'Show me the money!' - Kendi değerinizi bilmek ve hak ettiğiniz karşılığı talep etme cesareti."
+    ]
+  },
+  {
+    "slug": "dumb-money",
+    "baslik": "Dumb Money",
+    "turkceBaslik": "Dumb Money (Aptal Para)",
+    "yonetmen": "Craig Gillespie",
+    "yil": 2023,
+    "tur": "komedi",
+    "imdb": 6.9,
+    "ozet": "2021 yılında Reddit'teki küçük yatırımcıların bir araya gelerek GameStop hisseleri üzerinden Wall Street'in dev hedge fonlarını nasıl dize getirdiğinin gerçek hikayesi.",
+    "zenginlikDersi": "Dijital çağda bilginin demokratikleşmesi, sıradan insanların bir araya gelerek milyarderlerin kurduğu finansal tekel sistemini yenebileceğini gösterir.",
+    "izlesebebi": "Borsanın sadece takım elbiseli profesyonellere ait bir oyun olmadığını, topluluğun gücünün her şeyi değiştirebileceğini görmek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Dumb%20Money%202023%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "'Roaring Kitty' (Keith Gill) adlı sıradan bir finansal analistin, GameStop hisselerinin Wall Street tarafından açığa satılarak (short squeeze) batırılmaya çalışıldığını fark etmesiyle başlar. Reddit'in WallStreetBets forumundaki amatör yatırımcılar örgütlenerek hisseleri satın alır ve Wall Street'in milyarderlerine milyarlarca dolar kaybettirir. Finansal sistemin asimetrik yapısını ve 'aptal para' olarak küçümsenen küçük yatırımcının intikamını anlatan modern bir Robin Hood hikayesi.",
+    "temelOgrenimler": [
+      "Sistem bazen büyüklerin lehine hileli olabilir, ancak kolektif hareket bu hileyi bozabilir.",
+      "Açığa satış (Shorting) mekanizmasının teorik olarak sonsuz zarar riski taşıdığını anlamak.",
+      "Sosyal medyanın ve internet topluluklarının modern finans piyasalarındaki inanılmaz yönlendirici gücü.",
+      "Piyasaların her zaman rasyonel işlemediği; duygu, inanç ve inatlaşmanın da bir fiyatı olduğu."
+    ]
+  },
+  {
+    "slug": "air",
+    "baslik": "Air",
+    "turkceBaslik": "Air",
+    "yonetmen": "Ben Affleck",
+    "yil": 2023,
+    "tur": "drama",
+    "imdb": 7.4,
+    "ozet": "1984 yılında ayakkabı sektöründe gerilerde olan Nike'ın, çaylak basketbolcu Michael Jordan ile tarihin en ikonik sponsorluk anlaşmasını (Air Jordan) nasıl imzaladığının hikayesi.",
+    "zenginlikDersi": "Oyunun kurallarını değiştiren bir değer yaratıyorsanız, sadece sabit bir ücret değil, yarattığınız değerden pay (gelir ortaklığı) talep etmelisiniz.",
+    "izlesebebi": "Risk almanın, içgüdülere güvenmenin ve sektör standartlarını yıkan yenilikçi anlaşmalar yapmanın gücünü izlemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Air%202023%20movie%20official%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Nike basketbol departmanı, Adidas ve Converse'in çok gerisinde olduğu bir dönemde, yöneticisi Sonny Vaccaro'nun tüm bütçeyi tek bir isme, henüz NBA'de hiç maça çıkmamış Michael Jordan'a yatırma riskini almasını konu ediniyor. Film, sadece bir ayakkabının değil; 'Bir ayakkabı ancak onu biri giydiğinde anlam kazanır' felsefesiyle bir sporcunun ürünün karına ortak olduğu modern sponsorluk sisteminin doğuşunu anlatıyor.",
+    "temelOgrenimler": [
+      "Sektörde gerideyseniz, mevcut kurallara göre oynayarak kazanamazsınız; kuralları baştan yazmalısınız.",
+      "Başarı, verilerin ötesini görebilmek ve içgüdülere (ve yeteneğe) cesurca yatırım yapmaktır.",
+      "Bir çalışanın, sporcunun veya girişimcinin yarattığı pastadan pay almasının (equity/revenue share) önemi.",
+      "Bir ürünü pazarlarken sadece özelliklerini değil, bir hikayeyi ve kimliği satarsınız."
+    ]
+  },
+  {
+    "slug": "blackberry",
+    "baslik": "BlackBerry",
+    "turkceBaslik": "BlackBerry",
+    "yonetmen": "Matt Johnson",
+    "yil": 2023,
+    "tur": "drama",
+    "imdb": 7.4,
+    "ozet": "Dünyanın ilk akıllı telefonu olan BlackBerry'nin dahi mühendisler ve agresif yöneticiler tarafından yaratılışını, meteorik yükselişini ve sonrasında iPhone'un gelişiyle ani çöküşünü anlatıyor.",
+    "zenginlikDersi": "Dünyanın en iyi ürününü yapmış olmak, sonsuza kadar zirvede kalacağınızın garantisi değildir. İnovasyonu durdurduğunuz an çöküş başlar.",
+    "izlesebebi": "Teknolojide pazar liderliğinin nasıl inşa edildiğini ve kurumsal kibrin şirketi nasıl batırdığını vaka analizi gibi incelemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=BlackBerry%202023%20movie%20official%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Bir grup bilgisayar mühendisi 'Research in Motion' şirketini kurduğunda harika bir teknolojiye (push email) sahiptiler ama iş yapmayı bilmiyorlardı. Agresif bir yönetici olan Jim Balsillie'nin ekibe katılmasıyla şirket devasa bir büyüme yakalar ve kurumsal iletişimin standartı haline gelir. Ancak 2007'de Steve Jobs dokunmatik ekranlı iPhone'u tanıttığında, BlackBerry yöneticilerinin 'insanlar klavyeden vazgeçemez' şeklindeki kibri sonun başlangıcı olur.",
+    "temelOgrenimler": [
+      "Mükemmel mühendislik ve kusursuz pazarlama, başarılı bir şirket kurmak için birbirinden ayrılmaz iki yarımdır.",
+      "Pazar lideri olmanın getirdiği rehavet (Innovator's Dilemma) ve rakipleri küçümsemenin maliyeti.",
+      "Pazarı okumakta başarısız olmak; tüketicinin 'ihtiyaç' zannettiği şeylerin çok hızlı değişebileceği.",
+      "Hızlı büyümenin yarattığı üretim ve kalite kontrol krizlerini aşmanın zorlukları."
+    ]
+  },
+  {
+    "slug": "tetris",
+    "baslik": "Tetris",
+    "turkceBaslik": "Tetris",
+    "yonetmen": "Jon S. Baird",
+    "yil": 2023,
+    "tur": "drama",
+    "imdb": 7.4,
+    "ozet": "1980'lerde Soğuk Savaş'ın sonlarına doğru, efsanevi bilgisayar oyunu Tetris'in lisans haklarını Sovyetler Birliği'nden alıp dünyaya yaymaya çalışan bir girişimcinin tehlikeli ve zekice stratejileri.",
+    "zenginlikDersi": "Doğru ürünü (IP) elde tutmak, üretmek kadar değerlidir. Karmaşık yasal sözleşmelerde ve uluslararası arenada haklarınızı korumayı bilmelisiniz.",
+    "izlesebebi": "Zekice yazılmış sözleşmelerin, azmin ve diplomatik risklerin nasıl milyar dolarlık bir endüstri yarattığını görmek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Tetris%202023%20movie%20official%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Video oyun tasarımcısı Henk Rogers, Tetris oyununu keşfettiğinde bunun dünyayı değiştireceğini anlar. Ancak oyunun hakları Demir Perde'nin arkasında, Sovyetler Birliği'ndedir. Yasal boşluklar, KGB ajanları, rakip şirket milyarderleri (Robert Maxwell) ve bürokrasi ile dolu bu gerçek hikayede, Rogers her şeyini riske atarak Tetris'i Game Boy ile birlikte dünyaya sunar.",
+    "temelOgrenimler": [
+      "Sınırları zorlayan bir girişimci olmak, bazen kuralları esnetmeyi ve canınız pahasına riske girmeyi gerektirir.",
+      "Fikri mülkiyetin (IP) ve sözleşmelerdeki küçük detayların iş dünyasındaki milyar dolarlık önemi.",
+      "Rakiplerinizin gücünden korkmak yerine onlardan daha hızlı ve dürüst manevra yapmak.",
+      "Orijinal ürünün yaratıcısına değer vermek ve onunla uzun vadeli, etik bir ortaklık kurmak."
+    ]
+  },
+  {
+    "slug": "bank-of-dave",
+    "baslik": "Bank of Dave",
+    "turkceBaslik": "Dave'in Bankası",
+    "yonetmen": "Chris Foggin",
+    "yil": 2023,
+    "tur": "komedi",
+    "imdb": 7.1,
+    "ozet": "İngiltere'de kendi çabalarıyla zengin olmuş işçi sınıfından Dave Fishwick'in, yerel halka yardım etmek için elitlerin kontrolündeki Londra finans sistemine karşı kendi bağımsız bankasını kurma mücadelesi.",
+    "zenginlikDersi": "Zenginlik sadece bireysel hesapta biriken para değil, topluma değer katan, adil bir finansal sistem yaratabilmektir. Bankalar sadece elitlerin tekelinde olmamalıdır.",
+    "izlesebebi": "Kararlı bir girişimcinin, hantal, elitist ve imtiyazlı bürokratik bir finans sistemini nasıl alt edebileceğini ilham verici bir yapımla izlemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Bank%20of%20Dave%202023%20movie%20official%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Gerçek bir hikayeye dayanan filmde, Burnley'de minibüs satan başarılı bir iş adamı olan Dave Fishwick, yerel esnafa kredi vermeyen Londra merkezli büyük bankalardan bıkar ve 'Eğer bankalar işlerini yapmıyorsa, ben kendi bankamı kurarım' der. Ancak İngiltere'de 150 yıldır yeni bir bankaya lisans verilmemiştir. Sistemin elitlerine karşı savaş açan Dave, kazandığı parayı topluma geri veren modern bir bölgesel bankacılık modeli yaratır.",
+    "temelOgrenimler": [
+      "Büyük kurumların esnek olamadığı (esnafa kredi vermemek) noktalar, girişimciler için pazar boşlukları yaratır.",
+      "Sermaye sahiplerinin kurduğu bariyerleri aşmak için paraya değil, pes etmeyen bir inada ve halkın desteğine ihtiyaç vardır.",
+      "Müşteri ile arasına duvarlar ören elitist iş modelleri, samimiyet ve güven sunan yerel işletmeler tarafından yıkılabilir.",
+      "'Karlı ama topluma faydalı' (sosyal girişimcilik) modelinin aslında işe yaradığı gerçeği."
+    ]
+  },
+  {
+    "slug": "wizard-of-lies",
+    "baslik": "The Wizard of Lies",
+    "turkceBaslik": "Yalanlar Büyücüsü",
+    "yonetmen": "Barry Levinson",
+    "yil": 2017,
+    "tur": "drama",
+    "imdb": 6.8,
+    "ozet": "Wall Street'in saygın isimlerinden Bernie Madoff'un, Amerikan tarihinin en büyük ve en yıkıcı Ponzi şemasını (65 Milyar Dolar) nasıl yönettiğinin dramatik hikayesi.",
+    "zenginlikDersi": "Her piyasa koşulunda sürekli, pürüzsüz ve yüksek getiri sağlayan hiçbir yasal yatırım aracı yoktur. Eğer bir şey gerçek olamayacak kadar istikrarlı görünüyorsa, gerçek değildir.",
+    "izlesebebi": "Zenginlerin ve kurumsalların bile en temel finansal tuzaklara (Ponzi) nasıl düştüğünü görmek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=The%20Wizard%20of%20Lies%20official%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Robert De Niro'nun Bernie Madoff'u canlandırdığı film, saygın bir eski NASDAQ başkanının aslında on yıllar boyunca hiçbir hisse senedi alıp satmadığını, sadece yeni yatırımcıların parasıyla eskilere ödeme yaptığını anlatıyor. 2008 krizinin piyasaları vurmasıyla yeni para akışı kesilir ve 65 milyar dolarlık bu devasa yalan imparatorluğu çöker.",
+    "temelOgrenimler": [
+      "Ponzi şemaları piyasalar yükselirken görünmezdir, sular çekildiğinde (ekonomik krizlerde) kimin çıplak yüzdüğü ortaya çıkar.",
+      "Yatırım yapılan strateji basitçe anlaşılamıyor ve şeffaflık sunulmuyorsa o yatırımdan uzak durulmalıdır.",
+      "İnsanlara fonda yer almanın bir 'ayrıcalık' olduğunu hissettirerek soru sormalarını engellemek.",
+      "Sadece güven ve itibar üzerine inşa edilen finansal ilişkilerin denetim eksikliği felaket getirir."
+    ]
+  },
+  {
+    "slug": "the-banker",
+    "baslik": "The Banker",
+    "turkceBaslik": "Bankacı",
+    "yonetmen": "George Nolfi",
+    "yil": 2020,
+    "tur": "drama",
+    "imdb": 7.3,
+    "ozet": "1960'larda ırkçılığın zirve yaptığı dönemde, iki siyahi girişimcinin gayrimenkul ve bankacılık sektöründe büyümek için beyaz bir adamı şirketin yüzü olarak kullanmalarının gerçek hikayesi.",
+    "zenginlikDersi": "İş dünyasında sistemin kuralları size karşıysa, pes etmek yerine o kuralların etrafından dolanacak yenilikçi stratejiler geliştirmelisiniz.",
+    "izlesebebi": "Sermaye birikiminin, gayrimenkul yatırımlarının ve bir banka sahibi olmanın bir topluluğu finansal olarak nasıl özgürleştirebileceğini görmek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=The%20Banker%202020%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Bernard Garrett ve Joe Morris, Los Angeles'ta gayrimenkul imparatorluğu kurmak isteyen iki siyahi girişimcidir. Ancak dönemin ırkçı politikaları yüzünden bankalardan kredi alamaz ve beyaz mahallelerden mülk alım satımı yapamazlar. Bunun üzerine işçi sınıfından beyaz bir adamı (Matt Steiner) eğiterek şirketlerinin 'paravan yöneticisi' yaparlar. Kendileri ise şoför ve hademe kılığına girerek işleri perde arkasından yönetir. Nihayetinde Teksas'ta bir banka satın alarak kendi halklarına kredi vermeye başlarlar.",
+    "temelOgrenimler": [
+      "Gayrimenkul yatırımı ve kira geliri, nesilsel servet (generational wealth) yaratmanın en sağlam yollarından biridir.",
+      "Bankalar ve finansal kurumlar üzerinde kontrol sahibi olmak, sermayenin kime akacağını belirler.",
+      "Akıllı bir girişimci engellere takılmaz, sistemi analiz eder ve bir arka kapı bulur.",
+      "Vizyonunuzu gerçekleştirmek için bazen egonuzu bir kenara bırakıp 'sahne arkasında' kalmanız gerekir."
+    ]
+  },
+  {
+    "slug": "war-dogs",
+    "baslik": "War Dogs",
+    "turkceBaslik": "Vurguncular",
+    "yonetmen": "Todd Phillips",
+    "yil": 2016,
+    "tur": "komedi",
+    "imdb": 7.1,
+    "ozet": "Irak Savaşı sırasında Pentagon'un silah ihalelerindeki yasal boşlukları keşfedip 300 milyon dolarlık devasa bir sözleşme kapan yirmili yaşlarındaki iki arkadaşın inanılmaz öyküsü.",
+    "zenginlikDersi": "Piyasada kimsenin uğraşmak istemediği kırıntıları (küçük ihaleler) toplayarak bile milyonlarca dolar kazanabilirsiniz; ancak açgözlülük sizi yutabilir.",
+    "izlesebebi": "Arbitraj (fiyat farkından kâr etme) mantığının ve hükümet ihalelerindeki bürokratik boşlukların nasıl paraya çevrildiğini izlemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=War%20Dogs%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Miami'de yaşayan masör David ve lise arkadaşı Efraim, ABD ordusunun devasa silah ihalelerini küçük işletmelere de açtığı gizli bir web sitesini (FedBizOpps) keşfederler. Lockheed Martin gibi devlerin ilgilenmediği, ancak onlar için milyonlarca dolar değerindeki 'kırıntı' ihalelere teklif vererek zengin olurlar. Sonunda 300 milyon dolarlık devasa bir Afganistan silah ihalesini kazanırlar ama işler, Arnavutluk'tan yasadışı mermi kaçakçılığına kadar uzanan tehlikeli bir boyuta ulaşır.",
+    "temelOgrenimler": [
+      "Arbitraj (bir malı ucuza bulup pahalıya satma) ticaretteki en eski ve en garantili kâr yöntemidir.",
+      "Büyük şirketlerin göz ardı ettiği mikro pazarlar (kırıntılar) yeni girişimciler için harika fırsatlar sunar.",
+      "Hızlı gelen paranın getirdiği kibir ve açgözlülük, ortaklar arasındaki güveni yok eder.",
+      "İş yaptığınız tedarikçilerin yasal durumunu (due diligence) kontrol etmemek felaket getirir."
+    ]
+  },
+  {
+    "slug": "mollys-game",
+    "baslik": "Molly's Game",
+    "turkceBaslik": "Molly'nin Oyunu",
+    "yonetmen": "Aaron Sorkin",
+    "yil": 2017,
+    "tur": "drama",
+    "imdb": 7.4,
+    "ozet": "Olimpik bir kayakçıyken sakatlanıp sporu bırakan Molly Bloom'un, dünyanın en zenginleri ve Hollywood yıldızları için dünyanın en özel yüksek bahisli poker ağını kurması.",
+    "zenginlikDersi": "Değerli bir 'ağ' (network) kurmak ve o ağa erişimi kontrol etmek, size inanılmaz bir finansal güç ve statü kazandırır.",
+    "izlesebebi": "Zenginlerin psikolojisini, özel kulüplerin nasıl çalıştığını ve zekasıyla kendi imparatorluğunu kuran bir kadının hikayesini izlemek için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=Mollys%20Game%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Molly Bloom, sekreter olarak çalıştığı yerde patronunun yasadışı yeraltı poker oyunlarını organize etmeye başlar. Zekası sayesinde kısa sürede oyuncuları (CEO'lar, aktörler, mafya üyeleri) patronundan çalarak kendi bağımsız oyununu kurar. Los Angeles'tan New York'a taşıdığı bu devasa ağda, milyonlarca dolar dönerken o sadece oyunun organizasyonundan devasa bir servet kazanır. Ancak gücün sınırlarını aştığında FBI'ın radarına girer.",
+    "temelOgrenimler": [
+      "Müşterilerinizin sırlarını tutmak ve onlara güvenli bir alan sağlamak, lüks hizmet sektörünün en önemli kuralıdır.",
+      "Bir 'topluluk' (community) oluşturup o topluluğun kapı tutucusu (gatekeeper) olmak en kârlı iş modellerinden biridir.",
+      "Yasal sınırların etrafında dolaşarak iş yapmak sonunda sizi yakalar.",
+      "Bilgi en büyük güçtür; masadaki zenginlerin ne konuştuğunu duymak bile bir servet değerindedir."
+    ]
+  },
+  {
+    "slug": "the-laundromat",
+    "baslik": "The Laundromat",
+    "turkceBaslik": "Cinayet Süsü / Kara Para",
+    "yonetmen": "Steven Soderbergh",
+    "yil": 2019,
+    "tur": "komedi",
+    "imdb": 6.3,
+    "ozet": "Dünyanın en zenginlerinin vergiden kaçınmak ve paralarını gizlemek için kullandıkları paravan şirketleri (Panama Belgeleri skandalı) absürt ve eğlenceli bir dille anlatan film.",
+    "zenginlikDersi": "Dünyanın en zenginleri, servetlerini korumak için çok farklı bir yasal ve finansal sistemin içinde oynarlar; 'para asla uyumaz, sadece yer değiştirir.'",
+    "izlesebebi": "Offshore (kıyı ötesi) hesapların, paravan şirketlerin (shell company) ve kara para aklamanın teknik olarak nasıl çalıştığını kolayca anlamak için.",
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=The%20Laundromat%20movie%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Eşini bir tekne kazasında kaybeden Ellen Martin, sigorta şirketinin ödeme yapmayı reddetmesi üzerine işin peşine düşer. İzini sürdüğü sahte sigorta poliçesi onu Panama'daki Mossack Fonseca adlı hukuk bürosuna götürür. Film, iki avukatın dördüncü duvarı yıkarak izleyiciye 'vergi cennetlerinin', tröstlerin ve Delaware'deki tabeladan ibaret şirketlerin küresel zenginler tarafından nasıl kullanıldığını anlattığı bir kapitalizm eleştirisidir.",
+    "temelOgrenimler": [
+      "Küresel elitlerin vergi ödememek için yasalardaki açıkları (offshore şirketler) nasıl sistemli bir şekilde kullandığını anlamak.",
+      "Paravan şirketler (shell companies) aracılığıyla gerçek mal varlığı sahiplerinin nasıl gizlendiği.",
+      "Finansal sistemin sıradan vatandaşı cezalandırırken, doğru avukatlara sahip zenginleri nasıl koruduğu.",
+      "Panama Belgeleri gibi veri sızıntılarının, küresel ekonominin karanlık yüzünü nasıl aydınlattığı."
+    ]
   }
 ];
 
@@ -389,11 +608,6 @@ const FILM_TURLERI = {
     "baslik": "Drama",
     "emoji": "🎬",
     "renk": "#D4AF37"
-  },
-  "belgesel": {
-    "baslik": "Belgesel",
-    "emoji": "📽️",
-    "renk": "#3498DB"
   },
   "komedi": {
     "baslik": "Komedi",

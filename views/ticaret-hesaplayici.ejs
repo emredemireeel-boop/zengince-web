@@ -1,0 +1,354 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(10,10,10,1) 100%);">
+    <div class="container" style="text-align: center;">
+      <span class="section-badge" style="background: rgba(52, 152, 219, 0.15); border-color: rgba(52, 152, 219, 0.3); color: #3498DB;">📦 E-Ticaret ve Satış</span>
+      <h1 class="section-title">Ticaret ve <span style="color: #3498DB;">Kâr Marjı</span> Hesaplayıcı</h1>
+      <p class="section-desc" style="max-width: 800px; margin: 0 auto;">
+        Ürün alıp satarken komisyon, vergi ve gizli giderlerin kârınızı nasıl erittiğini görün. Yanlış matematik yüzünden batan girişimcilerden olmamak için gerçek net kârınızı hesaplayın.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      
+      <div class="calculator-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--dark-200); padding: 40px; border-radius: 24px; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+        
+        <!-- Input Area -->
+        <div class="calculator-inputs" style="display: flex; flex-direction: column; gap: 24px;">
+          <h3 style="color: var(--white); font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+            <span>🛒</span> Ürün Maliyetleri
+          </h3>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Ürün Alış / Üretim Fiyatı</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">₺</span>
+                <input type="number" id="costProduct" value="100" style="width: 100%; padding: 12px 12px 12px 28px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none;">
+              </div>
+            </div>
+
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Kargo Gideri</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">₺</span>
+                <input type="number" id="costShipping" value="40" style="width: 100%; padding: 12px 12px 12px 28px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none;">
+              </div>
+            </div>
+
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Paketleme Gideri</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">₺</span>
+                <input type="number" id="costPackaging" value="10" style="width: 100%; padding: 12px 12px 12px 28px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none;">
+              </div>
+            </div>
+
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Ortalama Reklam Gideri</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">₺</span>
+                <input type="number" id="costAds" value="20" style="width: 100%; padding: 12px 12px 12px 28px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none;">
+              </div>
+            </div>
+          </div>
+
+          <h3 style="color: var(--white); font-size: 1.4rem; display: flex; align-items: center; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <span>⚖️</span> Kesintiler ve Hedef
+          </h3>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">Pazaryeri Komisyonu (%)</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">%</span>
+                <input type="number" id="feeCommission" value="15" style="width: 100%; padding: 12px 12px 12px 32px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none;">
+              </div>
+            </div>
+
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">KDV Oranı (%)</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">%</span>
+                <input type="number" id="feeVat" value="20" style="width: 100%; padding: 12px 12px 12px 32px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; outline: none;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Mode Toggle -->
+          <div style="display: flex; background: var(--dark-300); border-radius: 12px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); margin-top: 8px;">
+            <div style="flex: 1;">
+              <input type="radio" name="calcMode" id="modeSellingPrice" value="knowPrice" checked style="display: none;">
+              <label for="modeSellingPrice" class="mode-label-tic" style="display: block; text-align: center; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; color: var(--white);">
+                Satış Fiyatım Belli
+              </label>
+            </div>
+            <div style="flex: 1;">
+              <input type="radio" name="calcMode" id="modeMargin" value="knowMargin" style="display: none;">
+              <label for="modeMargin" class="mode-label-tic" style="display: block; text-align: center; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; color: var(--text-secondary);">
+                Hedef Kârım Belli
+              </label>
+            </div>
+          </div>
+
+          <style>
+            input[type="radio"]:checked + .mode-label-tic {
+              background: rgba(52, 152, 219, 0.2);
+              color: #3498DB !important;
+            }
+          </style>
+
+          <!-- Dynamic Input: Selling Price -->
+          <div id="wrapperPrice" class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="color: #3498DB; font-size: 0.95rem; font-weight: 500;">Ürünün Satış Fiyatı (TL)</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">₺</span>
+              <input type="number" id="inputSellingPrice" value="350" style="width: 100%; padding: 16px 16px 16px 40px; background: rgba(52, 152, 219, 0.05); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+            </div>
+          </div>
+
+          <!-- Dynamic Input: Target Margin -->
+          <div id="wrapperMargin" class="input-group" style="display: none; flex-direction: column; gap: 8px;">
+            <label style="color: #3498DB; font-size: 0.95rem; font-weight: 500;">Hedeflenen Net Kâr Marjı (%)</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">%</span>
+              <input type="number" id="inputTargetMargin" placeholder="Örn: 20" style="width: 100%; padding: 16px 16px 16px 40px; background: rgba(52, 152, 219, 0.05); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Output Area -->
+        <div class="calculator-results" style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Sonuç Kartı -->
+          <div style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(20,20,20,1) 100%); padding: 32px; border-radius: 20px; border: 1px solid rgba(52, 152, 219, 0.2);">
+            <h3 style="color: #3498DB; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; display:flex; align-items:center; gap:8px;">
+              <span>📊</span> Birim Kârlılık Analizi
+            </h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <span style="color: var(--text-secondary); font-size: 1.1rem;">Olması Gereken Satış Fiyatı</span>
+                <span id="outSellingPrice" style="font-size: 2.2rem; font-weight: 800; color: #fff; font-family: var(--font-display);">₺0</span>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--text-secondary);">Ürün + Operasyon Maliyeti</span>
+                <span id="outBaseCost" style="font-size: 1.1rem; font-weight: 600; color: #E74C3C;">₺0</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--text-secondary);">Ödenecek KDV (<span id="vatRateLbl"></span>)</span>
+                <span id="outVat" style="font-size: 1.1rem; font-weight: 600; color: #E74C3C;">₺0</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--text-secondary);">Pazaryeri Komisyonu (<span id="commRateLbl"></span>)</span>
+                <span id="outCommission" style="font-size: 1.1rem; font-weight: 600; color: #E74C3C;">₺0</span>
+              </div>
+              
+              <div style="background: rgba(46, 204, 113, 0.1); padding: 16px; border-radius: 12px; margin-top: 12px; border: 1px solid rgba(46, 204, 113, 0.2);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="color: #fff; font-weight: 600;">Elinizde Kalan Net Kâr</span>
+                  <span id="outNetProfit" style="font-size: 1.6rem; font-weight: 800; color: #2ECC71;">₺0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Net Kâr Marjı (Ciro Üzerinden)</span>
+                  <span id="outMargin" style="font-size: 1.1rem; font-weight: 700; color: #2ECC71;">%0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+                  <span style="color: rgba(255,255,255,0.5); font-size: 0.8rem;">Kâr Oranı (Maliyet Üzerinden)</span>
+                  <span id="outMarkup" style="font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.7);">%0</span>
+                </div>
+              </div>
+
+              <!-- Warning Alert -->
+              <div id="warningAlert" style="display: none; background: rgba(231, 76, 60, 0.1); border-left: 4px solid #E74C3C; padding: 12px; border-radius: 4px; margin-top: 8px;">
+                <span style="color: #E74C3C; font-size: 0.9rem; font-weight: 600; display:flex; align-items:center; gap:6px;">
+                  <span>⚠️</span> ZARAR EDİYORSUNUZ!
+                </span>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 4px; line-height: 1.4;">
+                  Satış fiyatınız giderleri (ürün+kargo+kdv+komisyon) karşılamıyor. Fiyatı artırmalı veya maliyetleri kısmalısınız.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Acı Gerçekler -->
+          <div style="background: linear-gradient(135deg, rgba(241, 196, 15, 0.05) 0%, rgba(20,20,20,1) 100%); padding: 32px; border-radius: 20px; border: 1px solid rgba(241, 196, 15, 0.2); position: relative; overflow: hidden;">
+            <div style="position: absolute; right: -20px; top: -20px; font-size: 6rem; opacity: 0.05;">🧠</div>
+            <h3 style="color: #F1C40F; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; display:flex; align-items:center; gap:8px;">
+              <span>👁️‍🗨️</span> Tüccar Tuzağı
+            </h3>
+            
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px;">
+              Ticarette iflas etmenin en hızlı yolu "Kâr Oranı" (Markup) ile "Kâr Marjı" (Margin) kavramlarını karıştırmaktır. 
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+              Maliyeti 100 TL olan ürüne %20 kâr ekleyip 120 TL'ye satarsanız %20 kâr etmiş olmazsınız. Pazaryeri komisyonu (%15) ve KDV (%20) <strong style="color:#fff;">120 TL üzerinden (satış fiyatından)</strong> kesileceği için aslında zarar edersiniz. Ticarette komisyonlar daima "ciro" üzerinden hesaplanır, maliyet üzerinden değil!
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Toggle logic
+      const radios = document.querySelectorAll('input[name="calcMode"]');
+      const wrapperPrice = document.getElementById('wrapperPrice');
+      const wrapperMargin = document.getElementById('wrapperMargin');
+
+      radios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          document.querySelectorAll('.mode-label-tic').forEach(l => l.style.color = 'var(--text-secondary)');
+          e.target.nextElementSibling.style.color = '#3498DB';
+
+          if (e.target.value === 'knowPrice') {
+            wrapperPrice.style.display = 'flex';
+            wrapperMargin.style.display = 'none';
+          } else {
+            wrapperPrice.style.display = 'none';
+            wrapperMargin.style.display = 'flex';
+          }
+          calculate();
+        });
+      });
+
+      // Inputs
+      const costProductEl = document.getElementById('costProduct');
+      const costShippingEl = document.getElementById('costShipping');
+      const costPackagingEl = document.getElementById('costPackaging');
+      const costAdsEl = document.getElementById('costAds');
+      
+      const feeCommissionEl = document.getElementById('feeCommission');
+      const feeVatEl = document.getElementById('feeVat');
+
+      const inputSellingPriceEl = document.getElementById('inputSellingPrice');
+      const inputTargetMarginEl = document.getElementById('inputTargetMargin');
+
+      // Outputs
+      const outSellingPriceEl = document.getElementById('outSellingPrice');
+      const outBaseCostEl = document.getElementById('outBaseCost');
+      const outVatEl = document.getElementById('outVat');
+      const outCommissionEl = document.getElementById('outCommission');
+      const outNetProfitEl = document.getElementById('outNetProfit');
+      const outMarginEl = document.getElementById('outMargin');
+      const outMarkupEl = document.getElementById('outMarkup');
+      
+      const vatRateLbl = document.getElementById('vatRateLbl');
+      const commRateLbl = document.getElementById('commRateLbl');
+      const warningAlert = document.getElementById('warningAlert');
+
+      const formatter = new Intl.NumberFormat('tr-TR', {
+        style: 'currency',
+        currency: 'TRY',
+        maximumFractionDigits: 2
+      });
+
+      function calculate() {
+        const mode = document.querySelector('input[name="calcMode"]:checked').value;
+        
+        const cProd = parseFloat(costProductEl.value) || 0;
+        const cShip = parseFloat(costShippingEl.value) || 0;
+        const cPack = parseFloat(costPackagingEl.value) || 0;
+        const cAds = parseFloat(costAdsEl.value) || 0;
+        
+        const baseCost = cProd + cShip + cPack + cAds;
+
+        const commRate = parseFloat(feeCommissionEl.value) || 0;
+        const vatRate = parseFloat(feeVatEl.value) || 0;
+
+        let sellingPrice = 0;
+        let vatAmount = 0;
+        let commAmount = 0;
+        let netProfit = 0;
+        let margin = 0;
+        let markup = 0;
+
+        if (mode === 'knowPrice') {
+          sellingPrice = parseFloat(inputSellingPriceEl.value) || 0;
+          
+          if (sellingPrice > 0) {
+            // İç yüzde KDV: S - (S / (1 + vatRate/100))
+            vatAmount = sellingPrice - (sellingPrice / (1 + vatRate / 100));
+            // Komisyon ciro üzerinden
+            commAmount = sellingPrice * (commRate / 100);
+            
+            const totalExpenses = baseCost + vatAmount + commAmount;
+            netProfit = sellingPrice - totalExpenses;
+            
+            margin = (netProfit / sellingPrice) * 100;
+            markup = (netProfit / baseCost) * 100;
+          }
+        } 
+        else {
+          const targetMargin = parseFloat(inputTargetMarginEl.value) || 0;
+          
+          // Formül: S = Cost / [ 1/(1+v) - c - m ]
+          // Nerede v = KDV (örn: 0.20), c = Komisyon (örn: 0.15), m = Hedef Marj (örn: 0.20)
+          const v = vatRate / 100;
+          const c = commRate / 100;
+          const m = targetMargin / 100;
+
+          const denominator = (1 / (1 + v)) - c - m;
+          
+          if (denominator <= 0) {
+             // İmkansız marj. Örneğin çok yüksek KDV ve Komisyon var.
+             sellingPrice = 0;
+             netProfit = 0;
+          } else {
+             sellingPrice = baseCost / denominator;
+             vatAmount = sellingPrice - (sellingPrice / (1 + v));
+             commAmount = sellingPrice * c;
+             netProfit = sellingPrice - (baseCost + vatAmount + commAmount);
+             margin = targetMargin;
+             markup = (netProfit / baseCost) * 100;
+          }
+        }
+
+        // Update UI
+        vatRateLbl.textContent = '%' + vatRate;
+        commRateLbl.textContent = '%' + commRate;
+
+        outSellingPriceEl.textContent = formatter.format(sellingPrice);
+        outBaseCostEl.textContent = formatter.format(baseCost);
+        outVatEl.textContent = formatter.format(vatAmount);
+        outCommissionEl.textContent = formatter.format(commAmount);
+        
+        outNetProfitEl.textContent = formatter.format(netProfit);
+        outMarginEl.textContent = margin.toFixed(2) + '%';
+        outMarkupEl.textContent = (isFinite(markup) ? markup.toFixed(2) : 0) + '%';
+
+        if (netProfit < 0) {
+          outNetProfitEl.style.color = '#E74C3C';
+          outMarginEl.style.color = '#E74C3C';
+          warningAlert.style.display = 'block';
+        } else {
+          outNetProfitEl.style.color = '#2ECC71';
+          outMarginEl.style.color = '#2ECC71';
+          warningAlert.style.display = 'none';
+        }
+      }
+
+      // Dinamik dinleyiciler
+      const inputs = document.querySelectorAll('input[type="number"]');
+      inputs.forEach(input => {
+        input.addEventListener('input', calculate);
+      });
+
+      calculate();
+    });
+  </script>
+
+<%- include('partials/footer') %>

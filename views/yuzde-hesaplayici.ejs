@@ -1,0 +1,162 @@
+<%- include('partials/header') %>
+
+<style>
+  .calculator-section { padding: 120px 0 80px; }
+  .calc-container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+  .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .calc-panel { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+  .form-group { margin-bottom: 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .form-label { font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+  .form-control { flex: 1; min-width: 100px; padding: 12px 16px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; font-family: var(--font-body); }
+  .form-control:focus { outline: none; border-color: #2ECC71; box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2); }
+  
+  .result-inline { font-size: 1.5rem; font-weight: 800; color: #2ECC71; font-family: var(--font-heading); min-width: 100px; text-align: right; }
+
+  @media (max-width: 768px) {
+    .calc-row { grid-template-columns: 1fr; }
+    .form-group { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .form-control { width: 100%; }
+    .result-inline { text-align: left; margin-top: 10px; font-size: 2rem; }
+  }
+</style>
+
+<section class="calculator-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <span style="background: rgba(46, 204, 113, 0.1); color: #2ECC71; padding: 8px 16px; border-radius: 100px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 16px; display: inline-block;">🧮 Günlük Matematik</span>
+      <h1 class="section-title">Yüzde <span style="color: #2ECC71;">Hesaplayıcı</span></h1>
+      <p class="section-desc" style="max-width: 700px; margin: 0 auto;">Kâr, zarar, indirim ve büyüme oranlarını hızlıca hesaplayın. En sık kullanılan 4 farklı yüzde formülü tek ekranda.</p>
+    </div>
+
+    <div class="calc-container">
+      
+      <!-- HESAP 1: X'in %Y'si kaçtır? -->
+      <div class="calc-panel">
+        <h2 style="font-size: 1.3rem; margin-bottom: 24px; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">1. Yüzde Değerini Bulma (İndirim / Komisyon)</h2>
+        <div class="form-group">
+          <input type="number" id="v1_sayi" class="form-control" placeholder="Örn: 1000" oninput="hesapla1()">
+          <span class="form-label">sayısının</span>
+          <span class="form-label" style="color: #2ECC71; font-weight: 800;">%</span>
+          <input type="number" id="v1_yuzde" class="form-control" placeholder="Örn: 20" oninput="hesapla1()">
+          <span class="form-label">'si kaçtır? =</span>
+          <span class="result-inline" id="res1">0</span>
+        </div>
+      </div>
+
+      <!-- HESAP 2: X sayısı Y sayısının yüzde kaçıdır? -->
+      <div class="calc-panel">
+        <h2 style="font-size: 1.3rem; margin-bottom: 24px; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">2. Oran Bulma (Kâr / Pay Oranı)</h2>
+        <div class="form-group">
+          <input type="number" id="v2_kucuk" class="form-control" placeholder="Örn: 250" oninput="hesapla2()">
+          <span class="form-label">sayısı,</span>
+          <input type="number" id="v2_buyuk" class="form-control" placeholder="Örn: 1000" oninput="hesapla2()">
+          <span class="form-label">sayısının yüzde kaçıdır? = </span>
+          <span class="form-label" style="color: #2ECC71; font-weight: 800; font-size: 1.5rem;">%</span>
+          <span class="result-inline" id="res2">0</span>
+        </div>
+      </div>
+
+      <!-- HESAP 3: X sayısından Y sayısına değişim (Büyüme/Küçülme) -->
+      <div class="calc-panel">
+        <h2 style="font-size: 1.3rem; margin-bottom: 24px; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">3. Yüzde Değişim (Büyüme / Küçülme)</h2>
+        <div class="form-group">
+          <span class="form-label">Bir değer</span>
+          <input type="number" id="v3_eski" class="form-control" placeholder="Eski: 100" oninput="hesapla3()">
+          <span class="form-label">'den</span>
+          <input type="number" id="v3_yeni" class="form-control" placeholder="Yeni: 150" oninput="hesapla3()">
+          <span class="form-label">'ye değişirse yüzde kaç değişir? = </span>
+          <span class="result-inline" id="res3" style="color: var(--white);">%0</span>
+        </div>
+      </div>
+
+      <!-- HESAP 4: X sayısını %Y artırmak/azaltmak -->
+      <div class="calc-panel">
+        <h2 style="font-size: 1.3rem; margin-bottom: 24px; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">4. Artırma / Eksiltme (Zam / İndirimli Fiyat)</h2>
+        <div class="form-group">
+          <input type="number" id="v4_sayi" class="form-control" placeholder="Örn: 500" oninput="hesapla4()">
+          <span class="form-label">sayısını</span>
+          <select id="v4_islem" class="form-control" style="flex: 0.5;" onchange="hesapla4()">
+            <option value="arttir">Artır</option>
+            <option value="azalt">Azalt</option>
+          </select>
+          <span class="form-label" style="color: #2ECC71; font-weight: 800;">%</span>
+          <input type="number" id="v4_yuzde" class="form-control" placeholder="Örn: 10" oninput="hesapla4()">
+          <span class="form-label">=</span>
+          <span class="result-inline" id="res4">0</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function formatNum(num) {
+    if (isNaN(num) || !isFinite(num)) return "0";
+    // Noktadan sonra max 2 hane, tam sayıysa .00 koyma
+    return parseFloat(num.toFixed(2)).toString();
+  }
+
+  function hesapla1() {
+    const sayi = parseFloat(document.getElementById('v1_sayi').value);
+    const yuzde = parseFloat(document.getElementById('v1_yuzde').value);
+    if (!isNaN(sayi) && !isNaN(yuzde)) {
+      document.getElementById('res1').innerText = formatNum(sayi * (yuzde / 100));
+    } else {
+      document.getElementById('res1').innerText = "0";
+    }
+  }
+
+  function hesapla2() {
+    const kucuk = parseFloat(document.getElementById('v2_kucuk').value);
+    const buyuk = parseFloat(document.getElementById('v2_buyuk').value);
+    if (!isNaN(kucuk) && !isNaN(buyuk) && buyuk !== 0) {
+      document.getElementById('res2').innerText = formatNum((kucuk / buyuk) * 100);
+    } else {
+      document.getElementById('res2').innerText = "0";
+    }
+  }
+
+  function hesapla3() {
+    const eski = parseFloat(document.getElementById('v3_eski').value);
+    const yeni = parseFloat(document.getElementById('v3_yeni').value);
+    const res3 = document.getElementById('res3');
+    
+    if (!isNaN(eski) && !isNaN(yeni) && eski !== 0) {
+      const fark = yeni - eski;
+      const degisim = (fark / eski) * 100;
+      if (degisim > 0) {
+        res3.innerText = "+%" + formatNum(degisim) + " (Artış)";
+        res3.style.color = "#2ECC71"; // Yeşil
+      } else if (degisim < 0) {
+        res3.innerText = "-%" + formatNum(Math.abs(degisim)) + " (Düşüş)";
+        res3.style.color = "#E74C3C"; // Kırmızı
+      } else {
+        res3.innerText = "%0 (Değişmedi)";
+        res3.style.color = "var(--white)";
+      }
+    } else {
+      res3.innerText = "%0";
+      res3.style.color = "var(--white)";
+    }
+  }
+
+  function hesapla4() {
+    const sayi = parseFloat(document.getElementById('v4_sayi').value);
+    const islem = document.getElementById('v4_islem').value;
+    const yuzde = parseFloat(document.getElementById('v4_yuzde').value);
+    
+    if (!isNaN(sayi) && !isNaN(yuzde)) {
+      const fark = sayi * (yuzde / 100);
+      if (islem === 'arttir') {
+        document.getElementById('res4').innerText = formatNum(sayi + fark);
+      } else {
+        document.getElementById('res4').innerText = formatNum(sayi - fark);
+      }
+    } else {
+      document.getElementById('res4').innerText = "0";
+    }
+  }
+</script>
+
+<%- include('partials/footer') %>

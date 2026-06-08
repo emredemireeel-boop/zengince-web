@@ -34,29 +34,13 @@
           <div class="teaching-card-body">
             <p class="teaching-card-text"><%= o.kisa %></p>
 
-            <!-- Expandable detail -->
-            <div class="teaching-card-detail"><%= o.detay %></div>
-
             <!-- Golden Rule -->
             <div class="teaching-card-golden">
               <span class="teaching-card-golden-icon">🔑</span>
               <span class="teaching-card-golden-text"><%= o.altin_kural %></span>
             </div>
 
-            <!-- Stats -->
-            <div class="teaching-card-stats">
-              <% o.rakamlar.forEach(function(r) { %>
-              <div class="teaching-card-stat">
-                <span class="teaching-card-stat-value"><%= r.deger %></span>
-                <span class="teaching-card-stat-label"><%= r.etiket %></span>
-              </div>
-              <% }); %>
-            </div>
-
-            <button class="teaching-card-toggle">
-              <span class="toggle-text">Detayları Gör</span>
-              <span class="arrow">▼</span>
-            </button>
+            <a href="/ogretiler/<%= o.slug %>" class="btn btn-outline mt-3" style="width:100%; text-align:center; display:block;">Detayları Gör →</a>
           </div>
         </div>
         <% }); %>

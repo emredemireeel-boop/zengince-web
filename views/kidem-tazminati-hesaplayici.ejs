@@ -1,0 +1,154 @@
+<%- include('partials/header') %>
+
+<style>
+  .calculator-section { padding: 120px 0 80px; }
+  .calc-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .calc-panel { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+  .form-group { margin-bottom: 24px; }
+  .form-label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
+  .form-control { width: 100%; padding: 16px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; font-family: var(--font-body); }
+  .form-control:focus { outline: none; border-color: #3498DB; box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); }
+  
+  .result-box { text-align: center; margin-bottom: 30px; }
+  .result-title { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .result-value { font-size: 3.5rem; font-weight: 800; color: #3498DB; font-family: var(--font-heading); line-height: 1; }
+  
+  .breakdown-list { list-style: none; padding: 0; margin: 0; }
+  .breakdown-item { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); }
+  .breakdown-item:last-child { border-bottom: none; }
+  .bd-label { color: var(--text-secondary); font-size: 1.05rem; }
+  .bd-value { color: var(--white); font-weight: 700; font-size: 1.1rem; }
+
+  .btn-calc { background: #3498DB; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; }
+  .btn-calc:hover { background: #2980b9; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(52,152,219,0.3); }
+
+  @media (max-width: 768px) {
+    .calc-container { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="calculator-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <span style="background: rgba(52, 152, 219, 0.1); color: #3498DB; padding: 8px 16px; border-radius: 100px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 16px; display: inline-block;">💼 İş ve Kariyer</span>
+      <h1 class="section-title">Kıdem Tazminatı <span style="color: #3498DB;">Hesaplayıcı</span></h1>
+      <p class="section-desc" style="max-width: 700px; margin: 0 auto;">İşten çıkarılma veya haklı fesih durumunda alacağınız yasal kıdem ve ihbar tazminatınızı brüt maaşınız üzerinden anında hesaplayın.</p>
+    </div>
+
+    <div class="calc-container">
+      
+      <!-- Girdi Paneli -->
+      <div class="calc-panel">
+        <h2 style="font-size: 1.5rem; margin-bottom: 30px; color: var(--white);">Çalışma Bilgileriniz</h2>
+        
+        <div class="form-group">
+          <label class="form-label">Aylık Brüt Maaşınız (TL)</label>
+          <input type="number" id="brutMaas" class="form-control" value="30000" min="0">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Çalıştığınız Yıl Sayısı</label>
+          <input type="number" id="calismaYili" class="form-control" value="5" min="1" max="50">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Çalıştığınız Ay Sayısı</label>
+          <input type="number" id="calismaAyi" class="form-control" value="6" min="0" max="11">
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 12px; margin-top: 30px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+          <input type="checkbox" id="ihbarDahil" style="width: 20px; height: 20px;">
+          <label for="ihbarDahil" style="color: var(--white); cursor: pointer; font-size: 1.1rem; margin: 0;">İhbar Tazminatı Da Eklensin Mi?</label>
+        </div>
+
+        <button onclick="hesaplaTazminat()" class="btn-calc" style="width: 100%; font-size: 1.2rem; padding: 18px; margin-top: 20px;">Tazminatımı Hesapla</button>
+      </div>
+
+      <!-- Sonuç Paneli -->
+      <div class="calc-panel">
+        <div class="result-box">
+          <div class="result-title">Elinize Geçecek Toplam Net Tutar</div>
+          <div class="result-value" id="toplamTazminat">0 ₺</div>
+        </div>
+
+        <ul class="breakdown-list" style="margin-top: 40px;">
+          <li class="breakdown-item">
+            <span class="bd-label">Brüt Kıdem Tazminatı</span>
+            <span class="bd-value" id="brutKidem">0 ₺</span>
+          </li>
+          <li class="breakdown-item">
+            <span class="bd-label" style="color: #e74c3c;">Damga Vergisi Kesintisi (Kıdem)</span>
+            <span class="bd-value" id="damgaVergisiKidem" style="color: #e74c3c;">- 0 ₺</span>
+          </li>
+          <li class="breakdown-item">
+            <span class="bd-label" style="color: #2ecc71;">Net Kıdem Tazminatı</span>
+            <span class="bd-value" id="netKidem" style="color: #2ecc71;">0 ₺</span>
+          </li>
+          <li class="breakdown-item" style="border-top: 2px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 8px;">
+            <span class="bd-label">Net İhbar Tazminatı</span>
+            <span class="bd-value" id="netIhbar">0 ₺</span>
+          </li>
+        </ul>
+
+        <div style="margin-top: 30px; padding: 20px; background: rgba(52, 152, 219, 0.1); border-left: 4px solid #3498DB; border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6;">
+          <strong>💡 Bilgi:</strong> Kıdem tazminatı tavanı yıldan yıla değişmektedir (2024 için tavan aşımları dikkate alınmamış basit hesaplama yapılmıştır). Sadece Damga Vergisi (%0.759) kesilir. İhbar tazminatından hem Gelir hem Damga vergisi kesilir.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function formatCurrency(num) {
+    return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(num);
+  }
+
+  function hesaplaTazminat() {
+    const brutMaas = parseFloat(document.getElementById('brutMaas').value) || 0;
+    const yil = parseFloat(document.getElementById('calismaYili').value) || 0;
+    const ay = parseFloat(document.getElementById('calismaAyi').value) || 0;
+    const ihbarDahil = document.getElementById('ihbarDahil').checked;
+
+    // Basit Kıdem Hesaplama
+    // Toplam yıl: yıl + (ay / 12)
+    const toplamYilCari = yil + (ay / 12);
+    const brutKidem = brutMaas * toplamYilCari;
+    
+    // Damga Vergisi (Binde 7.59)
+    const damgaVergisiKidem = brutKidem * 0.00759;
+    const netKidem = brutKidem - damgaVergisiKidem;
+
+    let netIhbar = 0;
+    
+    if (ihbarDahil) {
+      // İhbar Süresi (Hafta)
+      let ihbarHafta = 0;
+      if (toplamYilCari < 0.5) ihbarHafta = 2;
+      else if (toplamYilCari < 1.5) ihbarHafta = 4;
+      else if (toplamYilCari < 3) ihbarHafta = 6;
+      else ihbarHafta = 8;
+
+      // İhbar brüt tutarı (Aylık brüt / 30 * 7 * ihbarHafta)
+      const gunlukBrut = brutMaas / 30;
+      const brutIhbar = gunlukBrut * 7 * ihbarHafta;
+
+      // İhbar'dan %15 Gelir vergisi ve %0.759 damga vergisi kesilir
+      const gelirVergisiIhbar = brutIhbar * 0.15;
+      const damgaVergisiIhbar = brutIhbar * 0.00759;
+      netIhbar = brutIhbar - gelirVergisiIhbar - damgaVergisiIhbar;
+    }
+
+    const toplamNet = netKidem + netIhbar;
+
+    document.getElementById('brutKidem').innerText = formatCurrency(brutKidem);
+    document.getElementById('damgaVergisiKidem').innerText = "- " + formatCurrency(damgaVergisiKidem);
+    document.getElementById('netKidem').innerText = formatCurrency(netKidem);
+    document.getElementById('netIhbar').innerText = formatCurrency(netIhbar);
+    document.getElementById('toplamTazminat').innerText = formatCurrency(toplamNet);
+  }
+
+  window.onload = hesaplaTazminat;
+</script>
+
+<%- include('partials/footer') %>

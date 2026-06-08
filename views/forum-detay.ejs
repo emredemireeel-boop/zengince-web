@@ -1,0 +1,587 @@
+<%- include('partials/header') %>
+
+<!-- Forum CSS -->
+<link rel="stylesheet" href="/forum.css">
+
+<style>
+  /* Premium Aesthetics for Forum Detail */
+  .thread-hero {
+    position: relative;
+    padding: 60px 0 40px;
+    background: linear-gradient(to bottom, rgba(20,20,20,0.95), var(--background));
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .thread-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08), transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .thread-header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+
+  .breadcrumb a {
+    color: var(--gold-200);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: #fff;
+  }
+
+  .thread-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  .thread-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    backdrop-filter: blur(10px);
+  }
+
+  .meta-pill.highlight {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.2);
+    color: var(--gold-200);
+  }
+
+  .entry-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .premium-entry-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    gap: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .premium-entry-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .premium-entry-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    border-color: rgba(212, 175, 55, 0.15);
+  }
+
+  .premium-entry-card:hover::before {
+    opacity: 1;
+  }
+
+  .entry-author-col {
+    width: 140px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    padding-right: 24px;
+  }
+
+  .avatar-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a2a2a, #111);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5), 0 4px 15px rgba(212, 175, 55, 0.15);
+    position: relative;
+  }
+  
+  .avatar-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    animation: spin 10s linear infinite;
+  }
+
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+
+  .username {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    text-align: center;
+    word-break: break-all;
+  }
+
+  .user-badge {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-muted);
+  }
+  
+  .user-badge.usta, .user-badge.efsane {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--gold-200);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+  }
+
+  .entry-content-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .entry-text {
+    font-size: 16px;
+    color: #e2e8f0;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    white-space: pre-wrap;
+    font-weight: 400;
+  }
+
+  .entry-actions {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(255,255,255,0.05);
+  }
+
+  .action-time {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .author-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), transparent);
+    color: var(--gold-200);
+    border-radius: 4px;
+    border-left: 2px solid var(--gold-200);
+  }
+
+  .btn-upvote {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-upvote:hover {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+    transform: scale(1.05);
+  }
+
+  .btn-upvote.active {
+    background: #22c55e;
+    color: #111;
+    border-color: #22c55e;
+  }
+
+  .reply-box {
+    background: rgba(20,20,20,0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    margin-top: 20px;
+  }
+
+  .reply-input {
+    width: 100%;
+    min-height: 140px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+    color: #fff;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+  }
+
+  .reply-input:focus {
+    outline: none;
+    border-color: var(--gold-200);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .premium-entry-card {
+      flex-direction: column;
+      padding: 20px;
+      gap: 16px;
+    }
+    .entry-author-col {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-right: 0;
+      padding-bottom: 16px;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+    .avatar-wrap {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 0;
+      font-size: 22px;
+    }
+    .username {
+      text-align: left;
+    }
+    .thread-title {
+      font-size: 28px;
+    }
+  }
+</style>
+
+<div class="thread-hero">
+  <div class="thread-header-content">
+    <div class="breadcrumb">
+      <a href="/">Forum</a>
+      <span style="opacity: 0.5;">/</span>
+      <span><%= thread.category %></span>
+    </div>
+
+    <h1 class="thread-title"><%= thread.title %></h1>
+    
+    <div class="thread-meta-bar">
+      <span class="meta-pill highlight">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        <%= thread.category %>
+      </span>
+      <span class="meta-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <%= thread.entryCount %> Yanıt
+      </span>
+      <span class="meta-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        Son aktivite: <%= thread.lastActivity %>
+      </span>
+      <% if (thread.isHot) { %>
+        <span class="meta-pill" style="border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.1);">
+          🔥 Gündemde
+        </span>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<div class="entry-container">
+  
+  <!-- Anket Alanı -->
+  <% if (thread.poll) { %>
+    <div style="background: rgba(20,20,20,0.8); backdrop-filter: blur(20px); border: 1px solid var(--gold-200); border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+      <h3 style="font-size: 18px; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 24px;">📊</span> Topluluk Anketi
+      </h3>
+      <div id="poll-container">
+        <% thread.poll.options.forEach(opt => { 
+             let percent = thread.poll.totalVotes > 0 ? Math.round((opt.votes / thread.poll.totalVotes) * 100) : 0;
+        %>
+          <div style="margin-bottom: 12px; position: relative;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; font-weight: 600; color: #fff; position: relative; z-index: 1;">
+              <span><%= opt.text %></span>
+              <span><%= percent %>% (<%= opt.votes %> oy)</span>
+            </div>
+            <!-- Progress Bar BG -->
+            <div style="width: 100%; height: 36px; background: rgba(255,255,255,0.05); border-radius: 8px; position: relative; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);" onclick="votePoll('<%= thread.id %>', '<%= opt.id %>')">
+              <!-- Progress Fill -->
+              <div style="position: absolute; top: 0; left: 0; height: 100%; background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), rgba(212, 175, 55, 0.2)); width: <%= percent %>%; transition: width 0.5s ease;"></div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+      <div style="font-size: 12px; color: var(--text-muted); text-align: right; margin-top: 12px;">Toplam Oy: <%= thread.poll.totalVotes %></div>
+    </div>
+  <% } %>
+
+  <% if (entries && entries.length > 0) { %>
+    <% entries.forEach((entry, index) => { %>
+      <div class="premium-entry-card" id="entry-<%= entry.id %>">
+        <div class="entry-author-col">
+          <div class="avatar-wrap">
+            <a href="/profil/<%= entry.authorUsername %>" style="color: inherit; text-decoration: none;">
+              <%= entry.authorUsername.charAt(0).toUpperCase() %>
+            </a>
+          </div>
+          <div>
+            <div class="username">
+              <a href="/profil/<%= entry.authorUsername %>" style="color: inherit; text-decoration: none;">
+                @<%= entry.authorUsername %>
+              </a>
+            </div>
+            <div class="user-badge <%= entry.authorLevel.toLowerCase() %>"><%= entry.authorLevel %></div>
+          </div>
+        </div>
+        
+        <div class="entry-content-col">
+          <div class="entry-text"><%= entry.content %></div>
+          
+          <div class="entry-actions">
+            <div class="action-time">
+              <span><%= entry.createdAt %></span>
+              <% if (entry.isThreadStarter) { %>
+                <span class="author-tag">Konu Sahibi</span>
+              <% } %>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <button class="btn-upvote" onclick="upvoteEntry('<%= thread.id %>', '<%= entry.id %>', this)">
+                ▲ <span class="upvote-count"><%= entry.upvotes %></span>
+              </button>
+              <button class="btn-upvote" style="background: transparent; border-color: transparent;" onclick="document.getElementById('reply-area').scrollIntoView({behavior: 'smooth'})">
+                Yanıtla
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+  <% } else { %>
+    <div id="entries-wrapper"></div>
+    <div id="empty-state" style="text-align: center; padding: 80px 20px; background: rgba(20,20,20,0.5); border-radius: 20px; border: 1px dashed rgba(255,255,255,0.1);">
+      <div style="font-size: 48px; margin-bottom: 24px; animation: float 3s ease-in-out infinite;">✍️</div>
+      <h3 style="font-size: 24px; color: #fff; margin-bottom: 12px; font-weight: 800;">Henüz yanıt yok</h3>
+      <p style="color: var(--text-muted); margin-bottom: 32px; font-size: 16px;">Bu konu hakkında ilk fikri sen belirt ve tartışmayı başlat.</p>
+      <button class="btn btn-gold" onclick="document.getElementById('reply-area').scrollIntoView({behavior: 'smooth'})">İlk Yanıtı Yaz</button>
+    </div>
+  <% } %>
+
+  <!-- Premium Reply Section -->
+  <div class="reply-box" id="reply-area" style="position: relative;">
+    <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-200);"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      Tartışmaya Katıl
+    </h3>
+    <textarea id="replyContent" class="reply-input" placeholder="Bu konu hakkında ne düşünüyorsunuz? Deneyimlerinizi paylaşın..."></textarea>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-size: 13px; color: var(--text-muted);">* Saygılı ve yapıcı bir dil kullanmaya özen gösterin.</span>
+      <button class="btn btn-gold" id="submitReplyBtn" style="padding: 12px 32px; font-size: 15px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);" onclick="submitReply('<%= thread.id %>')">Yanıtı Gönder</button>
+    </div>
+
+    <div id="replyAuthOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20,20,20,0.85); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; border-radius: 16px; flex-direction: column; gap: 16px;">
+      <h4 style="color: #fff; font-size: 18px; font-weight: 700;">Yanıt yazmak için giriş yapmalısınız</h4>
+      <div style="display: flex; gap: 12px;">
+        <a href="/giris" class="btn btn-gold">Giriş Yap</a>
+        <a href="/kayit" class="btn" style="background: transparent; border: 1px solid var(--gold-200); color: var(--gold-200);">Kayıt Ol</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const user = localStorage.getItem('zengince_user');
+    if (!user) {
+      document.getElementById('replyAuthOverlay').style.display = 'flex';
+      document.getElementById('replyContent').disabled = true;
+      document.getElementById('submitReplyBtn').disabled = true;
+    }
+  });
+
+  async function upvoteEntry(threadId, entryId, btnEl) {
+    if (btnEl.classList.contains('active')) return; 
+    const user = localStorage.getItem('zengince_user');
+    if (!user) {
+      if(window.showToast) window.showToast('Oy verebilmek için giriş yapmalısınız.', 'error');
+      else alert('Oy verebilmek için giriş yapmalısınız.');
+      return;
+    }
+    
+    try {
+      const res = await fetch('/api/upvote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ threadId, entryId })
+      });
+      const data = await res.json();
+      if (data.success) {
+        btnEl.classList.add('active');
+        btnEl.querySelector('.upvote-count').textContent = data.newUpvotes;
+        if(window.showToast) window.showToast('Upvote kaydedildi!', 'success');
+      }
+    } catch (e) {
+      console.error(e);
+      if(window.showToast) window.showToast('Oy verilirken hata oluştu.', 'error');
+      else alert('Oy verilirken hata oluştu.');
+    }
+  }
+
+  async function votePoll(threadId, optionId) {
+    const user = localStorage.getItem('zengince_user');
+    if (!user) {
+      if(window.showToast) window.showToast('Oy vermek için giriş yapmalısınız.', 'error');
+      else alert('Oy vermek için giriş yapmalısınız.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/vote-poll', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ threadId, optionId, username: user })
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        if(window.showToast) window.showToast('Oyunuz kaydedildi!', 'success');
+        setTimeout(() => window.location.reload(), 800);
+      } else {
+        if(window.showToast) window.showToast(data.error || 'Hata oluştu', 'error');
+        else alert(data.error || 'Hata oluştu');
+      }
+    } catch(e) {
+      console.error(e);
+      if(window.showToast) window.showToast('Sunucu hatası.', 'error');
+    }
+  }
+
+  async function submitReply(threadId) {
+    const contentBox = document.getElementById('replyContent');
+    const content = contentBox.value.trim();
+    const username = localStorage.getItem('zengince_user');
+
+    if (!username) {
+      if(window.showToast) window.showToast('Lütfen giriş yapın.', 'error');
+      else alert('Lütfen giriş yapın.');
+      return;
+    }
+    if (!content) {
+      if(window.showToast) window.showToast('Lütfen bir yanıt yazın.', 'error');
+      else alert('Lütfen bir yanıt yazın.');
+      return;
+    }
+
+    const btn = document.getElementById('submitReplyBtn');
+    btn.disabled = true;
+    btn.textContent = 'Gönderiliyor...';
+
+    try {
+      const res = await fetch('/api/new-entry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ threadId, content, username })
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        if(window.showToast) window.showToast('Yanıtınız başarıyla paylaşıldı!', 'success');
+        setTimeout(() => window.location.reload(), 1000);
+      } else {
+        if(window.showToast) window.showToast(data.error || 'Hata oluştu', 'error');
+        else alert(data.error || 'Hata oluştu');
+        btn.disabled = false;
+        btn.textContent = 'Yanıtı Gönder';
+      }
+    } catch (e) {
+      console.error(e);
+      if(window.showToast) window.showToast('Sunucu hatası.', 'error');
+      else alert('Sunucu hatası.');
+      btn.disabled = false;
+      btn.textContent = 'Yanıtı Gönder';
+    }
+  }
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,191 @@
+<%- include('partials/header') %>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  .calculator-section { padding: 120px 0 80px; }
+  .calc-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .calc-panel { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+  .form-group { margin-bottom: 24px; }
+  .form-label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
+  .form-control { width: 100%; padding: 16px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; font-family: var(--font-body); }
+  .form-control:focus { outline: none; border-color: var(--gold-400); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); }
+  
+  .result-box { text-align: center; margin-bottom: 30px; }
+  .result-title { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .result-value { font-size: 3rem; font-weight: 800; color: var(--gold-400); font-family: var(--font-heading); line-height: 1; }
+  
+  .breakdown-list { list-style: none; padding: 0; margin: 0; }
+  .breakdown-item { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); }
+  .breakdown-item:last-child { border-bottom: none; }
+  .bd-label { color: var(--text-secondary); font-size: 1.05rem; }
+  .bd-value { color: var(--white); font-weight: 700; font-size: 1.1rem; }
+  
+  @media (max-width: 768px) {
+    .calc-container { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="calculator-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <h1 class="section-title">Bileşik Faiz <span class="gold">Hesaplayıcı</span></h1>
+      <p class="section-desc" style="max-width: 700px; margin: 0 auto;">Albert Einstein'ın "Dünyanın 8. harikası" dediği gücü keşfedin. Zaman ve disiplin, küçük birikimleri nasıl devasa servetlere dönüştürür?</p>
+    </div>
+
+    <div class="calc-container">
+      
+      <!-- Girdi Paneli -->
+      <div class="calc-panel">
+        <h2 style="font-size: 1.5rem; margin-bottom: 30px; color: var(--white);">Yatırım Stratejiniz</h2>
+        
+        <div class="form-group">
+          <label class="form-label">Başlangıç Sermayesi (TL)</label>
+          <input type="number" id="initial" class="form-control" value="10000" min="0">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Aylık Eklenen Tutar (TL)</label>
+          <input type="number" id="monthly" class="form-control" value="2000" min="0">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Yıllık Ortalama Getiri (%)</label>
+          <input type="number" id="rate" class="form-control" value="15" min="0" step="0.1">
+          <small style="color: var(--text-muted); margin-top: 6px; display: block;">Örn: Borsa uzun vade getirisi (~%10-15)</small>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Yatırım Süresi (Yıl)</label>
+          <input type="number" id="years" class="form-control" value="20" min="1" max="50">
+        </div>
+
+        <button onclick="calculateCompound()" class="btn btn-gold" style="width: 100%; font-size: 1.2rem; padding: 18px; margin-top: 10px;">Hesapla ✦</button>
+      </div>
+
+      <!-- Sonuç Paneli -->
+      <div class="calc-panel">
+        <div class="result-box">
+          <div class="result-title">Sürenin Sonunda Toplam Servetiniz</div>
+          <div class="result-value" id="finalBalance">0 ₺</div>
+        </div>
+
+        <ul class="breakdown-list">
+          <li class="breakdown-item">
+            <span class="bd-label">Sizin Yatırdığınız Toplam Ana Para</span>
+            <span class="bd-value" id="totalPrincipal">0 ₺</span>
+          </li>
+          <li class="breakdown-item">
+            <span class="bd-label" style="color: var(--gold-300);">Bileşik Faizin Kazandırdığı (Kâr)</span>
+            <span class="bd-value" id="totalInterest" style="color: var(--gold-300);">0 ₺</span>
+          </li>
+        </ul>
+
+        <div style="margin-top: 40px; position: relative; height: 250px;">
+          <canvas id="growthChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  let growthChart = null;
+
+  function formatCurrency(num) {
+    return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(num);
+  }
+
+  function calculateCompound() {
+    const P = parseFloat(document.getElementById('initial').value) || 0;
+    const PMT = parseFloat(document.getElementById('monthly').value) || 0;
+    const r = (parseFloat(document.getElementById('rate').value) || 0) / 100;
+    const t = parseFloat(document.getElementById('years').value) || 0;
+    const n = 12; // Aylık bileşik
+    
+    let currentBalance = P;
+    let totalInvested = P;
+    
+    const chartLabels = [0];
+    const principalData = [P];
+    const interestData = [0];
+
+    for (let i = 1; i <= t; i++) {
+      for (let j = 0; j < 12; j++) {
+        currentBalance += PMT;
+        currentBalance *= (1 + r / n);
+        totalInvested += PMT;
+      }
+      chartLabels.push(i + '. Yıl');
+      principalData.push(totalInvested);
+      interestData.push(currentBalance - totalInvested);
+    }
+
+    const totalInterest = currentBalance - totalInvested;
+
+    document.getElementById('finalBalance').innerText = formatCurrency(currentBalance);
+    document.getElementById('totalPrincipal').innerText = formatCurrency(totalInvested);
+    document.getElementById('totalInterest').innerText = formatCurrency(totalInterest);
+
+    updateChart(chartLabels, principalData, interestData);
+  }
+
+  function updateChart(labels, principalData, interestData) {
+    const ctx = document.getElementById('growthChart').getContext('2d');
+    
+    if (growthChart) {
+      growthChart.destroy();
+    }
+
+    growthChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Yatırılan Anapara',
+            data: principalData,
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            fill: true,
+            tension: 0.4
+          },
+          {
+            label: 'Bileşik Faiz Kazancı',
+            data: interestData,
+            borderColor: '#d4af37',
+            backgroundColor: 'rgba(212, 175, 55, 0.1)',
+            fill: true,
+            tension: 0.4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            labels: { color: '#D1D5DB' }
+          }
+        },
+        scales: {
+          y: {
+            stacked: true,
+            ticks: { color: '#9CA3AF', callback: function(value) { return value >= 1000000 ? (value/1000000).toFixed(1) + 'M ₺' : (value/1000).toFixed(0) + 'K ₺'; } },
+            grid: { color: 'rgba(255,255,255,0.05)' }
+          },
+          x: {
+            ticks: { color: '#9CA3AF' },
+            grid: { color: 'rgba(255,255,255,0.05)' }
+          }
+        }
+      }
+    });
+  }
+
+  // Init
+  window.onload = calculateCompound;
+</script>
+
+<%- include('partials/footer') %>

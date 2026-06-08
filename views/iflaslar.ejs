@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(20,20,20,1) 100%);">
+    <div class="container">
+      <span class="section-badge" style="background: rgba(231, 76, 60, 0.1); border-color: rgba(231, 76, 60, 0.3); color: #E74C3C;">📉 Hatalardan Öğrenin</span>
+      <h1 class="section-title" style="margin-top:12px;">Büyük İflaslar ve <span style="color: #E74C3C;">Başarısızlıklar</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Tarihin en büyük şirket batışlarından ve finansal skandallarından çıkarılacak ibretlik dersler</p>
+    </div>
+  </section>
+
+  <!-- İflaslar Section -->
+  <section class="section">
+    <div class="container">
+
+      <!-- İflaslar Grid -->
+      <div class="grid-3 stagger-children">
+        <% iflaslar.forEach(function(i) { %>
+        <a href="/iflaslar/<%= i.slug %>" style="text-decoration: none; display: block;" class="film-card">
+          <div class="film-card-poster" style="height: 240px; padding: 0; position: relative; border-radius: 12px 12px 0 0; overflow: hidden; background: #000;">
+            <img src="<%= i.gorsel %>" alt="<%= i.sirket %>" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.9';" onmouseout="this.style.opacity='0.6';">
+            <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(0,0,0,0.8); padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(231, 76, 60, 0.3); display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.5rem;"><%= i.icon %></span>
+              <div>
+                <div style="font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1;"><%= i.sirket %></div>
+                <div style="font-size: 0.8rem; color: #aaa; margin-top: 4px;">Kurucu: <%= i.kurucu %></div>
+              </div>
+            </div>
+          </div>
+          <div class="film-card-body" style="padding: 24px;">
+            <div class="film-card-meta">
+              <span class="film-card-year-tag" style="background: rgba(231, 76, 60, 0.1); color: #E74C3C; border-color: rgba(231, 76, 60, 0.3);">İflas: <%= i.yil %></span>
+              <span class="film-card-tur" style="background: var(--dark-400); color: var(--text-secondary);"><%= i.sektor %></span>
+            </div>
+            <p style="font-size:0.95rem;color:var(--text-secondary);line-height:1.6;margin-bottom:16px;"><%= i.kisaOzet %></p>
+            <div style="margin-top: auto; padding-top: 16px; font-size: 0.9rem; color: #E74C3C; font-weight: 600; display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--glass-border);">
+              Çıkarılacak Dersleri Gör <span style="font-size: 1.2rem;">→</span>
+            </div>
+          </div>
+        </a>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2 class="cta-title">Hataları <span style="color: #E74C3C;">Tekrarlamayın</span></h2>
+      <p class="cta-desc">Başkalarının milyarlarca dolara mal olan hatalarından bedava dersler çıkarın.</p>
+      <a href="/finansal-savunma" class="btn btn-outline" style="border-color: #E74C3C; color: #E74C3C;">Finansal Savunmayı Öğren →</a>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

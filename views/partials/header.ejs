@@ -30,23 +30,29 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/style.css">
+
+  <!-- Firebase -->
+  <script type="module" src="/firebase-config.js"></script>
 </head>
 <body>
   <!-- ── Navbar ────────────────────────────────────────────────────────── -->
-  <nav class="navbar" id="navbar">
+  <header class="navbar" id="navbar">
     <div class="container">
       <a href="/" class="navbar-brand">
         <span class="z-icon">Z</span>
         <span>Zengin<span style="color: var(--gold-400);">ce</span></span>
       </a>
-      <div class="navbar-nav" id="navMenu">
-        <a href="/">Ana Sayfa</a>
+      <nav class="navbar-nav" id="navMenu">
+        <a href="/" class="<%= typeof path !== 'undefined' && path === '/' ? 'active' : '' %>">Ana Sayfa</a>
+        <a href="/forum" class="<%= typeof path !== 'undefined' && path === '/forum' ? 'active' : '' %>" style="color: var(--gold-200); font-weight: bold;">Forum</a>
         
         <div class="nav-dropdown">
           <a href="#" class="nav-dropbtn">Kütüphane ▾</a>
           <div class="nav-dropdown-content">
+            <a href="/makaleler">Makaleler (Blog)</a>
             <a href="/kitaplar">Kitaplar</a>
             <a href="/filmler">Filmler</a>
+            <a href="/belgeseller">Belgeseller</a>
             <a href="/diziler">Diziler</a>
             <a href="/podcastler">Podcastler</a>
           </div>
@@ -55,21 +61,31 @@
         <div class="nav-dropdown">
           <a href="#" class="nav-dropbtn">Bilgelik ▾</a>
           <div class="nav-dropdown-content">
+            <a href="/tasarruf-modelleri">Tasarruf & Bütçe</a>
+            <a href="/yatirim-araclari">Yatırım Araçları (101)</a>
             <a href="/ogretiler">Temel Öğretiler</a>
             <a href="/girisimciler">Usta Girişimciler</a>
+            <a href="/deha-hamleleri" style="color: var(--gold-300); font-weight: bold;">Deha Hamleleri 🏆</a>
             <a href="/aliskanliklar">Alışkanlıklar</a>
             <a href="/alintilar">Altın Sözler</a>
             <a href="/finansal-savunma" style="color: #ff4d4d; font-weight: bold;">Finansal Savunma</a>
+            <a href="/iflaslar" style="color: #E74C3C; font-weight: bold;">İflaslar & Hatalar</a>
           </div>
         </div>
 
-        <a href="/makaleler" class="<%= typeof path !== 'undefined' && path === '/makaleler' ? 'active' : '' %>">Makaleler</a>
         <a href="/sozluk" class="<%= typeof path !== 'undefined' && path === '/sozluk' ? 'active' : '' %>">Sözlük</a>
 
         <div class="nav-dropdown">
           <a href="#" class="nav-dropbtn">Hesaplamalar ▾</a>
           <div class="nav-dropdown-content">
+            <a href="/kdv-hesaplayici" style="color: #E67E22; font-weight: bold;">KDV Hesaplama</a>
+            <a href="/yuzde-hesaplayici" style="color: #2ECC71; font-weight: bold;">Yüzde Hesaplama</a>
             <a href="/hesaplayici">Bileşik Getiri</a>
+            <a href="/kredi-hesaplayici" style="color: #E74C3C; font-weight: bold;">Kredi Maliyeti</a>
+            <a href="/ticaret-hesaplayici" style="color: #3498DB; font-weight: bold;">E-Ticaret Kârı</a>
+            <a href="/kidem-tazminati-hesaplayici" style="color: #F1C40F; font-weight: bold;">Kıdem Tazminatı</a>
+            <a href="/kira-artisi-hesaplayici" style="color: #9B59B6; font-weight: bold;">Kira Artışı (TÜFE)</a>
+            <a href="/mevduat-hesaplayici">Mevduat & Reel Getiri</a>
             <a href="/butce-hesaplayici">Gelir Gider Dengesi</a>
             <a href="/saatlik-ucret-hesaplayici">Gerçek Saatlik Ücret</a>
             <a href="/aliskanlik-maliyeti">Alışkanlık Maliyeti</a>
@@ -77,13 +93,58 @@
             <a href="/fire-hesaplayici" style="color: var(--emerald);">Özgürlük (FIRE)</a>
           </div>
         </div>
+      </nav>
 
-        <a href="/hakkinda">Hakkında</a>
+      <div class="auth-buttons">
+        <div id="auth-guest" style="display: flex; gap: 8px; align-items: center;">
+          <a href="/giris" class="btn" style="background: transparent; border: 1px solid var(--card-border); color: var(--foreground); padding: 6px 12px; font-size: 13px;">Giriş Yap</a>
+          <a href="/kayit" class="btn btn-gold" style="padding: 6px 12px; font-size: 13px;">Kayıt Ol</a>
+        </div>
+        <div id="auth-user" style="display: none; gap: 12px; align-items: center;">
+          <a href="/mesajlar" class="btn" style="background: transparent; border: none; color: #fff; display: flex; align-items: center; gap: 4px; padding: 6px; font-size: 13px;" title="Mesajlar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+          <a id="btn-profile" href="#" class="btn" style="background: transparent; border: 1px solid var(--gold-200); color: var(--gold-200); display: flex; align-items: center; gap: 6px; padding: 6px 12px; font-size: 13px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span id="header-username" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Profil</span>
+          </a>
+          <button onclick="logout()" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; text-decoration: underline; font-size: 13px; padding: 0;">Çıkış</button>
+        </div>
       </div>
+
       <button class="navbar-toggle" id="navToggle" aria-label="Menüyü aç">
         <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
-  </nav>
+  </header>
+
+  <script>
+    function checkAuth() {
+      const user = localStorage.getItem('zengince_user');
+      const guestDiv = document.getElementById('auth-guest');
+      const userDiv = document.getElementById('auth-user');
+      const profileBtn = document.getElementById('btn-profile');
+      const headerUsername = document.getElementById('header-username');
+
+      if (user) {
+        if(guestDiv) guestDiv.style.display = 'none';
+        if(userDiv) userDiv.style.display = 'flex';
+        if(headerUsername) headerUsername.textContent = user;
+        if(profileBtn) profileBtn.href = '/profil/' + user;
+      } else {
+        if(guestDiv) guestDiv.style.display = 'flex';
+        if(userDiv) userDiv.style.display = 'none';
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('zengince_user');
+      window.location.reload();
+    }
+
+    // Header script
+    document.addEventListener('DOMContentLoaded', checkAuth);
+    checkAuth(); // hemen çalıştır (flash engellemek için)
+  </script>

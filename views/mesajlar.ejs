@@ -1,0 +1,229 @@
+<%- include('partials/header') %>
+
+<div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+  <div class="dm-container" style="display: flex; height: 70vh; background: rgba(20,20,20,0.8); backdrop-filter: blur(20px); border: 1px solid var(--gold-200); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    
+    <!-- Sol Taraf: Sohbet Listesi -->
+    <div style="width: 300px; border-right: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column;">
+      <div style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: bold; font-size: 18px;">
+        Sohbetler ✉️
+      </div>
+      <div id="conversation-list" style="flex: 1; overflow-y: auto;">
+        <!-- JS ile doldurulacak -->
+      </div>
+    </div>
+
+    <!-- Sağ Taraf: Sohbet Ekranı -->
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <div id="chat-header" style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: bold; font-size: 18px; display: none; justify-content: space-between; align-items: center;">
+        <span id="chat-title"></span>
+      </div>
+      
+      <div id="chat-window" style="flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: rgba(0,0,0,0.3);">
+        <!-- Mesajlar buraya gelecek -->
+      </div>
+      
+      <div id="chat-input-area" style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: none; gap: 8px;">
+        <input type="text" id="chat-input" placeholder="Bir mesaj yazın..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 10px 16px; color: #fff; outline: none;">
+        <button onclick="sendMessage()" class="btn btn-gold" style="border-radius: 20px; padding: 10px 24px;">Gönder</button>
+      </div>
+      
+      <div id="chat-empty" style="flex: 1; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+        Mesajlaşmaya başlamak için soldan bir sohbet seçin veya profil sayfalarından mesaj gönderin.
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Custom Scrollbar for chat */
+  #chat-window::-webkit-scrollbar, #conversation-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  #chat-window::-webkit-scrollbar-thumb, #conversation-list::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.5);
+    border-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    .dm-container { flex-direction: column; height: 80vh; }
+    .dm-container > div:first-child { width: 100%; height: 30%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .dm-container > div:last-child { height: 70%; }
+  }
+</style>
+
+<script>
+  const currentUser = localStorage.getItem('zengince_user');
+  let activeChatUser = '<%= toUser %>';
+  let conversations = {};
+
+  if (!currentUser) {
+    if(window.showToast) window.showToast('Mesajları görmek için giriş yapmalısınız.', 'error');
+    else alert('Giriş yapmalısınız.');
+    setTimeout(() => window.location.href = '/giris', 1000);
+  } else {
+    loadMessages();
+    setInterval(loadMessages, 3000); // 3 saniyede bir yeni mesaj var mı diye kontrol et
+  }
+
+  async function loadMessages() {
+    try {
+      const res = await fetch('/api/messages/' + currentUser);
+      const data = await res.json();
+      if(data.success) {
+        const oldLength = JSON.stringify(conversations).length;
+        conversations = data.conversations;
+        
+        // Eğer linkten ?to=xxx ile geldiysek ve daha önce sohbet yoksa, boş bir tane aç
+        if (activeChatUser && !conversations[activeChatUser]) {
+          conversations[activeChatUser] = [];
+        }
+
+        // Sadece yeni mesaj geldiğinde veya ilk açılışta render et
+        const newLength = JSON.stringify(conversations).length;
+        if (oldLength !== newLength) {
+          renderConversationList();
+          if (activeChatUser) {
+            renderChat(activeChatUser);
+          }
+        } else if (document.getElementById('conversation-list').innerHTML.trim() === '') {
+          // İlk yükleme
+          renderConversationList();
+          if (activeChatUser) {
+            renderChat(activeChatUser);
+          }
+        }
+      }
+    } catch(e) {
+      console.error(e);
+    }
+  }
+
+  function renderConversationList() {
+    const listEl = document.getElementById('conversation-list');
+    listEl.innerHTML = '';
+    
+    const sortedUsers = Object.keys(conversations).sort((a,b) => {
+      const lastMsgA = conversations[a][conversations[a].length-1];
+      const lastMsgB = conversations[b][conversations[b].length-1];
+      const timeA = lastMsgA ? lastMsgA.date : 0;
+      const timeB = lastMsgB ? lastMsgB.date : 0;
+      return timeB - timeA;
+    });
+
+    if (sortedUsers.length === 0) {
+      listEl.innerHTML = '<div style="padding: 16px; color: var(--text-muted); font-size: 14px;">Henüz hiç sohbetiniz yok.</div>';
+    }
+
+    sortedUsers.forEach(user => {
+      const div = document.createElement('div');
+      div.style.padding = '16px';
+      div.style.cursor = 'pointer';
+      div.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+      div.style.background = activeChatUser === user ? 'rgba(212, 175, 55, 0.1)' : 'transparent';
+      div.style.transition = 'background 0.3s';
+      
+      div.onmouseover = () => { if(activeChatUser !== user) div.style.background = 'rgba(255,255,255,0.05)'; };
+      div.onmouseout = () => { if(activeChatUser !== user) div.style.background = 'transparent'; };
+
+      const msgs = conversations[user];
+      const lastMsg = msgs.length > 0 ? msgs[msgs.length-1].text : 'Sohbete başla...';
+
+      div.innerHTML = `
+        <div style="font-weight: bold; color: ${activeChatUser === user ? 'var(--gold-200)' : '#fff'}; margin-bottom: 4px;">@${user}</div>
+        <div style="font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${lastMsg}</div>
+      `;
+      
+      div.onclick = () => {
+        activeChatUser = user;
+        renderConversationList();
+        renderChat(user);
+      };
+      listEl.appendChild(div);
+    });
+  }
+
+  function renderChat(user) {
+    document.getElementById('chat-empty').style.display = 'none';
+    document.getElementById('chat-header').style.display = 'flex';
+    document.getElementById('chat-input-area').style.display = 'flex';
+    
+    document.getElementById('chat-title').innerHTML = `@${user} <a href="/profil/${user}" style="font-size:13px; font-weight: normal; color:var(--gold-200); text-decoration:underline;">Profili Gör</a>`;
+    
+    const msgs = conversations[user] || [];
+    const windowEl = document.getElementById('chat-window');
+    
+    // Yalnızca alttaysa scroll u aşağı çekmek için kontrol
+    const isAtBottom = windowEl.scrollHeight - windowEl.scrollTop <= windowEl.clientHeight + 50;
+
+    windowEl.innerHTML = '';
+    
+    msgs.forEach(m => {
+      const isMe = m.from === currentUser;
+      const bubble = document.createElement('div');
+      bubble.style.maxWidth = '75%';
+      bubble.style.padding = '10px 16px';
+      bubble.style.borderRadius = '18px';
+      bubble.style.fontSize = '14px';
+      bubble.style.lineHeight = '1.4';
+      bubble.style.wordBreak = 'break-word';
+      
+      if(isMe) {
+        bubble.style.alignSelf = 'flex-end';
+        bubble.style.background = 'linear-gradient(135deg, var(--gold-300), var(--gold-400))';
+        bubble.style.color = '#000';
+        bubble.style.borderBottomRightRadius = '4px';
+        bubble.style.boxShadow = '0 2px 5px rgba(212, 175, 55, 0.3)';
+      } else {
+        bubble.style.alignSelf = 'flex-start';
+        bubble.style.background = 'rgba(255,255,255,0.1)';
+        bubble.style.color = '#fff';
+        bubble.style.borderBottomLeftRadius = '4px';
+        bubble.style.border = '1px solid rgba(255,255,255,0.05)';
+      }
+      
+      bubble.textContent = m.text;
+      windowEl.appendChild(bubble);
+    });
+    
+    // Eğer en alttaysa veya yeni açıldıysa aşağı kaydır
+    if (isAtBottom || msgs.length > 0) {
+      setTimeout(() => {
+        windowEl.scrollTop = windowEl.scrollHeight;
+      }, 50);
+    }
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text || !activeChatUser) return;
+
+    input.value = '';
+    
+    try {
+      const res = await fetch('/api/send-message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from: currentUser, to: activeChatUser, text })
+      });
+      const data = await res.json();
+      if(data.success) {
+        if(!conversations[activeChatUser]) conversations[activeChatUser] = [];
+        conversations[activeChatUser].push(data.message);
+        renderConversationList();
+        renderChat(activeChatUser);
+      }
+    } catch(e) {
+      console.error(e);
+      if(window.showToast) window.showToast('Mesaj gönderilemedi.', 'error');
+    }
+  }
+
+  document.getElementById('chat-input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>

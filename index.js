@@ -3,26 +3,76 @@
 const express = require('express');
 const compression = require('compression');
 const path = require('path');
-const app = express();
-const PORT = process.env.PORT || 3002;
+const fs = require('fs');
 
-const SITE_URL = 'https://www.zengince.com';
-
-// ── Veri Dosyaları ────────────────────────────────────────────────────────
 const { KITAPLAR, KITAP_KATEGORILER } = require('./data/kitaplar-data');
 const { FILMLER, FILM_TURLERI } = require('./data/filmler-data');
+const { BELGESELLER, BELGESEL_TURLERI } = require('./data/belgeseller-data');
 const { DIZILER, DIZI_TURLERI } = require('./data/diziler-data');
 const { PODCASTLER, PODCAST_KATEGORILER } = require('./data/podcastler-data');
 const { GIRISIMCILER } = require('./data/girisimciler-data');
-const { SOZLUK } = require('./data/sozluk-data');
+const { SOZLUK_TERIMLERI, SOZLUK_KATEGORILERI } = require('./data/sozluk-data');
 const { OGRETILER, OGRETI_KATEGORILER } = require('./data/ogretiler-data');
 const { ALINTILAR, ALINTI_KATEGORILER } = require('./data/alintilar-data');
 const { ALISKANLIKLAR, ALISKANLIK_KATEGORILER } = require('./data/aliskanliklar-data');
 const { SAVUNMA_YONTEMLERI } = require('./data/savunma-data');
 const { MAKALELER, MAKALE_KATEGORILERI } = require('./data/makaleler-data');
+const { IFLASLAR, IFLAS_KATEGORILERI } = require('./data/basarisizliklar-data');
+const { TASARRUF_MODELLERI } = require('./data/tasarruf-modelleri-data');
+const { YATIRIM_ARACLARI } = require('./data/yatirim-araclari-data');
+const { DEHA_HAMLELERI, DEHA_KATEGORILERI } = require('./data/deha-hamleleri-data');
+
+// JSON veritabanı yolları
+const forumDbPath = path.join(__dirname, 'data', 'forum.json');
+const messagesDbPath = path.join(__dirname, 'data', 'messages.json');
+
+// Yardımcı Fonksiyonlar
+function getForumData() {
+  const data = fs.readFileSync(forumDbPath, 'utf8');
+  return JSON.parse(data);
+}
+
+function saveForumData(data) {
+  fs.writeFileSync(forumDbPath, JSON.stringify(data, null, 2), 'utf8');
+}
+
+function getMessagesData() {
+  if (!fs.existsSync(messagesDbPath)) {
+    fs.writeFileSync(messagesDbPath, '{}', 'utf8');
+  }
+  const data = fs.readFileSync(messagesDbPath, 'utf8');
+  return JSON.parse(data);
+}
+
+function saveMessagesData(data) {
+  fs.writeFileSync(messagesDbPath, JSON.stringify(data, null, 2), 'utf8');
+}
+
+function calculateRank(db, username) {
+  if (username === 'misafir_uye') return 'Çaylak';
+  let count = 0;
+  Object.values(db.FORUM_ENTRIES).forEach(entries => {
+    count += entries.filter(e => e.authorUsername === username).length;
+  });
+  // Yeni entry'i de sayarsak (bu fonskiyon çağrılmadan hemen önce veya sonra olabilir ama count + 1 gibi düşünebiliriz)
+  // Şimdilik sadece mevcut count'a bakalım
+  if (count < 5) return 'Çaylak';
+  if (count < 20) return 'Sürücü';
+  if (count < 50) return 'Usta';
+  if (count < 100) return 'Uzman';
+  if (count < 500) return 'Tutkun';
+  return 'Efsane';
+}
+
+const app = express();
+const PORT = process.env.PORT || 3002;
+
+const SITE_URL = 'https://www.zengince.com';
 
 // ── Gzip Sıkıştırma ──────────────────────────────────────────────────────
 app.use(compression());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // ── EJS Template Engine ───────────────────────────────────────────────────
 app.set('view engine', 'ejs');
@@ -71,17 +121,300 @@ function getCarouselAlintilar(count) {
 // ROTALAR
 // ═══════════════════════════════════════════════════════════════════════════
 
-// ── Ana Sayfa ──────────────────────────────────────────────────────────
+// ── Ana Sayfa (Açılış Sayfası) ────────────────────────────────────────────────
 app.get('/', (req, res) => {
   res.render('anasayfa', {
-    title: 'Zengince — Zenginlik Eğitim Platformu | Kitaplar, Filmler, Öğretiler',
-    desc: 'Zenginlik öğretileri, kitap ve film önerileri, altın sözler ve kanıtlanmış zenginlik alışkanlıkları ile finansal özgürlük yolculuğunuza başlayın.',
-    canonical: SITE_URL,
-    ogretiler: OGRETILER,
-    haftaninKitabi: KITAPLAR[getWeeklyIndex(KITAPLAR.length)],
-    haftaninFilmi: FILMLER[getWeeklyIndex(FILMLER.length)],
-    carouselAlintilar: getCarouselAlintilar(8)
+    title: 'Zengince | Finansal Özgürlüğe Adım Atın',
+    desc: 'Zenginlik öğretileri, tasarruf, bütçe yönetimi ve yatırım stratejileri ile finansal özgürlük yolculuğunuza başlayın.',
+    canonical: SITE_URL
   });
+});
+
+// ── Forum ──────────────────────────────────────────────────────────────────────
+app.get('/forum', (req, res) => {
+  const db = getForumData();
+  res.render('forum', {
+    title: 'Zengince Forum — Finans, Borsa ve Yatırım Topluluğu',
+    desc: 'Borsa, Kripto Para, Gayrimenkul ve Finansal Özgürlük hakkında binlerce yatırımcının deneyimlerini paylaştığı topluluk.',
+    canonical: `${SITE_URL}/forum`,
+    forumKategorileri: db.FORUM_KATEGORILERI,
+    forumBasliklari: db.FORUM_BASLIKLARI,
+    stats: {
+      totalThreads: db.FORUM_BASLIKLARI.length,
+      totalEntries: db.FORUM_BASLIKLARI.reduce((acc, curr) => acc + curr.entryCount, 0),
+      totalUsers: 1450
+    }
+  });
+});
+
+// ── Forum Detay Sayfası ────────────────────────────────────────────────────────
+app.get('/forum/:id', (req, res) => {
+  const threadId = req.params.id;
+  const db = getForumData();
+  const thread = db.FORUM_BASLIKLARI.find(t => t.id === threadId);
+  
+  if (!thread) {
+    return res.status(404).render('hakkinda', {
+      title: '404 — Başlık Bulunamadı | Zengince Forum',
+      desc: 'Aradığınız forum başlığı bulunamadı.',
+      canonical: SITE_URL
+    });
+  }
+
+  // Eğer veri dosyasında entry yoksa boş dizi gönder
+  const entries = db.FORUM_ENTRIES[threadId] || [];
+
+  res.render('forum-detay', {
+    title: `${thread.title} | Zengince Forum`,
+    desc: `${thread.authorUsername} tarafından ${thread.category} kategorisinde açılan konu: ${thread.title}. Oku ve tartışmaya katıl.`,
+    canonical: `${SITE_URL}/forum/${threadId}`,
+    thread: thread,
+    entries: entries
+  });
+});
+
+// ── API: Yeni Entry (Yanıt) Ekleme ─────────────────────────────────────────────
+app.post('/api/new-entry', (req, res) => {
+  const { threadId, content, username } = req.body;
+  
+  if (!threadId || !content) return res.status(400).json({ error: 'Eksik veri' });
+
+  const db = getForumData();
+  const authorUsername = username || 'misafir_uye';
+  
+  if (!db.FORUM_ENTRIES[threadId]) {
+    db.FORUM_ENTRIES[threadId] = [];
+  }
+
+  const userRank = calculateRank(db, authorUsername);
+
+  const newEntry = {
+    id: 'e' + Date.now(),
+    authorUsername: authorUsername,
+    authorLevel: userRank,
+    content: content,
+    createdAt: 'Az önce',
+    upvotes: 0,
+    isThreadStarter: false
+  };
+
+  db.FORUM_ENTRIES[threadId].push(newEntry);
+  
+  // Başlıktaki entry sayısını artır
+  const threadIndex = db.FORUM_BASLIKLARI.findIndex(t => t.id === threadId);
+  if (threadIndex !== -1) {
+    db.FORUM_BASLIKLARI[threadIndex].entryCount += 1;
+    db.FORUM_BASLIKLARI[threadIndex].lastActivity = 'Az önce';
+    db.FORUM_BASLIKLARI[threadIndex].lastAuthor = authorUsername;
+  }
+
+  saveForumData(db);
+  res.json({ success: true, entry: newEntry });
+});
+
+// ── API: Upvote ────────────────────────────────────────────────────────────────
+app.post('/api/upvote', (req, res) => {
+  const { threadId, entryId } = req.body;
+  if (!threadId || !entryId) return res.status(400).json({ error: 'Eksik veri' });
+
+  const db = getForumData();
+  const entries = db.FORUM_ENTRIES[threadId];
+  
+  if (entries) {
+    const entry = entries.find(e => e.id === entryId);
+    if (entry) {
+      entry.upvotes += 1;
+      saveForumData(db);
+      return res.json({ success: true, newUpvotes: entry.upvotes });
+    }
+  }
+  
+  res.status(404).json({ error: 'Entry bulunamadı' });
+});
+
+// ── API: Yeni Başlık (Thread) Açma ─────────────────────────────────────────────
+app.post('/api/new-thread', (req, res) => {
+  const { title, category, content, username, pollOptions } = req.body;
+  
+  if (!title || !category || !content) {
+    return res.status(400).json({ error: 'Başlık, kategori ve içerik zorunludur.' });
+  }
+
+  const db = getForumData();
+  const authorUsername = username || 'misafir_uye';
+  const userRank = calculateRank(db, authorUsername);
+  
+  const threadId = 't' + Date.now();
+  const slugUrl = '/forum/' + threadId;
+
+  const newThread = {
+    id: threadId,
+    title: title,
+    category: category,
+    isHot: false,
+    lastActivity: 'Az önce',
+    lastAuthor: authorUsername,
+    authorLevel: userRank,
+    entryCount: 1,
+    lastEntry: content.substring(0, 50) + '...',
+    slugUrl: slugUrl,
+    viewCount: 0,
+    createdAt: Date.now()
+  };
+
+  // Eğer anket eklendiyse
+  if (pollOptions && Array.isArray(pollOptions) && pollOptions.length > 1) {
+    newThread.poll = {
+      totalVotes: 0,
+      votedUsers: [],
+      options: pollOptions.map((opt, i) => ({ id: 'opt_' + i, text: opt, votes: 0 }))
+    };
+  }
+
+  const newEntry = {
+    id: 'e' + Date.now(),
+    authorUsername: authorUsername,
+    authorLevel: userRank,
+    content: content,
+    createdAt: 'Az önce',
+    upvotes: 0,
+    isThreadStarter: true
+  };
+
+  db.FORUM_BASLIKLARI.unshift(newThread); // En üste ekle
+  db.FORUM_ENTRIES[threadId] = [newEntry];
+  
+  saveForumData(db);
+  res.json({ success: true, redirectUrl: slugUrl });
+});
+
+// ── API: Ankete Oy Verme ────────────────────────────────────────────────────────
+app.post('/api/vote-poll', (req, res) => {
+  const { threadId, optionId, username } = req.body;
+  if (!threadId || !optionId || !username) return res.status(400).json({ error: 'Eksik veri' });
+
+  const db = getForumData();
+  const threadIndex = db.FORUM_BASLIKLARI.findIndex(t => t.id === threadId);
+  
+  if (threadIndex !== -1) {
+    const thread = db.FORUM_BASLIKLARI[threadIndex];
+    if (thread.poll) {
+      if (thread.poll.votedUsers.includes(username)) {
+        return res.status(400).json({ error: 'Zaten oy kullandınız.' });
+      }
+      
+      const option = thread.poll.options.find(o => o.id === optionId);
+      if (option) {
+        option.votes += 1;
+        thread.poll.totalVotes += 1;
+        thread.poll.votedUsers.push(username);
+        saveForumData(db);
+        return res.json({ success: true, poll: thread.poll });
+      }
+    }
+  }
+  
+  res.status(404).json({ error: 'Anket bulunamadı.' });
+});
+
+// ── Kullanıcı Profil Sayfası ───────────────────────────────────────────────────
+app.get('/profil/:username', (req, res) => {
+  const username = req.params.username;
+  const db = getForumData();
+  
+  // Kullanıcının açtığı başlıkları ve yazdığı entryleri bul
+  const userThreads = db.FORUM_BASLIKLARI.filter(t => t.lastAuthor === username); // Basitlik için
+  let totalUpvotes = 0;
+  let entryCount = 0;
+  
+  Object.values(db.FORUM_ENTRIES).forEach(entries => {
+    entries.forEach(entry => {
+      if (entry.authorUsername === username) {
+        totalUpvotes += entry.upvotes;
+        entryCount++;
+      }
+    });
+  });
+
+  res.render('profil', {
+    title: `@${username} Profili | Zengince Forum`,
+    desc: `${username} kullanıcısının profil sayfası.`,
+    canonical: `${SITE_URL}/profil/${username}`,
+    username: username,
+    stats: {
+      threadCount: userThreads.length,
+      entryCount: entryCount,
+      totalUpvotes: totalUpvotes,
+      level: entryCount > 5 ? 'Usta' : 'Çaylak'
+    },
+    recentThreads: userThreads.slice(0, 5)
+  });
+});
+
+// ── Auth İşlemleri ────────────────────────────────────────────────────────────
+app.get('/giris', (req, res) => {
+  res.render('giris', {
+    title: 'Giriş Yap | Zengince',
+    desc: 'Zengince forumuna giriş yapın.',
+    canonical: `${SITE_URL}/giris`
+  });
+});
+
+app.get('/kayit', (req, res) => {
+  res.render('kayit', {
+    title: 'Kayıt Ol | Zengince',
+    desc: 'Zengince forumuna kayıt olun.',
+    canonical: `${SITE_URL}/kayit`
+  });
+});
+
+// ── Mesajlaşma (DM) Arayüzü & API ──────────────────────────────────────────────
+app.get('/mesajlar', (req, res) => {
+  res.render('mesajlar', {
+    title: 'Mesajlar | Zengince',
+    desc: 'Kullanıcılarla özel mesajlaşın.',
+    canonical: `${SITE_URL}/mesajlar`,
+    toUser: req.query.to || ''
+  });
+});
+
+app.get('/api/messages/:username', (req, res) => {
+  const username = req.params.username;
+  const db = getMessagesData();
+  
+  const userConversations = {};
+  Object.keys(db).forEach(convId => {
+    const participants = convId.split('_');
+    if (participants.includes(username)) {
+      const otherUser = participants[0] === username ? participants[1] : participants[0];
+      userConversations[otherUser] = db[convId];
+    }
+  });
+  
+  res.json({ success: true, conversations: userConversations });
+});
+
+app.post('/api/send-message', (req, res) => {
+  const { from, to, text } = req.body;
+  if (!from || !to || !text) return res.status(400).json({ error: 'Eksik veri' });
+  
+  const db = getMessagesData();
+  const convId = [from, to].sort().join('_'); 
+  
+  if (!db[convId]) db[convId] = [];
+  
+  const newMsg = {
+    id: 'm' + Date.now(),
+    from: from,
+    to: to,
+    text: text,
+    date: Date.now()
+  };
+  
+  db[convId].push(newMsg);
+  saveMessagesData(db);
+  
+  res.json({ success: true, message: newMsg });
 });
 
 // ── Kitaplar ────────────────────────────────────────────────────────────
@@ -133,6 +466,32 @@ app.get('/filmler/:slug', (req, res) => {
     path: '/filmler',
     film: film,
     tur: FILM_TURLERI[film.tur] || { baslik: 'Genel' }
+  });
+});
+
+// ── Belgeseller ──────────────────────────────────────────────────────────
+app.get('/belgeseller', (req, res) => {
+  res.render('belgeseller', {
+    title: 'Zenginlik Belgeselleri — Finans ve Gerçek Hikayeler | Zengince',
+    desc: 'Finansal dünyayı, dolandırıcılıkları ve gerçek zenginlik hikayelerini anlatan en etkileyici belgeseller.',
+    canonical: SITE_URL + '/belgeseller',
+    belgeseller: BELGESELLER,
+    turler: BELGESEL_TURLERI
+  });
+});
+
+app.get('/belgeseller/:slug', (req, res) => {
+  const belgesel = BELGESELLER.find(b => b.slug === req.params.slug);
+  
+  if (!belgesel) {
+    return res.status(404).send('Belgesel bulunamadı.');
+  }
+
+  res.render('belgesel-detay', {
+    title: `${belgesel.baslik} İncelemesi | Zengince Belgeseller`,
+    path: '/belgeseller',
+    belgesel: belgesel,
+    tur: BELGESEL_TURLERI[belgesel.tur] || { baslik: 'Genel' }
   });
 });
 
@@ -198,6 +557,57 @@ app.get('/girisimciler/:slug', (req, res) => {
 });
 
 // ── Makaleler (Blog) ────────────────────────────────────────────────────
+
+// ── İflaslar ve Başarısızlık Hikayeleri ─────────────────────────────────
+app.get('/iflaslar', (req, res) => {
+  res.render('iflaslar', {
+    title: 'Büyük İflaslar ve Başarısızlık Hikayeleri | Zengince',
+    desc: 'Tarihin en büyük şirket batışlarından ve kişisel iflaslardan çıkarılacak ibretlik finansal dersler.',
+    canonical: SITE_URL + '/iflaslar',
+    iflaslar: IFLASLAR,
+    kategoriler: IFLAS_KATEGORILERI
+  });
+});
+
+app.get('/iflaslar/:slug', (req, res) => {
+  const iflas = IFLASLAR.find(i => i.slug === req.params.slug);
+  
+  if (!iflas) {
+    return res.status(404).send('İflas hikayesi bulunamadı.');
+  }
+
+  res.render('iflas-detay', {
+    title: `${iflas.sirket} Neden Battı? | Zengince İflaslar`,
+    path: '/iflaslar',
+    iflas: iflas
+  });
+});
+
+// ── Deha Hamleleri (Vaka Analizleri) ────────────────────────────────────
+app.get('/deha-hamleleri', (req, res) => {
+  res.render('deha-hamleleri', {
+    title: 'Deha Hamleleri: Büyük Finansal Zaferler | Zengince',
+    desc: "McDonald's gayrimenkul dehası, RedBull'un pazarlama illüzyonu, WhatsApp'ın kaldıraç gücü. Tarihin en zekice hamlelerinden öğrenin.",
+    canonical: SITE_URL + '/deha-hamleleri',
+    hamleler: DEHA_HAMLELERI,
+    kategoriler: DEHA_KATEGORILERI
+  });
+});
+
+app.get('/deha-hamleleri/:slug', (req, res) => {
+  const hamle = DEHA_HAMLELERI.find(h => h.slug === req.params.slug);
+  
+  if (!hamle) {
+    return res.status(404).send('Vaka bulunamadı.');
+  }
+
+  res.render('deha-hamle-detay', {
+    title: `${hamle.baslik} | Zengince Vaka Analizleri`,
+    path: '/deha-hamleleri',
+    h: hamle,
+    kategori_bilgisi: DEHA_KATEGORILERI[hamle.kategori] || { emoji: '🏆', renk: '#D4AF37' }
+  });
+});
 
 // Alışkanlık Detay Sayfası
 app.get('/aliskanliklar/:slug', (req, res) => {
@@ -274,6 +684,69 @@ app.get('/ogretiler', (req, res) => {
   });
 });
 
+app.get('/ogretiler/:slug', (req, res) => {
+  const ogreti = OGRETILER.find(o => o.slug === req.params.slug);
+  
+  if (!ogreti) {
+    return res.status(404).send('Öğreti bulunamadı.');
+  }
+
+  res.render('ogreti-detay', {
+    title: `${ogreti.baslik} | Zenginlik Öğretileri`,
+    path: '/ogretiler',
+    ogreti: ogreti,
+    kategori_bilgisi: OGRETI_KATEGORILER[ogreti.kategori] || { emoji: '📚', baslik: 'Genel' }
+  });
+});
+
+// ── Tasarruf Modelleri ──────────────────────────────────────────────────
+app.get('/tasarruf-modelleri', (req, res) => {
+  res.render('tasarruf-modelleri', {
+    title: 'En Etkili 10 Tasarruf ve Bütçe Modeli | Zengince',
+    desc: '50/30/20 Kuralı, Zarf Sistemi, Kakeibo ve diğer tüm kanıtlanmış bütçeleme sistemlerini öğrenin.',
+    canonical: SITE_URL + '/tasarruf-modelleri',
+    modeller: TASARRUF_MODELLERI
+  });
+});
+
+app.get('/tasarruf-modelleri/:slug', (req, res) => {
+  const model = TASARRUF_MODELLERI.find(m => m.slug === req.params.slug);
+  
+  if (!model) {
+    return res.status(404).send('Model bulunamadı.');
+  }
+
+  res.render('tasarruf-detay', {
+    title: `${model.baslik} Nedir? Nasıl Uygulanır? | Zengince`,
+    path: '/tasarruf-modelleri',
+    model: model
+  });
+});
+
+// ── Yatırım Araçları (Assets 101) ───────────────────────────────────────
+app.get('/yatirim-araclari', (req, res) => {
+  res.render('yatirim-araclari', {
+    title: 'Yatırım Araçları Rehberi (Assets 101) | Zengince',
+    desc: 'Hisse senedi, altın, kripto ve gayrimenkul gibi temel yatırım araçlarının risklerini ve anatomisini öğrenin.',
+    canonical: SITE_URL + '/yatirim-araclari',
+    araclar: YATIRIM_ARACLARI
+  });
+});
+
+app.get('/yatirim-araclari/:slug', (req, res) => {
+  const arac = YATIRIM_ARACLARI.find(a => a.slug === req.params.slug);
+  
+  if (!arac) {
+    return res.status(404).send('Yatırım aracı bulunamadı.');
+  }
+
+  res.render('yatirim-araci-detay', {
+    title: `${arac.baslik} Analizi: Risk ve Getiri Potansiyeli | Zengince`,
+    path: '/yatirim-araclari',
+    arac: arac
+  });
+});
+
 // ── Alıntılar ───────────────────────────────────────────────────────────
 app.get('/alintilar', (req, res) => {
   res.render('alintilar', {
@@ -313,6 +786,30 @@ app.get('/butce-hesaplayici', (req, res) => {
   });
 });
 
+app.get('/kredi-hesaplayici', (req, res) => {
+  res.render('kredi-hesaplayici', {
+    title: 'Kredi Hesaplama Aracı 2024 - İhtiyaç, Konut ve Taşıt Kredisi | Zengince',
+    desc: 'Güncel banka faiz oranlarıyla (BSMV/KKDF dahil) kredi taksit hesaplama işlemi yapın ve ödeyeceğiniz gerçek fırsat maliyetini öğrenin.',
+    canonical: SITE_URL + '/kredi-hesaplayici'
+  });
+});
+
+app.get('/ticaret-hesaplayici', (req, res) => {
+  res.render('ticaret-hesaplayici', {
+    title: 'Ticaret ve E-Ticaret Kâr Marjı Hesaplayıcı | Zengince',
+    desc: 'Pazaryeri komisyonu, KDV, kargo ve reklam giderlerinizi hesaplayarak e-ticaretteki gerçek net kârınızı ve hedeflenen satış fiyatınızı bulun.',
+    canonical: SITE_URL + '/ticaret-hesaplayici'
+  });
+});
+
+app.get('/mevduat-hesaplayici', (req, res) => {
+  res.render('mevduat-hesaplayici', {
+    title: 'Mevduat Faizi Hesaplama ve Reel Getiri Analizi 2024 | Zengince',
+    desc: 'Banka mevduat faiz getirinizi güncel stopaj oranlarıyla net olarak hesaplayın ve enflasyon karşısındaki gerçek alım gücü kaybınızı (reel getiri) anında görün.',
+    canonical: SITE_URL + '/mevduat-hesaplayici'
+  });
+});
+
 app.get('/saatlik-ucret-hesaplayici', (req, res) => {
   res.render('saatlik-ucret-hesaplayici', {
     title: 'Gerçek Saatlik Ücret (Hayat Enerjisi) Hesaplayıcısı | Zengince',
@@ -337,6 +834,38 @@ app.get('/sigara-alkol-hesaplayici', (req, res) => {
   });
 });
 
+app.get('/kidem-tazminati-hesaplayici', (req, res) => {
+  res.render('kidem-tazminati-hesaplayici', {
+    title: 'Kıdem ve İhbar Tazminatı Hesaplama Aracı 2024 | Zengince',
+    desc: 'Aylık brüt maaşınız üzerinden en güncel oranlarla kıdem tazminatı ve ihbar tazminatı hesaplama işleminizi saniyeler içinde yapın.',
+    canonical: SITE_URL + '/kidem-tazminati-hesaplayici'
+  });
+});
+
+app.get('/kira-artisi-hesaplayici', (req, res) => {
+  res.render('kira-artisi-hesaplayici', {
+    title: 'Kira Artış Oranı Hesaplama (TEFE-TÜFE) 2024 | Zengince',
+    desc: 'TÜİK tarafından açıklanan güncel 12 aylık TÜFE ortalamasına göre yasal kira artış oranınızı ve yeni kiranızı hesaplayın.',
+    canonical: SITE_URL + '/kira-artisi-hesaplayici'
+  });
+});
+
+app.get('/kdv-hesaplayici', (req, res) => {
+  res.render('kdv-hesaplayici', {
+    title: 'KDV Hesaplama Aracı (Dahil / Hariç) 2024 | Zengince',
+    desc: 'Güncel oranlarla (%1, %10, %20) KDV dahil ve KDV hariç tutarları anında hesaplayın. Fatura ve ticaret işlemlerinizde kolaylık.',
+    canonical: SITE_URL + '/kdv-hesaplayici'
+  });
+});
+
+app.get('/yuzde-hesaplayici', (req, res) => {
+  res.render('yuzde-hesaplayici', {
+    title: 'Yüzde Hesaplama Aracı — Günlük Pratik Matematik | Zengince',
+    desc: 'Yüzde kaçıdır, yüzde değişim, kâr oranı ve indirim tutarı hesaplama işlemlerini 4 farklı basit formülle tek ekranda yapın.',
+    canonical: SITE_URL + '/yuzde-hesaplayici'
+  });
+});
+
 // ── Finansal Özgürlük (FIRE) Hesaplayıcı ────────────────────────────────
 app.get('/fire-hesaplayici', (req, res) => {
   res.render('fire-hesaplayici', {
@@ -352,25 +881,27 @@ app.get('/sozluk', (req, res) => {
     title: 'Finansal Sözlük — Zenginliğin Dilini Öğrenin | Zengince',
     desc: 'Bileşik getiri, enflasyon, pasif gelir, ETF, hedge fon ve mental model gibi temel finansal kavramların basit anlatımı.',
     canonical: SITE_URL + '/sozluk',
-    sozluk: SOZLUK
+    sozluk: SOZLUK_TERIMLERI,
+    kategoriler: SOZLUK_KATEGORILERI
   });
 });
 
 app.get('/sozluk/:slug', (req, res) => {
-  const terim = SOZLUK.find(t => t.slug === req.params.slug);
+  const terim = SOZLUK_TERIMLERI.find(t => t.slug === req.params.slug);
   
   if (!terim) {
     return res.status(404).send('Terim bulunamadı.');
   }
 
   // Rastgele 5 ilgili terim önerisi (kendisinden hariç)
-  const rastgeleTerimler = [...SOZLUK]
+  const rastgeleTerimler = [...SOZLUK_TERIMLERI]
     .filter(t => t.slug !== req.params.slug)
     .sort(() => 0.5 - Math.random())
     .slice(0, 5);
 
   res.render('terim-detay', {
-    title: `${terim.kavram} Nedir? | Zengince Sözlük`,
+    title: `${terim.terim} Nedir? | Zengince Sözlük`,
+    path: '/sozluk',
     terim: terim,
     rastgeleTerimler: rastgeleTerimler
   });
@@ -410,16 +941,24 @@ app.get('/sitemap.xml', (req, res) => {
     { loc: '/ogretiler', priority: '0.9', changefreq: 'weekly' },
     { loc: '/kitaplar', priority: '0.9', changefreq: 'weekly' },
     { loc: '/filmler', priority: '0.8', changefreq: 'weekly' },
+    { loc: '/belgeseller', priority: '0.8', changefreq: 'weekly' },
     { loc: '/diziler', priority: '0.8', changefreq: 'weekly' },
     { loc: '/podcastler', priority: '0.8', changefreq: 'weekly' },
     { loc: '/girisimciler', priority: '0.8', changefreq: 'weekly' },
+    { loc: '/deha-hamleleri', priority: '0.8', changefreq: 'weekly' },
+    { loc: '/iflaslar', priority: '0.8', changefreq: 'weekly' },
     { loc: '/sozluk', priority: '0.8', changefreq: 'monthly' },
     { loc: '/alintilar', priority: '0.8', changefreq: 'monthly' },
     { loc: '/aliskanliklar', priority: '0.8', changefreq: 'monthly' },
     { loc: '/finansal-savunma', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/tasarruf-modelleri', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/yatirim-araclari', priority: '0.9', changefreq: 'monthly' },
     { loc: '/makaleler', priority: '0.9', changefreq: 'weekly' },
     { loc: '/hesaplayici', priority: '0.7', changefreq: 'monthly' },
     { loc: '/butce-hesaplayici', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/kredi-hesaplayici', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/ticaret-hesaplayici', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/mevduat-hesaplayici', priority: '0.9', changefreq: 'monthly' },
     { loc: '/saatlik-ucret-hesaplayici', priority: '0.7', changefreq: 'monthly' },
     { loc: '/aliskanlik-maliyeti', priority: '0.7', changefreq: 'monthly' },
     { loc: '/sigara-alkol-hesaplayici', priority: '0.7', changefreq: 'monthly' },
@@ -432,12 +971,17 @@ app.get('/sitemap.xml', (req, res) => {
   // Dinamik alt sayfalar
   KITAPLAR.forEach(k => addUrl(`/kitaplar/${k.slug}`, '0.7', 'monthly'));
   FILMLER.forEach(f => addUrl(`/filmler/${f.slug}`, '0.7', 'monthly'));
+  BELGESELLER.forEach(b => addUrl(`/belgeseller/${b.slug}`, '0.7', 'monthly'));
   DIZILER.forEach(d => addUrl(`/diziler/${d.slug}`, '0.7', 'monthly'));
   PODCASTLER.forEach(p => addUrl(`/podcastler/${p.slug}`, '0.7', 'monthly'));
   GIRISIMCILER.forEach(g => addUrl(`/girisimciler/${g.slug}`, '0.7', 'monthly'));
   ALISKANLIKLAR.forEach(a => addUrl(`/aliskanliklar/${a.slug}`, '0.7', 'monthly'));
   SAVUNMA_YONTEMLERI.forEach(s => addUrl(`/finansal-savunma/${s.slug}`, '0.8', 'monthly'));
   MAKALELER.forEach(m => addUrl(`/makaleler/${m.slug}`, '0.8', 'monthly'));
+  DEHA_HAMLELERI.forEach(h => addUrl(`/deha-hamleleri/${h.slug}`, '0.7', 'monthly'));
+  IFLASLAR.forEach(i => addUrl(`/iflaslar/${i.slug}`, '0.7', 'monthly'));
+  TASARRUF_MODELLERI.forEach(m => addUrl(`/tasarruf-modelleri/${m.slug}`, '0.8', 'monthly'));
+  YATIRIM_ARACLARI.forEach(y => addUrl(`/yatirim-araclari/${y.slug}`, '0.8', 'monthly'));
 
   xml += '</urlset>';
   res.send(xml);

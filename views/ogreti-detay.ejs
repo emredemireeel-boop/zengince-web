@@ -1,0 +1,99 @@
+<%- include('partials/header') %>
+
+  <!-- Breadcrumb & Hero -->
+  <section class="article-hero" style="padding-top:120px; padding-bottom:60px; text-align:center;">
+    <div class="container">
+      <div class="article-meta" style="justify-content:center; margin-bottom:20px;">
+        <span class="category-badge"><%= kategori_bilgisi.emoji %> <%= kategori_bilgisi.baslik %></span>
+        <span class="read-time">⏳ 5 dk okuma</span>
+      </div>
+      
+      <h1 class="article-title" style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 15px;">
+        <span style="font-size:1.2em; display:block; margin-bottom:10px;"><%= ogreti.ikon %></span>
+        <%= ogreti.baslik %>
+      </h1>
+      <p class="article-desc" style="max-width:800px; margin:0 auto; font-size:1.2rem; color:var(--text-400);"><%= ogreti.altBaslik %></p>
+    </div>
+  </section>
+
+  <!-- Golden Rule / Quote Section -->
+  <section style="padding-bottom: 40px;">
+    <div class="container">
+      <div class="article-alert" style="max-width: 900px; margin: 0 auto; text-align: center; font-size: 1.25rem;">
+        <strong>🔑 Altın Kural:</strong> <%= ogreti.altin_kural %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section style="padding-bottom: 60px;">
+    <div class="container" style="max-width: 900px;">
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <% ogreti.rakamlar.forEach(function(r) { %>
+        <div class="teaching-card-stat" style="background: var(--bg-300); padding: 20px 30px; border-radius: 12px; border: 1px solid var(--border-color); min-width: 200px; text-align: center;">
+          <span class="teaching-card-stat-value" style="font-size: 2rem; color: var(--gold-200); display: block; font-weight: 700; font-family: var(--font-heading); margin-bottom: 5px;"><%= r.deger %></span>
+          <span class="teaching-card-stat-label" style="font-size: 0.9rem; color: var(--text-400); text-transform: uppercase; letter-spacing: 1px;"><%= r.etiket %></span>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Content -->
+  <section class="article-content-section" style="padding-bottom: 80px;">
+    <div class="container">
+      <div class="article-content" style="max-width: 900px; margin: 0 auto;">
+        <!-- If it has detailed icerik use it, otherwise fallback to formatting the detay field -->
+        <% if (ogreti.icerik) { %>
+          <%- ogreti.icerik %>
+        <% } else { %>
+          <p class="lead" style="font-size:1.3rem; color:var(--text-300); margin-bottom:40px;"><%= ogreti.kisa %></p>
+          <%- ogreti.detay.replace(/\n/g, '<br>') %>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2 class="cta-title">Bir Sonraki <span class="gold">Öğreti</span></h2>
+      <p class="cta-desc">Zenginlik inşası duraksız bir öğrenme sürecidir.</p>
+      <a href="/ogretiler" class="btn btn-gold">Tüm Öğretilere Dön ✦</a>
+    </div>
+  </section>
+
+<!-- JSON-LD Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "<%- ogreti.baslik %>",
+  "description": "<%- ogreti.kisa %>",
+  "author": {
+    "@type": "Organization",
+    "name": "Zengince"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zengince",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://zengince.com/favicon.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://zengince.com<%- path %>/<%- ogreti.slug %>"
+  }
+}
+</script>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <%- include('partials/comments', { pageId: 'ogreti_' + ogreti.slug }) %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

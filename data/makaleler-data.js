@@ -467,38 +467,62 @@ const MAKALELER = [
     "tarih": "05 Haziran 2026",
     "okumaSuresi": "8 Dakika",
     "kategori": "Yatırım",
-    "kapakGorseli": "https://tse2.mm.bing.net/th?q=rich%20debt%20money%20leverage%20finance%20high%20resolution&w=800&h=400&c=7&rs=1&p=0",
+    "kapakGorseli": "/images/debt_concept_v2.png",
     "ozet": "Toplum size 'Borç yiğidin kamçısıdır' veya 'Aman borçtan uzak dur' der. Ancak zenginler, servetlerini inşa etmek için neden sürekli devasa borçlar alırlar? Borcun bir silah olarak nasıl kullanıldığını öğrenin.",
     "icerik": `
-      <p><span class="dropcap">T</span>oplumun büyük çoğunluğu için "borç" kelimesi uykusuz geceler, stres ve iflas anlamına gelir. Ailelerimiz bize hep "Kredi kartına bulaşma, borçsuz yaşa, başını yastığa rahat koy" nasihatini vermiştir. Ancak dünyanın en zengin insanlarının (Elon Musk, Donald Trump, Robert Kiyosaki) ve dev şirketlerin finansal tablolarına baktığınızda dudak uçuklatan miktarda borca sahip olduklarını görürsünüz.</p>
+      <p><span class="dropcap">T</span>oplumun büyük çoğunluğu için "borç" kelimesi uykusuz geceler, stres, banka hacizleri ve iflas anlamına gelir. Çocukluktan itibaren hepimize şu öğüt verilmiştir: <em>"Ayağını yorganına göre uzat, kredi kartına bulaşma, borçsuz yaşa, başını yastığa rahat koy."</em> Orta sınıf için borç, kaçınılması gereken ölümcül bir vebadır.</p>
       
-      <p>Bu bir çelişki midir? Hayır. Zenginler borcun aslında vergisiz bir para ve en güçlü kaldıraç (leverage) olduğunu bilirler. Önemli olan borcun kendisi değil, o borcu <strong>ne için</strong> kullandığınızdır. İşte finansal okuryazarlığın temel taşlarından biri olan "İyi Borç" ve "Kötü Borç" ayrımının anatomisi.</p>
+      <p>Ancak finans dünyasının zirvesine, milyarderlerin (Elon Musk, Bernard Arnault, Robert Kiyosaki) ve dev şirketlerin (Apple, Amazon) bilançolarına baktığınızda dudak uçuklatan, milyarlarca dolarlık borç yığınları görürsünüz. Apple'ın kasasında nakit olarak yüz milyarlarca doları varken bile tahvil çıkararak neden borçlandığını hiç düşündünüz mü?</p>
+      
+      <p>Bu bir çelişki veya finansal bir hata değildir. Zenginler borcun aslında <strong>vergisiz bir para, finansal bir zaman makinesi ve dünyadaki en güçlü servet kaldıracı (leverage)</strong> olduğunu bilirler. Onlar için borç, korkulacak bir canavar değil, evcilleştirilip sizin için çalıştırılacak bir canavardır. Önemli olan borcun kendisi değil, o borcu <strong>ne için</strong> kullandığınızdır. İşte okullarda asla öğretilmeyen o acımasız sistemin en temel kurallarından biri: "İyi Borç" ve "Kötü Borç" anatomisi.</p>
 
-      <h2 style="margin-top: 40px; color: var(--gold-200);">Kötü Borç Nedir? (Fakirlik Tuzağı)</h2>
-      <p>Kötü borç, size nakit akışı sağlamayan, aksine her ay cebinizden para çeken ve değeri zamanla düşen şeyleri satın almak için aldığınız borçtur.</p>
+      <h2 style="margin-top: 50px; color: var(--gold-200); display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 2.5rem; color: var(--gold-400); opacity: 0.5; font-weight: 800; font-family: var(--font-body);">01.</span> 
+        Kötü Borç (Liability Debt): Orta Sınıfın Prangası
+      </h2>
+      <p>Kötü borç; satın aldığınız an değer kaybetmeye başlayan, size hiçbir nakit akışı sağlamayan, aksine her ay cebinizden para (faiz, bakım, sigorta) çeken tüketim harcamaları için alınan borçtur. Orta sınıfı yoksullaştıran ana mekanizma budur.</p>
       <ul>
-        <li><strong>Tüketim Borçları:</strong> Son model bir iPhone almak için çekilen tüketici kredisi, lüks bir tatil için kredi kartına yapılan taksitler.</li>
-        <li><strong>Araba Kredileri:</strong> Araç bayiden çıktığı an değer kaybeder. Hem değer kaybeden bir şeye sahip olup hem de üzerine bankaya faiz ödemek, finansal bir intihardır.</li>
-        <li><strong>Gereksiz Büyüklükte Ev (Mortgage):</strong> İçinde oturduğunuz, size kira getirmeyen evi almak için 10 yıl boyunca ödenen faizler.</li>
+        <li><strong>Sıfır Araç Kredileri:</strong> Bir arabayı bayiden çıkardığınız saniye değerinin %20'si buharlaşır. Hem sürekli değer kaybeden bir metale sahip olup, hem de bunun için bankaya 5 yıl boyunca %40-50 faiz ödemek tam anlamıyla finansal bir cinayettir. Zenginler araçları şirket üzerine kiralayarak vergiden düşer; orta sınıf ise o aracı faiziyle satın alarak kendini bankaya köle eder.</li>
+        <li><strong>Tüketim (Lüks) Borçları:</strong> En son model iPhone'u veya lüks bir tatili kredi kartına 12 taksit yaptırmak, "Bugün kazanamadığım parayı, gelecekteki emeğimi ipotek ederek harcıyorum" demektir. Zenginler geleceği bugüne taşımak için borçlanmazlar; onlar geleceği inşa etmek için borçlanırlar.</li>
+        <li><strong>Tüketici / İhtiyaç Kredileri:</strong> Sadece anlık hazlarınızı veya düğün/eşya gibi gösteriş harcamalarınızı finanse etmek için çekilen ve getirisi sıfır olan, %100 maliyetli felaketlerdir.</li>
       </ul>
 
-      <h2 style="margin-top: 40px; color: var(--gold-200);">İyi Borç Nedir? (Zenginlik Kaldıracı)</h2>
-      <p>İyi borç, <strong>kendi kendini ödeyen</strong> ve cebinize net nakit akışı koyan borçtur. Zenginler, başkalarının parasıyla (OPM - Other People's Money) varlık satın almak için borçlanırlar.</p>
-      <ul>
-        <li><strong>Yatırım Amaçlı Gayrimenkul Kredisi:</strong> Bankadan 2 milyon TL kredi çekip bir daire alırsınız. Dairenin aylık kredi taksiti 20.000 TL iken, o daireyi 25.000 TL'ye kiraya verirsiniz. Kiracı sizin banka borcunuzu öder, üstelik her ay cebinize 5.000 TL kâr kalır. Ve 10 yıl sonra evin değeri enflasyonla birlikte artmış olur. İşte <em>"borçla zenginleşmek"</em> budur.</li>
-        <li><strong>İşletme Büyütme Kredisi:</strong> Yıllık %30 faizle kredi alıp, şirketinize aldığınız yeni bir makineyle üretimi %80 artırmak. Kredi faizi işin ürettiği kârın yanında devede kulak kalır.</li>
-      </ul>
+      <h2 style="margin-top: 50px; color: var(--gold-200); display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 2.5rem; color: var(--gold-400); opacity: 0.5; font-weight: 800; font-family: var(--font-body);">02.</span> 
+        İyi Borç (Asset Debt): Kendi Kendini Ödeyen Silah
+      </h2>
+      <p>İyi borç, <strong>sizin yerinize başkasının ödediği</strong> ve üstelik cebinize net nakit akışı koyan borçtur. Zenginler, başkalarının parasıyla (OPM - Other People's Money) gelir üreten varlık (asset) satın almak için devasa borçların altına girmekten asla çekinmezler.</p>
+      <p>Örneğin: Bankadan %30 faizle 5 Milyon TL ticari kredi çektiğinizi düşünelim. Bu parayla, yılda size %60 kâr getirecek hazır bir e-ticaret işletmesi veya sağlam bir dükkan satın alıyorsunuz. Dükkanın veya işletmenin ürettiği nakit akışı, bankanın %30'luk faizini kolayca öder. Üzerine kalan kâr sizin cebinize net kazanç olarak girer. Üstelik işletmenin/dükkanın değeri yıllar içinde enflasyonla birlikte artar. Siz cebinizden <strong>tek kuruş bile harcamadan</strong>, tamamen bankanın parasıyla hem her ay pasif gelir elde etmiş hem de değerlenen bir mülkün/işletmenin sahibi olmuş olursunuz. İşte zenginlerin "yoktan var etme" büyüsü budur.</p>
 
-      <h2 style="margin-top: 40px; color: var(--gold-200);">Zenginler Neden "Kendi Paralarını" Kullanmazlar?</h2>
-      <p>Eğer bir gayrimenkulü nakit 5 milyon TL vererek alırsanız (kişisel sermaye), yatırım getiriniz (ROI) sınırlı olur. Ancak o 5 milyon TL ile %20 peşinat vererek <strong>5 farklı</strong> ev alıp geri kalanını krediyle kapatırsanız, kiracılar borçları öderken siz 5 evin birden değer artışından (appreciation) faydalanırsınız. Buna <strong>Kaldıraç (Leverage)</strong> denir.</p>
+      <h2 style="margin-top: 50px; color: var(--gold-200); display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 2.5rem; color: var(--gold-400); opacity: 0.5; font-weight: 800; font-family: var(--font-body);">03.</span> 
+        Kaldıraç (Leverage) Etkisi: Neden Kendi Paralarını Kullanmazlar?
+      </h2>
+      <p>Zengin bir insanın banka hesabında 10 Milyon TL nakit yatıyor olabilir. Ancak o, 10 Milyon TL değerindeki bir iş merkezini satın alırken asla gidip o nakdi masaya koymaz. Neden mi? Çünkü matematikte buna "Kaldıraçsız İşlem" denir ve getirisi düşüktür.</p>
+      <p>Bunun yerine yatırımcı, 10 Milyon TL'sini 5'e böler. Gidip tanesi 10 Milyon TL olan <strong>5 farklı</strong> iş merkezi bulur. Her birine %20 peşinat (2'şer Milyon TL) yatırır ve geri kalan %80'lik kısımları için bankadan kredi çeker. Böylece aynı 10 Milyon TL ile 1 değil, 5 dev mülke sahip olmuştur. Bu mülklerin içindeki kiracılar, banka kredilerini her ay tıkır tıkır öderler. Enflasyon yüzünden 5 mülkün de değeri 10 milyondan 20 milyona çıktığında; sadece 1 mülk alıp 10 Milyon kâr etmek yerine, 5 mülk alıp 50 Milyon kâr etmiş olur. <strong>Risk aynı, sermaye aynı, ancak kazanç 5 katıdır.</strong></p>
 
-      <div class="article-alert" style="margin-top: 60px; background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(0,0,0,0.4) 100%);">
-        <h3 style="margin-top: 0; color: var(--gold-300);">Borç, Vergiden Muhaftır</h3>
-        <p style="margin-bottom: 0;">Maaş veya kâr elde ettiğinizde devlet anında gelir vergisi keser. Ancak bankadan 1 milyon TL borç aldığınızda, bu borç "gelir" sayılmadığı için vergi ödemezsiniz. Zenginler şirketlerinin hisselerini satıp vergi ödemek yerine, hisselerini teminat gösterip kredi çekerler. Hem hisseleri büyümeye devam eder hem de sıfır vergiyle sıcak nakde ulaşıp o parayla daha fazla varlık alırlar.</p>
+      <h2 style="margin-top: 50px; color: var(--gold-200); display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 2.5rem; color: var(--gold-400); opacity: 0.5; font-weight: 800; font-family: var(--font-body);">04.</span> 
+        Enflasyon Zenginlerin En Büyük Dostudur (Borcun Erimesi)
+      </h2>
+      <p>Fakirler enflasyondan nefret eder çünkü marketteki sütün ve ekmeğin fiyatı artar. Zenginler ise enflasyona taparlar, çünkü <strong>enflasyon borçları buharlaştırır.</strong></p>
+      <p>Bugün bankadan 5 Milyon TL borç aldınız diyelim. Bu borcu 10 yıla sabitlediniz. Enflasyon oranının %50 olduğu bir ülkede, 5 yıl sonra o ödediğiniz sabit taksitlerin alım gücü çöp haline gelecektir. Bankaya sayısal olarak aynı parayı ödüyor gibi görünseniz de, aslında o paranın gerçek değeri eridiği için borcunuz reel anlamda kuşa dönmüştür. Zengin, bugünün değerli parasıyla varlık (fabrika, arsa, altın) alır, yarının değersizleşmiş çöp parasıyla o borcu bankaya geri öder. Banka kaybeder, enflasyon öder, zengin kazanır.</p>
+
+      <h2 style="margin-top: 50px; color: var(--gold-200); display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 2.5rem; color: var(--gold-400); opacity: 0.5; font-weight: 800; font-family: var(--font-body);">05.</span> 
+        Sistemin En Büyük Sırrı: Borç, Vergiden Muaftır
+      </h2>
+      <p>Dünyadaki milyarderlerin neden hiç vergi ödemediğini merak ediyor musunuz? Diyelim ki Elon Musk'ın hisseleri 10 Milyar Dolar değer kazandı. Elon gidip kendisine 100 Milyon Dolarlık yeni bir jet almak isterse hisselerini satıp nakde dönmesi gerekir. Hisselerini sattığı an devlet ondan devasa bir "Sermaye Kazancı Vergisi" (Capital Gains Tax) talep edecektir.</p>
+      <p>Zenginler hisselerini ASLA satmazlar. Onun yerine bankaya giderler ve hisselerini "teminat" (collateral) olarak gösterip bankadan çok düşük faizle 100 Milyon Dolar <strong>KREDİ</strong> (Borç) alırlar. Sistemin kuralı şudur: <strong>Borç bir gelir (income) olmadığı için vergilendirilemez.</strong> Zengin kişi, devlete sıfır vergi ödeyerek cebine 100 milyon dolar sıcak nakit koyar, jetini alır ve hisseleri ona temettü/kâr ödemeye devam eder.</p>
+
+      <div class="article-alert" style="margin-top: 60px; background: linear-gradient(135deg, rgba(231,76,60,0.1) 0%, rgba(0,0,0,0.4) 100%); border-left-color: #E74C3C;">
+        <h3 style="margin-top: 0; color: #E74C3C;">UYARI: Kaldıraç İki Tarafı Keskin Bir Kılıçtır</h3>
+        <p style="margin-bottom: 0;">Bu makale, gidip limitlerinizi zorlayarak bankadan borç çekin demiyor. Zenginler borç almadan önce o borcun yaratacağı <strong>nakit akışının matematiksel kesinliğini</strong> hesaplarlar. Borç, tıpkı roket yakıtı gibidir. Eğer doğru bir yatırım motoruna koyarsanız sizi Ay'a uçurur. Ama şaseye döker ve ateşlerseniz, sizi olduğunuz yerde havaya uçurur.</p>
+        <p style="margin-top: 16px; margin-bottom: 0;">Eğer yatırımınızın aylık getirisi, banka kredisinin aylık faiz ve taksit yükünü NET BİR ŞEKİLDE karşılamıyorsa, o iş iyi borç değil, sizi iflasa sürükleyecek ölümcül bir kumardır. Finansal okuryazarlığınız olmadan kaldıraç kullanmak, ehliyetsiz Formula 1 aracı kullanmaya benzer.</p>
       </div>
       
-      <h2 style="margin-top: 40px; color: var(--gold-200);">Sonuç</h2>
-      <p>Borç, tıpkı ateş gibidir. Eğer onu nasıl yöneteceğinizi (İyi borç) bilirseniz, size yemek pişirir ve evinizi ısıtır. Ama finansal okuryazarlığınız yoksa (Kötü borç), evinizi tamamen yakıp kül eder. Finansal uyanışın ilk adımı, cebinizden para çeken borçları sıfırlayıp, cebinize para koyan borçları bir silah olarak kullanmayı öğrenmektir.</p>
+      <h2 style="margin-top: 40px; color: var(--gold-200);">Sonuç: Borç Korkusunu Yenmek</h2>
+      <p>Orta sınıf çocuklarına finansal korku aşılanırken, zengin aileler çocuklarına bilançoyu ve borcu yönetmeyi öğretir. "Borçsuz bir hayat", finansal anlamda güvenli görünse de sizi asla zengin etmeyecek yavaş bir yoldur. Gerçek finansal özgürlüğün sırrı, cebinizden para çeken tüketim borçlarından (Kötü Borç) tamamen ve acımasızca kurtulup, sizin adınıza çalışacak, başkalarının ödediği yatırım borçlarını (İyi Borç) kurmayı öğrenmektir.</p>
     `
   }
 ];

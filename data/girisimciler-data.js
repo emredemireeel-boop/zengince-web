@@ -5,7 +5,7 @@ const GIRISIMCILER = [
     "slug": "naval-ravikant",
     "isim": "Naval Ravikant",
     "unvan": "AngelList Kurucusu & Melek Yatırımcı",
-    "foto": "https://tse2.mm.bing.net/th?q=Naval%20Ravikant%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Naval_Ravikant_TechCrunch_Disrupt_2011_%28cropped%29.jpg/800px-Naval_Ravikant_TechCrunch_Disrupt_2011_%28cropped%29.jpg",
     "ozet": "Silikon Vadisi'nin bilge yatırımcısı. Twitter fırtınaları ve podcastleriyle zenginliğin sadece finansal değil, felsefi bir durum olduğunu kanıtladı.",
     "netDeger": "$60M+",
     "zihinYapisi": [
@@ -30,7 +30,7 @@ const GIRISIMCILER = [
     "slug": "warren-buffett",
     "isim": "Warren Buffett",
     "unvan": "Berkshire Hathaway CEO & Değer Yatırımcısı",
-    "foto": "https://tse2.mm.bing.net/th?q=Warren%20Buffett%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Warren_Buffett_KU_School_of_Business_2017_crop.jpg/800px-Warren_Buffett_KU_School_of_Business_2017_crop.jpg",
     "ozet": "Omaha'nın Kahini. Tarihin en başarılı yatırımcısı olarak kabul edilir. Sıkıcı ama istikrarlı yatırım stratejisiyle dünyanın en zenginlerinden biri oldu.",
     "netDeger": "$135B+",
     "zihinYapisi": [
@@ -55,7 +55,7 @@ const GIRISIMCILER = [
     "slug": "charlie-munger",
     "isim": "Charlie Munger",
     "unvan": "Berkshire Hathaway Bşk. Yrd. & Düşünür",
-    "foto": "https://tse2.mm.bing.net/th?q=Charlie%20Munger%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Charlie_Munger.jpg/800px-Charlie_Munger.jpg",
     "ozet": "Buffett'ın 60 yıllık sağ kolu. Zeka modellerini (mental models) finans dünyasına uygulayan çok disiplinli bir felsefeci ve avukat.",
     "netDeger": "$2.6B",
     "zihinYapisi": [
@@ -80,7 +80,7 @@ const GIRISIMCILER = [
     "slug": "ray-dalio",
     "isim": "Ray Dalio",
     "unvan": "Bridgewater Associates Kurucusu",
-    "foto": "https://tse2.mm.bing.net/th?q=Ray%20Dalio%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ray_Dalio_2011.jpg/800px-Ray_Dalio_2011.jpg",
     "ozet": "Dünyanın en büyük hedge fonunu kuran adam. Hayatı ve ekonomiyi devasa, öngörülebilir bir makine olarak görür.",
     "netDeger": "$15B+",
     "zihinYapisi": [
@@ -105,7 +105,7 @@ const GIRISIMCILER = [
     "slug": "elon-musk",
     "isim": "Elon Musk",
     "unvan": "Tesla, SpaceX, X Kurucusu",
-    "foto": "https://tse2.mm.bing.net/th?q=Elon%20Musk%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg/800px-Elon_Musk_Royal_Society_%28crop1%29.jpg",
     "ozet": "Aynı anda birden fazla trilyon dolarlık sektörü (otomotiv, uzay, enerji, internet) dönüştüren vizyoner mühendis.",
     "netDeger": "$250B+",
     "zihinYapisi": [
@@ -130,7 +130,7 @@ const GIRISIMCILER = [
     "slug": "steve-jobs",
     "isim": "Steve Jobs",
     "unvan": "Apple Kurucu Ortağı",
-    "foto": "https://tse2.mm.bing.net/th?q=Steve%20Jobs%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Steve_Jobs_Headshot_2010-CROP2.jpg/800px-Steve_Jobs_Headshot_2010-CROP2.jpg",
     "ozet": "Teknolojiyi sanatla buluşturan dahi. Kişisel bilgisayar, müzik, telefon ve animasyon endüstrilerinde devrim yarattı.",
     "netDeger": "$10.2B (Ölümünde)",
     "zihinYapisi": [
@@ -173,7 +173,7 @@ const GIRISIMCILER = [
     ],
     "kitapOnerisi": "Invent and Wander",
     "altinSoz": "Başarısızlık ve icat etmek ayrılmaz ikizlerdir.",
-    "foto": "https://tse2.mm.bing.net/th?q=Jeff%20Bezos%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Jeff_Bezos_at_Amazon_Spheres_Grand_Opening_in_Seattle_-_2018_%2839074799225%29_%28cropped%29.jpg/800px-Jeff_Bezos_at_Amazon_Spheres_Grand_Opening_in_Seattle_-_2018_%2839074799225%29_%28cropped%29.jpg",
     "detayliHikaye": "Jeff Bezos, sadece para kazanmakla kalmadı, dünyayı yeniden şekillendirdi. Garajda kurduğu kitapçı dükkanını dünyanın en büyük her şey mağazasına dönüştürdü. Müşteri saplantısı ve uzun vadeli düşüncenin sembolü. \nİnsanlar genellikle başarılı liderlerin son ulaştıkları noktayı görürler; milyarlarca dolarlık şirketler, lüks bir yaşam, bitmek tükenmek bilmeyen bir güç. Ancak Jeff Bezos gibilerinin gerçek sırrı ulaştıkları servet değil, bu serveti inşa ederken kullandıkları zihinsel altyapıdır. \nSıradan insanlar riskten kaçarken, o riski yönetmeyi öğrendi. Kriz anlarında kalabalığın paniğe kapıldığı yerde, o en büyük fırsatları gördü. Zamanının büyük bir kısmını karar mekanizmalarını keskinleştirmeye ve dünyayı rakiplerinden daha farklı bir perspektifle okumaya ayırdı. Öğrendiği her yeni bilgiyi, şirketini büyütmek için bir kaldıraca (leverage) çevirdi. Bu detay sayfasındaki prensipleri sadece okumakla kalmayın, kendi iş hayatınıza nasıl entegre edebileceğinizi düşünün."
   },
   {
@@ -198,7 +198,7 @@ const GIRISIMCILER = [
     ],
     "kitapOnerisi": "Sıfırdan Bire",
     "altinSoz": "Brilliant bir düşünce, kimsenin aklına gelmemiş değil, kimsenin söylemeye cesaret edemediği şeydir.",
-    "foto": "https://tse2.mm.bing.net/th?q=Peter%20Thiel%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Peter_Thiel_at_the_2016_Republican_National_Convention.jpg/800px-Peter_Thiel_at_the_2016_Republican_National_Convention.jpg",
     "detayliHikaye": "Peter Thiel, sadece para kazanmakla kalmadı, dünyayı yeniden şekillendirdi. Silikon Vadisi'nin kontrarian (aykırı) düşünürü. PayPal mafyasının lideri ve Facebook'un ilk dış yatırımcısı. \nİnsanlar genellikle başarılı liderlerin son ulaştıkları noktayı görürler; milyarlarca dolarlık şirketler, lüks bir yaşam, bitmek tükenmek bilmeyen bir güç. Ancak Peter Thiel gibilerinin gerçek sırrı ulaştıkları servet değil, bu serveti inşa ederken kullandıkları zihinsel altyapıdır. \nSıradan insanlar riskten kaçarken, o riski yönetmeyi öğrendi. Kriz anlarında kalabalığın paniğe kapıldığı yerde, o en büyük fırsatları gördü. Zamanının büyük bir kısmını karar mekanizmalarını keskinleştirmeye ve dünyayı rakiplerinden daha farklı bir perspektifle okumaya ayırdı. Öğrendiği her yeni bilgiyi, şirketini büyütmek için bir kaldıraca (leverage) çevirdi. Bu detay sayfasındaki prensipleri sadece okumakla kalmayın, kendi iş hayatınıza nasıl entegre edebileceğinizi düşünün."
   },
   {
@@ -223,7 +223,7 @@ const GIRISIMCILER = [
     ],
     "kitapOnerisi": "Superintelligence",
     "altinSoz": "Başarılı olmanın en iyi yolu, başarısızlığın maliyetini sıfıra indirmektir.",
-    "foto": "https://tse2.mm.bing.net/th?q=Sam%20Altman%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sam_Altman_2019.jpg/800px-Sam_Altman_2019.jpg",
     "detayliHikaye": "Sam Altman, sadece para kazanmakla kalmadı, dünyayı yeniden şekillendirdi. Yapay zeka devriminin öncüsü. Sadece şirket değil, tüm insanlığın yörüngesini değiştirecek teknolojileri yöneten lider. \nİnsanlar genellikle başarılı liderlerin son ulaştıkları noktayı görürler; milyarlarca dolarlık şirketler, lüks bir yaşam, bitmek tükenmek bilmeyen bir güç. Ancak Sam Altman gibilerinin gerçek sırrı ulaştıkları servet değil, bu serveti inşa ederken kullandıkları zihinsel altyapıdır. \nSıradan insanlar riskten kaçarken, o riski yönetmeyi öğrendi. Kriz anlarında kalabalığın paniğe kapıldığı yerde, o en büyük fırsatları gördü. Zamanının büyük bir kısmını karar mekanizmalarını keskinleştirmeye ve dünyayı rakiplerinden daha farklı bir perspektifle okumaya ayırdı. Öğrendiği her yeni bilgiyi, şirketini büyütmek için bir kaldıraca (leverage) çevirdi. Bu detay sayfasındaki prensipleri sadece okumakla kalmayın, kendi iş hayatınıza nasıl entegre edebileceğinizi düşünün."
   },
   {
@@ -248,7 +248,7 @@ const GIRISIMCILER = [
     ],
     "kitapOnerisi": "The Innovator's Dilemma",
     "altinSoz": "Başarılı olmak için harika bir stratejiye değil, harika bir adaptasyon yeteneğine ihtiyacınız var.",
-    "foto": "https://tse2.mm.bing.net/th?q=Jensen%20Huang%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Jensen_Huang_%28cropped%29.jpg/800px-Jensen_Huang_%28cropped%29.jpg",
     "detayliHikaye": "Jensen Huang, sadece para kazanmakla kalmadı, dünyayı yeniden şekillendirdi. Yapay zeka çağının donanım mimarı. Çip tasarımı vizyonu ile dünyanın en değerli şirketlerinden birini inşa etti. \nİnsanlar genellikle başarılı liderlerin son ulaştıkları noktayı görürler; milyarlarca dolarlık şirketler, lüks bir yaşam, bitmek tükenmek bilmeyen bir güç. Ancak Jensen Huang gibilerinin gerçek sırrı ulaştıkları servet değil, bu serveti inşa ederken kullandıkları zihinsel altyapıdır. \nSıradan insanlar riskten kaçarken, o riski yönetmeyi öğrendi. Kriz anlarında kalabalığın paniğe kapıldığı yerde, o en büyük fırsatları gördü. Zamanının büyük bir kısmını karar mekanizmalarını keskinleştirmeye ve dünyayı rakiplerinden daha farklı bir perspektifle okumaya ayırdı. Öğrendiği her yeni bilgiyi, şirketini büyütmek için bir kaldıraca (leverage) çevirdi. Bu detay sayfasındaki prensipleri sadece okumakla kalmayın, kendi iş hayatınıza nasıl entegre edebileceğinizi düşünün."
   },
   {
@@ -273,22 +273,32 @@ const GIRISIMCILER = [
     ],
     "kitapOnerisi": "The End of Power",
     "altinSoz": "En büyük risk, hiç risk almamaktır. Sürekli değişen bir dünyada başarısız olması garanti olan tek strateji budur.",
-    "foto": "https://tse2.mm.bing.net/th?q=Mark%20Zuckerberg%20portrait%20photo%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Mark_Zuckerberg_F8_2018_Keynote_%28cropped%29.jpg/800px-Mark_Zuckerberg_F8_2018_Keynote_%28cropped%29.jpg",
     "detayliHikaye": "Mark Zuckerberg, sadece para kazanmakla kalmadı, dünyayı yeniden şekillendirdi. Üniversite yurdunda kodladığı platformu, dünya nüfusunun yarısının kullandığı milyarlarca dolarlık bir reklam ve iletişim imparatorluğuna dönüştürdü. \nİnsanlar genellikle başarılı liderlerin son ulaştıkları noktayı görürler; milyarlarca dolarlık şirketler, lüks bir yaşam, bitmek tükenmek bilmeyen bir güç. Ancak Mark Zuckerberg gibilerinin gerçek sırrı ulaştıkları servet değil, bu serveti inşa ederken kullandıkları zihinsel altyapıdır. \nSıradan insanlar riskten kaçarken, o riski yönetmeyi öğrendi. Kriz anlarında kalabalığın paniğe kapıldığı yerde, o en büyük fırsatları gördü. Zamanının büyük bir kısmını karar mekanizmalarını keskinleştirmeye ve dünyayı rakiplerinden daha farklı bir perspektifle okumaya ayırdı. Öğrendiği her yeni bilgiyi, şirketini büyütmek için bir kaldıraca (leverage) çevirdi. Bu detay sayfasındaki prensipleri sadece okumakla kalmayın, kendi iş hayatınıza nasıl entegre edebileceğinizi düşünün."
   },
   {
     "slug": "ray-kroc",
     "isim": "Ray Kroc",
     "unvan": "McDonald's'ın Küresel Kurucusu",
-    "soz": "Eğer risk almaktan korkuyorsanız, ticaretten defolun gidin.",
-    "anaFelsefe": "Israr (Persistence) ve Ölçeklenebilirlik",
-    "sirri": "Dünyanın en iyi hamburgerini yapmak değil, dünyanın en iyi kopyalanabilir restoran ve emlak sistemini kurmak.",
-    "ogutler": [
-      "Bir işin asıl gelir modelinin ne olduğunu keşfedin (McDonald's hamburger satmaz, emlak kiralar).",
-      "Yeteneğin, eğitimin veya dehanın yerini hiçbir şey 'ısrar' kadar dolduramaz.",
-      "İki küçük restoranda mükemmel olan bir sistemi, on binlerce restorana hatasız şekilde ölçeklendirin."
+    "foto": "https://tse1.mm.bing.net/th?q=Ray+Kroc+McDonalds+Founder+Photo&w=300&h=300&c=7&rs=1&p=0",
+    "ozet": "Dünyanın en iyi hamburgerini yapmak yerine, dünyanın en iyi kopyalanabilir restoran ve emlak sistemini kurarak fast-food devrimini başlattı.",
+    "netDeger": "$600M (Ölümünde)",
+    "zihinYapisi": [
+      {
+        "baslik": "Asıl Gelir Modelini Bulmak",
+        "aciklama": "McDonald's sadece hamburger satmaz, aslında franchisee'lere kiraladığı emlaklardan kazanır. Sektörünüzdeki asıl kâr noktasını bulun."
+      },
+      {
+        "baslik": "Israrın Gücü (Persistence)",
+        "aciklama": "Yeteneğin, eğitimin veya dehanın yerini hiçbir şey 'ısrar' kadar dolduramaz."
+      },
+      {
+        "baslik": "Ölçeklenebilirlik",
+        "aciklama": "İki küçük restoranda mükemmel olan bir sistemi, on binlerce restorana hatasız şekilde ölçeklendirin."
+      }
     ],
-    "foto": "https://tse2.mm.bing.net/th?q=Ray%20Kroc%20McDonalds%20founder%20portrait%20high%20resolution&w=300&h=300&c=7&rs=1&p=0",
+    "kitapOnerisi": "Grinding It Out (Ray Kroc)",
+    "altinSoz": "Eğer risk almaktan korkuyorsanız, ticaretten defolun gidin.",
     "detayliHikaye": "Ray Kroc'un hikayesi, başarının gençlikle ilgili olduğu efsanesini yerle bir eder. 52 yaşına kadar kağıt bardak ve mikser satıcısı olarak kapı kapı dolaşan Kroc, şeker hastası, eklem ağrıları çeken sıradan bir adamdı. Ancak McDonald kardeşlerin California'daki o yenilikçi restoranını gördüğünde, hayatı değişti.\n\nRay Kroc'un asıl dehası, harika bir yemek tarifi bulmak değil, o yemeğin her restoranda, dünyanın her yerinde, saniyeler içinde tam olarak aynı lezzette ve kalitede nasıl üretilebileceğinin 'sistemini' kopyalamaktı. O bir yemek şefi değildi, o bir sistem mimarıydı. \n\nDaha sonra fark ettiği emlak stratejisi ise onu milyarder yaptı: Franchisee'lere (bayilere) sadece isim hakkı satmak yerine, restoranların kurulacağı arsaları bizzat satın aldı ve onlara kiraya verdi. Bugün McDonald's, dünyanın en büyük fast-food zinciri olmasının yanı sıra, dünyanın en büyük özel gayrimenkul şirketlerinden biridir."
   }
 ];

@@ -1,0 +1,197 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="background: linear-gradient(135deg, <%= arac.renk %>15 0%, rgba(10,10,10,1) 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: radial-gradient(circle, <%= arac.renk %>20 0%, transparent 70%); filter: blur(40px); pointer-events: none;"></div>
+    
+    <div class="container" style="text-align: center; position: relative; z-index: 1;">
+      <span class="section-badge" style="background: <%= arac.renk %>15; border-color: <%= arac.renk %>40; color: <%= arac.renk %>; letter-spacing: 1px; text-transform: uppercase;">📈 Varlık 101 İncelemesi</span>
+      <div style="font-size: 5rem; margin: 24px 0; display: inline-block; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));"><%= arac.icon %></div>
+      <h1 class="section-title" style="font-size: 3rem;"><%= arac.baslik %></h1>
+    </div>
+  </section>
+
+  <!-- YTD Uyarısı -->
+  <section class="section" style="padding-top: 0; padding-bottom: 32px;">
+    <div class="container" style="max-width: 900px;">
+      <div style="background: rgba(231, 76, 60, 0.05); border: 1px solid rgba(231, 76, 60, 0.3); padding: 16px; border-radius: 12px; text-align: center; backdrop-filter: blur(5px);">
+        <strong style="color: #E74C3C; font-size: 0.95rem; letter-spacing: 0.5px;">YASAL UYARI (YTD):</strong> <span style="color: var(--text-secondary); font-size: 0.9rem;">Bu sayfada yer alan bilgiler yatırım danışmanlığı kapsamında değildir. Eğitim amaçlıdır.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container" style="max-width: 900px;">
+      
+      <!-- Tanım -->
+      <div style="background: var(--dark-200); padding: 40px; border-radius: 24px; border: 1px solid var(--glass-border); margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <h3 style="margin-bottom: 20px; color: #fff; font-size: 1.5rem; display: flex; align-items: center; gap: 12px;">
+          <span style="color: <%= arac.renk %>;">❓</span> Bu Varlık Nedir?
+        </h3>
+        <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.8;"><%= arac.tanim %></p>
+      </div>
+
+      <!-- Yeni Eklenenler: Nasıl Alınır ve Tarihsel Örnek -->
+      <div class="grid-2 stagger-children" style="margin-bottom: 48px; gap: 24px;">
+        <!-- Nasıl Alınır? -->
+        <div style="background: linear-gradient(180deg, var(--dark-200) 0%, var(--dark-300) 100%); padding: 32px; border-radius: 20px; border: 1px solid var(--glass-border);">
+          <h4 style="margin-bottom: 16px; color: #3498DB; display: flex; align-items: center; gap: 8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            Nasıl Alınır?
+          </h4>
+          <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1.05rem;"><%= arac.nasilAlinir %></p>
+        </div>
+
+        <!-- Tarihsel Örnek -->
+        <div style="background: linear-gradient(180deg, rgba(243, 156, 18, 0.05) 0%, var(--dark-300) 100%); padding: 32px; border-radius: 20px; border: 1px solid rgba(243, 156, 18, 0.2);">
+          <h4 style="margin-bottom: 16px; color: #F39C12; display: flex; align-items: center; gap: 8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Tarihsel Örnek
+          </h4>
+          <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1.05rem; font-style: italic;">"<%= arac.tarihselOrnek %>"</p>
+        </div>
+      </div>
+
+      <!-- Skorlar Grid - Gelişmiş UI -->
+      <h3 style="margin-bottom: 24px; color: #fff; font-size: 1.5rem; text-align: center;">Anatomi ve Skorlar</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 48px;">
+        
+        <!-- Risk -->
+        <div style="background: var(--dark-200); padding: 32px 24px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border); position: relative; overflow: hidden;">
+          <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: #E74C3C;"></div>
+          <div style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 12px; font-weight: 500;">Risk Seviyesi</div>
+          <div style="font-size: 3rem; font-weight: 800; color: #E74C3C; text-shadow: 0 0 20px rgba(231,76,60,0.4);"><%= arac.skorlar.risk %><span style="font-size: 1.2rem; color: var(--text-secondary);">/10</span></div>
+        </div>
+        
+        <!-- Getiri -->
+        <div style="background: var(--dark-200); padding: 32px 24px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border); position: relative; overflow: hidden;">
+          <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: #2ECC71;"></div>
+          <div style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 12px; font-weight: 500;">Potansiyel Getiri</div>
+          <div style="font-size: 3rem; font-weight: 800; color: #2ECC71; text-shadow: 0 0 20px rgba(46,204,113,0.4);"><%= arac.skorlar.getiriPotansiyeli %><span style="font-size: 1.2rem; color: var(--text-secondary);">/10</span></div>
+        </div>
+        
+        <!-- Likidite -->
+        <div style="background: var(--dark-200); padding: 32px 24px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border); position: relative; overflow: hidden;">
+          <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: #3498DB;"></div>
+          <div style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 12px; font-weight: 500;">Likidite Hızı</div>
+          <div style="font-size: 3rem; font-weight: 800; color: #3498DB; text-shadow: 0 0 20px rgba(52,152,219,0.4);"><%= arac.skorlar.likidite %><span style="font-size: 1.2rem; color: var(--text-secondary);">/10</span></div>
+        </div>
+        
+        <!-- Zaman İhtiyacı -->
+        <div style="background: var(--dark-200); padding: 32px 24px; border-radius: 20px; text-align: center; border: 1px solid var(--glass-border); position: relative; overflow: hidden;">
+          <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: #9B59B6;"></div>
+          <div style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 12px; font-weight: 500;">Zaman İhtiyacı</div>
+          <div style="font-size: 3rem; font-weight: 800; color: #9B59B6; text-shadow: 0 0 20px rgba(155,89,182,0.4);"><%= arac.skorlar.zamanIhtiyaci %><span style="font-size: 1.2rem; color: var(--text-secondary);">/10</span></div>
+        </div>
+      </div>
+
+      <!-- Avantajlar / Dezavantajlar -->
+      <div class="grid-2" style="gap: 24px; margin-bottom: 48px;">
+        <div style="background: rgba(46, 204, 113, 0.05); padding: 32px; border-radius: 20px; border: 1px solid rgba(46, 204, 113, 0.2);">
+          <h4 style="color: #2ECC71; margin-bottom: 24px; font-size: 1.3rem; display: flex; align-items: center; gap: 12px;">
+            <div style="width: 32px; height: 32px; background: #2ECC7120; border-radius: 50%; display: flex; align-items: center; justify-content: center;">+</div> 
+            Avantajları
+          </h4>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
+            <% arac.avantajlar.forEach(function(av) { %>
+              <li style="color: var(--text-secondary); line-height: 1.6; position: relative; padding-left: 28px; font-size: 1.05rem;">
+                <span style="position: absolute; left: 0; top: 2px; color: #2ECC71; font-weight: bold;">✓</span> <%= av %>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+        <div style="background: rgba(231, 76, 60, 0.05); padding: 32px; border-radius: 20px; border: 1px solid rgba(231, 76, 60, 0.2);">
+          <h4 style="color: #E74C3C; margin-bottom: 24px; font-size: 1.3rem; display: flex; align-items: center; gap: 12px;">
+            <div style="width: 32px; height: 32px; background: #E74C3C20; border-radius: 50%; display: flex; align-items: center; justify-content: center;">-</div> 
+            Dezavantajları
+          </h4>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
+            <% arac.dezavantajlar.forEach(function(dez) { %>
+              <li style="color: var(--text-secondary); line-height: 1.6; position: relative; padding-left: 28px; font-size: 1.05rem;">
+                <span style="position: absolute; left: 0; top: 2px; color: #E74C3C; font-weight: bold;">✗</span> <%= dez %>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Derinlemesine Uzman Analizi (Yeni Eklenen Aşırı Detaylı Kısım) -->
+      <% if(arac.ayrintilar) { %>
+      <div style="background: var(--dark-200); padding: 40px; border-radius: 24px; border: 1px solid var(--glass-border); margin-bottom: 48px;">
+        <h3 style="margin-bottom: 32px; color: #fff; font-size: 1.6rem; display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 1.8rem;">🔬</span> Derinlemesine Anatomik İnceleme
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+          
+          <!-- Vergi Durumu -->
+          <div style="display: flex; gap: 16px;">
+            <div style="font-size: 2rem; color: #95A5A6;">⚖️</div>
+            <div>
+              <h4 style="color: #95A5A6; font-size: 1.1rem; margin-bottom: 8px;">Vergi ve Hukuki Durum</h4>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;"><%= arac.ayrintilar.vergiDurumu %></p>
+            </div>
+          </div>
+
+          <!-- Psikolojik Zorluk -->
+          <div style="display: flex; gap: 16px;">
+            <div style="font-size: 2rem; color: #E74C3C;">🧠</div>
+            <div>
+              <h4 style="color: #E74C3C; font-size: 1.1rem; margin-bottom: 8px;">Psikolojik Stres Faktörü</h4>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;"><%= arac.ayrintilar.psikolojikZorluk %></p>
+            </div>
+          </div>
+
+          <!-- Bileşik Getiri -->
+          <div style="display: flex; gap: 16px;">
+            <div style="font-size: 2rem; color: #2ECC71;">🔄</div>
+            <div>
+              <h4 style="color: #2ECC71; font-size: 1.1rem; margin-bottom: 8px;">Bileşik Getiri Gücü</h4>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;"><%= arac.ayrintilar.bilesikGetiriGucu %></p>
+            </div>
+          </div>
+
+          <!-- Uzmanlık -->
+          <div style="display: flex; gap: 16px;">
+            <div style="font-size: 2rem; color: #3498DB;">📚</div>
+            <div>
+              <h4 style="color: #3498DB; font-size: 1.1rem; margin-bottom: 8px;">Gereken Ön Uzmanlık</h4>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;"><%= arac.ayrintilar.uzmanlikIhtiyaci %></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <% } %>
+
+      <div class="grid-2 stagger-children" style="margin-bottom: 56px; gap: 24px;">
+        <!-- Kimler İçin Uygun -->
+        <div style="background: var(--dark-200); padding: 32px; border-radius: 20px; border: 1px solid var(--glass-border);">
+          <h4 style="margin-bottom: 16px; color: #9B59B6; font-size: 1.2rem;">🎯 Kimler İçin Uygun?</h4>
+          <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1.05rem;"><%= arac.kimlerIcinUygun %></p>
+        </div>
+
+        <!-- Altın Kural -->
+        <div style="background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, rgba(241, 196, 15, 0.02) 100%); padding: 32px; border-radius: 20px; border: 1px solid rgba(241, 196, 15, 0.3); position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -20px; right: -20px; font-size: 6rem; opacity: 0.1;">👑</div>
+          <h4 style="margin-bottom: 16px; color: #F1C40F; font-size: 1.2rem; position: relative; z-index: 1;">👑 Altın Kural</h4>
+          <p style="color: #fff; line-height: 1.7; font-size: 1.1rem; font-weight: 500; position: relative; z-index: 1;"><%= arac.altinKural %></p>
+        </div>
+      </div>
+
+      <!-- Geri Dön Butonu -->
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="/yatirim-araclari" class="btn btn-outline" style="padding: 16px 32px; font-size: 1.1rem; border-radius: 30px;">← Tüm Araçlara Dön</a>
+      </div>
+
+    </div>
+  </section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <%- include('partials/comments', { pageId: 'yatirim_' + arac.slug }) %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -93,4 +93,39 @@
   </div>
 </div>
 
+<!-- JSON-LD Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "<%- makale.baslik %>",
+  "description": "<%- makale.ozet %>",
+  "image": "<%- makale.kapakGorseli %>",
+  "author": {
+    "@type": "Person",
+    "name": "<%- makale.yazar %>"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zengince",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://zengince.com/favicon.svg"
+    }
+  },
+  "datePublished": "2024-01-01",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://zengince.com<%- path %>/<%- makale.slug %>"
+  }
+}
+</script>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <%- include('partials/comments', { pageId: 'makale_' + makale.slug }) %>
+  </div>
+</section>
+
 <%- include('partials/footer') %>

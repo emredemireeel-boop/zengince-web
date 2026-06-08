@@ -1,0 +1,442 @@
+<%- include('partials/header') %>
+
+<!-- Forum CSS -->
+<link rel="stylesheet" href="/forum.css">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     HERO SECTION
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-particles"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">✦ Türkiye'nin Finans ve Yatırım Topluluğu</div>
+      <h1 class="hero-title">
+        Finansal Özgürlüğe Giden Yolda<br>
+        <span class="hero-gold">Birlikte Kazanıyoruz</span>
+      </h1>
+      <p class="hero-subtitle">
+        Binlerce yatırımcının deneyimi, uzman görüşleri ve portföy stratejileri tek çatı altında.
+        Borsadan kriptoya, temettüden gayrimenkule kadar tüm fırsatlar Zengince Forum'da.
+      </p>
+      <div class="hero-actions">
+        <a href="#forum-list" class="btn btn-gold">Forumu Keşfet ✦</a>
+        <a href="/kayit" class="btn btn-outline">Ücretsiz Katıl →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number" data-count="<%= stats.totalThreads %>">0</div>
+          <div class="hero-stat-label">Başlık</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number" data-count="<%= stats.totalEntries %>">0</div>
+          <div class="hero-stat-label">Entry</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number" data-count="<%= stats.totalUsers %>">0</div>
+          <div class="hero-stat-label">Üye</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     FORUM BÖLÜMÜ (OTOASFALT MİMARİSİ)
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div style="background: var(--top-bar-bg); border-bottom: 1px solid var(--card-border); padding: 16px 24px;">
+  <div class="container">
+    <div class="subheader-row" style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <h1 style="font-size: 24px; font-weight: 700; color: var(--foreground);">Topluluk</h1>
+      </div>
+
+      <!-- Ticker -->
+      <div class="fuel-ticker-wrapper glass" style="flex: 1; margin: 0 32px; overflow: hidden; border-radius: 12px; height: 44px; display: flex; align-items: center; position: relative;">
+        <div style="display:flex; padding-left: 16px; align-items:center; gap: 32px; white-space: nowrap; overflow:hidden;">
+          <span style="font-size: 11px; color: var(--gold-200); font-weight: 700; font-family: monospace; padding: 4px 8px; background: rgba(212,175,55,0.1); border-radius: 6px;">
+            PİYASALAR
+          </span>
+          <span style="width: 1px; height: 18px; background: var(--card-border); display: inline-block; margin: 0 8px;"></span>
+          <div style="display:flex; gap: 8px; font-size:12px;">
+            <span style="color:var(--text-muted); font-weight:600;">BIST 100</span>
+            <span style="font-weight:700; font-family:monospace;">10.450</span>
+            <span style="color:var(--success);">▲ %1.2</span>
+          </div>
+          <div style="display:flex; gap: 8px; font-size:12px;">
+            <span style="color:var(--text-muted); font-weight:600;">Bitcoin</span>
+            <span style="font-weight:700; font-family:monospace;">$64,300</span>
+            <span style="color:var(--danger);">▼ %0.5</span>
+          </div>
+          <div style="display:flex; gap: 8px; font-size:12px;">
+            <span style="color:var(--text-muted); font-weight:600;">Gram Altın</span>
+            <span style="font-weight:700; font-family:monospace;">2.450 ₺</span>
+            <span style="color:var(--success);">▲ %0.8</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="new-topic-btn hover-lift" onclick="openNewThreadModal()" style="padding: 12px 24px; background: var(--gold-200); color: #111; font-weight: 700; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; white-space: nowrap; display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 18px; font-weight: bold;">+</span> Yeni Başlık
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding: 24px;" id="forum-list">
+  <div class="forum-main-grid">
+    
+    <!-- SOL SİDEBAR: Kategoriler -->
+    <aside class="forum-left-sidebar">
+      <div style="position: sticky; top: 100px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 16px;">
+        <h2 style="font-size: 14px; font-weight: 600; color: var(--text-muted); margin-bottom: 12px;">
+          Kategoriler
+        </h2>
+        <ul style="list-style: none; padding: 0; margin: 0;" id="category-list">
+          <li style="margin-bottom: 4px;">
+            <button class="forum-cat-btn active" onclick="filterCategory('Tümü', this)">
+              <span style="flex: 1;">Tümü</span>
+              <span class="forum-cat-badge"><%= stats.totalThreads %></span>
+            </button>
+          </li>
+          <% forumKategorileri.forEach(cat => { 
+               // Kategoriye ait başlık sayısını bul
+               let count = forumBasliklari.filter(b => b.category === cat).length;
+          %>
+          <li style="margin-bottom: 4px;">
+            <button class="forum-cat-btn" onclick="filterCategory('<%= cat %>', this)">
+              <span style="flex: 1;"><%= cat %></span>
+              <span class="forum-cat-badge"><%= count %></span>
+            </button>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ORTA ALAN: Başlıklar -->
+    <main>
+      <!-- Sort Bar -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 8px 16px;">
+        <div style="display: flex; gap: 8px;" id="sort-buttons">
+          <button class="sort-btn active" onclick="sortForum('newest', this)" style="padding: 6px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; background: var(--forum-secondary); border: none; color: var(--foreground); cursor: pointer;">
+            En Yeni
+          </button>
+          <button class="sort-btn" onclick="sortForum('popular', this)" style="padding: 6px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; background: transparent; border: none; color: var(--text-muted); cursor: pointer;">
+            Popüler
+          </button>
+        </div>
+        <div>
+          <input type="text" id="forum-search" placeholder="Başlık veya içerik ara..." style="padding: 8px 16px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--background); color: var(--foreground); font-size: 13px; width: 220px;" onkeyup="searchForum(this.value)">
+        </div>
+      </div>
+
+      <!-- Thread Listesi -->
+      <div style="display: flex; flex-direction: column; gap: 16px;" id="thread-container">
+        <% forumBasliklari.forEach(topic => { %>
+        <a href="<%= topic.slugUrl %>" class="forum-topic-card topic-item" data-category="<%= topic.category %>" data-title="<%= topic.title.toLowerCase() %>">
+          <div style="flex: 1; min-width: 0;">
+            <!-- Category + badges -->
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
+              <span style="padding: 4px 10px; background: var(--forum-secondary); color: var(--text-muted); font-size: 12px; border-radius: 6px; font-weight: 500;">
+                <%= topic.category %>
+              </span>
+              <% if (topic.isHot) { %>
+              <span style="padding: 4px 10px; background: rgba(212, 175, 55, 0.1); color: var(--gold-200); font-size: 12px; border-radius: 6px; font-weight: 600;">
+                 🔥 Gündemde
+              </span>
+              <% } %>
+            </div>
+
+            <!-- Title -->
+            <h2 style="font-size: 17px; font-weight: 600; color: var(--foreground); margin-bottom: 8px;">
+              <%= topic.title %>
+            </h2>
+
+            <!-- Last entry preview -->
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+              "<%= topic.lastEntry %>"
+            </p>
+
+            <!-- Footer -->
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); flex-wrap: wrap;">
+              <span style="white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;">
+                💬 <%= topic.entryCount %> Entry
+              </span>
+              <span style="opacity: 0.5;">•</span>
+              <span style="white-space: nowrap;"><%= topic.lastActivity %></span>
+              <span style="opacity: 0.5;">•</span>
+              <span style="display: flex; align-items: center; gap: 4px; white-space: nowrap;">
+                <span style="width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; background: #333; color: #fff;">
+                  <%= topic.lastAuthor.charAt(0).toUpperCase() %>
+                </span>
+                <span style="color: var(--gold-200);">@<%= topic.lastAuthor %></span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Entry count (Used for sorting) -->
+          <div style="text-align: right; flex-shrink: 0; padding-left: 16px; border-left: 1px solid var(--card-border); display: flex; flex-direction: column; justify-content: center;">
+            <div class="topic-entry-count" style="font-size: 28px; font-weight: 700; color: var(--gold-200);"><%= topic.entryCount %></div>
+            <div style="font-size: 12px; color: var(--text-muted);">Entry</div>
+          </div>
+        </a>
+        <% }); %>
+        
+        <!-- Boş State -->
+        <div id="empty-state" style="display: none; text-align: center; padding: 40px; color: var(--text-muted); background: var(--card-bg); border-radius: 12px; border: 1px dashed var(--card-border);">
+           <span style="font-size: 32px; display: block; margin-bottom: 16px;">🔍</span>
+           <p>Bu kategoride başlık bulunmuyor.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- SAĞ SİDEBAR: Ekstra Araçlar -->
+    <aside class="forum-right-sidebar">
+      <div style="position: sticky; top: 100px; display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Günün Fırsatı -->
+        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; padding: 20px;">
+          <div style="display: inline-block; padding: 4px 8px; background: var(--gold-200); color: #000; font-size: 11px; font-weight: 800; border-radius: 6px; margin-bottom: 12px;">GÜNÜN İPUCU</div>
+          <h3 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;">Temettü Verimi Nedir?</h3>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 16px; line-height: 1.5;">Şirketin hisse fiyatına oranla dağıttığı kâr payıdır. Pasif gelir inşasının temel taşıdır.</p>
+          <a href="/sozluk/temettu" style="display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.1); color: #fff; font-size: 12px; font-weight: 600; border-radius: 8px; text-decoration: none;">Sözlükte Oku →</a>
+        </div>
+
+        <!-- Popüler Yazarlar -->
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 20px;">
+          <h3 style="font-size: 15px; font-weight: 600; margin-bottom: 16px; color: var(--foreground);">🏆 Topluluk Liderleri</h3>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #22c55e; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">V</div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--foreground);">value_investor</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Efsane</div>
+                </div>
+              </div>
+              <div style="font-size: 12px; font-weight: 700; color: var(--gold-200);">8.4k Entry</div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #a855f7; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">H</div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--foreground);">hodl_master</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Tutkun</div>
+                </div>
+              </div>
+              <div style="font-size: 12px; font-weight: 700; color: var(--gold-200);">3.2k Entry</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- Yeni Başlık Modalı -->
+<div id="newThreadModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+  <div style="background: var(--card-bg); width: 100%; max-width: 600px; border-radius: 16px; border: 1px solid rgba(212, 175, 55, 0.3); padding: 32px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+    <button onclick="document.getElementById('newThreadModal').style.display='none'" style="position: absolute; top: 16px; right: 16px; background: transparent; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
+    <h2 style="font-size: 24px; color: #fff; margin-bottom: 24px;">Yeni Başlık Aç</h2>
+    
+    <div style="margin-bottom: 16px;">
+      <label style="display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">Başlık</label>
+      <input type="text" id="nt-title" placeholder="Kısa ve öz bir başlık girin" style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.2); color: #fff;">
+    </div>
+    
+    <div style="margin-bottom: 16px;">
+      <label style="display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">Kategori</label>
+      <select id="nt-category" style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.2); color: #fff;">
+        <% forumKategorileri.forEach(cat => { %>
+          <option value="<%= cat %>"><%= cat %></option>
+        <% }); %>
+      </select>
+    </div>
+    
+    <div style="margin-bottom: 24px;">
+      <label style="display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">İlk Mesajınız</label>
+      <textarea id="nt-content" placeholder="Konunun detaylarını buraya yazın..." style="width: 100%; min-height: 120px; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.2); color: #fff; resize: vertical;"></textarea>
+    </div>
+
+    <!-- Anket Ekleme (Opsiyonel) -->
+    <div style="margin-bottom: 24px; padding: 16px; background: rgba(255,255,255,0.02); border: 1px dashed var(--card-border); border-radius: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <label style="font-size: 13px; color: var(--text-muted); font-weight: 600;">Anket Ekle (İsteğe Bağlı)</label>
+        <button onclick="addPollOption()" style="background: transparent; color: var(--gold-200); border: 1px solid var(--gold-200); border-radius: 6px; padding: 4px 8px; font-size: 12px; cursor: pointer;">+ Şık Ekle</button>
+      </div>
+      <div id="poll-options-container" style="display: flex; flex-direction: column; gap: 8px;">
+        <!-- Şıklar buraya eklenecek -->
+      </div>
+    </div>
+    
+    <button id="nt-submit" class="btn btn-gold" style="width: 100%;" onclick="submitNewThread()">Başlığı Oluştur</button>
+  </div>
+</div>
+
+<script>
+  // Vanilla JS Kategori ve Arama Filtreleme
+  function filterCategory(catName, btnElement) {
+    // Buton aktiflik durumunu güncelle
+    document.querySelectorAll('.forum-cat-btn').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+
+    // Sadece kategoriyi filtrele, aramayı sıfırla
+    document.getElementById('forum-search').value = '';
+    
+    let visibleCount = 0;
+    document.querySelectorAll('.topic-item').forEach(item => {
+      const itemCat = item.getAttribute('data-category');
+      if (catName === 'Tümü' || itemCat === catName) {
+        item.style.display = 'flex';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    toggleEmptyState(visibleCount);
+  }
+
+  function sortForum(type, btnElement) {
+    // Buton aktiflik
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+      btn.style.background = 'transparent';
+      btn.style.color = 'var(--text-muted)';
+      btn.classList.remove('active');
+    });
+    btnElement.style.background = 'var(--forum-secondary)';
+    btnElement.style.color = 'var(--foreground)';
+    btnElement.classList.add('active');
+
+    const container = document.getElementById('thread-container');
+    const items = Array.from(container.querySelectorAll('.topic-item'));
+
+    if (type === 'popular') {
+      items.sort((a, b) => {
+        const countA = parseInt(a.querySelector('.topic-entry-count').textContent);
+        const countB = parseInt(b.querySelector('.topic-entry-count').textContent);
+        return countB - countA;
+      });
+    } else {
+      // "En Yeni" (Mock sıralama, sayfadaki original order kabul edilebilir çünkü JSON'da Date.now tersine diziliyor)
+      // Sayfayı yenilemek en iyisi
+      window.location.reload();
+      return;
+    }
+
+    // Dom'a tekrar ekle
+    items.forEach(item => container.appendChild(item));
+    // Empty state'i en sona al
+    container.appendChild(document.getElementById('empty-state'));
+  }
+
+  function searchForum(query) {
+    query = query.toLowerCase().trim();
+    // Arama yaparken Tümü kategorisini seçmiş sayalım
+    document.querySelectorAll('.forum-cat-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.forum-cat-btn').classList.add('active'); // Tümü butonu
+
+    let visibleCount = 0;
+    document.querySelectorAll('.topic-item').forEach(item => {
+      const title = item.getAttribute('data-title');
+      if (title.includes(query)) {
+        item.style.display = 'flex';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    toggleEmptyState(visibleCount);
+  }
+
+  function toggleEmptyState(visibleCount) {
+    if (visibleCount === 0) {
+      document.getElementById('empty-state').style.display = 'block';
+    } else {
+      document.getElementById('empty-state').style.display = 'none';
+    }
+  }
+
+  function openNewThreadModal() {
+    const user = localStorage.getItem('zengince_user');
+    if (!user) {
+      // Giriş yapmamışsa yönlendir
+      window.location.href = '/giris';
+      return;
+    }
+    document.getElementById('newThreadModal').style.display = 'flex';
+  }
+
+  function addPollOption() {
+    const container = document.getElementById('poll-options-container');
+    const div = document.createElement('div');
+    div.style.display = 'flex';
+    div.style.gap = '8px';
+    div.innerHTML = `
+      <input type="text" class="poll-option-input" placeholder="Şık yazın..." style="flex: 1; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.4); color: #fff; font-size: 13px;">
+      <button onclick="this.parentElement.remove()" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: none; border-radius: 6px; padding: 0 12px; cursor: pointer;">Sil</button>
+    `;
+    container.appendChild(div);
+  }
+
+  async function submitNewThread() {
+    const title = document.getElementById('nt-title').value.trim();
+    const category = document.getElementById('nt-category').value;
+    const content = document.getElementById('nt-content').value.trim();
+    const username = localStorage.getItem('zengince_user');
+
+    if (!title || !content) {
+      if(window.showToast) window.showToast('Lütfen başlık ve içerik alanlarını doldurun.', 'error');
+      else alert('Lütfen başlık ve içerik alanlarını doldurun.');
+      return;
+    }
+    if (!username) {
+      if(window.showToast) window.showToast('Lütfen giriş yapın.', 'error');
+      else alert('Lütfen giriş yapın.');
+      return;
+    }
+
+    // Anket şıklarını topla
+    const pollInputs = document.querySelectorAll('.poll-option-input');
+    const pollOptions = [];
+    pollInputs.forEach(input => {
+      const val = input.value.trim();
+      if (val) pollOptions.push(val);
+    });
+
+    const btn = document.getElementById('nt-submit');
+    btn.disabled = true;
+    btn.textContent = 'Oluşturuluyor...';
+
+    try {
+      const res = await fetch('/api/new-thread', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, category, content, username, pollOptions })
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        if(window.showToast) window.showToast('Başlık başarıyla oluşturuldu!', 'success');
+        setTimeout(() => { window.location.href = data.redirectUrl; }, 1000);
+      } else {
+        if(window.showToast) window.showToast(data.error || 'Hata oluştu', 'error');
+        else alert(data.error || 'Hata oluştu');
+        btn.disabled = false;
+        btn.textContent = 'Başlığı Oluştur';
+      }
+    } catch (e) {
+      console.error(e);
+      if(window.showToast) window.showToast('Sunucu hatası.', 'error');
+      else alert('Sunucu hatası.');
+      btn.disabled = false;
+      btn.textContent = 'Başlığı Oluştur';
+    }
+  }
+</script>
+
+<%- include('partials/footer') %>

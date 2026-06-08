@@ -1,0 +1,159 @@
+<style>
+  .comments-section {
+    max-width: 800px;
+    margin: 60px 0;
+  }
+  .comments-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .comment-form-container {
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 40px;
+  }
+  .comment-textarea {
+    width: 100%;
+    min-height: 100px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    color: #fff;
+    font-size: 15px;
+    resize: vertical;
+    margin-bottom: 16px;
+    transition: all 0.3s;
+  }
+  .comment-textarea:focus {
+    outline: none;
+    border-color: var(--gold-200);
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .comment-submit-btn {
+    background: linear-gradient(135deg, var(--gold-200), var(--gold-400));
+    color: #111;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .comment-submit-btn:hover {
+    transform: translateY(-2px);
+  }
+  .guest-warning {
+    text-align: center;
+    padding: 24px;
+    background: rgba(255,255,255,0.02);
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: var(--text-muted);
+  }
+  .guest-warning a {
+    color: var(--gold-200);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .comment-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: transform 0.2s;
+  }
+  .comment-item:hover {
+    border-color: rgba(212, 175, 55, 0.2);
+    transform: translateX(5px);
+  }
+  .comment-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a2a2a, #111);
+    border: 2px solid var(--gold-200);
+    color: var(--gold-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  .comment-author {
+    font-weight: 700;
+    color: #fff;
+    font-size: 15px;
+  }
+  .comment-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .comment-body {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 15px;
+    white-space: pre-wrap;
+  }
+</style>
+
+<div class="comments-section" id="comments-container" data-page-id="<%= pageId %>">
+  <h3 class="comments-title">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--gold-200);">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    Yorumlar ve Tartışma
+  </h3>
+
+  <!-- Yorum Yapma Kutusu -->
+  <div id="comment-auth-wrapper">
+    <div class="guest-warning" id="guest-comment-warning">
+      Fikirlerinizi paylaşmak için <a href="/giris">Giriş Yapın</a> veya <a href="/kayit">Kayıt Olun</a>.
+    </div>
+
+    <div class="comment-form-container" id="user-comment-form" style="display: none;">
+      <form id="comment-form">
+        <textarea class="comment-textarea" id="comment-input" placeholder="Bu konu hakkındaki düşüncelerinizi paylaşın..." required></textarea>
+        <div style="text-align: right;">
+          <button type="submit" class="comment-submit-btn" id="submit-comment">Yorumu Gönder</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Yorum Listesi -->
+  <div id="comments-list">
+    <div style="text-align: center; padding: 20px; color: var(--text-muted);">Yorumlar yükleniyor...</div>
+  </div>
+</div>
+
+<script type="module" src="/comments.js"></script>
+
+<script>
+  // Giriş kontrolü (Header'dan bağımsız olarak çalışıp formu açar)
+  document.addEventListener('DOMContentLoaded', () => {
+    const user = localStorage.getItem('zengince_user');
+    const guestWarning = document.getElementById('guest-comment-warning');
+    const userForm = document.getElementById('user-comment-form');
+
+    if (user) {
+      if (guestWarning) guestWarning.style.display = 'none';
+      if (userForm) userForm.style.display = 'block';
+    }
+  });
+</script>

@@ -399,6 +399,196 @@ const KITAPLAR = [
       "Hataların birer ceza değil, sisteminizi geliştirmek için birer fırsat olduğunu anlamak.",
       "Sistematik karar verme algoritmaları oluşturmak."
     ]
+  },
+  {
+    "slug": "komsudaki-milyoner",
+    "baslik": "Komşudaki Milyoner",
+    "yazar": "Thomas J. Stanley & William D. Danko",
+    "kategori": "yatirim",
+    "puan": 4.6,
+    "yil": 1996,
+    "ozet": "Gerçek milyonerlerin nasıl yaşadığına dair şaşırtıcı gerçekler. Çoğu lüks arabalara binmez veya şatafatlı evlerde yaşamaz; tutumluluk ve doğru yatırımla sessizce zengin olurlar.",
+    "nedenOku": "Medyanın size sunduğu sahte zenginlik imajından kurtulup, gerçek ve sürdürülebilir zenginliğin formülünü öğrenmek için.",
+    "onemliDers": "Zenginlik, ne kadar kazandığınızla değil, ne kadarını elinizde tuttuğunuzla ilgilidir.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=The%20Millionaire%20Next%20Door%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Yazarlar yirmi yıl boyunca Amerika'nın gerçek milyonerlerini araştırdıklarında şaşırtıcı bir sonuçla karşılaştılar: Gerçek zenginler Beverly Hills'te devasa malikanelerde yaşayıp Ferrari kullanmıyorlar. Tam aksine, sıradan mahallelerde yaşıyor, ikinci el araba kullanıyor ve bütçelerine sıkı sıkıya sadık kalıyorlar. Kitap, yüksek gelirli olmakla zengin olmak arasındaki farkı vurucu bir şekilde ortaya koyuyor.",
+    "temelOgrenimler": [
+      "Tutumluluk zenginliğin temel taşıdır. Kazancınızdan az harcamayı öğrenin.",
+      "Zamanınızı ve enerjinizi statü sembolleri satın almaya değil, servet inşasına yönlendirin.",
+      "Yüksek gelir tek başına zenginlik getirmez; tasarruf ve yatırım disiplini şarttır.",
+      "Çocuklarınıza finansal sorumluluk aşılayın ve 'ekonomik ayakta kalma' becerisi verin."
+    ]
+  },
+  {
+    "slug": "sana-zengin-olmayi-ogretecegim",
+    "baslik": "Sana Zengin Olmayı Öğreteceğim",
+    "yazar": "Ramit Sethi",
+    "kategori": "yatirim",
+    "puan": 4.7,
+    "yil": 2009,
+    "ozet": "6 haftalık pratik bir finansal plan sunan Ramit Sethi, suçluluk hissetmeden paranızı nasıl yöneteceğinizi ve sevdiğiniz şeylere nasıl özgürce harcayacağınızı anlatıyor.",
+    "nedenOku": "Küçük harcamaları kısmak yerine büyük finansal kazançlara odaklanmak ve parayı otomatikleştirilmiş bir sisteme bağlamak için.",
+    "onemliDers": "Sevdiğiniz şeylere sınırsızca harcayın, ancak geri kalan her şeyde acımasızca kesintiye gidin.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=I%20Will%20Teach%20You%20To%20Be%20Rich%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Ramit Sethi, kişisel finans dünyasındaki 'kahve içmeyi bırakarak zengin ol' tavsiyelerine savaş açıyor. Bunun yerine, paranızı sizin adınıza çalışacak otomatik sistemlere bağlamanızı, bankalarla pazarlık yapmayı ve yatırımlarınızı en düşük masrafla büyütmeyi öğretiyor. Zenginliğin sadece bankadaki rakamlar değil, aynı zamanda size zevk veren 'zengin bir hayat' yaşamak olduğunu savunuyor.",
+    "temelOgrenimler": [
+      "Bilinçli harcama planı: Değer verdiğiniz şeylere çok, diğer her şeye sıfır harcama yapmak.",
+      "Finansal sistemlerinizi otomatikleştirerek irade gücüne olan bağımlılığı ortadan kaldırmak.",
+      "Kredi kartı borçlarını temizlemek ve banka sistemini kendi lehinize kullanmak.",
+      "%85 mükemmel bir başlangıç, %100 mükemmel olup hiçbir şey yapmamaktan iyidir."
+    ]
+  },
+  {
+    "slug": "zengin-olma-bilimi",
+    "baslik": "Zengin Olma Bilimi",
+    "yazar": "Wallace D. Wattles",
+    "kategori": "mindset",
+    "puan": 4.4,
+    "yil": 1910,
+    "ozet": "Zenginliğin şansa veya doğuştan gelen yeteneklere değil, belirli düşünce ve eylem yasalarına dayandığını savunan, kişisel gelişim tarihinin en önemli klasiklerinden biri.",
+    "nedenOku": "Bolluk bilincine geçiş yapmak ve yaratıcı düşüncenin servet çekimindeki rolünü kavramak için.",
+    "onemliDers": "Rekabetçi zihniyetten sıyrılın; zenginlik rekabetle değil, yaratıcılıkla elde edilir.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=The%20Science%20of%20Getting%20Rich%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Bir asırdan fazla bir süre önce yazılmış olan bu eser, 'The Secret' gibi modern çekim yasası kitaplarının da temelini oluşturur. Wattles'a göre zengin olmak kesin bir bilimdir ve cebir veya matematik gibi yasaları vardır. İnsanlar zihinlerinde net bir vizyon tutarak, şükran duyarak ve bu vizyon doğrultusunda bugünden hareket ederek evrendeki zenginliği kendilerine çekebilirler.",
+    "temelOgrenimler": [
+      "Başarılı olmak için 'belirli bir şekilde' (certain way) düşünmeyi ve hareket etmeyi öğrenmek.",
+      "Mevcut kaynaklar için rekabet etmek yerine, değer yaratarak yeni zenginlik inşa etmek.",
+      "Sahip olduklarınız için derin bir minnettarlık ve şükran duygusu geliştirmek.",
+      "Geçmiş veya gelecek için değil, içinde bulunduğunuz anda elinizden gelenin en iyisini yapmak."
+    ]
+  },
+  {
+    "slug": "bilesik-etki",
+    "baslik": "Bileşik Etki",
+    "yazar": "Darren Hardy",
+    "kategori": "kisisel-gelisim",
+    "puan": 4.8,
+    "yil": 2010,
+    "ozet": "Küçük ve görünüşte önemsiz günlük seçimlerin zamanla nasıl devasa sonuçlar, servet ve başarı yarattığını anlatan temel bir rehber.",
+    "nedenOku": "Geceden sabaha başarı efsanesinden kurtulup, istikrarın ve disiplinin gücünü keşfetmek için.",
+    "onemliDers": "Küçük, akıllıca seçimler + Tutarlılık + Zaman = RADİKAL FARK.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=The%20Compound%20Effect%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Darren Hardy, finansal zenginliğin, sağlığın ve ilişkilerdeki başarının tek bir formüle dayandığını anlatıyor: Bileşik Etki. İster bir kafeden almayı bıraktığınız günlük kahve parası olsun, ister her gün okuduğunuz on sayfa kitap; bu küçük eylemler kısa vadede fark edilmese de, yıllar içinde hayatınızı ya vezir ya da rezil ediyor. Kitap, kontrolü tamamen ele almanız için pratik araçlar sunuyor.",
+    "temelOgrenimler": [
+      "Hayatınızdaki tüm seçimlerinizin yüzde yüz sorumluluğunu üstlenmek.",
+      "Hedeflere ulaşmak için anlık motivasyon yerine sağlam günlük rutinler kurmak.",
+      "Kötü alışkanlıkları kökünden söküp yerlerine sizi hedefinize götürecek olanları yerleştirmek.",
+      "İvme (Momentum) kazandıktan sonra onu kaybetmemek için sürekli hareket halinde kalmak."
+    ]
+  },
+  {
+    "slug": "paraniz-mi-hayatiniz-mi",
+    "baslik": "Paranız mı Hayatınız mı?",
+    "yazar": "Vicki Robin & Joe Dominguez",
+    "kategori": "yatirim",
+    "puan": 4.6,
+    "yil": 1992,
+    "ozet": "Parayı 'harcadığınız yaşam enerjisi' olarak yeniden tanımlayarak, finansal bağımsızlığa ulaşmanın ve tüketim çılgınlığından kurtulmanın adımlarını gösteriyor.",
+    "nedenOku": "Paranın sadece bir rakam olmadığını, hayatınızdan feda ettiğiniz saatler olduğunu anlayıp özgürlüğünüzü geri kazanmak için.",
+    "onemliDers": "Bir şeyi satın alırken para değil, o parayı kazanmak için harcadığınız hayat enerjisini ödüyorsunuz.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=Your%20Money%20or%20Your%20Life%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Bu klasik eser, FIRE (Finansal Bağımsızlık, Erken Emeklilik) hareketinin İncil'i kabul edilir. Dokuz adımlık kapsamlı programı sayesinde, yazarlar paranızla olan ilişkinizi tamamen değiştiriyor. Gerçek saatlik ücretinizi hesaplamayı, harcamalarınızı mutluluk oranına göre değerlendirmeyi ve çalışmayı bir zorunluluk olmaktan çıkaracak pasif geliri nasıl inşa edeceğinizi öğretiyor.",
+    "temelOgrenimler": [
+      "Net değerinizi hesaplayıp geçmiş kazançlarınızın ne kadarını elde tutabildiğinizle yüzleşmek.",
+      "Harcamalarınızı, size sundukları tatmin duygusuna göre kategorize etmek.",
+      "Yatırım yaparak, masraflarınızı karşılayacak bir geçiş (crossover) noktasına ulaşmak.",
+      "Daha fazlasına sahip olma arzusunu bırakıp, 'yeterli' olanın ne olduğunu keşfetmek."
+    ]
+  },
+  {
+    "slug": "basit-zenginlik-yolu",
+    "baslik": "Basit Zenginlik Yolu",
+    "yazar": "JL Collins",
+    "kategori": "yatirim",
+    "puan": 4.8,
+    "yil": 2016,
+    "ozet": "Karmaşık finansal jargonlardan uzak, sadece geniş tabanlı endeks fonlarına yatırım yaparak nasıl stressiz bir şekilde finansal özgürlüğe ulaşılacağını anlatan kült bir rehber.",
+    "nedenOku": "Borsa yatırımlarının korkutucu veya karmaşık olması gerekmediğini, en basit stratejinin genellikle en karlı strateji olduğunu görmek için.",
+    "onemliDers": "Piyasa zamanlaması yapmaya çalışmayın. Sadece geniş bir endeks fonu alın ve on yıllar boyunca unutun.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=The%20Simple%20Path%20to%20Wealth%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Yazarın başlangıçta kızına finansal tavsiyeler vermek amacıyla yazdığı mektuplardan oluşan bu kitap, bugün yatırım dünyasının en saygıdeğer eserlerinden biridir. JL Collins, borçtan kaçınmanın, harcamaları kontrol altında tutmanın ve birikimleri düşük masraflı fonlara yatırmanın, finansal bağımsızlık için tek ihtiyacınız olan şey olduğunu savunuyor.",
+    "temelOgrenimler": [
+      "Paranızı yönetecek finansal danışmanlara ihtiyacınız yok.",
+      "Karmaşıklık finans sektörünün size ürün satmak için kullandığı bir maskedir.",
+      "Tüm piyasayı kapsayan fonlar uzun vadede aktif yönetilen fonların %99'unu yener.",
+      "'F-You Money' (Rest Çekme Parası) inşa etmek, size hayatınızı kendi şartlarınıza göre yaşama özgürlüğü verir."
+    ]
+  },
+  {
+    "slug": "sifirla-ol",
+    "baslik": "Sıfırla Öl",
+    "yazar": "Bill Perkins",
+    "kategori": "mindset",
+    "puan": 4.5,
+    "yil": 2020,
+    "ozet": "Sadece para biriktirmeye odaklanıp hayatı kaçırmanızı engellemeyi amaçlayan, servetinizi deneyimlere dönüştürmek için optimum zamanlamayı öğreten devrim niteliğinde bir kitap.",
+    "nedenOku": "Mezardayken paranızın bir işe yaramayacağını idrak edip, hayattayken paranızla maksimum anı ve deneyim yaratmayı öğrenmek için.",
+    "onemliDers": "Hayatınızın amacı banka hesabınızı maksimize etmek değil, yaşam deneyimlerinizi maksimize etmek olmalıdır.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=Die%20With%20Zero%20Bill%20Perkins%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Geleneksel kişisel finans tavsiyeleri her zaman daha fazla biriktirmeyi ve emeklilik için para saklamayı öğütler. Ancak Bill Perkins, sağlığınız ve enerjiniz varken bu parayı harcamamanın büyük bir israf olduğunu savunuyor. Kitap, 'Zaman, Sağlık ve Para' üçgenini hayatınızın farklı evrelerinde nasıl dengelemeniz gerektiğini ve ölmeden önce tüm servetinizi neden sıfırlamanız gerektiğini matematiksel bir yaklaşımla anlatıyor.",
+    "temelOgrenimler": [
+      "Deneyimlerin de tıpkı yatırımlar gibi bileşik getirisi vardır (Anı Temettüleri).",
+      "Çocuklarınıza bırakacağınız mirası onlar 60 yaşına geldiğinde değil, ihtiyaç duydukları gençlik yıllarında verin.",
+      "Otomatik pilotta para biriktirmeyi bırakıp, ne zaman harcamaya başlamanız gerektiğini planlayın.",
+      "Her yaşın kendine has deneyimleri vardır, asla ertelemeyin."
+    ]
+  },
+  {
+    "slug": "girisimcilik-tutkusu",
+    "baslik": "Girişimcilik Tutkusu",
+    "yazar": "Michael E. Gerber",
+    "kategori": "girisimcilik",
+    "puan": 4.7,
+    "yil": 1995,
+    "ozet": "Çoğu küçük işletmenin neden başarısız olduğunu inceleyen ve bir iş kurmakla, serbest çalışan (freelancer) olmak arasındaki kritik farkı açıklayan temel iş dünyası klasiği.",
+    "nedenOku": "İşletmenizin 'içinde' çalışmaktan kurtulup, işletmenizin 'üzerinde' çalışmaya başlamak ve ölçeklenebilir bir sistem kurmak için.",
+    "onemliDers": "İşinizin dışında kalamıyorsanız, bir iş sahibi değil, dünyanın en kötü patronuna sahip bir çalışansınız demektir.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=The%20E-Myth%20Revisited%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "E-Myth (Girişimcilik Miti), bir işi iyi yapabilen herkesin o işin işletmesini de başarıyla yürütebileceği yanılgısıdır. Harika kekler yapan biri fırın açtığında genelde başarısız olur çünkü kek yapmak teknik bir iştir, fırın işletmek ise girişimciliktir. Gerber, işletmenizi bir franchise modeli gibi düşünerek standartlaştırmanız ve siz olmasanız bile tıkır tıkır işleyen sistemler kurmanız gerektiğini anlatıyor.",
+    "temelOgrenimler": [
+      "Bir işletmede üç farklı rol vardır: Girişimci, Yönetici ve Teknisyen. Bu üçü arasında denge kurun.",
+      "İşletmeniz size bağımlıysa satılamaz veya büyüyemez.",
+      "Her süreci, en sıradan çalışanın bile uygulayabileceği kadar net dokümante edin.",
+      "İnsanlar sistemleri yönetir, sistemler işi yönetir."
+    ]
+  },
+  {
+    "slug": "borsada-tek-basina",
+    "baslik": "Borsada Tek Başına",
+    "yazar": "Burton G. Malkiel",
+    "kategori": "yatirim",
+    "puan": 4.6,
+    "yil": 1973,
+    "ozet": "Profesyonel portföy yöneticilerinin ve hisse senedi analistlerinin gözleri kapalı bir maymundan farksız olduğunu iddia eden, verimli piyasalar hipotezini savunan yatırım başyapıtı.",
+    "nedenOku": "Borsadaki trendleri tahmin edebileceğiniz yanılgısından kurtulup, bilimsel ve istatistiksel olarak en güvenli servet büyütme metodunu anlamak için.",
+    "onemliDers": "Gözleri bağlı, dart atan bir maymun, uzmanların özenle seçtiği portföyler kadar iyi performans gösterebilir.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=A%20Random%20Walk%20Down%20Wall%20Street%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Malkiel bu klasik eserinde Wall Street profesyonellerinin size satmaya çalıştığı karmaşık ürünlerin tamamen gereksiz olduğunu savunur. Piyasaların öngörülemez bir 'rastgele yürüyüş' içinde olduğunu ve geçmiş fiyat hareketlerine bakarak veya şirket raporlarını inceleyerek piyasayı sürekli yenmenin imkansız olduğunu anlatır. Çözüm, düşük maliyetli endeks fonlarına yatırım yapmaktır.",
+    "temelOgrenimler": [
+      "Verimli Piyasalar Hipotezi: Piyasaya dair tüm bilgiler zaten fiyatların içindedir.",
+      "Hisse senedi seçimi yerine varlık dağılımına (Asset Allocation) odaklanmak portföyünüzün kaderini belirler.",
+      "Yüksek işlem ücretleri ve vergiler yatırımcının en büyük iki düşmanıdır.",
+      "Uzun vadede sabır her zaman piyasa zamanlamasını yener."
+    ]
+  },
+  {
+    "slug": "iyiden-mukemmele",
+    "baslik": "İyiden Mükemmele",
+    "yazar": "Jim Collins",
+    "kategori": "girisimcilik",
+    "puan": 4.7,
+    "yil": 2001,
+    "ozet": "Vasat veya iyi şirketlerin nasıl olağanüstü ve kalıcı başarılara imza atan 'mükemmel' şirketlere dönüştüğünü araştıran kapsamlı bir analiz.",
+    "nedenOku": "Servet yaratacak kalıcı bir organizasyon inşa etmenin, efsanevi liderlik tarzlarının ve doğru odaklanmanın genetiğini çözmek için.",
+    "onemliDers": "İyi, mükemmelin düşmanıdır. Sadece 'iyi' olanla yetinmek, sizi 'mükemmel' olmaktan alıkoyar.",
+    "kapakGorseli": "https://tse2.mm.bing.net/th?q=Good%20to%20Great%20Jim%20Collins%20book%20cover%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Jim Collins ve araştırma ekibi, borsada rakiplerini yıllar boyunca misliyle ezen şirketleri inceleyerek onların ortak özelliklerini çıkardılar. Sonuçlar şaşırtıcıydı: Mükemmel şirketlerin başında karizmatik, egosu yüksek CEO'lar değil; mütevazı ama iradeli '5. Seviye Liderler' vardı. Kitap, bir şirketi şahlandıracak çarkın nasıl döndürüleceğini adım adım anlatıyor.",
+    "temelOgrenimler": [
+      "5. Seviye Liderlik: Derin bir kişisel tevazu ile yoğun bir profesyonel iradenin birleşimi.",
+      "Önce 'Kim', sonra 'Ne': Doğru insanları otobüse bindirmek, yanlış olanları indirmek ve sonra nereye gideceğinize karar vermek.",
+      "Kirpi Konsepti: Tutkulu olduğunuz, dünyada en iyi olabileceğiniz ve ekonomik motorunuzu çalıştıran tek bir şeye odaklanmak.",
+      "Acımasız gerçeklerle yüzleşin ama asla inancınızı kaybetmeyin (Stockdale Paradoksu)."
+    ]
   }
 ];
 

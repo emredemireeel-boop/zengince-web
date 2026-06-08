@@ -1,0 +1,82 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ---------------------------------------------------------
+    // 1. KÜTÜPHANE YORUMLARI (Kitap, Film, Makale vs.)
+    // ---------------------------------------------------------
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if request.auth != null 
+                    && request.resource.data.keys().hasAll(['pageId', 'text', 'author', 'createdAt'])
+                    && request.resource.data.text is string
+                    && request.resource.data.text.size() > 0
+                    && request.resource.data.text.size() <= 2000
+                    && request.resource.data.author is string;
+      allow update, delete: if false; // Değiştirilemez ve silinemez
+    }
+
+    // ---------------------------------------------------------
+    // 2. KULLANICI PROFİLLERİ (Gelecekte eklenecek olursa)
+    // ---------------------------------------------------------
+    match /users/{userId} {
+      allow read: if true; // Profilleri herkes görebilir
+      // Kullanıcı sadece kendi profil belgesini oluşturabilir veya güncelleyebilir
+      allow create, update: if request.auth != null 
+                            && request.auth.uid == userId
+                            && request.resource.data.username is string;
+      allow delete: if false;
+    }
+
+    // ---------------------------------------------------------
+    // 3. FORUM BAŞLIKLARI (Threads)
+    // ---------------------------------------------------------
+    match /forum_threads/{threadId} {
+      allow read: if true; // Başlıkları herkes görebilir
+      
+      allow create: if request.auth != null
+                    // Başlık için gereken zorunlu alanlar
+                    && request.resource.data.keys().hasAll(['title', 'category', 'lastActivity', 'lastAuthor', 'entryCount', 'viewCount', 'createdAt'])
+                    // Spam engeli: Başlık 5 karakterden uzun, 100 karakterden kısa olmalı
+                    && request.resource.data.title is string
+                    && request.resource.data.title.size() >= 5
+                    && request.resource.data.title.size() <= 100
+                    // Yeni açılan başlığın başlangıç değerleri korunmalı
+                    && request.resource.data.entryCount == 1
+                    && request.resource.data.viewCount == 0;
+
+      // Sadece upvote, viewCount veya lastActivity güncellemelerine izin veriyoruz (Gövde değiştirilemez)
+      allow update: if request.auth != null 
+                    && request.resource.data.title == resource.data.title; 
+      allow delete: if false;
+    }
+
+    // ---------------------------------------------------------
+    // 4. FORUM ENTRY'LERİ (Başlıkların Altındaki Yanıtlar)
+    // ---------------------------------------------------------
+    match /forum_entries/{entryId} {
+      allow read: if true;
+      
+      allow create: if request.auth != null
+                    && request.resource.data.keys().hasAll(['threadId', 'content', 'authorUsername', 'upvotes', 'createdAt'])
+                    && request.resource.data.content is string
+                    && request.resource.data.content.size() > 0
+                    && request.resource.data.content.size() <= 5000 // Çok uzun spamlara karşı
+                    // İlk açılışta upvote her zaman 0 olmalı (hile yapılamaz)
+                    && request.resource.data.upvotes == 0;
+
+      // Kullanıcılar sadece kendi entry'lerini güncelleyebilir veya başkaları sadece upvote sayısını 1 artırabilir
+      allow update: if request.auth != null
+                    && (
+                      // Upvote artırma izni (Sadece 1 artırabilir)
+                      (request.resource.data.upvotes == resource.data.upvotes + 1)
+                      || 
+                      // Veya kullanıcının kendi entry'si ise içeriğini değiştirebilir
+                      (request.resource.data.authorId == request.auth.uid)
+                    );
+
+      allow delete: if false; // Güvenlik gereği içerikler silinmez
+    }
+    
+  }
+}

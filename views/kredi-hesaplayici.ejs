@@ -1,0 +1,412 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(10,10,10,1) 100%);">
+    <div class="container" style="text-align: center;">
+      <span class="section-badge" style="background: rgba(231, 76, 60, 0.15); border-color: rgba(231, 76, 60, 0.3); color: #E74C3C;">📊 Eksiksiz Finansal Araç</span>
+      <h1 class="section-title">Tam Kapsamlı <span style="color: #E74C3C;">Gerçek Maliyet</span> Hesaplayıcısı</h1>
+      <p class="section-desc" style="max-width: 800px; margin: 0 auto;">
+        Dosya masrafları, sigorta kesintileri ve gizli vergiler dahil edilerek "Elinize Geçen Net Para" üzerinden hesaplanan, bankaların açıklamak istemediği Yıllık/Aylık Gerçek Maliyet oranınızı bulun.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      
+      <div class="calculator-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--dark-200); padding: 40px; border-radius: 24px; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+        
+        <!-- Input Area -->
+        <div class="calculator-inputs" style="display: flex; flex-direction: column; gap: 24px;">
+          <h3 style="color: var(--white); font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+            <span>✍️</span> Kredi Parametreleri
+          </h3>
+          
+          <!-- Mode Toggle -->
+          <div style="display: flex; background: var(--dark-300); border-radius: 12px; padding: 4px; border: 1px solid rgba(255,255,255,0.05);">
+            <div style="flex: 1;">
+              <input type="radio" name="calcMode" id="modePayment" value="findPayment" checked style="display: none;">
+              <label for="modePayment" class="mode-label" style="display: block; text-align: center; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; color: var(--white);">
+                Klasik (Faiz ve Masraf Gir)
+              </label>
+            </div>
+            <div style="flex: 1;">
+              <input type="radio" name="calcMode" id="modeRate" value="findRate" style="display: none;">
+              <label for="modeRate" class="mode-label" style="display: block; text-align: center; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; color: var(--text-secondary);">
+                Tersine Mühendislik (Net Gir)
+              </label>
+            </div>
+          </div>
+
+          <style>
+            input[type="radio"]:checked + .mode-label {
+              background: rgba(231, 76, 60, 0.2);
+              color: #E74C3C !important;
+            }
+            .mode-desc { font-size: 0.85rem; color: #95A5A6; line-height: 1.5; margin-bottom: 8px; border-left: 3px solid #E74C3C; padding-left: 10px;}
+          </style>
+
+          <p id="descModePayment" class="mode-desc">Banka faiz oranını, dosya masrafını ve sigortayı girerek elinize geçecek net parayı ve gerçek maliyet oranınızı hesaplayın.</p>
+          <p id="descModeRate" class="mode-desc" style="display: none;">Masrafları hesaplamakla uğraşmayın. Hesabınıza yatan net nakit tutarı ve sizden istenen aylık taksiti girerek bankanın size uyguladığı gerçek faizi direkt olarak çözün.</p>
+
+          <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">Vade (Ay)</label>
+            <div style="position: relative;">
+              <input type="number" id="months" value="24" style="width: 100%; padding: 16px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+              <span style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">Ay</span>
+            </div>
+          </div>
+
+          <!-- Mod 1 Alanları -->
+          <div id="wrapperMode1" style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">Kredi Türü (Vergi Hesaplaması İçin)</label>
+              <select id="loanType" style="width: 100%; padding: 16px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 1.1rem; outline: none;">
+                <option value="ihtiyac">İhtiyaç Kredisi (%15 BSMV, %15 KKDF)</option>
+                <option value="tasit">Taşıt Kredisi (%5 BSMV, %15 KKDF)</option>
+                <option value="konut">Konut Kredisi (Vergiden Muaf)</option>
+              </select>
+            </div>
+
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">Brüt Kredi Tutarı (TL)</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">₺</span>
+                <input type="number" id="principal" value="100000" style="width: 100%; padding: 16px 16px 16px 40px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+              </div>
+            </div>
+
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">Banka Aylık Nominal Faiz Oranı (%)</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">%</span>
+                <input type="number" id="interestRate" value="3.50" step="0.01" style="width: 100%; padding: 16px 16px 16px 40px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="color: var(--text-secondary); font-size: 0.85rem; font-weight: 500;">Tahsis (Dosya) Masrafı (TL)</label>
+                <div style="position: relative;">
+                  <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">₺</span>
+                  <input type="number" id="allocationFee" value="500" style="width: 100%; padding: 12px 12px 12px 28px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1rem; outline: none;">
+                </div>
+                <p style="font-size: 0.75rem; color: #95A5A6; margin-top: 2px;">Yasal sınır binde 5'tir.</p>
+              </div>
+
+              <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="color: var(--text-secondary); font-size: 0.85rem; font-weight: 500;">Hayat Sigortası (TL)</label>
+                <div style="position: relative;">
+                  <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">₺</span>
+                  <input type="number" id="insuranceFee" value="1500" style="width: 100%; padding: 12px 12px 12px 28px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--white); font-size: 1rem; outline: none;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mod 2 Alanları (Tersine Mühendislik) -->
+          <div id="wrapperMode2" style="display: none; flex-direction: column; gap: 24px;">
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: #E74C3C; font-size: 0.95rem; font-weight: 500;">Kesintiler Sonrası "Elinize Geçen" NET Nakit</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">₺</span>
+                <input type="number" id="netCashReceived" placeholder="Örn: 98000" style="width: 100%; padding: 16px 16px 16px 40px; background: rgba(231, 76, 60, 0.05); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+              </div>
+              <p style="font-size: 0.8rem; color: #95A5A6; margin-top: 4px;">Bankanın size verdiği değil, hesaba yatan ve harcayabileceğiniz net para.</p>
+            </div>
+
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: #E74C3C; font-size: 0.95rem; font-weight: 500;">Banka Tarafından İstenen Aylık Taksit</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">₺</span>
+                <input type="number" id="givenPayment" placeholder="Örn: 6500" style="width: 100%; padding: 16px 16px 16px 40px; background: rgba(231, 76, 60, 0.05); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: 12px; color: #E74C3C; font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Fırsat Maliyeti İçin Yatırım Getirisi -->
+          <div class="input-group" style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <label style="color: #2ECC71; font-size: 0.95rem; font-weight: 500; display:flex; align-items:center; gap:6px;">
+              <span>📈</span> Bu Taksitlerle Yatırım Yapsaydım Beklenen Getiri (%)
+            </label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">%</span>
+              <input type="number" id="investmentRate" value="4.00" step="0.01" style="width: 100%; padding: 16px 16px 16px 40px; background: rgba(46, 204, 113, 0.05); border: 1px solid rgba(46, 204, 113, 0.2); border-radius: 12px; color: #2ECC71; font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+            </div>
+          </div>
+
+          <button id="calculateBtn" class="btn btn-gold" style="width: 100%; padding: 18px; font-size: 1.2rem; margin-top: 8px;">Sonuçları Hesapla →</button>
+        </div>
+
+        <!-- Output Area -->
+        <div class="calculator-results" style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Banka Sonucu -->
+          <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(20,20,20,1) 100%); padding: 32px; border-radius: 20px; border: 1px solid rgba(231, 76, 60, 0.2);">
+            <h3 style="color: #E74C3C; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; display:flex; align-items:center; gap:8px;">
+              <span>🏦</span> Banka ve Gerçek Maliyet
+            </h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--text-secondary);">Elinize Geçecek Net Para</span>
+                <span id="outputNetCash" style="font-size: 1.2rem; font-weight: 600; color: #fff;">₺0</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+                <span style="color: var(--text-secondary); font-size: 1.1rem;">Aylık Taksit Tutarı</span>
+                <span id="monthlyPayment" style="font-size: 2.2rem; font-weight: 800; color: #fff; font-family: var(--font-display);">₺0</span>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--text-secondary);">Toplam Geri Ödeme (Sadece Taksitler)</span>
+                <span id="totalRepayment" style="font-size: 1.2rem; font-weight: 600; color: #E74C3C;">₺0</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--text-secondary);">Fazladan Ödenen Para (Faiz + Sigorta vs)</span>
+                <span id="totalInterest" style="font-size: 1.2rem; font-weight: 600; color: #E74C3C;">₺0</span>
+              </div>
+              
+              <div style="background: rgba(231, 76, 60, 0.1); padding: 16px; border-radius: 12px; margin-top: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: #fff; font-weight: 600;">Gizli (Efektif) Aylık Maliyetiniz</span>
+                  <span id="effectiveRate" style="font-size: 1.4rem; font-weight: 800; color: #E74C3C;">%0</span>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 4px;">Bu oran tüm masrafların (sigorta/tahsis/vergi) cebinizden çıkan net paraya oranlanmış matematiksel gerçeğidir. Yıllık maliyet: <span id="effectiveAnnualRate">%0</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gerçek Maliyet (Zengince Twist) -->
+          <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(20,20,20,1) 100%); padding: 32px; border-radius: 20px; border: 1px solid rgba(46, 204, 113, 0.2); position: relative; overflow: hidden;">
+            <div style="position: absolute; right: -20px; top: -20px; font-size: 6rem; opacity: 0.1;">👑</div>
+            <h3 style="color: #2ECC71; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; display:flex; align-items:center; gap:8px;">
+              <span>👁️‍🗨️</span> Zengince Acı Gerçekler
+            </h3>
+            
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+              Eğer bankaya faiz ödemek yerine, kendi hesabınıza her ay <strong id="descMonthly" style="color:#fff;">₺0</strong> biriktirseydiniz ve girdiğiniz %<span id="descInvRate">0</span> getiriyle yatırıma yönlendirseydiniz, vade sonunda yatırdığınız anapara <strong id="descTotalSaved" style="color:#fff;">₺0</strong> olacakken yatırımlarınızın değerlenmesiyle birlikte cebinizdeki toplam servet şu olacaktı:
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="color: var(--text-secondary); font-size: 1.1rem;">Ulaşabileceğiniz Servet (Fırsat Maliyeti)</span>
+              <span id="opportunityCost" style="font-size: 2.8rem; font-weight: 800; color: #2ECC71; font-family: var(--font-display); text-shadow: 0 0 20px rgba(46, 204, 113, 0.3);">₺0</span>
+            </div>
+
+            <p style="color: #F1C40F; font-size: 0.9rem; margin-top: 20px; font-weight: 500; font-style: italic;">
+              "Bileşik getiri dünyanın 8. harikasıdır. Onu anlayan kazanır, anlamayan öder." — Albert Einstein
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Elements
+      const radios = document.querySelectorAll('input[name="calcMode"]');
+      const wrapperMode1 = document.getElementById('wrapperMode1');
+      const wrapperMode2 = document.getElementById('wrapperMode2');
+      const descModePayment = document.getElementById('descModePayment');
+      const descModeRate = document.getElementById('descModeRate');
+      
+      const monthsEl = document.getElementById('months');
+      const loanTypeEl = document.getElementById('loanType');
+      const principalEl = document.getElementById('principal');
+      const interestRateEl = document.getElementById('interestRate');
+      const allocationFeeEl = document.getElementById('allocationFee');
+      const insuranceFeeEl = document.getElementById('insuranceFee');
+      
+      const netCashReceivedEl = document.getElementById('netCashReceived');
+      const givenPaymentEl = document.getElementById('givenPayment');
+      
+      const investmentRateEl = document.getElementById('investmentRate');
+      const calculateBtn = document.getElementById('calculateBtn');
+
+      // Outputs
+      const outputNetCashEl = document.getElementById('outputNetCash');
+      const monthlyPaymentEl = document.getElementById('monthlyPayment');
+      const totalRepaymentEl = document.getElementById('totalRepayment');
+      const totalInterestEl = document.getElementById('totalInterest');
+      const effectiveRateEl = document.getElementById('effectiveRate');
+      const effectiveAnnualRateEl = document.getElementById('effectiveAnnualRate');
+      
+      const descMonthlyEl = document.getElementById('descMonthly');
+      const descInvRateEl = document.getElementById('descInvRate');
+      const descTotalSavedEl = document.getElementById('descTotalSaved');
+      const opportunityCostEl = document.getElementById('opportunityCost');
+
+      const formatter = new Intl.NumberFormat('tr-TR', {
+        style: 'currency',
+        currency: 'TRY',
+        maximumFractionDigits: 0
+      });
+
+      // Toggle UI Logic
+      radios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          document.querySelectorAll('.mode-label').forEach(l => l.style.color = 'var(--text-secondary)');
+          e.target.nextElementSibling.style.color = '#E74C3C';
+
+          if (e.target.value === 'findPayment') {
+            wrapperMode1.style.display = 'flex';
+            wrapperMode2.style.display = 'none';
+            descModePayment.style.display = 'block';
+            descModeRate.style.display = 'none';
+          } else {
+            wrapperMode1.style.display = 'none';
+            wrapperMode2.style.display = 'flex';
+            descModePayment.style.display = 'none';
+            descModeRate.style.display = 'block';
+          }
+        });
+      });
+
+      // Auto calculate allocation fee (0.5% max)
+      principalEl.addEventListener('input', () => {
+        const val = parseFloat(principalEl.value);
+        if(val && val > 0) {
+          allocationFeeEl.value = Math.round(val * 0.005);
+        }
+      });
+
+      // Bisection Search to find Internal Rate of Return (IRR / Effective Monthly Rate)
+      function findTrueInterestRate(netCash, PMT, N) {
+        if (PMT * N <= netCash) return 0;
+        
+        let low = 0.0;
+        let high = 1.0; 
+        let tolerance = 1e-6;
+        let mid = 0;
+        
+        for(let i=0; i<100; i++) {
+          mid = (low + high) / 2;
+          // Present Value of Annuity: PV = PMT * [ (1 - (1+r)^-n) / r ]
+          let PV = PMT * (1 - Math.pow(1 + mid, -N)) / mid;
+          
+          if (PV < netCash) {
+            high = mid; // interest is too high, PV drops
+          } else {
+            low = mid;
+          }
+          
+          if (high - low < tolerance) break;
+        }
+        return mid;
+      }
+
+      function calculate() {
+        const mode = document.querySelector('input[name="calcMode"]:checked').value;
+        const N = parseInt(monthsEl.value);
+        const invRate = parseFloat(investmentRateEl.value) / 100;
+
+        if (!N) return;
+
+        let netCash = 0;
+        let PMT = 0;
+        let trueEffectiveMonthlyRate = 0;
+
+        if (mode === 'findPayment') {
+          const P = parseFloat(principalEl.value);
+          const nominalRate = parseFloat(interestRateEl.value) / 100;
+          const allocFee = parseFloat(allocationFeeEl.value) || 0;
+          const insFee = parseFloat(insuranceFeeEl.value) || 0;
+          
+          if (!P || isNaN(nominalRate)) return;
+
+          const type = loanTypeEl.value;
+          let bsmv = 0;
+          let kkdf = 0;
+
+          if (type === 'ihtiyac') { bsmv = 0.15; kkdf = 0.15; } 
+          else if (type === 'tasit') { bsmv = 0.05; kkdf = 0.15; } 
+          else if (type === 'konut') { bsmv = 0.00; kkdf = 0.00; }
+
+          // Taksit faizi BSMV ve KKDF ile hesaplanır
+          const calcRate = nominalRate * (1 + bsmv + kkdf);
+          
+          if (calcRate === 0) {
+            PMT = P / N;
+          } else {
+            PMT = P * (calcRate * Math.pow(1 + calcRate, N)) / (Math.pow(1 + calcRate, N) - 1);
+          }
+
+          // Tahsis ücreti üzerinden alınan %15 BSMV eklentisi
+          let allocTax = 0;
+          if (type !== 'konut') {
+             allocTax = allocFee * 0.15;
+          }
+
+          // Net ele geçen para (Brüt Kredi - Tahsis Ücreti - Tahsis BSMV - Sigorta)
+          netCash = P - allocFee - allocTax - insFee;
+
+          // Artık gerçek aylık maliyet oranını (YMO/Aylık) bulabiliriz. 
+          // Nakit Akışı: 0. ayda (+netCash) giriyor, 1..N aylarında (-PMT) çıkıyor.
+          trueEffectiveMonthlyRate = findTrueInterestRate(netCash, PMT, N);
+
+        } 
+        else if (mode === 'findRate') {
+          netCash = parseFloat(netCashReceivedEl.value);
+          PMT = parseFloat(givenPaymentEl.value);
+          
+          if (!netCash || !PMT || PMT * N <= netCash) {
+            // Sessizce dön, uyarıyı ekrana vermiyoruz ki live-type'ta rahatsız etmesin
+            return;
+          }
+          
+          // İkinci modda her şey zaten netCash ve PMT içinde olduğu için direkt hesapla
+          trueEffectiveMonthlyRate = findTrueInterestRate(netCash, PMT, N);
+        }
+
+        const totalRepayment = PMT * N;
+        const totalCostOfLoan = totalRepayment - netCash; // Gerçekte cepten fazla çıkan toplam para
+        
+        // Yıllık Bileşik Gerçek Maliyet Oranı: (1 + r_aylik)^12 - 1
+        const effectiveAnnualRate = Math.pow(1 + trueEffectiveMonthlyRate, 12) - 1;
+
+        // Fırsat Maliyeti (Gelecek Değer)
+        let FV = 0;
+        if (invRate === 0) {
+          FV = PMT * N;
+        } else {
+          FV = PMT * ((Math.pow(1 + invRate, N) - 1) / invRate);
+        }
+
+        // DOM Güncellemeleri
+        outputNetCashEl.textContent = formatter.format(netCash);
+        monthlyPaymentEl.textContent = formatter.format(PMT);
+        totalRepaymentEl.textContent = formatter.format(totalRepayment);
+        totalInterestEl.textContent = formatter.format(totalCostOfLoan);
+        
+        effectiveRateEl.textContent = '%' + (trueEffectiveMonthlyRate * 100).toFixed(2);
+        effectiveAnnualRateEl.textContent = '%' + (effectiveAnnualRate * 100).toFixed(2);
+
+        descMonthlyEl.textContent = formatter.format(PMT);
+        descInvRateEl.textContent = (invRate * 100).toFixed(2);
+        descTotalSavedEl.textContent = formatter.format(totalRepayment);
+        opportunityCostEl.textContent = formatter.format(FV);
+      }
+
+      calculateBtn.addEventListener('click', calculate);
+      
+      const inputs = [principalEl, monthsEl, interestRateEl, allocationFeeEl, insuranceFeeEl, netCashReceivedEl, givenPaymentEl, investmentRateEl, loanTypeEl];
+      inputs.forEach(input => {
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') calculate();
+        });
+        // Ayrıca input değeri değiştiğinde otomatik de hesaplayabiliriz (live update)
+        input.addEventListener('input', calculate);
+      });
+
+      // Sayfa yüklenince 1 kere çalıştır
+      calculate();
+    });
+  </script>
+
+<%- include('partials/footer') %>

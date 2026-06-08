@@ -497,6 +497,34 @@ const DIZILER = [
       "Regülatörlerin (denetleyicilerin) şirketlerle olan karmaşık ilişkileri.",
       "Kurumsal açgözlülüğün hem ekonomiye hem de çevreye/topluma verdiği geri dönülmez zararlar."
     ]
+  },
+  {
+    "slug": "la-casa-de-papel",
+    "baslik": "Kağıt Ev",
+    "turkceBaslik": "La Casa de Papel",
+    "yapimc": "Álex Pina",
+    "yil": "2017–2021",
+    "sezon": 5,
+    "tur": "gerilim",
+    "imdb": 8.2,
+    "platform": "Netflix",
+    "ozet": "Dehasıyla nam salmış Profesör lakaplı bir adamın, İspanya Kraliyet Darphanesini ve Merkez Bankasını soymak için kurduğu ekibin aksiyon dolu hikayesi.",
+    "zenginlikDersi": "Sistem zenginliği yaratıyorsa, sistemi manipüle etmeyi bilenler gerçek zenginliğe ulaşır. Zekice planlama kaba kuvvetten daima üstündür.",
+    "nedenIzle": "Finansal sistemin işleyişini sorgulamak, kriz yönetimini ve sıfır hata prensibiyle yapılan stratejik planlamaları görmek için.",
+    "karakterler": [
+      "Profesör",
+      "Tokyo",
+      "Berlin",
+      "Nairobi"
+    ],
+    "afisGorseli": "https://tse2.mm.bing.net/th?q=La%20Casa%20de%20Papel%20tv%20series%20poster%20high%20resolution&w=500&h=750&c=7&rs=1&p=0",
+    "detayliOzet": "Dehasıyla nam salmış Profesör lakaplı bir adamın, İspanya Kraliyet Darphanesini ve Merkez Bankasını soymak için kurduğu ekibin aksiyon dolu hikayesi. Finansal sistemin işleyişini sorgulamak, kriz yönetimini ve sıfır hata prensibiyle yapılan stratejik planlamaları görmek için muazzam bir kurgu. Para basmanın ve enflasyonun doğasını felsefi bir boyutta tartışıyor.",
+    "temelOgrenimler": [
+      "Sistem zenginliği yaratıyorsa, sistemi manipüle etmeyi bilenler gerçek zenginliğe ulaşır. Zekice planlama kaba kuvvetten daima üstündür.",
+      "İnsan faktörü her zaman planın en zayıf halkasıdır; risk yönetiminde insan psikolojisi hesaplanmalıdır.",
+      "Para aslında sadece bir kağıt parçasıdır ve toplumun ona atfettiği güven (illüzyon) kadar değeri vardır.",
+      "Büyük krizler esnasında bile liderin sakinliği (Profesör) takımın kaderini belirler."
+    ]
   }
 ];
 
@@ -520,6 +548,11 @@ const DIZI_TURLERI = {
     "baslik": "Bilim Kurgu",
     "emoji": "🔮",
     "renk": "#9B59B6"
+  },
+  "belgesel": {
+    "baslik": "Belgesel",
+    "emoji": "🎥",
+    "renk": "#34495E"
   }
 };
 

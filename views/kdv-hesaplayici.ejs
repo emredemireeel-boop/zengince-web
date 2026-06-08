@@ -1,0 +1,145 @@
+<%- include('partials/header') %>
+
+<style>
+  .calculator-section { padding: 120px 0 80px; }
+  .calc-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .calc-panel { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+  .form-group { margin-bottom: 24px; }
+  .form-label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
+  .form-control { width: 100%; padding: 16px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: var(--white); font-size: 1.1rem; font-family: var(--font-body); }
+  .form-control:focus { outline: none; border-color: #E67E22; box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2); }
+  
+  /* Radio buttons as tabs */
+  .radio-tabs { display: flex; gap: 10px; margin-bottom: 24px; background: rgba(0,0,0,0.3); padding: 6px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+  .radio-tab { flex: 1; text-align: center; }
+  .radio-tab input[type="radio"] { display: none; }
+  .radio-tab label { display: block; padding: 12px; cursor: pointer; color: var(--text-secondary); border-radius: 6px; font-weight: 600; transition: all 0.3s; }
+  .radio-tab input[type="radio"]:checked + label { background: #E67E22; color: #fff; box-shadow: 0 4px 10px rgba(230,126,34,0.3); }
+
+  .result-box { text-align: center; margin-bottom: 30px; }
+  .result-title { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .result-value { font-size: 3.5rem; font-weight: 800; color: #E67E22; font-family: var(--font-heading); line-height: 1; }
+  
+  .breakdown-list { list-style: none; padding: 0; margin: 0; }
+  .breakdown-item { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); }
+  .breakdown-item:last-child { border-bottom: none; }
+  .bd-label { color: var(--text-secondary); font-size: 1.05rem; }
+  .bd-value { color: var(--white); font-weight: 700; font-size: 1.1rem; }
+
+  @media (max-width: 768px) {
+    .calc-container { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="calculator-section">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <span style="background: rgba(230, 126, 34, 0.1); color: #E67E22; padding: 8px 16px; border-radius: 100px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 16px; display: inline-block;">🛒 Ticaret & Günlük İşlem</span>
+      <h1 class="section-title">KDV <span style="color: #E67E22;">Hesaplayıcı</span></h1>
+      <p class="section-desc" style="max-width: 700px; margin: 0 auto;">KDV dahil ve KDV hariç tutarları anında hesaplayın. Fatura keserken veya ürün fiyatlarken hata yapmayın.</p>
+    </div>
+
+    <div class="calc-container">
+      
+      <!-- Girdi Paneli -->
+      <div class="calc-panel">
+        <h2 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--white);">Hesaplama Yöntemi</h2>
+        
+        <div class="radio-tabs">
+          <div class="radio-tab">
+            <input type="radio" id="kdvEkle" name="kdvTipi" value="ekle" checked onchange="hesaplaKdv()">
+            <label for="kdvEkle">KDV Ekle (Hariçten)</label>
+          </div>
+          <div class="radio-tab">
+            <input type="radio" id="kdvCikar" name="kdvTipi" value="cikar" onchange="hesaplaKdv()">
+            <label for="kdvCikar">KDV Çıkar (Dahilden)</label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" id="tutarLabel">Tutar (TL)</label>
+          <input type="number" id="tutar" class="form-control" value="1000" min="0" oninput="hesaplaKdv()">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">KDV Oranı (%)</label>
+          <select id="kdvOrani" class="form-control" onchange="hesaplaKdv()">
+            <option value="20">%20 (Genel - Hizmet, Sanayi, Elektronik)</option>
+            <option value="10">%10 (Tekstil, Yeme-İçme, İlaç)</option>
+            <option value="1">%1 (Temel Gıda, Dergi, Gazete)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Sonuç Paneli -->
+      <div class="calc-panel">
+        <div class="result-box">
+          <div class="result-title" id="anaSonucTitle">KDV Dahil Toplam Tutar</div>
+          <div class="result-value" id="anaSonucValue">0 ₺</div>
+        </div>
+
+        <ul class="breakdown-list" style="margin-top: 40px;">
+          <li class="breakdown-item">
+            <span class="bd-label">KDV Hariç Tutar (Matrah)</span>
+            <span class="bd-value" id="kdvHaric">0 ₺</span>
+          </li>
+          <li class="breakdown-item">
+            <span class="bd-label" style="color: #E67E22;">Hesaplanan KDV Tutarı</span>
+            <span class="bd-value" id="kdvTutari" style="color: #E67E22;">0 ₺</span>
+          </li>
+          <li class="breakdown-item" style="border-top: 2px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 8px;">
+            <span class="bd-label" style="font-weight: 800;">KDV Dahil Toplam Tutar</span>
+            <span class="bd-value" id="kdvDahil">0 ₺</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function formatCurrency(num) {
+    return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(num);
+  }
+
+  function hesaplaKdv() {
+    const islemTipi = document.querySelector('input[name="kdvTipi"]:checked').value;
+    const tutar = parseFloat(document.getElementById('tutar').value) || 0;
+    const oran = parseFloat(document.getElementById('kdvOrani').value) || 0;
+
+    let kdvHaric = 0;
+    let kdvTutari = 0;
+    let kdvDahil = 0;
+
+    if (islemTipi === 'ekle') {
+      // Girilen tutar KDV Hariçtir
+      document.getElementById('tutarLabel').innerText = "KDV Hariç Tutar (TL)";
+      document.getElementById('anaSonucTitle').innerText = "KDV Dahil Toplam Tutar";
+      
+      kdvHaric = tutar;
+      kdvTutari = tutar * (oran / 100);
+      kdvDahil = tutar + kdvTutari;
+      
+      document.getElementById('anaSonucValue').innerText = formatCurrency(kdvDahil);
+    } else {
+      // Girilen tutar KDV Dahildir
+      document.getElementById('tutarLabel').innerText = "KDV Dahil Tutar (TL)";
+      document.getElementById('anaSonucTitle').innerText = "KDV Hariç Tutar (Matrah)";
+      
+      kdvDahil = tutar;
+      kdvHaric = tutar / (1 + (oran / 100));
+      kdvTutari = kdvDahil - kdvHaric;
+      
+      document.getElementById('anaSonucValue').innerText = formatCurrency(kdvHaric);
+    }
+
+    document.getElementById('kdvHaric').innerText = formatCurrency(kdvHaric);
+    document.getElementById('kdvTutari').innerText = formatCurrency(kdvTutari);
+    document.getElementById('kdvDahil').innerText = formatCurrency(kdvDahil);
+  }
+
+  window.onload = hesaplaKdv;
+</script>
+
+<%- include('partials/footer') %>

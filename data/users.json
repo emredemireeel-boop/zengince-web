@@ -1,0 +1,16 @@
+{
+  "USERS": [
+    {
+      "username": "warren_b",
+      "password": "123",
+      "email": "warren@example.com",
+      "createdAt": 1700000000000
+    },
+    {
+      "username": "hodl_master",
+      "password": "123",
+      "email": "hodl@example.com",
+      "createdAt": 1700000000000
+    }
+  ]
+}

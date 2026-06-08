@@ -36,8 +36,8 @@
 
       <!-- Sağ Taraf: İçerik -->
       <div style="flex: 1; min-width: 300px; max-width: 800px;">
-        <h1 class="section-title" style="margin-bottom: 8px; font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.1;"><%= film.baslik %></h1>
-        <h2 style="color: var(--text-muted); font-size: 1.5rem; margin-bottom: 24px; font-weight: 400;"><%= film.turkceBaslik %></h2>
+        <h1 class="section-title" style="margin-bottom: 8px; font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.1;"><%= film.turkceBaslik || film.baslik %></h1>
+        <h2 style="color: var(--text-muted); font-size: 1.5rem; margin-bottom: 24px; font-weight: 400;"><%= film.baslik !== film.turkceBaslik ? film.baslik : '' %></h2>
         
         <div style="margin-bottom: 40px; display: flex; gap: 12px;">
           <span style="display: inline-block; padding: 6px 16px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 100px; color: var(--gold-200); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
@@ -70,6 +70,13 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <%- include('partials/comments', { pageId: 'film_' + film.slug }) %>
   </div>
 </section>
 

@@ -1,0 +1,100 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(20,20,20,1) 100%); position: relative; overflow: hidden;">
+    <!-- Dekoratif Işıklar -->
+    <div style="position: absolute; top: -50%; left: -10%; width: 50%; height: 200%; background: radial-gradient(circle, rgba(52, 152, 219, 0.05) 0%, transparent 70%); transform: rotate(30deg); pointer-events: none;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <span class="section-badge" style="background: rgba(52, 152, 219, 0.1); border-color: rgba(52, 152, 219, 0.3); color: #3498DB;">📊 Varlıklar 101</span>
+      <h1 class="section-title" style="margin-top:12px;">Yatırım Araçları <span style="color: #3498DB;">Rehberi</span></h1>
+      <p class="section-desc" style="margin:8px auto 0;">Hisse senetleri, fonlar, altın ve emlak... Finansal araçların anatomisini teknik jargon olmadan, en yalın haliyle keşfedin.</p>
+    </div>
+  </section>
+
+  <!-- YTD Uyarısı -->
+  <section class="section" style="padding-top: 0; padding-bottom: 24px;">
+    <div class="container">
+      <div style="background: rgba(231, 76, 60, 0.05); border: 1px solid rgba(231, 76, 60, 0.3); padding: 16px 24px; border-radius: 12px; display: flex; align-items: flex-start; gap: 16px; backdrop-filter: blur(10px);">
+        <span style="font-size: 1.8rem; flex-shrink: 0;">⚠️</span>
+        <div>
+          <strong style="color: #E74C3C; display: block; margin-bottom: 4px; font-size: 1.1rem; letter-spacing: 0.5px;">YASAL UYARI (YTD)</strong>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">Burada yer alan yatırım bilgi, yorum ve tavsiyeleri yatırım danışmanlığı kapsamında değildir. Her yatırım aracının riski farklıdır ve buradaki bilgiler yalnızca <strong style="color:#fff;">finansal okuryazarlığı artırmak</strong> amacıyla hazırlanmıştır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Araçlar Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid-2 stagger-children">
+        <% araclar.forEach(function(arac) { %>
+        <a href="/yatirim-araclari/<%= arac.slug %>" style="text-decoration: none; display: flex; flex-direction: column; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);" class="film-card" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px <%= arac.renk %>50'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)'">
+          <div class="film-card-body" style="padding: 32px; display: flex; flex-direction: column; flex: 1; position: relative; overflow: hidden;">
+            
+            <!-- Arka Plan Işıltısı (Glassmorphism effect) -->
+            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, <%= arac.renk %>20 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="font-size: 2.5rem; background: linear-gradient(135deg, var(--dark-200), var(--dark-300)); width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; border-radius: 20px; box-shadow: inset 0 2px 4px rgba(255,255,255,0.05), 0 8px 16px rgba(0,0,0,0.3); border: 1px solid var(--glass-border);">
+                  <%= arac.icon %>
+                </div>
+                <div>
+                  <h2 class="film-card-title" style="margin-bottom: 4px; font-size: 1.6rem;"><%= arac.baslik %></h2>
+                  
+                  <% 
+                    let riskBadge = ''; 
+                    let riskColor = '';
+                    if(arac.skorlar.risk <= 3) { riskBadge = 'Düşük Risk'; riskColor = '#2ECC71'; }
+                    else if(arac.skorlar.risk <= 6) { riskBadge = 'Orta Risk'; riskColor = '#F39C12'; }
+                    else { riskBadge = 'Yüksek Risk'; riskColor = '#E74C3C'; }
+                  %>
+                  <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; color: <%= riskColor %>; background: <%= riskColor %>15; padding: 4px 10px; border-radius: 20px; border: 1px solid <%= riskColor %>30;"><%= riskBadge %></span>
+                </div>
+              </div>
+            </div>
+            
+            <p style="font-size:1rem;color:var(--text-secondary);line-height:1.7;margin-bottom:32px; flex: 1;"><%= arac.kisaOzet %></p>
+            
+            <!-- Şık Risk / Getiri Barları -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; background: var(--dark-400); padding: 16px; border-radius: 12px; border: 1px solid var(--glass-border);">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #fff; margin-bottom: 8px; font-weight: 500;">
+                  <span>Risk</span>
+                  <span style="color: #E74C3C;"><%= arac.skorlar.risk %>/10</span>
+                </div>
+                <div style="width: 100%; height: 6px; background: rgba(0,0,0,0.5); border-radius: 3px; overflow: hidden;">
+                  <div style="width: <%= arac.skorlar.risk * 10 %>%; height: 100%; background: linear-gradient(90deg, #C0392B, #E74C3C); border-radius: 3px; box-shadow: 0 0 10px #E74C3C;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #fff; margin-bottom: 8px; font-weight: 500;">
+                  <span>Potansiyel Getiri</span>
+                  <span style="color: #2ECC71;"><%= arac.skorlar.getiriPotansiyeli %>/10</span>
+                </div>
+                <div style="width: 100%; height: 6px; background: rgba(0,0,0,0.5); border-radius: 3px; overflow: hidden;">
+                  <div style="width: <%= arac.skorlar.getiriPotansiyeli * 10 %>%; height: 100%; background: linear-gradient(90deg, #27AE60, #2ECC71); border-radius: 3px; box-shadow: 0 0 10px #2ECC71;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: 20px; font-size: 1rem; color: <%= arac.renk %>; font-weight: 700; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--glass-border);">
+              <span>Detaylı Analizi ve Örnekleri Gör</span>
+              <span style="font-size: 1.4rem; transition: transform 0.3s;" class="arrow-icon">→</span>
+            </div>
+          </div>
+        </a>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .film-card:hover .arrow-icon {
+      transform: translateX(8px);
+    }
+  </style>
+
+<%- include('partials/footer') %>

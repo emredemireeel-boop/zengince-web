@@ -1,0 +1,322 @@
+<%- include('partials/header') %>
+
+<style>
+  .profile-container {
+    max-width: 1000px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+  }
+
+  .profile-hero {
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 32px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    margin-bottom: 40px;
+  }
+
+  /* Animated Background Glow */
+  .profile-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1), transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+    animation: rotateGlow 20s linear infinite;
+  }
+  
+  @keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Avatar with Spinning Gold Ring */
+  .avatar-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 24px;
+    z-index: 1;
+  }
+
+  .avatar-ring {
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent, transparent, var(--gold-200), var(--gold-400), transparent);
+    animation: spinRing 4s linear infinite;
+    z-index: -1;
+  }
+
+  .avatar-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a, #000);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    font-weight: 900;
+    color: #fff;
+    border: 4px solid #111; /* Inner spacing */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+  }
+
+  @keyframes spinRing {
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Text Styles */
+  .profile-username {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #fff, var(--gold-200));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  .profile-level {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold-200);
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+    margin-top: 40px;
+  }
+
+  .stat-card {
+    background: rgba(10, 10, 10, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-200), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-10px);
+    background: rgba(20, 20, 20, 0.8);
+    border-color: rgba(212, 175, 55, 0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(212, 175, 55, 0.1);
+  }
+
+  .stat-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .stat-value {
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* Activity Section */
+  .activity-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .thread-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .thread-item {
+    background: rgba(20,20,20,0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+
+  .thread-item:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(212, 175, 55, 0.4);
+    transform: translateX(8px);
+    box-shadow: -5px 10px 20px rgba(0,0,0,0.3);
+  }
+
+  .thread-item h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .thread-meta {
+    font-size: 14px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .thread-category {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold-200);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+    .profile-hero { padding: 40px 20px; }
+  }
+</style>
+
+<div class="profile-container">
+  
+  <div class="profile-hero">
+    <div class="avatar-wrapper">
+      <div class="avatar-ring"></div>
+      <div class="avatar-inner">
+        <%= username.charAt(0).toUpperCase() %>
+      </div>
+    </div>
+    
+    <div class="profile-username">@<%= username %></div>
+    <br>
+    <div class="profile-level">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      <%= stats.level %> YATIRIMCI
+    </div>
+    
+    <div id="dm-action" style="margin-top: 24px; display: none;">
+      <a href="/mesajlar?to=<%= username %>" class="btn btn-gold" style="border-radius: 30px; padding: 12px 24px; font-weight: bold; display: inline-flex; align-items: center; gap: 8px;">
+        ✉️ Mesaj Gönder
+      </a>
+    </div>
+
+    <script>
+      const cUser = localStorage.getItem('zengince_user');
+      if (cUser && cUser !== '<%= username %>') {
+        document.getElementById('dm-action').style.display = 'block';
+      }
+    </script>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value"><%= stats.threadCount %></div>
+        <div class="stat-label">AÇILAN BAŞLIK</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color: var(--gold-200);"><%= stats.entryCount %></div>
+        <div class="stat-label">YAZILAN ENTRY</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color: #22c55e;"><%= stats.totalUpvotes %></div>
+        <div class="stat-label">TOPLAM UPVOTE</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recent-activity">
+    <h3 class="activity-title">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--gold-200);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      Son Etkileşimler
+    </h3>
+    
+    <div class="thread-list">
+      <% if (recentThreads.length > 0) { %>
+        <% recentThreads.forEach(thread => { %>
+          <a href="<%= thread.slugUrl %>" class="thread-item">
+            <div>
+              <h4><%= thread.title %></h4>
+              <div class="thread-meta">
+                <span class="thread-category"><%= thread.category %></span>
+                <span>•</span>
+                <span>💬 <%= thread.entryCount %> Yanıt</span>
+                <span>•</span>
+                <span><%= new Date(thread.createdAt).toLocaleDateString('tr-TR') %></span>
+              </div>
+            </div>
+            <div style="color: var(--gold-200); opacity: 0.5; transition: opacity 0.3s;" class="arrow-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+          </a>
+        <% }); %>
+      <% } else { %>
+        <div style="text-align: center; padding: 60px; color: var(--text-muted); background: rgba(20,20,20,0.5); border-radius: 24px; border: 1px dashed rgba(255,255,255,0.1);">
+          <div style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;">📭</div>
+          <p style="font-size: 16px; font-weight: 500;">Kullanıcı henüz hiç başlık açmamış.</p>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .thread-item:hover .arrow-icon {
+    opacity: 1 !important;
+  }
+</style>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,137 @@
+<%- include('partials/header') %>
+
+<section class="page-header" style="padding-bottom: 40px; text-align: left; background: linear-gradient(135deg, rgba(231, 76, 60, 0.05) 0%, rgba(20,20,20,1) 100%); border-bottom: 1px solid rgba(231, 76, 60, 0.1);">
+  <div class="container">
+    <a href="/iflaslar" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px; color: #E74C3C; font-weight: 600; text-decoration: none;">
+      <span>←</span> İflaslara Dön
+    </a>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div style="display: flex; gap: 60px; flex-wrap: wrap;">
+      
+      <!-- Sol Taraf: İflas Görseli -->
+      <div style="width: 320px; flex-shrink: 0;">
+        <div class="card" style="padding: 16px; position: sticky; top: 100px; border-color: rgba(231, 76, 60, 0.2);">
+          <div style="width: 100%; border-radius: 8px; box-shadow: var(--shadow-lg); margin-bottom: 24px; overflow: hidden; background: #000; position: relative;">
+            <img src="<%= iflas.gorsel %>" alt="<%= iflas.sirket %>" style="width: 100%; display: block; opacity: 0.7;">
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 16px; background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); display: flex; align-items: flex-end; gap: 12px;">
+              <span style="font-size: 2.5rem; line-height: 1;"><%= iflas.icon %></span>
+              <span style="color: #fff; font-size: 1.5rem; font-weight: 800; font-family: var(--font-display);"><%= iflas.sirket %></span>
+            </div>
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid rgba(231, 76, 60, 0.1);">
+              <span style="color: var(--text-muted); font-size: 0.9rem;">Sektör</span>
+              <strong style="color: var(--white);"><%= iflas.sektor %></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid rgba(231, 76, 60, 0.1);">
+              <span style="color: var(--text-muted); font-size: 0.9rem;">Kurucu / CEO</span>
+              <strong style="color: var(--white);"><%= iflas.kurucu %></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid rgba(231, 76, 60, 0.1);">
+              <span style="color: var(--text-muted); font-size: 0.9rem;">İflas / Çöküş Yılı</span>
+              <strong style="color: #E74C3C; font-size: 1.1rem;"><%= iflas.yil %></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: var(--text-muted); font-size: 0.9rem;">Finansal Yıkım</span>
+              <strong style="color: #E74C3C; font-size: 0.95rem; font-weight: 700; text-align: right;"><%= iflas.finansalYikim %></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sağ Taraf: İçerik -->
+      <div style="flex: 1; min-width: 300px; max-width: 800px;">
+        <h1 class="section-title" style="margin-bottom: 8px; font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.1; color: #E74C3C;"><%= iflas.sirket %> Nasıl Battı?</h1>
+        <h2 style="color: var(--text-muted); font-size: 1.3rem; margin-bottom: 40px; font-weight: 400; line-height: 1.6;"><%= iflas.kisaOzet %></h2>
+
+        <!-- Kök Neden Analizi (Root Cause) -->
+        <div class="card" style="margin-bottom: 40px; padding: 40px; background: rgba(231, 76, 60, 0.05); border-color: rgba(231, 76, 60, 0.3);">
+          <h3 style="color: #E74C3C; font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+            <span>⚡</span> Kök Neden Analizi
+          </h3>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <% iflas.kokNedenAnalizi.forEach(function(neden, index) { %>
+              <div style="display: flex; gap: 16px; align-items: flex-start;">
+                <div style="background: #E74C3C; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; font-size: 0.9rem; margin-top: 2px;">
+                  <%= index + 1 %>
+                </div>
+                <div>
+                  <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 4px;"><%= neden.baslik %></h4>
+                  <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;"><%= neden.aciklama %></p>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+        
+        <!-- Çöküşün Anatomisi -->
+        <div class="card" style="margin-bottom: 40px; padding: 40px;">
+          <h3 style="color: var(--white); font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+            <span>🔍</span> Çöküşün Anatomisi
+          </h3>
+          <div style="font-size: 1.1rem; line-height: 1.85; color: var(--text-secondary);">
+            <% iflas.nedenBatti.forEach(function(paragraf) { %>
+              <p style="margin-bottom: 16px;"><%= paragraf %></p>
+            <% }); %>
+          </div>
+        </div>
+
+        <!-- Alınacak Dersler -->
+        <div class="card" style="background: linear-gradient(145deg, rgba(231, 76, 60, 0.05) 0%, rgba(20, 20, 20, 0.9) 100%); border-color: rgba(231, 76, 60, 0.2); padding: 40px; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -10px; right: 10px; font-size: 8rem; opacity: 0.03;">📝</div>
+          <h3 style="color: #E74C3C; font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 24px; position: relative; z-index: 1;">Çıkarılacak Finansal Dersler</h3>
+          <ul style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 16px;">
+            <% iflas.cikarilacakDersler.forEach(function(ders) { %>
+              <li style="display: flex; gap: 16px; font-size: 1.05rem; color: var(--text-primary); line-height: 1.6; background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; border-left: 3px solid #E74C3C;">
+                <span><%= ders %></span>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- JSON-LD Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "<%- iflas.sirket %> Nasıl Battı?",
+  "description": "<%- iflas.kisaOzet %>",
+  "image": "<%- iflas.gorsel %>",
+  "author": {
+    "@type": "Organization",
+    "name": "Zengince"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zengince",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://zengince.com/favicon.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://zengince.com<%- path %>/<%- iflas.slug %>"
+  }
+}
+</script>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <%- include('partials/comments', { pageId: 'iflas_' + iflas.slug }) %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

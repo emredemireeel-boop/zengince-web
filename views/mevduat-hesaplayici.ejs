@@ -1,0 +1,299 @@
+<%- include('partials/header') %>
+
+  <!-- Page Header -->
+  <section class="page-header" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(10,10,10,1) 100%);">
+    <div class="container" style="text-align: center;">
+      <span class="section-badge" style="background: rgba(155, 89, 182, 0.15); border-color: rgba(155, 89, 182, 0.3); color: #9B59B6;">💰 En Çok Aranan Hesaplayıcı</span>
+      <h1 class="section-title">Mevduat Faizi ve <span style="color: #9B59B6;">Reel Getiri</span> Analizi</h1>
+      <p class="section-desc" style="max-width: 800px; margin: 0 auto;">
+        Paranızı bankaya yatırdığınızda elinize geçecek net faiz getirisini (32, 92, 181 günlük) güncel stopaj kesintileriyle anında hesaplayın. Üstelik enflasyon karşısında paranızın alım gücünün gerçekten artıp artmadığını "Reel Getiri" analiziyle görün.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      
+      <div class="calculator-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--dark-200); padding: 40px; border-radius: 24px; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+        
+        <!-- Input Area -->
+        <div class="calculator-inputs" style="display: flex; flex-direction: column; gap: 24px;">
+          <h3 style="color: var(--white); font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+            <span>🏦</span> Mevduat Bilgileri
+          </h3>
+
+          <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">Yatırılacak Ana Para (TL)</label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">₺</span>
+              <input type="number" id="principal" value="100000" style="width: 100%; padding: 16px 16px 16px 40px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+            </div>
+          </div>
+
+          <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">Vade Süresi (Gün)</label>
+            <div style="position: relative;">
+              <input type="number" id="days" value="32" style="width: 100%; padding: 16px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+              <span style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);">Gün</span>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 8px;">
+              <button class="quick-btn" data-val="32">32 Gün</button>
+              <button class="quick-btn" data-val="46">46 Gün</button>
+              <button class="quick-btn" data-val="92">92 Gün</button>
+              <button class="quick-btn" data-val="181">181 Gün</button>
+              <button class="quick-btn" data-val="365">365 Gün</button>
+            </div>
+          </div>
+
+          <style>
+            .quick-btn {
+              background: rgba(255,255,255,0.05);
+              border: 1px solid rgba(255,255,255,0.1);
+              color: var(--text-secondary);
+              padding: 6px 12px;
+              border-radius: 6px;
+              font-size: 0.85rem;
+              cursor: pointer;
+              transition: all 0.2s;
+            }
+            .quick-btn:hover {
+              background: rgba(155, 89, 182, 0.2);
+              color: #9B59B6;
+              border-color: rgba(155, 89, 182, 0.4);
+            }
+          </style>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">Yıllık Faiz Oranı (%)</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">%</span>
+                <input type="number" id="interestRate" value="45.00" step="0.5" style="width: 100%; padding: 16px 16px 16px 40px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+              </div>
+            </div>
+
+            <div class="input-group" style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">Vergi / Stopaj (%)</label>
+              <div style="position: relative;">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">%</span>
+                <input type="number" id="taxRate" value="7.5" step="0.5" style="width: 100%; padding: 16px 16px 16px 40px; background: var(--dark-300); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+              </div>
+              <p style="font-size: 0.75rem; color: #95A5A6; margin-top: 2px;">Vadeye göre otomatik değişir.</p>
+            </div>
+          </div>
+
+          <!-- Zengince Enflasyon Etkisi -->
+          <div class="input-group" style="display: flex; flex-direction: column; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <label style="color: #F39C12; font-size: 0.95rem; font-weight: 500; display:flex; align-items:center; gap:6px;">
+              <span>🔥</span> Beklenen Yıllık Enflasyon (TÜFE/ENAG)
+            </label>
+            <div style="position: relative;">
+              <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">%</span>
+              <input type="number" id="inflationRate" value="65.00" step="1" style="width: 100%; padding: 16px 16px 16px 40px; background: rgba(243, 156, 18, 0.05); border: 1px solid rgba(243, 156, 18, 0.2); border-radius: 12px; color: #F39C12; font-size: 1.2rem; font-weight: 600; font-family: var(--font-display); outline: none;">
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Gerçek alım gücünüzü (reel getiriyi) hesaplamak için piyasadaki gerçek enflasyonu girin.</p>
+          </div>
+
+        </div>
+
+        <!-- Output Area -->
+        <div class="calculator-results" style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Banka Getirisi Kartı -->
+          <div style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(20,20,20,1) 100%); padding: 32px; border-radius: 20px; border: 1px solid rgba(155, 89, 182, 0.2);">
+            <h3 style="color: #9B59B6; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; display:flex; align-items:center; gap:8px;">
+              <span>💵</span> Vade Sonu Kazanç Tablosu
+            </h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--text-secondary);">Brüt Faiz Getirisi</span>
+                <span id="outGrossInterest" style="font-size: 1.1rem; font-weight: 600; color: #fff;">₺0</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--text-secondary);">Kesilen Stopaj Vergisi</span>
+                <span id="outTaxAmount" style="font-size: 1.1rem; font-weight: 600; color: #E74C3C;">-₺0</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+                <span style="color: #9B59B6; font-size: 1.1rem; font-weight: 600;">Elinize Geçecek NET FAİZ</span>
+                <span id="outNetInterest" style="font-size: 2.2rem; font-weight: 800; color: #9B59B6; font-family: var(--font-display);">₺0</span>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px;">
+                <span style="color: var(--text-secondary);">Vade Sonu Toplam Bakiye</span>
+                <span id="outTotalBalance" style="font-size: 1.4rem; font-weight: 700; color: #fff;">₺0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reel Getiri İllüzyonu (Zengince Twist) -->
+          <div style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(20,20,20,1) 100%); padding: 32px; border-radius: 20px; border: 1px solid rgba(231, 76, 60, 0.2); position: relative; overflow: hidden;">
+            <div style="position: absolute; right: -20px; top: -20px; font-size: 6rem; opacity: 0.05;">📉</div>
+            <h3 style="color: #F39C12; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; display:flex; align-items:center; gap:8px;">
+              <span>👁️‍🗨️</span> Zengince Acı Gerçekler: Reel Getiri
+            </h3>
+            
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+              Bankanın size verdiği <strong style="color:#fff;">%<span id="descNetNominalRate">0</span></strong> Yıllık NET faize karşılık piyasada <strong style="color:#fff;">%<span id="descInflationRate">0</span></strong> enflasyon var. Fisher denklemine göre paranızın gerçek alım gücü artmıyor, aksine eriyor!
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+              <span style="color: var(--text-secondary); font-size: 1.1rem;">Gerçek Yıllık Alım Gücü Etkisi (Reel)</span>
+              <span id="outRealRate" style="font-size: 2.4rem; font-weight: 800; color: #E74C3C; font-family: var(--font-display);">%0</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+              <span style="color: var(--text-secondary); font-size: 0.9rem;">Yatırımınızın Yıl Sonundaki "Gerçek" Alım Gücü Değeri:</span>
+              <span id="outPurchasingPower" style="font-size: 1.3rem; font-weight: 600; color: #fff;">₺0</span>
+              <p style="font-size: 0.8rem; color: #E74C3C; margin-top: 4px; line-height: 1.4;" id="lossWarning">
+                Yani yıl sonunda paranız sayısal olarak artsa bile, enflasyon yüzünden bugün elinizdeki parayla alabildiklerinizden daha azını alabileceksiniz.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- SEO Metni -->
+      <div style="margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <h2 style="color: var(--gold-200); font-size: 1.4rem; margin-bottom: 16px;">Mevduat Faizi Nasıl Hesaplanır? 2024 Güncel Oranlar</h2>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; font-size: 0.95rem;">
+          Mevduat faizi getirisi hesaplanırken bankanın size teklif ettiği "Nominal Faiz" oranı üzerinden brüt kazanç bulunur. Brüt kazancınız = (Ana Para x Faiz Oranı x Vade Gün Sayısı) / 36500 formülüyle hesaplanır. Ancak devlet bu brüt kazancınız üzerinden "Stopaj Vergisi" keser. 1 Mayıs 2024 itibarıyla mevduat stopaj oranları güncellenmiştir: 6 aya kadar olan vadelerde %7.5, 1 yıla kadar %5, 1 yıldan uzun vadelerde ise %2.5 stopaj kesilmektedir.
+        </p>
+        <h3 style="color: var(--gold-200); font-size: 1.2rem; margin-bottom: 12px; margin-top: 24px;">Mevduat Faizi Zengin Eder mi? (Reel Getiri Nedir?)</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; font-size: 0.95rem;">
+          Zengince'nin temel felsefesi gereği, sadece bankadaki sayısal artışa değil, paranızın "alım gücüne" odaklanmalısınız. Bir yatırım aracının faiz getirisi enflasyon oranının altındaysa, o yatırım aracı paranızı büyütmüyor, sadece enflasyon karşısında erime hızını yavaşlatıyordur. Fisher Denklemine (Reel Faiz = [(1 + Nominal Faiz) / (1 + Enflasyon)] - 1) göre, enflasyonun yüksek olduğu dönemlerde mevduat faizi, birikimlerinizi korumak için tek başına yeterli bir finansal savunma aracı değildir.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      const principalEl = document.getElementById('principal');
+      const daysEl = document.getElementById('days');
+      const interestRateEl = document.getElementById('interestRate');
+      const taxRateEl = document.getElementById('taxRate');
+      const inflationRateEl = document.getElementById('inflationRate');
+      
+      const outGrossInterestEl = document.getElementById('outGrossInterest');
+      const outTaxAmountEl = document.getElementById('outTaxAmount');
+      const outNetInterestEl = document.getElementById('outNetInterest');
+      const outTotalBalanceEl = document.getElementById('outTotalBalance');
+      
+      const descNetNominalRateEl = document.getElementById('descNetNominalRate');
+      const descInflationRateEl = document.getElementById('descInflationRate');
+      const outRealRateEl = document.getElementById('outRealRate');
+      const outPurchasingPowerEl = document.getElementById('outPurchasingPower');
+      const lossWarning = document.getElementById('lossWarning');
+
+      const formatter = new Intl.NumberFormat('tr-TR', {
+        style: 'currency',
+        currency: 'TRY',
+        maximumFractionDigits: 2
+      });
+
+      // Quick Buttons for Days
+      const quickBtns = document.querySelectorAll('.quick-btn');
+      quickBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          daysEl.value = e.target.getAttribute('data-val');
+          updateTaxRate();
+          calculate();
+        });
+      });
+
+      // Auto update tax rate based on days (Current TR Law as of mid 2024 approximation)
+      function updateTaxRate() {
+        const days = parseInt(daysEl.value) || 0;
+        if (days <= 180) {
+          taxRateEl.value = '7.5';
+        } else if (days <= 365) {
+          taxRateEl.value = '5.0';
+        } else {
+          taxRateEl.value = '2.5';
+        }
+      }
+
+      daysEl.addEventListener('input', () => {
+        updateTaxRate();
+        calculate();
+      });
+
+      function calculate() {
+        const P = parseFloat(principalEl.value) || 0;
+        const D = parseInt(daysEl.value) || 0;
+        const R = parseFloat(interestRateEl.value) || 0;
+        const Tax = parseFloat(taxRateEl.value) || 0;
+        const Inf = parseFloat(inflationRateEl.value) || 0;
+
+        // Brüt Getiri Formülü: (AnaPara * Faiz * Gün) / 36500
+        const grossInterest = (P * R * D) / 36500;
+        
+        // Stopaj (Vergi) Kesintisi
+        const taxAmount = grossInterest * (Tax / 100);
+        
+        // Net Getiri
+        const netInterest = grossInterest - taxAmount;
+        
+        // Toplam Bakiye
+        const totalBalance = P + netInterest;
+
+        // --- Yıllık Reel Getiri (Fisher Equation) ---
+        // Yıllık net faizi bulmamız lazım. Stopajlı yıllık oran nedir?
+        const netAnnualRate = R * (1 - (Tax / 100)); // Örneğin %45 brüt, %7.5 stopaj ise -> %41.625 Net Yıllık
+
+        // Fisher Denkleminde (1+Reel) = (1+NominalNet) / (1+Enflasyon)
+        const nominalDecimal = netAnnualRate / 100;
+        const infDecimal = Inf / 100;
+
+        const realRateDecimal = ((1 + nominalDecimal) / (1 + infDecimal)) - 1;
+        const realRatePercent = realRateDecimal * 100;
+
+        // Alım Gücü (1 Yıl sonundaki anapara karşılığı)
+        const purchasingPower = P * (1 + realRateDecimal);
+
+        // UI Updates
+        outGrossInterestEl.textContent = formatter.format(grossInterest);
+        outTaxAmountEl.textContent = "-" + formatter.format(taxAmount);
+        outNetInterestEl.textContent = formatter.format(netInterest);
+        outTotalBalanceEl.textContent = formatter.format(totalBalance);
+
+        descNetNominalRateEl.textContent = netAnnualRate.toFixed(2);
+        descInflationRateEl.textContent = Inf.toFixed(2);
+        
+        if (realRatePercent < 0) {
+          outRealRateEl.textContent = realRatePercent.toFixed(2) + "%";
+          outRealRateEl.style.color = "#E74C3C"; // Kırmızı
+          outPurchasingPowerEl.style.color = "#E74C3C";
+          lossWarning.textContent = "Yani yıl sonunda paranız sayısal olarak artsa bile, enflasyon yüzünden bugün " + formatter.format(P) + " ile alabildiklerinizden daha azını alabileceksiniz. KESİN ZARAR.";
+          lossWarning.style.color = "#E74C3C";
+        } else {
+          outRealRateEl.textContent = "+" + realRatePercent.toFixed(2) + "%";
+          outRealRateEl.style.color = "#2ECC71"; // Yeşil
+          outPurchasingPowerEl.style.color = "#2ECC71";
+          lossWarning.textContent = "Tebrikler, faiz oranınız enflasyonu yendi. Yıl sonunda paranızın alım gücü gerçekten artmış olacak. NET KAZANÇ.";
+          lossWarning.style.color = "#2ECC71";
+        }
+        
+        outPurchasingPowerEl.textContent = formatter.format(purchasingPower);
+      }
+
+      // Live updates
+      const inputs = document.querySelectorAll('input[type="number"]');
+      inputs.forEach(input => {
+        input.addEventListener('input', calculate);
+      });
+
+      // Init
+      calculate();
+    });
+  </script>
+
+<%- include('partials/footer') %>
