@@ -336,7 +336,7 @@
 <div class="thread-hero">
   <div class="thread-header-content">
     <div class="breadcrumb">
-      <a href="/">Forum</a>
+      <a href="/forum">Forum</a>
       <span style="opacity: 0.5;">/</span>
       <span><%= thread.category %></span>
     </div>
@@ -358,7 +358,7 @@
       </span>
       <% if (thread.isHot) { %>
         <span class="meta-pill" style="border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.1);">
-          🔥 Gündemde
+           Gündemde
         </span>
       <% } %>
     </div>
@@ -371,7 +371,7 @@
   <% if (thread.poll) { %>
     <div style="background: rgba(20,20,20,0.8); backdrop-filter: blur(20px); border: 1px solid var(--gold-200); border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
       <h3 style="font-size: 18px; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-        <span style="font-size: 24px;">📊</span> Topluluk Anketi
+        <span style="font-size: 24px;"></span> Topluluk Anketi
       </h3>
       <div id="poll-container">
         <% thread.poll.options.forEach(opt => { 
@@ -436,11 +436,9 @@
         </div>
       </div>
     <% }); %>
-  </div>
   <% } else { %>
-    <div id="entries-wrapper"></div>
     <div id="empty-state" style="text-align: center; padding: 80px 20px; background: rgba(20,20,20,0.5); border-radius: 20px; border: 1px dashed rgba(255,255,255,0.1);">
-      <div style="font-size: 48px; margin-bottom: 24px; animation: float 3s ease-in-out infinite;">✍️</div>
+      <div style="font-size: 48px; margin-bottom: 24px; animation: float 3s ease-in-out infinite;"></div>
       <h3 style="font-size: 24px; color: #fff; margin-bottom: 12px; font-weight: 800;">Henüz yanıt yok</h3>
       <p style="color: var(--text-muted); margin-bottom: 32px; font-size: 16px;">Bu konu hakkında ilk fikri sen belirt ve tartışmayı başlat.</p>
       <button class="btn btn-gold" onclick="document.getElementById('reply-area').scrollIntoView({behavior: 'smooth'})">İlk Yanıtı Yaz</button>

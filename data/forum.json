@@ -14,7 +14,7 @@
   "FORUM_BASLIKLARI": [
     {
       "id": "f1",
-      "title": "2024 Yılında Pasif Gelir İçin En Mantıklı Yatırım Araçları Nelerdir?",
+      "title": "2026 Yılında Pasif Gelir İçin En Mantıklı Yatırım Araçları Nelerdir?",
       "category": "Pasif Gelir",
       "isHot": true,
       "lastActivity": "2 saat önce",
@@ -42,7 +42,7 @@
     },
     {
       "id": "f3",
-      "title": "Sizce Bitcoin 2025'te 150k$ bandını aşar mı?",
+      "title": "Sizce Bitcoin 2027'de 150k$ bandını aşar mı?",
       "category": "Kripto Paralar",
       "isHot": true,
       "lastActivity": "10 dk önce",
@@ -81,6 +81,286 @@
       "slugUrl": "/forum/f5",
       "viewCount": 890,
       "createdAt": 1700000000000
+    },
+    {
+      "id": "f6",
+      "title": "Maaşın %50'sini biriktiren var mı? Nasıl yapıyorsunuz?",
+      "category": "Tasarruf & Bütçe",
+      "isHot": true,
+      "lastActivity": "1 saat önce",
+      "lastAuthor": "tutumlu_ali",
+      "authorLevel": "Tutkun",
+      "entryCount": 67,
+      "lastEntry": "Evde yemek yapmak ve toplu taşıma kullanmak en büyük tasarruf kalemleri.",
+      "slugUrl": "/forum/f6",
+      "viewCount": 920,
+      "createdAt": 1717000000000
+    },
+    {
+      "id": "f7",
+      "title": "Altın mı dolar mı? 2026 için hangisi daha mantıklı?",
+      "category": "Genel",
+      "isHot": true,
+      "lastActivity": "30 dk önce",
+      "lastAuthor": "altin_avcisi",
+      "authorLevel": "Usta",
+      "entryCount": 198,
+      "lastEntry": "Altın her zaman güvenli liman olmuştur, gram altın biriktiricileri asla yanılmadı.",
+      "slugUrl": "/forum/f7",
+      "viewCount": 4200,
+      "createdAt": 1717500000000
+    },
+    {
+      "id": "f8",
+      "title": "E-ticaret ile ayda 50.000 TL kazanmak gerçekçi mi?",
+      "category": "Girişimcilik",
+      "isHot": false,
+      "lastActivity": "4 saat önce",
+      "lastAuthor": "dijital_ticaret",
+      "authorLevel": "Sürücü",
+      "entryCount": 34,
+      "lastEntry": "Dropshipping ile başladım, ilk 3 ay zarar ettim ama sonra düzeldi.",
+      "slugUrl": "/forum/f8",
+      "viewCount": 780,
+      "createdAt": 1718000000000
+    },
+    {
+      "id": "f9",
+      "title": "FIRE hareketine katılan Türkler burada mı?",
+      "category": "Finansal Özgürlük (FIRE)",
+      "isHot": true,
+      "lastActivity": "15 dk önce",
+      "lastAuthor": "erken_emekli",
+      "authorLevel": "Efsane",
+      "entryCount": 156,
+      "lastEntry": "35 yaşında emekli olmayı hedefliyorum, portföyüm 2.5M TL'ye ulaştı.",
+      "slugUrl": "/forum/f9",
+      "viewCount": 3400,
+      "createdAt": 1718500000000
+    },
+    {
+      "id": "f10",
+      "title": "Yatırım fonları gerçekten kazandırıyor mu?",
+      "category": "Fon & Mevduat",
+      "isHot": false,
+      "lastActivity": "6 saat önce",
+      "lastAuthor": "fon_takipci",
+      "authorLevel": "Çaylak",
+      "entryCount": 28,
+      "lastEntry": "TFF fonları son 1 yılda enflasyonun altında kaldı maalesef.",
+      "slugUrl": "/forum/f10",
+      "viewCount": 450,
+      "createdAt": 1719000000000
+    },
+    {
+      "id": "f11",
+      "title": "Yazılımcı maaşıyla yatırım yaparak zengin olunur mu?",
+      "category": "Kariyer & Gelişim",
+      "isHot": false,
+      "lastActivity": "2 gün önce",
+      "lastAuthor": "dev_investor",
+      "authorLevel": "Tutkun",
+      "entryCount": 52,
+      "lastEntry": "Remote çalışarak dolar kazanıp TL bazlı yatırım yapmak en büyük avantaj.",
+      "slugUrl": "/forum/f11",
+      "viewCount": 1100,
+      "createdAt": 1719500000000
+    },
+    {
+      "id": "f12",
+      "title": "Ethereum vs Solana: Hangisine yatırım yapmalı?",
+      "category": "Kripto Paralar",
+      "isHot": true,
+      "lastActivity": "45 dk önce",
+      "lastAuthor": "defi_uzman",
+      "authorLevel": "Uzman",
+      "entryCount": 87,
+      "lastEntry": "Solana hız konusunda üstün ama Ethereum ekosistemi çok daha olgun.",
+      "slugUrl": "/forum/f12",
+      "viewCount": 2300,
+      "createdAt": 1720000000000
+    },
+    {
+      "id": "f13",
+      "title": "Kiracılarla yaşadığınız en kötü deneyim nedir?",
+      "category": "Gayrimenkul",
+      "isHot": false,
+      "lastActivity": "8 saat önce",
+      "lastAuthor": "ev_sahibi_34",
+      "authorLevel": "Usta",
+      "entryCount": 93,
+      "lastEntry": "3 ay kira ödemeyip gece yarısı kaçan kiracım oldu, inanılmaz.",
+      "slugUrl": "/forum/f13",
+      "viewCount": 1800,
+      "createdAt": 1720500000000
+    },
+    {
+      "id": "f14",
+      "title": "Borsa İstanbul hisseleri ile emeklilik portföyü nasıl kurulur?",
+      "category": "Borsa & Hisse",
+      "isHot": false,
+      "lastActivity": "12 saat önce",
+      "lastAuthor": "temettu_bey",
+      "authorLevel": "Usta",
+      "entryCount": 41,
+      "lastEntry": "Temettü verimi %5 üzeri olan en az 10 farklı sektörden hisse seçilmeli.",
+      "slugUrl": "/forum/f14",
+      "viewCount": 670,
+      "createdAt": 1721000000000
+    },
+    {
+      "id": "f15",
+      "title": "Çocuklara finansal okuryazarlık nasıl öğretilir?",
+      "category": "Genel",
+      "isHot": false,
+      "lastActivity": "1 gün önce",
+      "lastAuthor": "anne_yatirimci",
+      "authorLevel": "Sürücü",
+      "entryCount": 36,
+      "lastEntry": "Kızıma 7 yaşında kumbarayla başlattım, şimdi 12 yaşında borsa takip ediyor.",
+      "slugUrl": "/forum/f15",
+      "viewCount": 520,
+      "createdAt": 1721500000000
+    },
+    {
+      "id": "f16",
+      "title": "Aylık 10.000 TL pasif gelir için ne kadar sermaye lazım?",
+      "category": "Pasif Gelir",
+      "isHot": true,
+      "lastActivity": "20 dk önce",
+      "lastAuthor": "gelir_muhendisi",
+      "authorLevel": "Efsane",
+      "entryCount": 124,
+      "lastEntry": "Temettü hisseleriyle yaklaşık 2.5-3 milyon TL sermaye gerekir.",
+      "slugUrl": "/forum/f16",
+      "viewCount": 5100,
+      "createdAt": 1722000000000
+    },
+    {
+      "id": "f17",
+      "title": "Freelancer olarak vergi ve SGK nasıl ödeniyor?",
+      "category": "Girişimcilik",
+      "isHot": false,
+      "lastActivity": "3 gün önce",
+      "lastAuthor": "serbest_calisan",
+      "authorLevel": "Sürücü",
+      "entryCount": 19,
+      "lastEntry": "Basit usul mükellefiyet en avantajlısı, muhasebeciye danışın mutlaka.",
+      "slugUrl": "/forum/f17",
+      "viewCount": 310,
+      "createdAt": 1722500000000
+    },
+    {
+      "id": "f18",
+      "title": "Dolar mevduata mı yoksa eurobond'a mı yatırım yapmalı?",
+      "category": "Fon & Mevduat",
+      "isHot": false,
+      "lastActivity": "5 saat önce",
+      "lastAuthor": "faiz_takipci",
+      "authorLevel": "Uzman",
+      "entryCount": 31,
+      "lastEntry": "Eurobond kupon getirisi dolar mevduattan daha yüksek ama likiditesi düşük.",
+      "slugUrl": "/forum/f18",
+      "viewCount": 440,
+      "createdAt": 1723000000000
+    },
+    {
+      "id": "f19",
+      "title": "Kariyer değiştirmek istiyorum ama korkuyorum. Tavsiyeleriniz?",
+      "category": "Kariyer & Gelişim",
+      "isHot": false,
+      "lastActivity": "7 saat önce",
+      "lastAuthor": "cesur_adim",
+      "authorLevel": "Çaylak",
+      "entryCount": 47,
+      "lastEntry": "6 aylık acil durum fonu olmadan asla kariyer değiştirmeyin.",
+      "slugUrl": "/forum/f19",
+      "viewCount": 680,
+      "createdAt": 1723500000000
+    },
+    {
+      "id": "f20",
+      "title": "Enflasyon ortamında en iyi korunma stratejisi nedir?",
+      "category": "Genel",
+      "isHot": true,
+      "lastActivity": "1 saat önce",
+      "lastAuthor": "makro_analist",
+      "authorLevel": "Efsane",
+      "entryCount": 203,
+      "lastEntry": "Reel varlıklar (gayrimenkul, altın) ve döviz sepeti en sağlam kalkan.",
+      "slugUrl": "/forum/f20",
+      "viewCount": 6200,
+      "createdAt": 1724000000000
+    },
+    {
+      "id": "f21",
+      "title": "Borsada teknik analiz mi temel analiz mi daha önemli?",
+      "category": "Borsa & Hisse",
+      "isHot": false,
+      "lastActivity": "4 saat önce",
+      "lastAuthor": "grafik_okur",
+      "authorLevel": "Tutkun",
+      "entryCount": 76,
+      "lastEntry": "Kısa vade için teknik, uzun vade için temel analiz şart.",
+      "slugUrl": "/forum/f21",
+      "viewCount": 1400,
+      "createdAt": 1724500000000
+    },
+    {
+      "id": "f22",
+      "title": "30 yaşından önce milyon TL biriktiren var mı?",
+      "category": "Finansal Özgürlük (FIRE)",
+      "isHot": true,
+      "lastActivity": "2 saat önce",
+      "lastAuthor": "genç_milyoner",
+      "authorLevel": "Usta",
+      "entryCount": 168,
+      "lastEntry": "27 yaşında 1.2 milyon TL portföyüm var, aylık 15k biriktiriyorum.",
+      "slugUrl": "/forum/f22",
+      "viewCount": 7800,
+      "createdAt": 1725000000000
+    },
+    {
+      "id": "f23",
+      "title": "Yapay zeka ile para kazanmanın en gerçekçi yolları",
+      "category": "Girişimcilik",
+      "isHot": true,
+      "lastActivity": "3 saat önce",
+      "lastAuthor": "ai_girisimci",
+      "authorLevel": "Uzman",
+      "entryCount": 58,
+      "lastEntry": "AI SaaS ürünleri şu an en kârlı alan, aylık tekrarlayan gelir modeli harika.",
+      "slugUrl": "/forum/f23",
+      "viewCount": 2900,
+      "createdAt": 1725500000000
+    },
+    {
+      "id": "f24",
+      "title": "KYK borcu olan gençlere tavsiyeler",
+      "category": "Tasarruf & Bütçe",
+      "isHot": false,
+      "lastActivity": "1 gün önce",
+      "lastAuthor": "universite_mezunu",
+      "authorLevel": "Çaylak",
+      "entryCount": 22,
+      "lastEntry": "Erken ödeme yaparsanız %20 indirim alıyorsunuz, bunu kaçırmayın.",
+      "slugUrl": "/forum/f24",
+      "viewCount": 380,
+      "createdAt": 1726000000000
+    },
+    {
+      "id": "f25",
+      "title": "Kripto borsası hacklenirse paramız yanar mı?",
+      "category": "Kripto Paralar",
+      "isHot": false,
+      "lastActivity": "6 saat önce",
+      "lastAuthor": "güvenlik_uzm",
+      "authorLevel": "Uzman",
+      "entryCount": 39,
+      "lastEntry": "Cold wallet kullanmayan herkes risk altında, not your keys not your coins.",
+      "slugUrl": "/forum/f25",
+      "viewCount": 950,
+      "createdAt": 1726500000000
     }
   ],
   "FORUM_ENTRIES": {
@@ -147,7 +427,7 @@
         "id": "e7",
         "authorUsername": "hodl_master",
         "authorLevel": "Tutkun",
-        "content": "Halving etkisini yeni görmeye başlıyoruz, 150k çok zor değil. Kurumsal alımlar devam ediyor ve ETF'ler piyasaya milyarlarca dolar soktu. 2017'deki ve 2021'deki boğa koşularını birebir yaşadım. Her seferinde 'buradan dönmez' dendiğinde daha da yukarı gitti. Benim tahminim 2025'in son çeyreğinde 150k-180k arası bir tepe göreceğimiz yönünde. Sizin beklentileriniz neler? Hikayeler aynı mı tekerrür edecek?",
+        "content": "Halving etkisini yeni görmeye başlıyoruz, 150k çok zor değil. Kurumsal alımlar devam ediyor ve ETF'ler piyasaya milyarlarca dolar soktu. 2017'deki ve 2021'deki boğa koşularını birebir yaşadım. Her seferinde 'buradan dönmez' dendiğinde daha da yukarı gitti. Benim tahminim 2026'in son çeyreğinde 150k-180k arası bir tepe göreceğimiz yönünde. Sizin beklentileriniz neler? Hikayeler aynı mı tekerrür edecek?",
         "createdAt": "10 dk önce",
         "upvotes": 45,
         "isThreadStarter": true
@@ -200,6 +480,226 @@
         "createdAt": "1 saat önce",
         "upvotes": 88,
         "isThreadStarter": false
+      }
+    ],
+    "f6": [
+      {
+        "id": "e_f6",
+        "authorUsername": "tutumlu_ali",
+        "authorLevel": "Tutkun",
+        "content": "Evde yemek yapmak ve toplu taşıma kullanmak en büyük tasarruf kalemleri.",
+        "createdAt": "1 saat önce",
+        "upvotes": 11,
+        "isThreadStarter": true
+      }
+    ],
+    "f7": [
+      {
+        "id": "e_f7",
+        "authorUsername": "altin_avcisi",
+        "authorLevel": "Usta",
+        "content": "Altın her zaman güvenli liman olmuştur, gram altın biriktiricileri asla yanılmadı.",
+        "createdAt": "30 dk önce",
+        "upvotes": 48,
+        "isThreadStarter": true
+      }
+    ],
+    "f8": [
+      {
+        "id": "e_f8",
+        "authorUsername": "dijital_ticaret",
+        "authorLevel": "Sürücü",
+        "content": "Dropshipping ile başladım, ilk 3 ay zarar ettim ama sonra düzeldi.",
+        "createdAt": "4 saat önce",
+        "upvotes": 32,
+        "isThreadStarter": true
+      }
+    ],
+    "f9": [
+      {
+        "id": "e_f9",
+        "authorUsername": "erken_emekli",
+        "authorLevel": "Efsane",
+        "content": "35 yaşında emekli olmayı hedefliyorum, portföyüm 2.5M TL'ye ulaştı.",
+        "createdAt": "15 dk önce",
+        "upvotes": 0,
+        "isThreadStarter": true
+      }
+    ],
+    "f10": [
+      {
+        "id": "e_f10",
+        "authorUsername": "fon_takipci",
+        "authorLevel": "Çaylak",
+        "content": "TFF fonları son 1 yılda enflasyonun altında kaldı maalesef.",
+        "createdAt": "6 saat önce",
+        "upvotes": 26,
+        "isThreadStarter": true
+      }
+    ],
+    "f11": [
+      {
+        "id": "e_f11",
+        "authorUsername": "dev_investor",
+        "authorLevel": "Tutkun",
+        "content": "Remote çalışarak dolar kazanıp TL bazlı yatırım yapmak en büyük avantaj.",
+        "createdAt": "2 gün önce",
+        "upvotes": 2,
+        "isThreadStarter": true
+      }
+    ],
+    "f12": [
+      {
+        "id": "e_f12",
+        "authorUsername": "defi_uzman",
+        "authorLevel": "Uzman",
+        "content": "Solana hız konusunda üstün ama Ethereum ekosistemi çok daha olgun.",
+        "createdAt": "45 dk önce",
+        "upvotes": 41,
+        "isThreadStarter": true
+      }
+    ],
+    "f13": [
+      {
+        "id": "e_f13",
+        "authorUsername": "ev_sahibi_34",
+        "authorLevel": "Usta",
+        "content": "3 ay kira ödemeyip gece yarısı kaçan kiracım oldu, inanılmaz.",
+        "createdAt": "8 saat önce",
+        "upvotes": 11,
+        "isThreadStarter": true
+      }
+    ],
+    "f14": [
+      {
+        "id": "e_f14",
+        "authorUsername": "temettu_bey",
+        "authorLevel": "Usta",
+        "content": "Temettü verimi %5 üzeri olan en az 10 farklı sektörden hisse seçilmeli.",
+        "createdAt": "12 saat önce",
+        "upvotes": 14,
+        "isThreadStarter": true
+      }
+    ],
+    "f15": [
+      {
+        "id": "e_f15",
+        "authorUsername": "anne_yatirimci",
+        "authorLevel": "Sürücü",
+        "content": "Kızıma 7 yaşında kumbarayla başlattım, şimdi 12 yaşında borsa takip ediyor.",
+        "createdAt": "1 gün önce",
+        "upvotes": 13,
+        "isThreadStarter": true
+      }
+    ],
+    "f16": [
+      {
+        "id": "e_f16",
+        "authorUsername": "gelir_muhendisi",
+        "authorLevel": "Efsane",
+        "content": "Temettü hisseleriyle yaklaşık 2.5-3 milyon TL sermaye gerekir.",
+        "createdAt": "20 dk önce",
+        "upvotes": 26,
+        "isThreadStarter": true
+      }
+    ],
+    "f17": [
+      {
+        "id": "e_f17",
+        "authorUsername": "serbest_calisan",
+        "authorLevel": "Sürücü",
+        "content": "Basit usul mükellefiyet en avantajlısı, muhasebeciye danışın mutlaka.",
+        "createdAt": "3 gün önce",
+        "upvotes": 16,
+        "isThreadStarter": true
+      }
+    ],
+    "f18": [
+      {
+        "id": "e_f18",
+        "authorUsername": "faiz_takipci",
+        "authorLevel": "Uzman",
+        "content": "Eurobond kupon getirisi dolar mevduattan daha yüksek ama likiditesi düşük.",
+        "createdAt": "5 saat önce",
+        "upvotes": 27,
+        "isThreadStarter": true
+      }
+    ],
+    "f19": [
+      {
+        "id": "e_f19",
+        "authorUsername": "cesur_adim",
+        "authorLevel": "Çaylak",
+        "content": "6 aylık acil durum fonu olmadan asla kariyer değiştirmeyin.",
+        "createdAt": "7 saat önce",
+        "upvotes": 0,
+        "isThreadStarter": true
+      }
+    ],
+    "f20": [
+      {
+        "id": "e_f20",
+        "authorUsername": "makro_analist",
+        "authorLevel": "Efsane",
+        "content": "Reel varlıklar (gayrimenkul, altın) ve döviz sepeti en sağlam kalkan.",
+        "createdAt": "1 saat önce",
+        "upvotes": 15,
+        "isThreadStarter": true
+      }
+    ],
+    "f21": [
+      {
+        "id": "e_f21",
+        "authorUsername": "grafik_okur",
+        "authorLevel": "Tutkun",
+        "content": "Kısa vade için teknik, uzun vade için temel analiz şart.",
+        "createdAt": "4 saat önce",
+        "upvotes": 41,
+        "isThreadStarter": true
+      }
+    ],
+    "f22": [
+      {
+        "id": "e_f22",
+        "authorUsername": "genç_milyoner",
+        "authorLevel": "Usta",
+        "content": "27 yaşında 1.2 milyon TL portföyüm var, aylık 15k biriktiriyorum.",
+        "createdAt": "2 saat önce",
+        "upvotes": 46,
+        "isThreadStarter": true
+      }
+    ],
+    "f23": [
+      {
+        "id": "e_f23",
+        "authorUsername": "ai_girisimci",
+        "authorLevel": "Uzman",
+        "content": "AI SaaS ürünleri şu an en kârlı alan, aylık tekrarlayan gelir modeli harika.",
+        "createdAt": "3 saat önce",
+        "upvotes": 48,
+        "isThreadStarter": true
+      }
+    ],
+    "f24": [
+      {
+        "id": "e_f24",
+        "authorUsername": "universite_mezunu",
+        "authorLevel": "Çaylak",
+        "content": "Erken ödeme yaparsanız %20 indirim alıyorsunuz, bunu kaçırmayın.",
+        "createdAt": "1 gün önce",
+        "upvotes": 14,
+        "isThreadStarter": true
+      }
+    ],
+    "f25": [
+      {
+        "id": "e_f25",
+        "authorUsername": "güvenlik_uzm",
+        "authorLevel": "Uzman",
+        "content": "Cold wallet kullanmayan herkes risk altında, not your keys not your coins.",
+        "createdAt": "6 saat önce",
+        "upvotes": 12,
+        "isThreadStarter": true
       }
     ]
   }

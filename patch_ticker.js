@@ -8,38 +8,55 @@ let indexContent = fs.readFileSync(indexPath, 'utf8');
 const tickerApiCode = `
 // ── API: Piyasa Verileri (Ticker) ─────────────────────────────────────────────
 app.get('/api/ticker', async (req, res) => {
+  let btc = null, bist = null, gold = null;
+  
   try {
     const btcRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
     const btcData = await btcRes.json();
-    
+    btc = {
+      price: parseFloat(btcData.lastPrice),
+      change: parseFloat(btcData.priceChangePercent)
+    };
+  } catch(e) { console.error("BTC fetch error:", e.message); }
+  
+  try {
     const bistRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/XU100.IS');
     const bistData = await bistRes.json();
     const bistMeta = bistData.chart.result[0].meta;
+    bist = {
+      price: bistMeta.regularMarketPrice,
+      change: ((bistMeta.regularMarketPrice - bistMeta.chartPreviousClose) / bistMeta.chartPreviousClose) * 100
+    };
+  } catch(e) { console.error("BIST fetch error:", e.message); }
+  
+  try {
+    const goldRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/GC=F');
+    const usdRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/TRY=X');
     
-    const goldRes = await fetch('https://finans.truncgil.com/v3/today.json');
-    const goldData = await goldRes.json();
-    
-    res.json({
-      success: true,
-      data: {
-        btc: {
-          price: parseFloat(btcData.lastPrice),
-          change: parseFloat(btcData.priceChangePercent)
-        },
-        bist: {
-          price: bistMeta.regularMarketPrice,
-          change: ((bistMeta.regularMarketPrice - bistMeta.chartPreviousClose) / bistMeta.chartPreviousClose) * 100
-        },
-        gold: {
-          price: parseFloat(goldData['gram-altin'].Selling.replace('.','').replace(',','.')),
-          change: parseFloat(goldData['gram-altin'].Change.replace('%','').replace(',','.'))
-        }
-      }
-    });
-  } catch(e) {
-    console.error("Ticker fetch error:", e);
-    res.status(500).json({success: false});
-  }
+    if (goldRes.ok && usdRes.ok) {
+      const goldData = await goldRes.json();
+      const usdData = await usdRes.json();
+      
+      const goldOzUsd = goldData.chart.result[0].meta.regularMarketPrice;
+      const goldPrev = goldData.chart.result[0].meta.chartPreviousClose;
+      
+      const usdTry = usdData.chart.result[0].meta.regularMarketPrice;
+      const usdPrev = usdData.chart.result[0].meta.chartPreviousClose;
+      
+      const currentGram = (goldOzUsd * usdTry) / 31.1034768;
+      const prevGram = (goldPrev * usdPrev) / 31.1034768;
+      
+      gold = {
+        price: parseFloat(currentGram.toFixed(2)),
+        change: parseFloat((((currentGram - prevGram) / prevGram) * 100).toFixed(2))
+      };
+    }
+  } catch(e) { console.error("GOLD fetch error:", e.message); }
+  
+  res.json({
+    success: true,
+    data: { btc, bist, gold }
+  });
 });
 
 // ── Auth İşlemleri ────────────────────────────────────────────────────────────`;
@@ -106,36 +123,57 @@ if (forumContent.includes('10.450')) {
         const formatChange = (change) => {
           const sign = change >= 0 ? '▲' : '▼';
           const color = change >= 0 ? 'var(--success)' : 'var(--danger)';
-          return \`<span style="color:\${color};">\${sign} %\${Math.abs(change).toFixed(2)}</span>\`;
+          return \\\`<span style="color:\\\${color};">\\\${sign} %\\\${Math.abs(change).toFixed(2)}</span>\\\`;
         };
 
-        container.innerHTML = \`
+        let html = \\\`
           <span style="font-size: 11px; color: var(--gold-200); font-weight: 700; font-family: monospace; padding: 4px 8px; background: rgba(212,175,55,0.1); border-radius: 6px;">
             PİYASALAR (CANLI)
           </span>
-          <span style="width: 1px; height: 18px; background: var(--card-border); display: inline-block; margin: 0 8px;"></span>
+          <span style="width: 1px; height: 18px; background: var(--card-border); display: inline-block; margin: 0 8px;"></span>\\\`;
+
+        if (d.bist) {
+          html += \\\`
           <div style="display:flex; gap: 8px; font-size:12px;">
             <span style="color:var(--text-muted); font-weight:600;">BIST 100</span>
-            <span style="font-weight:700; font-family:monospace;">\${formatMoney(d.bist.price, '')}</span>
-            \${formatChange(d.bist.change)}
-          </div>
+            <span style="font-weight:700; font-family:monospace;">\\\${formatMoney(d.bist.price, '')}</span>
+            \\\${formatChange(d.bist.change)}
+          </div>\\\`;
+        }
+
+        if (d.btc) {
+          html += \\\`
           <div style="display:flex; gap: 8px; font-size:12px;">
             <span style="color:var(--text-muted); font-weight:600;">Bitcoin</span>
-            <span style="font-weight:700; font-family:monospace;">$\${new Intl.NumberFormat('en-US').format(d.btc.price)}</span>
-            \${formatChange(d.btc.change)}
-          </div>
+            <span style="font-weight:700; font-family:monospace;">$\\\${new Intl.NumberFormat('en-US').format(d.btc.price)}</span>
+            \\\${formatChange(d.btc.change)}
+          </div>\\\`;
+        }
+
+        if (d.gold) {
+          html += \\\`
           <div style="display:flex; gap: 8px; font-size:12px;">
             <span style="color:var(--text-muted); font-weight:600;">Gram Altın</span>
-            <span style="font-weight:700; font-family:monospace;">\${formatMoney(d.gold.price, '₺')}</span>
-            \${formatChange(d.gold.change)}
-          </div>
-        \`;
+            <span style="font-weight:700; font-family:monospace;">\\\${formatMoney(d.gold.price, '₺')}</span>
+            \\\${formatChange(d.gold.change)}
+          </div>\\\`;
+        }
+
+        if (!d.bist && !d.btc && !d.gold) {
+          html += '<span style="color:var(--text-muted); font-size:12px;">Piyasa verileri alınamadı.</span>';
+        }
+
+        container.innerHTML = html;
       }
     } catch(e) {
       document.getElementById('ticker-loading').textContent = 'Piyasa verileri alınamadı.';
     }
   }
-  document.addEventListener('DOMContentLoaded', loadLiveTicker);
+  document.addEventListener('DOMContentLoaded', () => {
+    loadLiveTicker();
+    // Verileri her 30 saniyede bir otomatik olarak canlı günceller
+    setInterval(loadLiveTicker, 30000);
+  });
 </script>
 `;
     // Insert script just before <%- include('partials/footer') %>

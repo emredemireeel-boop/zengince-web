@@ -48,6 +48,30 @@ function saveMessagesData(data) {
   fs.writeFileSync(messagesDbPath, JSON.stringify(data, null, 2), 'utf8');
 }
 
+const usersDbPath = path.join(__dirname, 'data', 'users.json');
+
+function getUsersData() {
+  if (!fs.existsSync(usersDbPath)) {
+    fs.writeFileSync(usersDbPath, JSON.stringify({ USERS: [] }), 'utf8');
+  }
+  const data = fs.readFileSync(usersDbPath, 'utf8');
+  return JSON.parse(data);
+}
+
+function saveUsersData(data) {
+  fs.writeFileSync(usersDbPath, JSON.stringify(data, null, 2), 'utf8');
+}
+
+const KUFUR_LISTESI = [
+  'amk', 'aq', 'sik', 'siktir', 'orospu', 'yavsak', 'pic', 'piç', 
+  'yarrak', 'yarak', 'amcik', 'got', 'göt', 'ibne', 'pezevenk', 'fuck', 'shit', 'bitch'
+];
+
+function isProfane(text) {
+  const lower = text.toLowerCase();
+  return KUFUR_LISTESI.some(kufur => lower.includes(kufur));
+}
+
 function calculateRank(db, username) {
   if (username === 'misafir_uye') return 'Çaylak';
   let count = 0;
@@ -133,16 +157,72 @@ app.get('/', (req, res) => {
 // ── Forum ──────────────────────────────────────────────────────────────────────
 app.get('/forum', (req, res) => {
   const db = getForumData();
+  
+  // Kategori filtresi
+  const category = req.query.category || null;
+  let filteredThreads = [...db.FORUM_BASLIKLARI];
+  if (category) {
+    filteredThreads = filteredThreads.filter(t => t.category === category);
+  }
+  
+  // Sıralama
+  const sort = req.query.sort || 'newest';
+  if (sort === 'popular') {
+    filteredThreads.sort((a, b) => b.entryCount - a.entryCount);
+  } else {
+    filteredThreads.sort((a, b) => b.createdAt - a.createdAt);
+  }
+  
+  // Sayfalama (Pagination)
+  const page = parseInt(req.query.page) || 1;
+  const limit = 10;
+  const totalThreads = filteredThreads.length;
+  const totalPages = Math.ceil(totalThreads / limit);
+  const safePage = Math.min(Math.max(page, 1), totalPages || 1);
+  const offset = (safePage - 1) * limit;
+  
+  const paginatedThreads = filteredThreads.slice(offset, offset + limit);
+  // Rastgele sidebar içerikleri
+  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const pickN = (arr, n) => {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, n);
+  };
+  
+  const randomAlinti = pick(ALINTILAR);
+  const randomKitap = pick(KITAPLAR);
+  const randomGirisimci = pick(GIRISIMCILER);
+  const randomAliskanlik = pick(ALISKANLIKLAR);
+  const randomMakale = pick(MAKALELER);
+  const randomSozluk = pick(SOZLUK_TERIMLERI);
+  
   res.render('forum', {
     title: 'Zengince Forum — Finans, Borsa ve Yatırım Topluluğu',
     desc: 'Borsa, Kripto Para, Gayrimenkul ve Finansal Özgürlük hakkında binlerce yatırımcının deneyimlerini paylaştığı topluluk.',
     canonical: `${SITE_URL}/forum`,
     forumKategorileri: db.FORUM_KATEGORILERI,
-    forumBasliklari: db.FORUM_BASLIKLARI,
+    forumBasliklari: paginatedThreads,
+    allBasliklar: db.FORUM_BASLIKLARI,
+    pagination: {
+      currentPage: safePage,
+      totalPages: totalPages,
+      hasNext: safePage < totalPages,
+      hasPrev: safePage > 1,
+      category: category,
+      sort: sort
+    },
     stats: {
       totalThreads: db.FORUM_BASLIKLARI.length,
       totalEntries: db.FORUM_BASLIKLARI.reduce((acc, curr) => acc + curr.entryCount, 0),
       totalUsers: 1450
+    },
+    sidebar: {
+      alinti: randomAlinti,
+      kitap: randomKitap,
+      girisimci: randomGirisimci,
+      aliskanlik: randomAliskanlik,
+      makale: randomMakale,
+      sozluk: randomSozluk
     }
   });
 });
@@ -354,38 +434,55 @@ app.get('/profil/:username', (req, res) => {
 
 // ── API: Piyasa Verileri (Ticker) ─────────────────────────────────────────────
 app.get('/api/ticker', async (req, res) => {
+  let btc = null, bist = null, gold = null;
+  
   try {
     const btcRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
     const btcData = await btcRes.json();
-    
+    btc = {
+      price: parseFloat(btcData.lastPrice),
+      change: parseFloat(btcData.priceChangePercent)
+    };
+  } catch(e) { console.error("BTC fetch error:", e.message); }
+  
+  try {
     const bistRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/XU100.IS');
     const bistData = await bistRes.json();
     const bistMeta = bistData.chart.result[0].meta;
+    bist = {
+      price: bistMeta.regularMarketPrice,
+      change: ((bistMeta.regularMarketPrice - bistMeta.chartPreviousClose) / bistMeta.chartPreviousClose) * 100
+    };
+  } catch(e) { console.error("BIST fetch error:", e.message); }
+  
+  try {
+    const goldRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/GC=F');
+    const usdRes = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/TRY=X');
     
-    const goldRes = await fetch('https://finans.truncgil.com/v3/today.json');
-    const goldData = await goldRes.json();
-    
-    res.json({
-      success: true,
-      data: {
-        btc: {
-          price: parseFloat(btcData.lastPrice),
-          change: parseFloat(btcData.priceChangePercent)
-        },
-        bist: {
-          price: bistMeta.regularMarketPrice,
-          change: ((bistMeta.regularMarketPrice - bistMeta.chartPreviousClose) / bistMeta.chartPreviousClose) * 100
-        },
-        gold: {
-          price: parseFloat(goldData['gram-altin'].Selling.replace('.','').replace(',','.')),
-          change: parseFloat(goldData['gram-altin'].Change.replace('%','').replace(',','.'))
-        }
-      }
-    });
-  } catch(e) {
-    console.error("Ticker fetch error:", e);
-    res.status(500).json({success: false});
-  }
+    if (goldRes.ok && usdRes.ok) {
+      const goldData = await goldRes.json();
+      const usdData = await usdRes.json();
+      
+      const goldOzUsd = goldData.chart.result[0].meta.regularMarketPrice;
+      const goldPrev = goldData.chart.result[0].meta.chartPreviousClose;
+      
+      const usdTry = usdData.chart.result[0].meta.regularMarketPrice;
+      const usdPrev = usdData.chart.result[0].meta.chartPreviousClose;
+      
+      const currentGram = (goldOzUsd * usdTry) / 31.1034768;
+      const prevGram = (goldPrev * usdPrev) / 31.1034768;
+      
+      gold = {
+        price: parseFloat(currentGram.toFixed(2)),
+        change: parseFloat((((currentGram - prevGram) / prevGram) * 100).toFixed(2))
+      };
+    }
+  } catch(e) { console.error("GOLD fetch error:", e.message); }
+  
+  res.json({
+    success: true,
+    data: { btc, bist, gold }
+  });
 });
 
 // ── Auth İşlemleri ────────────────────────────────────────────────────────────
@@ -1019,6 +1116,16 @@ app.get('/sitemap.xml', (req, res) => {
   IFLASLAR.forEach(i => addUrl(`/iflaslar/${i.slug}`, '0.7', 'monthly'));
   TASARRUF_MODELLERI.forEach(m => addUrl(`/tasarruf-modelleri/${m.slug}`, '0.8', 'monthly'));
   YATIRIM_ARACLARI.forEach(y => addUrl(`/yatirim-araclari/${y.slug}`, '0.8', 'monthly'));
+
+  // Forum Başlıkları
+  const db = getForumData();
+  if (db && db.FORUM_BASLIKLARI) {
+    db.FORUM_BASLIKLARI.forEach(f => {
+      if (f.slugUrl) {
+        addUrl(f.slugUrl, '0.8', 'weekly');
+      }
+    });
+  }
 
   xml += '</urlset>';
   res.send(xml);

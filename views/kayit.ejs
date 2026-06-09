@@ -107,8 +107,9 @@
     <div id="regError" style="color: #ef4444; background: rgba(239, 68, 68, 0.1); padding: 12px; border-radius: 8px; margin-bottom: 20px; display: none; font-size: 14px; text-align: center;"></div>
 
     <div class="auth-input-group">
-      <label>Kullanıcı Adı</label>
-      <input type="text" id="regUsername" placeholder="Sitede görünecek adınız">
+      <label>Kullanıcı Adı <span id="usernameStatus" style="float: right; font-size: 12px;"></span></label>
+      <input type="text" id="regUsername" placeholder="Sitede görünecek adınız (Örn: warren_b)">
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">Sadece harf, rakam, alt tire (_) ve tire (-) kullanılabilir. 3-20 karakter.</div>
     </div>
     <div class="auth-input-group">
       <label>E-Posta</label>
@@ -149,6 +150,45 @@
 
   const errBox = document.getElementById('regError');
 
+  const usernameInput = document.getElementById('regUsername');
+  const usernameStatus = document.getElementById('usernameStatus');
+  let usernameTimeout = null;
+  let isUsernameValid = false;
+
+  usernameInput.addEventListener('input', () => {
+    const username = usernameInput.value.trim();
+    clearTimeout(usernameTimeout);
+    
+    if (username.length === 0) {
+      usernameStatus.textContent = '';
+      isUsernameValid = false;
+      return;
+    }
+
+    usernameStatus.textContent = 'Kontrol ediliyor...';
+    usernameStatus.style.color = 'var(--text-muted)';
+    isUsernameValid = false;
+
+    usernameTimeout = setTimeout(async () => {
+      try {
+        const res = await fetch('/api/check-username?username=' + encodeURIComponent(username));
+        const data = await res.json();
+        
+        if (data.available) {
+          usernameStatus.textContent = 'Kullanılabilir ✓';
+          usernameStatus.style.color = 'var(--forum-success)';
+          isUsernameValid = true;
+        } else {
+          usernameStatus.textContent = data.error;
+          usernameStatus.style.color = '#ef4444';
+        }
+      } catch (err) {
+        usernameStatus.textContent = 'Bağlantı hatası';
+        usernameStatus.style.color = '#ef4444';
+      }
+    }, 500);
+  });
+
   // Google ile Kayıt Ol (Popup)
   document.getElementById('googleBtn').addEventListener('click', async () => {
     const provider = new GoogleAuthProvider();
@@ -160,11 +200,18 @@
       const user = result.user;
       
       const username = user.displayName || user.email.split('@')[0];
+      
+      // Kaydet
+      await fetch('/api/register-username', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email: user.email })
+      });
+
       localStorage.setItem('zengince_user', username);
       window.location.href = '/';
     } catch (e) {
       console.error(e);
-      alert("Google Kayıt Hatası: " + e.message); // Hata ayıklama için
       errBox.textContent = 'Google ile kayıt başarısız oldu: ' + e.message;
       errBox.style.display = 'block';
       btn.disabled = false;
@@ -177,8 +224,16 @@
     const email = document.getElementById('regEmail').value.trim();
     const password = document.getElementById('regPassword').value.trim();
 
+    errBox.style.display = 'none';
+
     if (!username || !email || !password) {
       errBox.textContent = 'Lütfen tüm alanları doldurun.';
+      errBox.style.display = 'block';
+      return;
+    }
+
+    if (!isUsernameValid) {
+      errBox.textContent = 'Lütfen geçerli bir kullanıcı adı belirleyin.';
       errBox.style.display = 'block';
       return;
     }
@@ -188,17 +243,30 @@
     btn.textContent = 'Hesap Oluşturuluyor...';
 
     try {
+      // Çift kontrol (Backend'den)
+      const checkRes = await fetch('/api/check-username?username=' + encodeURIComponent(username));
+      const checkData = await checkRes.json();
+      if (!checkData.available) {
+        throw new Error(checkData.error || 'Bu kullanıcı adı alınamaz.');
+      }
+
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       
       await updateProfile(userCredential.user, {
         displayName: username
       });
 
+      await fetch('/api/register-username', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email })
+      });
+
       localStorage.setItem('zengince_user', username);
       window.location.href = '/';
     } catch (e) {
       console.error(e);
-      let errorMsg = 'Kayıt sırasında hata oluştu.';
+      let errorMsg = e.message || 'Kayıt sırasında hata oluştu.';
       if (e.code === 'auth/email-already-in-use') errorMsg = 'Bu e-posta adresi zaten kullanılıyor.';
       if (e.code === 'auth/weak-password') errorMsg = 'Şifreniz en az 6 karakter olmalıdır.';
       

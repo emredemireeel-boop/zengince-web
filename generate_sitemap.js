@@ -102,6 +102,20 @@ addDynamicRoutes(YATIRIM_ARACLARI, 'yatirim-araclari', '0.9');
 addDynamicRoutes(DEHA_HAMLELERI, 'deha-hamleleri', '0.8');
 addDynamicRoutes(SOZLUK_TERIMLERI, 'sozluk', '0.6');
 
+// 3. Add Forum Routes
+try {
+  const forumData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'forum.json'), 'utf8'));
+  if (forumData && forumData.FORUM_BASLIKLARI) {
+    forumData.FORUM_BASLIKLARI.forEach(f => {
+      if (f.slugUrl) {
+        addUrl(f.slugUrl, '0.8', 'weekly');
+      }
+    });
+  }
+} catch (e) {
+  console.error("Error adding forum routes to sitemap:", e);
+}
+
 sitemapXml += '</urlset>';
 
 // Write Sitemap
