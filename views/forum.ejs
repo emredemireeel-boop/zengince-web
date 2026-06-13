@@ -81,15 +81,13 @@
     
     <!-- SOL SİDEBAR: Kategoriler -->
     <aside class="forum-left-sidebar">
-      <div style="position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto; display: flex; flex-direction: column; gap: 16px;">
+      <div style="position: sticky; top: 100px; display: flex; flex-direction: column; gap: 10px;">
 
         <!-- Kategoriler -->
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 16px;">
-          <h2 style="font-size: 14px; font-weight: 600; color: var(--text-muted); margin-bottom: 12px;">
-            Kategoriler
-          </h2>
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px;">
+          <h2 style="font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px;">Kategoriler</h2>
           <ul style="list-style: none; padding: 0; margin: 0;" id="category-list">
-            <li style="margin-bottom: 4px;">
+            <li style="margin-bottom: 2px;">
               <a href="/forum" class="forum-cat-btn <%= (typeof pagination !== 'undefined' && !pagination.category) ? 'active' : '' %>" style="text-decoration: none;">
                 <span style="flex: 1;">Tümü</span>
                 <span class="forum-cat-badge"><%= stats.totalThreads %></span>
@@ -98,7 +96,7 @@
             <% forumKategorileri.forEach(cat => { 
                  let count = allBasliklar.filter(b => b.category === cat).length;
             %>
-            <li style="margin-bottom: 4px;">
+            <li style="margin-bottom: 2px;">
               <a href="/forum?category=<%= encodeURIComponent(cat) %>" class="forum-cat-btn <%= (typeof pagination !== 'undefined' && pagination.category === cat) ? 'active' : '' %>" style="text-decoration: none;">
                 <span style="flex: 1;"><%= cat %></span>
                 <span class="forum-cat-badge"><%= count %></span>
@@ -110,31 +108,22 @@
 
         <!-- Altın Söz -->
         <% if (sidebar && sidebar.alinti) { %>
-        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, var(--card-bg) 100%); border: 1px solid rgba(212, 175, 55, 0.15); border-radius: 16px; padding: 16px;">
-          <div style="font-size: 11px; font-weight: 700; color: var(--gold-200); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Altın Söz</div>
-          <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; font-style: italic; margin-bottom: 10px;">"<%= sidebar.alinti.soz %>"</p>
-          <div style="font-size: 12px; color: var(--gold-200); font-weight: 600;">— <%= sidebar.alinti.kisi %></div>
-          <a href="/alintilar" style="display: inline-block; margin-top: 10px; font-size: 11px; color: var(--text-muted); text-decoration: none; font-weight: 600;">Tüm Sözler →</a>
+        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, var(--card-bg) 100%); border: 1px solid rgba(212, 175, 55, 0.15); border-radius: 12px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 700; color: var(--gold-200); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Altın Söz</div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; font-style: italic; margin-bottom: 6px;">"<%= sidebar.alinti.soz.substring(0, 80) %>"</p>
+          <div style="font-size: 11px; color: var(--gold-200); font-weight: 600;">— <%= sidebar.alinti.kisi %></div>
         </div>
         <% } %>
 
         <!-- Günün Alışkanlığı -->
         <% if (sidebar && sidebar.aliskanlik) { %>
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 16px;">
-          <div style="font-size: 11px; font-weight: 700; color: var(--forum-success); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Günün Alışkanlığı</div>
-          <div style="font-size: 14px; font-weight: 700; color: var(--foreground); margin-bottom: 6px;"><%= sidebar.aliskanlik.baslik %></div>
-          <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;"><%= sidebar.aliskanlik.aciklama.substring(0, 120) %>...</p>
-          <a href="/aliskanliklar" style="display: inline-block; font-size: 11px; color: var(--gold-200); text-decoration: none; font-weight: 600;">Alışkanlıklar →</a>
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 700; color: var(--forum-success); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Günün Alışkanlığı</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--foreground); margin-bottom: 4px;"><%= sidebar.aliskanlik.baslik %></div>
+          <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 6px;"><%= sidebar.aliskanlik.aciklama.substring(0, 80) %>...</p>
+          <a href="/aliskanliklar" style="display: inline-block; font-size: 10px; color: var(--gold-200); text-decoration: none; font-weight: 600;">Alışkanlıklar →</a>
         </div>
         <% } %>
-
-        <!-- Reklam Alanı (Sol) -->
-        <div class="forum-ad-slot" style="background: var(--card-bg); border: 1px dashed rgba(255,255,255,0.08); border-radius: 16px; padding: 16px; text-align: center; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 6px; right: 8px; font-size: 9px; color: rgba(255,255,255,0.15); text-transform: uppercase; letter-spacing: 1px;">Reklam</div>
-          <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(212,175,55,0.08); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--text-muted); font-weight: 700;">AD</div>
-          <div style="font-size: 12px; font-weight: 600; color: var(--text-muted);">Reklam Alanı</div>
-          <div style="font-size: 10px; color: rgba(255,255,255,0.2);">220 × 120</div>
-        </div>
 
       </div>
     </aside>
@@ -262,87 +251,115 @@
 
     <!-- SAĞ SİDEBAR: Ekstra Araçlar -->
     <aside class="forum-right-sidebar">
-      <div style="position: sticky; top: 100px; display: flex; flex-direction: column; gap: 16px;">
+      <div style="position: sticky; top: 100px; display: flex; flex-direction: column; gap: 10px;">
         
         <!-- Sözlük İpucu (Dinamik) -->
         <% if (sidebar && sidebar.sozluk) { %>
-        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; padding: 20px;">
-          <div style="display: inline-block; padding: 4px 8px; background: var(--gold-200); color: #000; font-size: 11px; font-weight: 800; border-radius: 6px; margin-bottom: 12px;">SÖZLÜK</div>
-          <h3 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;"><%= sidebar.sozluk.terim %></h3>
-          <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 16px; line-height: 1.5;"><%= sidebar.sozluk.kisaTanim.substring(0, 140) %>...</p>
-          <a href="/sozluk/<%= sidebar.sozluk.slug %>" style="display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.1); color: #fff; font-size: 12px; font-weight: 600; border-radius: 8px; text-decoration: none;">Sözlükte Oku →</a>
+        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 12px;">
+          <div style="display: inline-block; padding: 3px 6px; background: var(--gold-200); color: #000; font-size: 10px; font-weight: 800; border-radius: 4px; margin-bottom: 8px;">SÖZLÜK</div>
+          <h3 style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;"><%= sidebar.sozluk.terim %></h3>
+          <p style="font-size: 11px; color: rgba(255,255,255,0.7); margin-bottom: 8px; line-height: 1.4;"><%= sidebar.sozluk.kisaTanim.substring(0, 90) %>...</p>
+          <a href="/sozluk/<%= sidebar.sozluk.slug %>" style="display: inline-block; padding: 5px 10px; background: rgba(255,255,255,0.1); color: #fff; font-size: 11px; font-weight: 600; border-radius: 6px; text-decoration: none;">Sözlükte Oku →</a>
         </div>
         <% } %>
 
         <!-- Topluluk Liderleri -->
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 20px;">
-          <h3 style="font-size: 15px; font-weight: 600; margin-bottom: 16px; color: var(--foreground);">Topluluk Liderleri</h3>
-          <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px;">
+          <h3 style="font-size: 12px; font-weight: 600; margin-bottom: 10px; color: var(--foreground);">Topluluk Liderleri</h3>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
             <div style="display: flex; align-items: center; justify-content: space-between;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="width: 32px; height: 32px; border-radius: 50%; background: #22c55e; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">V</div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 26px; height: 26px; border-radius: 50%; background: #22c55e; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px;">V</div>
                 <div>
-                  <div style="font-size: 13px; font-weight: 600; color: var(--foreground);">value_investor</div>
-                  <div style="font-size: 11px; color: var(--text-muted);">Efsane</div>
+                  <div style="font-size: 12px; font-weight: 600; color: var(--foreground);">value_investor</div>
+                  <div style="font-size: 10px; color: var(--text-muted);">Efsane</div>
                 </div>
               </div>
-              <div style="font-size: 12px; font-weight: 700; color: var(--gold-200);">8.4k Entry</div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--gold-200);">8.4k</div>
             </div>
             <div style="display: flex; align-items: center; justify-content: space-between;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="width: 32px; height: 32px; border-radius: 50%; background: #a855f7; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">H</div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 26px; height: 26px; border-radius: 50%; background: #a855f7; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px;">H</div>
                 <div>
-                  <div style="font-size: 13px; font-weight: 600; color: var(--foreground);">hodl_master</div>
-                  <div style="font-size: 11px; color: var(--text-muted);">Tutkun</div>
+                  <div style="font-size: 12px; font-weight: 600; color: var(--foreground);">hodl_master</div>
+                  <div style="font-size: 10px; color: var(--text-muted);">Tutkun</div>
                 </div>
               </div>
-              <div style="font-size: 12px; font-weight: 700; color: var(--gold-200);">3.2k Entry</div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--gold-200);">3.2k</div>
             </div>
           </div>
         </div>
 
         <!-- Usta Girişimci -->
         <% if (sidebar && sidebar.girisimci) { %>
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 20px;">
-          <div style="font-size: 11px; font-weight: 700; color: #a855f7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Usta Girişimci</div>
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #6d28d9); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; flex-shrink: 0;"><%= sidebar.girisimci.isim.charAt(0) %></div>
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 700; color: #a855f7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Usta Girişimci</div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #6d28d9); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; flex-shrink: 0;"><%= sidebar.girisimci.isim.charAt(0) %></div>
             <div>
-              <div style="font-size: 14px; font-weight: 700; color: var(--foreground);"><%= sidebar.girisimci.isim %></div>
-              <div style="font-size: 11px; color: var(--text-muted);"><%= sidebar.girisimci.unvan.substring(0, 40) %></div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--foreground);"><%= sidebar.girisimci.isim %></div>
+              <div style="font-size: 10px; color: var(--text-muted);"><%= sidebar.girisimci.unvan.substring(0, 35) %></div>
             </div>
           </div>
-          <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;"><%= sidebar.girisimci.ozet.substring(0, 100) %>...</p>
-          <a href="/girisimciler/<%= sidebar.girisimci.slug %>" style="display: inline-block; font-size: 11px; color: var(--gold-200); text-decoration: none; font-weight: 600;">Hikayesini Oku →</a>
+          <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 6px;"><%= sidebar.girisimci.ozet.substring(0, 70) %>...</p>
+          <a href="/girisimciler/<%= sidebar.girisimci.slug %>" style="display: inline-block; font-size: 10px; color: var(--gold-200); text-decoration: none; font-weight: 600;">Hikayesini Oku →</a>
         </div>
         <% } %>
 
-        <!-- Kitap Önerisi -->
-        <% if (sidebar && sidebar.kitap) { %>
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 20px;">
-          <div style="font-size: 11px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Kitap Önerisi</div>
-          <div style="font-size: 15px; font-weight: 700; color: var(--foreground); margin-bottom: 4px;"><%= sidebar.kitap.baslik %></div>
-          <div style="font-size: 12px; color: var(--gold-200); margin-bottom: 8px;"><%= sidebar.kitap.yazar %> · <%= sidebar.kitap.puan %>/5</div>
-          <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;"><%= sidebar.kitap.ozet.substring(0, 100) %>...</p>
-          <a href="/kitaplar/<%= sidebar.kitap.slug %>" style="display: inline-block; font-size: 11px; color: var(--gold-200); text-decoration: none; font-weight: 600;">İncele →</a>
+        <!-- Kitap/Film/Belgesel Önerisi Rotator -->
+        <% if (sidebar && sidebar.rotatorItems && sidebar.rotatorItems.length > 0) { %>
+        <div id="rotator-container" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; transition: opacity 0.5s ease;">
+          <div id="rotator-type" style="font-size: 10px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;"><%= sidebar.rotatorItems[0].type %></div>
+          <div id="rotator-title" style="font-size: 13px; font-weight: 700; color: var(--foreground); margin-bottom: 3px;"><%= sidebar.rotatorItems[0].baslik %></div>
+          <div id="rotator-meta" style="font-size: 11px; color: var(--gold-200); margin-bottom: 5px;"><%= sidebar.rotatorItems[0].ust %></div>
+          <p id="rotator-desc" style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 6px; height: 44px; overflow: hidden;"><%= sidebar.rotatorItems[0].ozet.substring(0, 80) %>...</p>
+          <a id="rotator-link" href="<%= sidebar.rotatorItems[0].url %>" style="display: inline-block; font-size: 10px; color: var(--gold-200); text-decoration: none; font-weight: 600;">İncele →</a>
+          
+          <script>
+            window.ZENGINCE_ROTATOR_ITEMS = <%- JSON.stringify(sidebar.rotatorItems) %>;
+            
+            document.addEventListener('DOMContentLoaded', () => {
+              const items = window.ZENGINCE_ROTATOR_ITEMS;
+              if(!items || items.length < 2) return;
+              
+              let idx = 0;
+              const container = document.getElementById('rotator-container');
+              const rType = document.getElementById('rotator-type');
+              const rTitle = document.getElementById('rotator-title');
+              const rMeta = document.getElementById('rotator-meta');
+              const rDesc = document.getElementById('rotator-desc');
+              const rLink = document.getElementById('rotator-link');
+
+              setInterval(() => {
+                container.style.opacity = '0';
+                
+                setTimeout(() => {
+                  idx = (idx + 1) % items.length;
+                  const item = items[idx];
+                  
+                  rType.innerText = item.type;
+                  rType.style.color = item.typeColor;
+                  rTitle.innerText = item.baslik;
+                  rMeta.innerText = item.ust;
+                  rDesc.innerText = item.ozet.substring(0, 80) + '...';
+                  rLink.href = item.url;
+                  
+                  container.style.opacity = '1';
+                }, 500);
+
+              }, 8000); 
+            });
+          </script>
         </div>
         <% } %>
-
-        <!-- Reklam Alanı (Sağ) -->
-        <div class="forum-ad-slot" style="background: var(--card-bg); border: 1px dashed rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; text-align: center; min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: 8px; right: 10px; font-size: 9px; color: rgba(255,255,255,0.15); text-transform: uppercase; letter-spacing: 1px;">Reklam</div>
-          <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(212,175,55,0.08); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); font-weight: 700;">AD</div>
-          <div style="font-size: 13px; font-weight: 600; color: var(--text-muted);">Reklam Alanı</div>
-          <div style="font-size: 10px; color: rgba(255,255,255,0.2);">280 × 140</div>
-        </div>
 
         <!-- Makale Önerisi -->
         <% if (sidebar && sidebar.makale) { %>
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 20px;">
-          <div style="font-size: 11px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Makale</div>
-          <div style="font-size: 14px; font-weight: 700; color: var(--foreground); margin-bottom: 6px;"><%= sidebar.makale.baslik.substring(0, 60) %><%= sidebar.makale.baslik.length > 60 ? '...' : '' %></div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;"><%= sidebar.makale.yazar %> · <%= sidebar.makale.okumaSuresi %></div>
-          <a href="/makaleler/<%= sidebar.makale.slug %>" style="display: inline-block; font-size: 11px; color: var(--gold-200); text-decoration: none; font-weight: 600;">Oku →</a>
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Makale</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--foreground); margin-bottom: 4px;"><%= sidebar.makale.baslik.substring(0, 50) %><%= sidebar.makale.baslik.length > 50 ? '...' : '' %></div>
+          <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 5px;"><%= sidebar.makale.yazar %> · <%= sidebar.makale.okumaSuresi %></div>
+          <a href="/makaleler/<%= sidebar.makale.slug %>" style="display: inline-block; font-size: 10px; color: var(--gold-200); text-decoration: none; font-weight: 600;">Oku →</a>
         </div>
         <% } %>
 

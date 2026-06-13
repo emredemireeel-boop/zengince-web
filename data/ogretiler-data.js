@@ -1489,25 +1489,121 @@ const OGRETILER = [
     kisa: 'Opsiyonellik, gelecekteki fırsatlardan yararlanabilme "hakkına" sahip olup, "zorunluluğuna" sahip olmamaktır. Esneklik, en büyük güçtür.',
     detay: `Kriz anlarında elinde nakit bulunduran (opsiyonu olan) kişi piyasanın kralı olurken, tüm parasını bağlamış (zorunlu) kişi iflas eder.`,
     icerik: `
-      <p class="lead" style="font-size:1.3rem; color:var(--text-300); margin-bottom:40px;">Efsanevi risk analisti ve yazar Nassim Nicholas Taleb'in "Antikırılganlık" konseptinin merkezinde Opsiyonellik (Optionality) yatar. Opsiyonellik, bir şeye sahip olmak zorunda kalmadan, işler iyi gittiğinde o şeyin faydalarından yararlanma hakkına sahip olmaktır.</p>
+      <p class="lead" style="font-size:1.3rem; color:var(--text-300); margin-bottom:40px;"><span class="dropcap">E</span>fsanevi risk analisti ve düşünür Nassim Nicholas Taleb'in <em>"Antikırılganlık"</em> (Antifragility) konseptinin merkezinde yatan, finans dünyasının ve hayatın en güçlü, ancak en az anlaşılan silahı: <strong>Opsiyonellik (Optionality)</strong>. Basit bir tabirle opsiyonellik; gelecekte karşınıza çıkacak potansiyel bir fırsattan veya durumdan faydalanma "hakkına" sahip olmak, ancak bunu yapmak "zorunda" kalmamaktır. Modern dünyada zenginliğin asıl ölçütü, banka hesabınızdaki sıfırların sayısı değil, hayatınızda sahip olduğunuz seçeneklerin, yani opsiyonların çokluğudur.</p>
 
-      <h2 style="color: var(--white); font-family: var(--font-display); font-size: 2rem; margin-top: 40px; margin-bottom: 20px;">Neden Nakit Çöptür, Ama Opsiyondur?</h2>
-      <p style="margin-bottom: 20px;">Finansal danışmanlar sık sık "Nakit çöptür, enflasyona erir" derler. Bu kısmen doğrudur, ancak nakit aynı zamanda <strong>en yüksek opsiyonelliğe sahip varlıktır.</strong> 2008 Küresel Krizi veya 2020 Pandemi çöküşü sırasında elinde hisse senedi veya gayrimenkul olan herkes kan ağlarken; elinde "Nakit Opsiyonu" olanlar (Buffett gibi) piyasadaki dev şirketleri %60 indirimle satın alarak tarihin en büyük servet transferini gerçekleştirdiler.</p>
+      <h2 style="color: var(--gold-200); font-family: var(--font-display); font-size: 2rem; margin-top: 50px; margin-bottom: 20px;">1. Zorunluluk Zindanı vs. Opsiyonellik Kalesi</h2>
+      <p style="margin-bottom: 20px;">Sıradan insan, hayatını "zorunluluklar" (Obligations) üzerine inşa eder. Toplumun ona dikte ettiği "başarı" modeli, aslında bir hapishane inşasıdır: 120 ay vadeli ve yüksek faizli bir mortgage kredisi çekilir (aynı şehirde, aynı evde kalma zorunluluğu). Sadece tek bir şirkette ve tek bir yazılım dilinde geçerli olan spesifik bir beceri edinilir (o şirkete ve o patrona katlanma zorunluluğu). Her ay ödenmesi gereken devasa kredi kartı ekstreleri, araba kredileri ve aidatlar yaratılır (her ayın 1'inde o maaşı almak <em>zorunda</em> olma hali).</p>
       
-      <p style="margin-bottom: 20px;">Eğer 10 yıllık, cayması çok pahalı bir ev kredisine (mortgage) girdiyseniz, hayatınızdaki tüm opsiyonelliği sıfırlamışsınız demektir. Şehrinizde iş kalmasa da ayrılamazsınız, maaşınız düşse de o işte kalmak "zorundasınızdır". Ancak esnek olan, likit olan ve borçsuz olan kişi, hayatın sunduğu yeni ve daha kârlı yollara (opsiyonlara) anında sapabilir.</p>
+      <p style="margin-bottom: 20px;"><strong>Matematiksel olarak zorunluluk, kırılganlıktır (Fragile).</strong> Eğer hayatınızda "kesinlikle" gerçekleşmesi gereken planlar varsa (işten atılmamak, şirketin batmaması, ekonominin bozulmaması), en ufak bir kara kuğu (Black Swan) olayı—örneğin bir ekonomik kriz, küresel bir virüs veya sektördeki bir yapay zeka devrimi—tüm kalenizi başınıza yıkar. Çünkü manevra yapacak alanınız (opsiyonunuz) yoktur.</p>
+      
+      <p style="margin-bottom: 30px;">Zengin zihniyet ise, parayı "Opsiyonellik" satın almak için kullanır. Likit nakit, dünyanın her yerinden internetle yapılabilen global yetenekler (yazılım, dijital pazarlama, metin yazarlığı) ve <strong>sıfır kişisel tüketici borcu</strong>! Patronunuz size haksızlık yaptığında veya ahlaki sınırlarınızı zorladığında, yüzüne karşı "Ben istifa ediyorum, yarın gelmiyorum" diyebilme lüksü, hayatın en saf, en paha biçilemez opsiyonelliğidir. Gerçek özgürlük, canınızın her istediğini yapabilmek değil; <em>canınızın istemediği hiçbir şeyi yapmaya mecbur kalmamaktır.</em></p>
 
-      <div class="article-alert" style="background: rgba(212,175,55,0.08); border-left: 4px solid var(--gold-300); padding: 24px; border-radius: 0 12px 12px 0; margin: 32px 0; color: var(--white); font-size: 1.05rem; line-height: 1.7;">
-        <strong>Partiye Girme Bileti:</strong> Opsiyonelliği yüksek tutmak bazen kısa vadede size para kaybettirebilir (nakdin enflasyona ezilmesi gibi). Ancak bunu finansal fırtınalar için ödenen bir "sigorta primi" olarak görün. Fırtına koptuğunda, o bilet sizi batan gemiden kurtarıp en lüks filikaya bindirecektir.
+      <div style="background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.2); padding: 30px; border-radius: 8px; margin-bottom: 50px; border-left: 5px solid #10b981;">
+        <h3 style="margin-top: 0; color: #10b981; font-size: 1.6rem; margin-bottom: 15px;">2. Finansal Bekleme Odası: Neden Nakit Çöp Değildir?</h3>
+        <p style="margin-bottom: 15px; color: var(--text-300);">Instagram'daki finansal gurular her zaman "Nakit çöptür, enflasyona erir, hemen bir varlığa bağlayın" der. Bu tavsiye kısmen doğrudur, enflasyon nakdin alım gücünü kemirir. Ancak nakit aynı zamanda evrendeki <strong>en yüksek opsiyonelliğe sahip varlıktır.</strong></p>
+        <p style="margin-bottom: 0; color: var(--text-300);">Piyasalar panikle çöktüğünde (%40-%50 düşüşler yaşandığında), elindeki tüm sermayeyi en tepeden gayrimenkule, kriptoya veya hisseye bağlamış yatırımcı "zorunludur". Zararına satamaz, yeni bir fırsat yakalayamaz. Elinde "Kuru Sıkı Nakit" (Dry Powder) bulunduran kişi ise, o devasa düşüşlerde, piyasadaki panikleyenlerin ellerinden en değerli şirketleri ve varlıkları yarı fiyatına <strong>alma hakkına (opsiyonuna)</strong> sahiptir. Warren Buffett 2008 krizinde on milyarlarca dolarlık nakdiyle piyasaya girdiğinde bu hakkı kullandı. Nakdinizin enflasyon karşısında eridiği o %5-%10'luk kısım, büyük bir kriz günü geldiğinde piyasanın şah damarını kesmek ve servetinizi 10'a katlamak için önceden ödediğiniz bir <strong>"Sigorta Primi"dir</strong>.</p>
       </div>
 
-      <h3 style="color: var(--gold-200); font-family: var(--font-display); font-size: 1.5rem; margin-top: 30px; margin-bottom: 15px;">Zorunluluktan Kaçış</h3>
-      <p style="margin-bottom: 20px;">Finansal bağımsızlık, aslında bir "Opsiyonellik Satın Alma" eylemidir. Zenginlik size özel jetler vermek zorunda değildir, ama size istediğiniz gün çalışmayı bırakma veya sevmediğiniz patrona "Hayır" deme opsiyonunu verir. Hayatınızdaki zorunlulukları (borçları, toksik sözleşmeleri) minimize edin, opsiyonları (nakit, likit varlıklar, taşınabilir beceriler) maksimize edin.</p>
+      <h2 style="color: var(--gold-200); font-family: var(--font-display); font-size: 2rem; margin-top: 50px; margin-bottom: 20px;">3. Kariyer ve Mekan Opsiyonelliği: Zincirleri Kırmak</h2>
+      <p style="margin-bottom: 20px;">Opsiyonellik sadece parayla ilgili değildir; hayatın her alanına entegre edilmesi gereken bir yaşam felsefesidir.</p>
+      
+      <ul style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 40px; padding-left: 20px;">
+        <li style="margin-bottom: 15px;"><strong style="color: #60a5fa;">Kariyer Opsiyonelliği (Halter Stratejisi):</strong> Tek bir sektöre bağlı kalmak ölümcüldür. Nassim Taleb buna Halter (Barbell) stratejisi der. Bir ucunda son derece sıkıcı, risksiz, maaşı düzenli bir işiniz olsun (Güvenlik). Ancak diğer ucunda, akşamları ve hafta sonları kendi yazılımınızı kodlayın, dijital bir iş kurun veya bir kitap yazın (Yüksek Opsiyon/Sınırsız Upside). Asla "orta riskli" tek bir alana hayatınızı gömmeyin.</li>
+        <li style="margin-bottom: 15px;"><strong style="color: #f472b6;">Mekansal (Coğrafi) Opsiyonellik:</strong> Fiziksel bir ofise her sabah gitmek zorunda olmak bir zindandır. Remote (uzaktan) çalışılabilen bir meslek seçmek, "Nerede yaşayacağım?" sorusunda size sonsuz opsiyonellik sağlar. Şehriniz pahalılaşıyorsa veya vergi oranları artıyorsa, çantanızı toplayıp Bali'ye, Karadağ'a veya daha uygun bir sahil kasabasına taşınma "hakkınız" olur. Eğer bir dükkan işletiyorsanız, lokasyonunuza mahkumsunuzdur.</li>
+        <li><strong style="color: #c084fc;">Sosyal Opsiyonellik:</strong> Farklı disiplinlerden, farklı ülkelerden, farklı sosyo-ekonomik sınıflardan geniş bir "Zayıf Bağlar" (Weak Ties) ağına sahip olmak. Yeni bir fırsat genelde yakın çevrenizden değil, bu zayıf bağlardan gelir. Ağınız ne kadar çeşitliyse, opsiyonlarınız o kadar fazladır.</li>
+      </ul>
+
+      <h2 style="color: var(--gold-200); font-family: var(--font-display); font-size: 2rem; margin-top: 50px; margin-bottom: 20px;">4. Asimetrik Risk: Kaybetmeyi Sınırlamak, Kazanmayı Sınırsız Yapmak</h2>
+      <p style="margin-bottom: 20px;">Opsiyonelliğin matematiği <strong>"Asimetrik Risk"</strong> üzerine kuruludur. Çoğu insan kumar oynar gibi tüm hayatını tek bir seçeneğe bağlar. Evini satar, kredi çeker ve bir restoran açar. Restoran tutmazsa batar, iflas eder, ailesi dağılır. Burada risk "Simetrik" hatta negatiftir. Kayıp limitsiz ve yıkıcı, kazanç potansiyeli ise (bir restoranın alabileceği müşteri sınırlı olduğu için) tavanlıdır.</p>
+      
+      <p style="margin-bottom: 30px;">Zengince opsiyonellik ise şudur: Kaybetme riskinizin (downside) son derece <strong>sınırlı</strong>, önemsiz ve yönetilebilir olduğu; ancak kazanma potansiyelinizin (upside) neredeyse <strong>sonsuz</strong> olduğu küçük bahisler almaktır. Örneğin; 1 ay boyunca akşamları 2 saat harcayarak bir dijital e-kitap yazıp satışa koymak. En kötü senaryoda ne olur? Hiç satmaz. Sadece akşam izleyeceğiniz 30 saatlik Netflix dizisini kaybetmiş olursunuz (Zararınız komiktir). En iyi senaryoda ne olur? E-kitap viral olur, Amazon'da best-seller listesine girer ve uyurken size 50.000 Dolar kazandırır (Kazanç sınırsızdır). Zenginler hayatlarını bu asimetrik bahisleri arka arkaya alarak kurarlar.</p>
+
+      <div class="article-alert" style="margin-top: 60px; background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(0,0,0,0.4) 100%); border-left: 4px solid var(--gold-400); border-radius: 8px;">
+        <h3 style="margin-top: 0; color: var(--gold-300);">Partiye Girme Bileti (The Ticket to the Party)</h3>
+        <p style="margin-bottom: 0;">Sürekli küçük, ucuz ve güvenli riskler alarak hayatın size "Şans" sunmasına izin verin. Yeni insanlarla tanışmak, blog açmak, yeni bir kodlama dili öğrenmek, erken aşamadaki fikirlere çok ufak melek yatırımlar yapmak... Bunlar sizin "opsiyon biletlerinizdir". Aldığınız biletlerin %90'ı hiçbir işe yaramayacaktır (sınırlı zarar), ancak içlerinden sadece biri tuttuğunda (Siyah Kuğu) tüm hayatınızı kökünden değiştirecektir. Opsiyonellik, şansın size çarpması için doğru kavşakta, elinizde biletle beklemektir.</p>
+      </div>
+
+      <!-- INTERACTIVE COMPONENT -->
+      <div class="interactive-game" style="margin-top: 70px; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 40px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);">
+        <h3 style="color: var(--gold-200); margin-top: 0; font-size: 1.8rem; margin-bottom: 15px; text-align: center;">🛡️ Hayatınızın Opsiyonellik & Kırılganlık Testi</h3>
+        <p style="color: var(--text-300); margin-bottom: 30px; font-size: 1.1rem; text-align: center;">Mevcut yaşamınız bir sarsıntı anında un ufak mı olacak, yoksa sarsıntıdan beslenerek daha da mı güçlenecek? Aşağıdaki faktörleri seçerek opsiyonellik kalkanınızı test edin.</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px;">
+          <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 3px solid var(--gold-500);">
+            <label style="display: block; color: var(--gold-400); margin-bottom: 10px; font-weight: bold;">1. Acil Durum Nakdiniz (Dry Powder / F-You Money)</label>
+            <select id="ops-cash" style="width: 100%; padding: 12px; background: #111; border: 1px solid var(--glass-border); color: white; border-radius: 8px; outline: none; font-size: 1rem; cursor: pointer;">
+              <option value="-15">Her ay eksiye düşüyorum, maaş yatmadan kredi kartı dönmüyor.</option>
+              <option value="-5">Neredeyse sıfır. İşsiz kalsam 1 ay sonra kirayı ödeyemem.</option>
+              <option value="15">En az 6 ay hiç çalışmadan aynı standartta yaşayacak nakdim var.</option>
+              <option value="30">3+ yıl yetecek, krizlerde şirket/hisse toplayacak 'Savaş Kasam' var.</option>
+            </select>
+          </div>
+          
+          <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 3px solid var(--gold-500);">
+            <label style="display: block; color: var(--gold-400); margin-bottom: 10px; font-weight: bold;">2. Gelir Yapınızın ve Kariyerinizin Esnekliği</label>
+            <select id="ops-income" style="width: 100%; padding: 12px; background: #111; border: 1px solid var(--glass-border); color: white; border-radius: 8px; outline: none; font-size: 1rem; cursor: pointer;">
+              <option value="-15">Fiziksel ofise bağlıyım, sektörel yeteneğim dar, tek patrona %100 mecburum.</option>
+              <option value="5">Maaşım var ama yeteneğim transfer edilebilir (Örn: Hemşire, Muhasebeci).</option>
+              <option value="20">Gelirim lokasyondan bağımsız, uzaktan çalışabiliyor ve döviz kazanabiliyorum.</option>
+              <option value="30">Asimetrik yeteneklerim ve dijital pasif gelir akışlarım var. Sistem bana çalışıyor.</option>
+            </select>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 3px solid var(--gold-500);">
+            <label style="display: block; color: var(--gold-400); margin-bottom: 10px; font-weight: bold;">3. Finansal/Fiziksel Borç ve Bağlılık Seviyeniz</label>
+            <select id="ops-debt" style="width: 100%; padding: 12px; background: #111; border: 1px solid var(--glass-border); color: white; border-radius: 8px; outline: none; font-size: 1rem; cursor: pointer;">
+              <option value="-20">Kapasitemin çok üstünde uzun vadeli ev/araç kredilerim var. Çiviliyim.</option>
+              <option value="-5">Kredi yok ama aidatlar, abonelikler ve statü harcamalarımla maaşı eritiyorum.</option>
+              <option value="15">Borcum sıfır, harcamalarım optimize. Ancak eşyam çok, taşınmam zor.</option>
+              <option value="30">Sıfır borç, minimal yaşam. Yarın 2 valizle dünyanın diğer ucunda yeni hayata başlarım.</option>
+            </select>
+          </div>
+        </div>
+        
+        <button onclick="window.hesaplaOpsiyonellik()" style="width: 100%; background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%); color: #000; border: none; padding: 18px; font-weight: 900; font-size: 1.25rem; border-radius: 8px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 2px;">
+          Kalkanımın Dayanıklılığını Ölç
+        </button>
+        
+        <div id="ops-sonuc" style="margin-top: 35px; font-size: 1.15rem; line-height: 1.6; padding: 25px; border-radius: 12px; display: none; text-align: center; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);"></div>
+
+        <script>
+          window.hesaplaOpsiyonellik = function() {
+            let p1 = parseInt(document.getElementById('ops-cash').value);
+            let p2 = parseInt(document.getElementById('ops-income').value);
+            let p3 = parseInt(document.getElementById('ops-debt').value);
+            let total = p1 + p2 + p3;
+            
+            let sonucDiv = document.getElementById('ops-sonuc');
+            sonucDiv.style.display = 'block';
+            sonucDiv.style.opacity = 0;
+            
+            setTimeout(() => {
+              sonucDiv.style.opacity = 1;
+              sonucDiv.style.transition = "opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+              
+              if(total < 0) {
+                sonucDiv.style.background = 'linear-gradient(135deg, rgba(239,68,68,0.1) 0%, rgba(153,27,27,0.3) 100%)';
+                sonucDiv.style.border = '2px solid #ef4444';
+                sonucDiv.innerHTML = "<h3 style='color:#fca5a5; margin-top:0; font-size: 1.8rem; font-family: var(--font-display);'>KIRILGAN (Skor: " + total + ") 🚨</h3><p style='color: #f87171;'>Hayatınız devasa bir Jenga kulesi gibi ve altından bir blok çekildiğinde hepsi çökecek. Kontrol sizde değil, sistemde. En ufak bir faiz artışı, hastalık veya işten çıkarma senaryosunda iflas edersiniz. Opsiyonsuzsunuz. Acilen tüketim orucuna girip, nakit kalkanı örmelisiniz.</p>";
+              } else if(total < 40) {
+                sonucDiv.style.background = 'linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(180,83,9,0.3) 100%)';
+                sonucDiv.style.border = '2px solid #f59e0b';
+                sonucDiv.innerHTML = "<h3 style='color:#fcd34d; margin-top:0; font-size: 1.8rem; font-family: var(--font-display);'>DAYANIKLI (Skor: " + total + ") ⚠️</h3><p style='color: #fbbf24;'>Kötü durumda değilsiniz, krizlerde hayatta kalabilirsiniz. Ancak henüz 'Antikırılgan' değilsiniz. Krizleri birer servet transferi fırsatına çevirecek cephaneniz eksik. Halterin riskli ucuna (asimetrik bahislere) biraz daha ağırlık verip, yeni beceriler eklemelisiniz.</p>";
+              } else {
+                sonucDiv.style.background = 'linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(6,95,70,0.3) 100%)';
+                sonucDiv.style.border = '2px solid #10b981';
+                sonucDiv.innerHTML = "<h3 style='color:#6ee7b7; margin-top:0; font-size: 1.8rem; font-family: var(--font-display);'>ANTİKIRILGAN (Skor: " + total + ") 🚀</h3><p style='color: #34d399;'>Mükemmel bir opsiyonellik ustasısınız. Sizin için krizler tehdit değil, ortalık kan gölüne dönerken piyasanın krallığını devralacağınız muazzam fırsatlardır. Hayatınızda 'Zorunda olmak' kavramı silinmiş. İstediğiniz an fişi çekip başka bir oyuna geçebilirsiniz. Tebrikler!</p>";
+              }
+            }, 100);
+          };
+        </script>
+      </div>
     `,
     altin_kural: 'Planlarınızın en az %30\'u hata payı ve esneklik (opsiyonellik) içermelidir.',
     rakamlar: [
-      { etiket: 'Nakit Gücü', deger: 'Piyasa Çöküşü Opsiyonu' },
+      { etiket: 'Nakit Gücü', deger: 'Kriz Opsiyonu' },
       { etiket: 'Esneklik', deger: 'Antikırılganlık' },
-      { etiket: 'Borç', deger: 'Sıfır Opsiyonellik' }
+      { etiket: 'Borç', deger: 'Zorunluluk (Sıfır Opsiyon)' }
     ]
   },
   {

@@ -7,8 +7,8 @@
   /* Premium Aesthetics for Forum Detail */
   .thread-hero {
     position: relative;
-    padding: 60px 0 40px;
-    background: linear-gradient(to bottom, rgba(20,20,20,0.95), var(--background));
+    padding: 80px 0 60px;
+    background: linear-gradient(180deg, rgba(15,15,15,0.95) 0%, var(--background) 100%);
     border-bottom: 1px solid rgba(212, 175, 55, 0.1);
     margin-bottom: 40px;
     overflow: hidden;
@@ -21,8 +21,17 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08), transparent 40%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.15), transparent 50%);
     pointer-events: none;
+    z-index: 0;
+  }
+
+  .thread-hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjEyLCAxNzUsIDU1LCAwLjA1KSIvPjwvc3ZnPg==') repeat;
+    opacity: 0.5;
     z-index: 0;
   }
 
@@ -32,40 +41,48 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 0 24px;
+    animation: fadeInDown 0.8s var(--ease-out);
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .breadcrumb {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 16px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 20px;
+    padding: 8px 18px;
+    background: rgba(20,20,20,0.6);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 100px;
     font-size: 13px;
     color: var(--text-muted);
     margin-bottom: 24px;
     backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   }
 
   .breadcrumb a {
-    color: var(--gold-200);
+    color: var(--gold-300);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s;
   }
 
   .breadcrumb a:hover {
-    color: #fff;
+    color: var(--gold-200);
   }
 
   .thread-title {
-    font-size: 36px;
-    font-weight: 900;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
     color: #fff;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
     text-shadow: 0 4px 20px rgba(0,0,0,0.5);
   }
 
@@ -81,19 +98,26 @@
     align-items: center;
     gap: 6px;
     padding: 6px 14px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 8px;
     font-size: 13px;
     font-weight: 600;
     color: var(--text-secondary);
     backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+
+  .meta-pill:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
   }
 
   .meta-pill.highlight {
     background: rgba(212, 175, 55, 0.1);
-    border-color: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.25);
     color: var(--gold-200);
+    box-shadow: 0 0 15px rgba(212,175,55,0.1);
   }
 
   .entry-container {
@@ -106,31 +130,46 @@
   }
 
   .premium-entry-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,0.03);
-    border-radius: 16px;
-    padding: 28px;
+    background: linear-gradient(145deg, rgba(30,30,30,0.6) 0%, rgba(15,15,15,0.8) 100%);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 20px;
+    padding: 32px;
     display: flex;
-    gap: 24px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    gap: 28px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s var(--ease-out) forwards;
   }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .premium-entry-card:nth-child(1) { animation-delay: 0.1s; }
+  .premium-entry-card:nth-child(2) { animation-delay: 0.2s; }
+  .premium-entry-card:nth-child(3) { animation-delay: 0.3s; }
+  .premium-entry-card:nth-child(4) { animation-delay: 0.4s; }
+  .premium-entry-card:nth-child(n+5) { animation-delay: 0.5s; }
 
   .premium-entry-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.4s;
   }
 
   .premium-entry-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    border-color: rgba(212, 175, 55, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.05);
+    border-color: rgba(212, 175, 55, 0.2);
   }
 
   .premium-entry-card:hover::before {
@@ -138,39 +177,45 @@
   }
 
   .entry-author-col {
-    width: 140px;
+    width: 130px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: 1px solid rgba(255,255,255,0.05);
-    padding-right: 24px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding-right: 28px;
   }
 
   .avatar-wrap {
-    width: 72px;
-    height: 72px;
+    width: 68px;
+    height: 68px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #2a2a2a, #111);
-    border: 2px solid rgba(212, 175, 55, 0.3);
+    background: linear-gradient(135deg, #1f1f1f, #0a0a0a);
+    border: 2px solid rgba(212, 175, 55, 0.4);
     color: var(--gold-200);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
-    font-weight: 900;
-    margin-bottom: 12px;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5), 0 4px 15px rgba(212, 175, 55, 0.15);
+    font-size: 26px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin-bottom: 16px;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.8), 0 4px 15px rgba(212, 175, 55, 0.2);
     position: relative;
+    transition: transform 0.3s var(--ease-spring);
   }
-  
+
+  .avatar-wrap:hover {
+    transform: scale(1.08);
+  }
+
   .avatar-wrap::after {
     content: '';
     position: absolute;
-    inset: -4px;
+    inset: -6px;
     border-radius: 50%;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    animation: spin 10s linear infinite;
+    border: 1px dashed rgba(212, 175, 55, 0.3);
+    animation: spin 15s linear infinite;
   }
 
   @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -179,26 +224,33 @@
     font-size: 15px;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     text-align: center;
     word-break: break-all;
+    transition: color 0.2s;
+  }
+
+  .username:hover {
+    color: var(--gold-300);
   }
 
   .user-badge {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 4px 10px;
-    border-radius: 12px;
+    letter-spacing: 0.8px;
+    padding: 5px 12px;
+    border-radius: 100px;
     background: rgba(255,255,255,0.05);
     color: var(--text-muted);
+    text-align: center;
   }
-  
+
   .user-badge.usta, .user-badge.efsane {
-    background: rgba(212, 175, 55, 0.15);
+    background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0.2) 100%);
+    border: 1px solid rgba(212,175,55,0.3);
     color: var(--gold-200);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
   }
 
   .entry-content-col {
@@ -209,8 +261,8 @@
 
   .entry-text {
     font-size: 16px;
-    color: #e2e8f0;
-    line-height: 1.7;
+    color: #e8e8e3;
+    line-height: 1.8;
     margin-bottom: 24px;
     white-space: pre-wrap;
     font-weight: 400;
@@ -221,8 +273,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 16px;
-    border-top: 1px dashed rgba(255,255,255,0.05);
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
 
   .action-time {
@@ -230,93 +282,175 @@
     color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .author-tag {
     font-size: 11px;
     font-weight: 700;
-    padding: 3px 8px;
-    background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), transparent);
+    padding: 4px 10px;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), transparent);
     color: var(--gold-200);
     border-radius: 4px;
-    border-left: 2px solid var(--gold-200);
+    border-left: 2px solid var(--gold-300);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .btn-action:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
   }
 
   .btn-upvote {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
+    padding: 8px 18px;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
+    border-radius: 100px;
     color: #fff;
     font-weight: 700;
     font-size: 14px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s var(--ease-spring);
   }
 
   .btn-upvote:hover {
     background: rgba(34, 197, 94, 0.1);
-    border-color: rgba(34, 197, 94, 0.3);
+    border-color: rgba(34, 197, 94, 0.4);
     color: #22c55e;
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(34,197,94,0.15);
   }
 
   .btn-upvote.active {
-    background: #22c55e;
-    color: #111;
-    border-color: #22c55e;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(34,197,94,0.3);
   }
 
   .reply-box {
-    background: rgba(20,20,20,0.8);
+    background: linear-gradient(145deg, rgba(25,25,25,0.9) 0%, rgba(15,15,15,0.95) 100%);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    margin-top: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .reply-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gradient-gold);
   }
 
   .reply-input {
     width: 100%;
-    min-height: 140px;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 20px;
+    min-height: 150px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px;
     color: #fff;
     font-size: 16px;
     font-family: inherit;
+    line-height: 1.6;
     resize: vertical;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    margin-bottom: 20px;
+    transition: all 0.3s;
+    margin-bottom: 24px;
   }
 
   .reply-input:focus {
     outline: none;
-    border-color: var(--gold-200);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    border-color: rgba(212,175,55,0.5);
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+  }
+
+  .poll-card {
+    background: linear-gradient(145deg, rgba(25,25,25,0.8) 0%, rgba(15,15,15,0.9) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .poll-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -50%;
+    width: 200px; height: 200px;
+    background: var(--gold-300);
+    filter: blur(100px);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .poll-option-bar {
+    width: 100%;
+    height: 44px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.3s;
+  }
+
+  .poll-option-bar:hover {
+    border-color: rgba(212,175,55,0.4);
+    transform: scale(1.01);
+  }
+
+  .poll-option-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.5) 0%, rgba(245, 208, 97, 0.2) 100%);
+    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (max-width: 768px) {
     .premium-entry-card {
       flex-direction: column;
-      padding: 20px;
-      gap: 16px;
+      padding: 24px;
+      gap: 20px;
     }
     .entry-author-col {
       width: 100%;
       border-right: none;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       padding-right: 0;
-      padding-bottom: 16px;
+      padding-bottom: 20px;
       flex-direction: row;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
     }
     .avatar-wrap {
       width: 56px;
@@ -326,9 +460,13 @@
     }
     .username {
       text-align: left;
+      margin-bottom: 4px;
     }
     .thread-title {
-      font-size: 28px;
+      font-size: 1.8rem;
+    }
+    .reply-box, .poll-card {
+      padding: 24px;
     }
   }
 </style>
@@ -357,8 +495,8 @@
         Son aktivite: <%= thread.lastActivity %>
       </span>
       <% if (thread.isHot) { %>
-        <span class="meta-pill" style="border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.1);">
-           Gündemde
+        <span class="meta-pill" style="border-color: rgba(239,68,68,0.5); color: #ef4444; background: rgba(239,68,68,0.1); box-shadow: 0 0 10px rgba(239,68,68,0.2);">
+           🔥 Gündemde
         </span>
       <% } %>
     </div>
@@ -369,28 +507,27 @@
   
   <!-- Anket Alanı -->
   <% if (thread.poll) { %>
-    <div style="background: rgba(20,20,20,0.8); backdrop-filter: blur(20px); border: 1px solid var(--gold-200); border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-      <h3 style="font-size: 18px; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-        <span style="font-size: 24px;"></span> Topluluk Anketi
+    <div class="poll-card">
+      <h3 style="font-family: var(--font-display); font-size: 22px; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; position: relative; z-index: 1;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"></path></svg>
+        Topluluk Anketi
       </h3>
-      <div id="poll-container">
+      <div id="poll-container" style="position: relative; z-index: 1;">
         <% thread.poll.options.forEach(opt => { 
              let percent = thread.poll.totalVotes > 0 ? Math.round((opt.votes / thread.poll.totalVotes) * 100) : 0;
         %>
-          <div style="margin-bottom: 12px; position: relative;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; font-weight: 600; color: #fff; position: relative; z-index: 1;">
+          <div style="margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; font-weight: 600; color: #fff;">
               <span><%= opt.text %></span>
-              <span><%= percent %>% (<%= opt.votes %> oy)</span>
+              <span style="color: var(--gold-200);"><%= percent %>% <span style="color: var(--text-muted); font-size: 12px; font-weight: 400; margin-left: 4px;">(<%= opt.votes %> oy)</span></span>
             </div>
-            <!-- Progress Bar BG -->
-            <div style="width: 100%; height: 36px; background: rgba(255,255,255,0.05); border-radius: 8px; position: relative; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);" onclick="votePoll('<%= thread.id %>', '<%= opt.id %>')">
-              <!-- Progress Fill -->
-              <div style="position: absolute; top: 0; left: 0; height: 100%; background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), rgba(212, 175, 55, 0.2)); width: <%= percent %>%; transition: width 0.5s ease;"></div>
+            <div class="poll-option-bar" onclick="votePoll('<%= thread.id %>', '<%= opt.id %>')">
+              <div class="poll-option-fill" style="width: <%= percent %>%;"></div>
             </div>
           </div>
         <% }); %>
       </div>
-      <div style="font-size: 12px; color: var(--text-muted); text-align: right; margin-top: 12px;">Toplam Oy: <%= thread.poll.totalVotes %></div>
+      <div style="font-size: 13px; color: var(--text-muted); text-align: right; margin-top: 16px; position: relative; z-index: 1;">Toplam Katılım: <strong style="color: #fff;"><%= thread.poll.totalVotes %></strong></div>
     </div>
   <% } %>
 
@@ -426,9 +563,11 @@
             
             <div style="display: flex; align-items: center; gap: 16px;">
               <button class="btn-upvote" onclick="upvoteEntry('<%= thread.id %>', '<%= entry.id %>', this)">
-                ▲ <span class="upvote-count"><%= entry.upvotes %></span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                <span class="upvote-count"><%= entry.upvotes %></span>
               </button>
-              <button class="btn-upvote" style="background: transparent; border-color: transparent;" onclick="document.getElementById('reply-area').scrollIntoView({behavior: 'smooth'})">
+              <button class="btn-action" onclick="document.getElementById('reply-area').scrollIntoView({behavior: 'smooth'})">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                 Yanıtla
               </button>
             </div>
@@ -437,31 +576,37 @@
       </div>
     <% }); %>
   <% } else { %>
-    <div id="empty-state" style="text-align: center; padding: 80px 20px; background: rgba(20,20,20,0.5); border-radius: 20px; border: 1px dashed rgba(255,255,255,0.1);">
-      <div style="font-size: 48px; margin-bottom: 24px; animation: float 3s ease-in-out infinite;"></div>
-      <h3 style="font-size: 24px; color: #fff; margin-bottom: 12px; font-weight: 800;">Henüz yanıt yok</h3>
-      <p style="color: var(--text-muted); margin-bottom: 32px; font-size: 16px;">Bu konu hakkında ilk fikri sen belirt ve tartışmayı başlat.</p>
+    <div id="empty-state" style="text-align: center; padding: 80px 20px; background: rgba(20,20,20,0.5); border-radius: 24px; border: 1px dashed rgba(212,175,55,0.2); backdrop-filter: blur(10px);">
+      <div style="font-size: 64px; margin-bottom: 24px; animation: float 3s ease-in-out infinite;">💭</div>
+      <h3 style="font-family: var(--font-display); font-size: 28px; color: #fff; margin-bottom: 12px; font-weight: 700;">Henüz yanıt yok</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 16px; max-width: 400px; margin-left: auto; margin-right: auto;">Bu konu hakkında ilk fikri sen belirt ve tartışmayı başlat. Bilgi paylaştıkça büyür.</p>
       <button class="btn btn-gold" onclick="document.getElementById('reply-area').scrollIntoView({behavior: 'smooth'})">İlk Yanıtı Yaz</button>
     </div>
   <% } %>
 
   <!-- Premium Reply Section -->
-  <div class="reply-box" id="reply-area" style="position: relative;">
-    <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-200);"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  <div class="reply-box" id="reply-area">
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-200);"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
       Tartışmaya Katıl
     </h3>
-    <textarea id="replyContent" class="reply-input" placeholder="Bu konu hakkında ne düşünüyorsunuz? Deneyimlerinizi paylaşın..."></textarea>
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <span style="font-size: 13px; color: var(--text-muted);">* Saygılı ve yapıcı bir dil kullanmaya özen gösterin.</span>
-      <button class="btn btn-gold" id="submitReplyBtn" style="padding: 12px 32px; font-size: 15px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);" onclick="submitReply('<%= thread.id %>')">Yanıtı Gönder</button>
+    <textarea id="replyContent" class="reply-input" placeholder="Bu konu hakkında ne düşünüyorsunuz? Deneyimlerinizi ve stratejilerinizi paylaşın..."></textarea>
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <span style="font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        Saygılı ve yapıcı bir dil kullanmaya özen gösterin.
+      </span>
+      <button class="btn btn-gold" id="submitReplyBtn" style="padding: 14px 36px; font-size: 15px;" onclick="submitReply('<%= thread.id %>')">Yanıtı Gönder</button>
     </div>
 
-    <div id="replyAuthOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20,20,20,0.85); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; border-radius: 16px; flex-direction: column; gap: 16px;">
-      <h4 style="color: #fff; font-size: 18px; font-weight: 700;">Yanıt yazmak için giriş yapmalısınız</h4>
-      <div style="display: flex; gap: 12px;">
+    <div id="replyAuthOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,15,15,0.85); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; flex-direction: column; gap: 20px; z-index: 10;">
+      <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: -10px;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--gold-200)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      </div>
+      <h4 style="font-family: var(--font-display); color: #fff; font-size: 24px; font-weight: 700; text-align: center;">Yanıt yazmak için giriş yapmalısınız</h4>
+      <div style="display: flex; gap: 16px;">
         <a href="/giris" class="btn btn-gold">Giriş Yap</a>
-        <a href="/kayit" class="btn" style="background: transparent; border: 1px solid var(--gold-200); color: var(--gold-200);">Kayıt Ol</a>
+        <a href="/kayit" class="btn btn-outline">Kayıt Ol</a>
       </div>
     </div>
   </div>

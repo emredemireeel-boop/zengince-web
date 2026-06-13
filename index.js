@@ -190,11 +190,16 @@ app.get('/forum', (req, res) => {
   };
   
   const randomAlinti = pick(ALINTILAR);
-  const randomKitap = pick(KITAPLAR);
   const randomGirisimci = pick(GIRISIMCILER);
   const randomAliskanlik = pick(ALISKANLIKLAR);
   const randomMakale = pick(MAKALELER);
   const randomSozluk = pick(SOZLUK_TERIMLERI);
+
+  // Rotator için Kitap, Film ve Belgeselleri topla
+  const randomKitaplar = pickN(KITAPLAR, 3).map(k => ({ type: 'Kitap Önerisi', typeColor: '#f59e0b', baslik: k.baslik, ust: `${k.yazar} · ${k.puan}/5`, ozet: k.ozet, url: `/kitaplar/${k.slug}` }));
+  const randomFilmler = pickN(FILMLER, 3).map(f => ({ type: 'Film Önerisi', typeColor: '#3b82f6', baslik: f.baslik, ust: `${f.yonetmen} · IMDb: ${f.imdb}`, ozet: f.ozet, url: `/filmler/${f.slug}` }));
+  const randomBelgeseller = pickN(BELGESELLER, 3).map(b => ({ type: 'Belgesel Önerisi', typeColor: '#10b981', baslik: b.baslik, ust: `${b.yonetmen} · IMDb: ${b.imdb}`, ozet: b.ozet, url: `/belgeseller/${b.slug}` }));
+  const rotatorItems = [...randomKitaplar, ...randomFilmler, ...randomBelgeseller].sort(() => 0.5 - Math.random());
   
   res.render('forum', {
     title: 'Zengince Forum — Finans, Borsa ve Yatırım Topluluğu',
@@ -218,11 +223,11 @@ app.get('/forum', (req, res) => {
     },
     sidebar: {
       alinti: randomAlinti,
-      kitap: randomKitap,
       girisimci: randomGirisimci,
       aliskanlik: randomAliskanlik,
       makale: randomMakale,
-      sozluk: randomSozluk
+      sozluk: randomSozluk,
+      rotatorItems: rotatorItems
     }
   });
 });
@@ -1009,6 +1014,14 @@ app.get('/fire-hesaplayici', (req, res) => {
   });
 });
 
+app.get('/temettu-hesaplayici', (req, res) => {
+  res.render('temettu-hesaplayici', {
+    title: 'Temettü Emekliliği Hesaplayıcısı — Finansal Özgürlük | Zengince',
+    desc: 'Sadece temettü gelirlerinizle finansal özgürlüğe ulaşıp maaşlı çalışmayı ne zaman bırakabileceğinizi detaylı grafiklerle hesaplayın.',
+    canonical: SITE_URL + '/temettu-hesaplayici'
+  });
+});
+
 // ── Sözlük ──────────────────────────────────────────────────────────────
 app.get('/sozluk', (req, res) => {
   res.render('sozluk', {
@@ -1097,6 +1110,7 @@ app.get('/sitemap.xml', (req, res) => {
     { loc: '/aliskanlik-maliyeti', priority: '0.7', changefreq: 'monthly' },
     { loc: '/sigara-alkol-hesaplayici', priority: '0.7', changefreq: 'monthly' },
     { loc: '/fire-hesaplayici', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/temettu-hesaplayici', priority: '0.9', changefreq: 'monthly' },
     { loc: '/hakkinda', priority: '0.5', changefreq: 'yearly' }
   ];
 

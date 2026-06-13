@@ -1,0 +1,494 @@
+<%- include('partials/header') %>
+
+<style>
+  .calculator-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(circle at top, rgba(212,175,55,0.15) 0%, transparent 70%);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  
+  .calculator-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .calculator-hero p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .calc-container {
+    max-width: 1000px;
+    margin: 0 auto 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .calc-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gradient-gold);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-wrapper span {
+    position: absolute;
+    left: 15px;
+    color: var(--gold-300);
+    font-weight: bold;
+  }
+
+  .input-wrapper span.suffix {
+    left: auto;
+    right: 15px;
+  }
+
+  .form-group input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    padding: 12px 15px 12px 35px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+
+  .form-group input.has-suffix {
+    padding-left: 15px;
+    padding-right: 35px;
+  }
+
+  .form-group input:focus {
+    border-color: var(--gold-300);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    outline: none;
+  }
+
+  /* Range Slider Styling */
+  .range-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .range-container input[type="range"] {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    height: 6px;
+    background: var(--border);
+    border-radius: 5px;
+    outline: none;
+    padding: 0;
+  }
+  
+  .range-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--gold-300);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    transition: transform 0.2s;
+  }
+
+  .range-container input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+
+  .range-val {
+    min-width: 50px;
+    text-align: right;
+    font-weight: bold;
+    color: var(--gold-200);
+  }
+
+  .btn-calc {
+    width: 100%;
+    padding: 14px;
+    background: var(--gradient-gold);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+
+  .btn-calc:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212,175,55,0.4);
+  }
+
+  .results-card {
+    background: rgba(212,175,55,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .result-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .result-header h2 {
+    color: var(--gold-200);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .freedom-date {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--foreground);
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+  }
+
+  .freedom-label {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .stat-box {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-title {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .stat-value {
+    color: var(--gold-300);
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  .progress-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .progress-bar {
+    height: 12px;
+    background: var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gradient-gold);
+    width: 0%;
+    transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+  }
+  
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .info-text {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .info-text a {
+    color: var(--gold-200);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .calc-container {
+      grid-template-columns: 1fr;
+    }
+    .freedom-date {
+      font-size: 2.8rem;
+    }
+  }
+</style>
+
+<div class="calculator-hero reveal">
+  <div class="container">
+    <h1>Temettü Emekliliği Hesaplayıcısı</h1>
+    <p>Sadece temettü (kâr payı) gelirlerinizle finansal özgürlüğe ulaşıp maaşlı çalışmayı ne zaman bırakabileceğinizi hesaplayın.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="calc-container">
+    <!-- Girdi Alanı -->
+    <div class="calc-card reveal">
+      <div class="form-group">
+        <label>Mevcut Portföy Büyüklüğü</label>
+        <div class="input-wrapper">
+          <span>₺</span>
+          <input type="number" id="currentPortfolio" value="50000">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Aylık Eklenecek Yatırım Tutarı</label>
+        <div class="input-wrapper">
+          <span>₺</span>
+          <input type="number" id="monthlyInvestment" value="10000">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Hedeflenen Aylık Pasif Gelir (Temettü)</label>
+        <div class="input-wrapper">
+          <span>₺</span>
+          <input type="number" id="targetIncome" value="50000">
+        </div>
+        <small style="color: var(--text-muted); display: block; margin-top: 5px;">Aylık masraflarınızı karşılayacak rakamı girin.</small>
+      </div>
+
+      <div class="form-group" style="margin-top: 30px;">
+        <label>Portföyün Yıllık Değer Artışı (%)</label>
+        <div class="range-container">
+          <input type="range" id="capitalGrowth" min="0" max="30" value="15" step="1" oninput="document.getElementById('cgVal').innerText = this.value + '%'">
+          <span class="range-val" id="cgVal">15%</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ortalama Temettü Verimi (%)</label>
+        <div class="range-container">
+          <input type="range" id="dividendYield" min="1" max="15" value="6" step="0.5" oninput="document.getElementById('dyVal').innerText = this.value + '%'">
+          <span class="range-val" id="dyVal">6%</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Temettülerin Yeniden Yatırımı</label>
+        <select id="reinvest" style="width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--foreground); padding: 12px; border-radius: 8px;">
+          <option value="yes" style="background: #121212">Evet, gelen temettülerle hisse alacağım (Bileşik Etki)</option>
+          <option value="no" style="background: #121212">Hayır, gelen temettüleri nakit olarak çekeceğim</option>
+        </select>
+      </div>
+
+      <button class="btn-calc" onclick="calculateDividend()">Finansal Özgürlüğümü Hesapla</button>
+    </div>
+
+    <!-- Sonuç Alanı -->
+    <div class="calc-card results-card reveal" style="transition-delay: 0.2s;">
+      <div class="result-header">
+        <h2>Özgürlük Zamanı</h2>
+        <div class="freedom-date" id="resYears">12 Yıl</div>
+        <div class="freedom-label" id="resMonths">5 Ay Sonra Özgürsünüz!</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-title">Gereken Portföy</div>
+          <div class="stat-value" id="resTargetPort">₺10.000.000</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-title">Sizin Toplam Yatırımınız</div>
+          <div class="stat-value" id="resTotalInvested">₺1.550.000</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-title">Toplam Temettü Geliri</div>
+          <div class="stat-value" id="resTotalDividends" style="color: var(--emerald);">₺2.450.000</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-title">Bileşik Getiri Kârı</div>
+          <div class="stat-value" id="resTotalGrowth" style="color: #3498DB;">₺6.000.000</div>
+        </div>
+      </div>
+
+      <div class="progress-container">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem;">
+          <span style="color: var(--text-secondary)">Mevcut: <span id="progCurrent" style="color: var(--foreground)">%0</span></span>
+          <span style="color: var(--gold-300)">Hedef: %100</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+      
+      <div class="info-text">
+        Bu hesaplama <a href="/sozluk/bilesik-getiri">Bileşik Getiri</a> ve <a href="/sozluk/temettu">Temettü</a> gücünü göstermek içindir. Enflasyon hesaba katılmamıştır (reel getiri üzerinden hesap yapmanız önerilir).
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function formatMoney(amount) {
+    return '₺' + amount.toLocaleString('tr-TR', { maximumFractionDigits: 0 });
+  }
+
+  function calculateDividend() {
+    let portfolio = parseFloat(document.getElementById('currentPortfolio').value) || 0;
+    const monthlyInvest = parseFloat(document.getElementById('monthlyInvestment').value) || 0;
+    const targetMonthlyIncome = parseFloat(document.getElementById('targetIncome').value) || 0;
+    const capitalGrowthRate = parseFloat(document.getElementById('capitalGrowth').value) / 100;
+    const dividendYield = parseFloat(document.getElementById('dividendYield').value) / 100;
+    const reinvest = document.getElementById('reinvest').value === 'yes';
+
+    // Hedef portföy büyüklüğü: Yıllık temettü = Hedef Aylık Gelir * 12
+    // Portföy * Temettü Verimi = Yıllık Temettü
+    // Portföy = (Hedef Aylık Gelir * 12) / Temettü Verimi
+    const targetPortfolio = (targetMonthlyIncome * 12) / dividendYield;
+
+    if(targetPortfolio <= 0) return;
+
+    let months = 0;
+    let totalInvested = portfolio;
+    let totalDividends = 0;
+    
+    // Eğer mevcut portföy zaten hedefi aşıyorsa
+    if(portfolio >= targetPortfolio) {
+      updateUI(0, targetPortfolio, portfolio, totalInvested, 0, portfolio - totalInvested);
+      return;
+    }
+
+    // Aylık simülasyon (Maximum 60 yıl = 720 ay sonsuz döngüyü önlemek için)
+    while(portfolio < targetPortfolio && months < 720) {
+      months++;
+      
+      // 1. Kendi aylık yatırımımız
+      portfolio += monthlyInvest;
+      totalInvested += monthlyInvest;
+
+      // 2. Sermaye büyümesi (Aylık)
+      const monthlyGrowth = portfolio * (capitalGrowthRate / 12);
+      portfolio += monthlyGrowth;
+
+      // 3. Temettü geliri (Aylık)
+      const monthlyDiv = portfolio * (dividendYield / 12);
+      totalDividends += monthlyDiv;
+      
+      if(reinvest) {
+        portfolio += monthlyDiv;
+      }
+    }
+
+    const totalGrowth = portfolio - totalInvested - (reinvest ? totalDividends : 0);
+    
+    updateUI(months, targetPortfolio, portfolio, totalInvested, totalDividends, totalGrowth);
+  }
+
+  function updateUI(totalMonths, targetPort, finalPort, totalInv, totalDiv, totalGrow) {
+    if(totalMonths >= 720) {
+      document.getElementById('resYears').innerText = "Çok Uzun!";
+      document.getElementById('resMonths').innerText = "Mevcut rakamlarla finansal özgürlük 60 yılı aşıyor. Aylık yatırımınızı artırmayı deneyin.";
+    } else {
+      const years = Math.floor(totalMonths / 12);
+      const months = totalMonths % 12;
+      document.getElementById('resYears').innerText = years > 0 ? `${years} Yıl` : `${months} Ay`;
+      document.getElementById('resMonths').innerText = years > 0 ? `${months} Ay Sonra Özgürsünüz!` : `Sonra Özgürsünüz!`;
+    }
+
+    document.getElementById('resTargetPort').innerText = formatMoney(targetPort);
+    document.getElementById('resTotalInvested').innerText = formatMoney(totalInv);
+    document.getElementById('resTotalDividends').innerText = formatMoney(totalDiv);
+    document.getElementById('resTotalGrowth').innerText = formatMoney(totalGrow);
+
+    // İlk girişte progress hesapla
+    let startPort = parseFloat(document.getElementById('currentPortfolio').value) || 0;
+    let progress = Math.min((startPort / targetPort) * 100, 100).toFixed(1);
+    
+    // Eğer süre bitmişse (hesaplama bittiyse) 100% göster, ama kullanıcının şuan nerede olduğunu da progress de göstersin
+    document.getElementById('progCurrent').innerText = `%${progress}`;
+    document.getElementById('progressBar').style.width = `${progress}%`;
+    
+    // Animasyonla doldur (Görsellik için)
+    setTimeout(() => {
+      document.getElementById('progressBar').style.width = `100%`;
+    }, 500);
+  }
+
+  // Sayfa yüklendiğinde bir kere hesapla
+  document.addEventListener('DOMContentLoaded', calculateDividend);
+
+  // Scroll Reveal Observer (Eğer globalde yoksa)
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+</script>
+
+<%- include('partials/footer') %>

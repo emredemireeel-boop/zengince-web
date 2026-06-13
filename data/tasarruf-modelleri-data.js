@@ -154,6 +154,48 @@ const TASARRUF_MODELLERI = [
     kimlerIcinUygun: "Excel tabloları tutmaktan nefret edenler, para harcarken sürekli suçluluk hissetmekten yorulanlar, yüksek geliri olanlar.",
     zenginlikDersi: "Sistemlerinizi ne kadar basitleştirir ve otomatikleştirirseniz, finansal hedeflere ulaşma ihtimaliniz o kadar artar. Mükemmel bir bütçe sürdürülemezse çöptür.",
     icon: "🤖"
+  },
+  {
+    slug: "gosteris-orucu",
+    baslik: "Gösteriş Orucu (Ego Detoksu)",
+    yazar: "Zengince Akademi",
+    kisaOzet: "Başkalarının 'vay be' demesi için harcanan her kuruşun 6 ay boyunca acımasızca kesildiği, radikal bir kapitalizm detoksu.",
+    dagilim: [
+      { yuzde: 100, isim: "Gösterişe Giden Tüm Parayı 'Özgürlük Fonuna' Çevir", renk: "#9B59B6" }
+    ],
+    nasilUygulanir: "Şu listeyi yapın: Sadece sosyal medyada paylaşmak veya ofistekilere 'statü' satmak için yaptığım harcamalar hangileri? Marka kahve, lüks tatil kredisi, pahalı kıyafetler. 6 ay boyunca bunları tamamen sıfırlayın. Bu harcamaların parasını 'Özgürlük Fonu' adında bir hisse/yatırım hesabına aktarın. 6 ay boyunca dışarıdan 'iflas etmiş' gibi görünün.",
+    ornekSenaryo: "Diyelim ki her hafta sonu sırf hikaye atmak için 3000 TL hesap ödediğiniz mekanlara gidiyorsunuz. Ayda 12.000 TL yapar. Arabanızın sırf logosu için aylık 20.000 TL kredi ödüyorsunuz. Bu modeli uyguladığınızda hafta sonu evde kalır, arabanızı standart bir modelle değiştirirsiniz. Ayda açığa çıkan 32.000 TL ile temettü hissesi alırsınız. 6 ayın sonunda kimse sizi alkışlamaz ama sizin hesabınızda devasa bir 'Savaş Kasası' oluşur.",
+    kimlerIcinUygun: "Sosyal medyadaki sahte hayatlardan bıkmış olanlar, çok kazanıp ay sonunu getiremeyen statü oyuncuları.",
+    zenginlikDersi: "Zenginlik, hiç tanımadığın insanların sana saygı duymasını beklemek değil, patronunun yüzüne 'Hayır' diyebilecek finansal güce sahip olmaktır.",
+    icon: "🧘‍♂️"
+  },
+  {
+    slug: "f-you-fund",
+    baslik: "Rest Çekme Fonu (F-You Money)",
+    yazar: "J.L. Collins",
+    kisaOzet: "Acil durum fonunun çok daha agresif, ofansif ve 'patrona rest çekebilme' garantisi veren psikolojik kalkan versiyonu.",
+    dagilim: [
+      { yuzde: 100, isim: "Rest Çekme Kasası (En Az 12 Aylık Gider)", renk: "#E74C3C" }
+    ],
+    nasilUygulanir: "Standart acil durum fonu buzdolabı bozulunca kullanılır. Rest Çekme Fonu ise ruhunuz bozulunca kullanılır. Hedefiniz, 12 aylık zorunlu yaşam giderinizi (kira, fatura, temel gıda) nakit veya hızlı nakde dönebilir şekilde (altın/döviz) biriktirmektir. Bu para ASLA tatile veya arabaya harcanmaz. Sadece özgürlüğünüz tehdit edildiğinde kilidi açılır.",
+    ornekSenaryo: "Aylık yaşamsal gideriniz 25.000 TL. Hedefiniz 300.000 TL biriktirmektir. Bu parayı bankaya koyduğunuz gün, işteki tavrınız değişir. Patronunuz sizi hafta sonu mesaisine zorladığında, içinizde zerre korku olmaz çünkü 'Kovulsam bile 1 yıl boyunca hayatım gram değişmez' rahatlığına sahipsinizdir. O para size faiz getirmez, size 'dik duruş' ve inanılmaz bir özgüven getirir.",
+    kimlerIcinUygun: "Mobbing altında çalışanlar, riskli girişimlerde bulunmak isteyenler, sürekli işten atılma korkusu yaşayanlar.",
+    zenginlikDersi: "Bankadaki nakit para sadece satın alma gücü değildir; en büyük getirisi size sağladığı korkusuzluk ve seçenek yaratma gücüdür.",
+    icon: "🔥"
+  },
+  {
+    slug: "sifir-harcama-gunleri",
+    baslik: "Sıfır Harcama Günleri (No-Spend Challenge)",
+    yazar: "Minimalist Finans",
+    kisaOzet: "Ayın belirli günlerinde para harcama kasını tamamen felç ederek, tüketim bağımlılığını şok tedavisiyle kesme yöntemi.",
+    dagilim: [
+      { yuzde: 100, isim: "Cüzdanın Kapalı Olduğu Günler (Harcama 0 TL)", renk: "#3498DB" }
+    ],
+    nasilUygulanir: "Takvimi açın ve ayın 10 gününü kırmızı kalemle işaretleyin. O günlerde kural mutlaktır: 1 bardak çay bile parayla satın alınamaz. Ulaşım kartı ve faturalar hariç cebinizden tek kuruş çıkmayacak. Yemeğinizi evden götürecek, dışarı çıkmayacak ve online alışveriş sitelerine girmeyeceksiniz. Kalan 20 gün normal yaşantınıza devam edebilirsiniz.",
+    ornekSenaryo: "Her gün dışarıdan sipariş veren ve internette boş boş gezinirken sürekli bir şeyler alan birisiniz. Çarşamba gününü 'Sıfır Harcama' günü ilan ettiniz. Ofiste herkes kahve sipariş ederken siz evden getirdiğiniz filtre kahveyi içersiniz. Öğlen yemeğinde dünden kalan yemeği yersiniz. Akşam eve dönerken canınız çok tatlı çeker ama kuralı bozamazsınız. Ertesi sabah uyandığınızda o tatlıyı almadığınız için ölmediğinizi, aksine iradenizin güçlendiğini ve cebinizde 400 TL ekstra kaldığını fark edersiniz.",
+    kimlerIcinUygun: "Dürtüsel (impulse) harcama hastaları, eline para geçtiği an bir yerlere saldıranlar, finansal iradesini güçlendirmek isteyenler.",
+    zenginlikDersi: "Para harcamak modern insanın en hızlı dopamin kaynağıdır. Tüketmemeye dayanabilmek, finansal kasların en çok zorlandığı ama en hızlı geliştiği antrenmandır.",
+    icon: "🛑"
   }
 ];
 

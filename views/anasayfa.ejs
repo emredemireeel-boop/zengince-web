@@ -1,150 +1,236 @@
 <%- include('partials/header') %>
 
 <style>
-  .hero-section {
-    position: relative;
-    padding: 100px 20px;
-    text-align: center;
-    overflow: hidden;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  /* Sayfa özel mikro-animasyonlar ve premium efektler */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--ease-out);
   }
-  .hero-bg {
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .home-features {
+    padding: var(--section-gap) 0;
+    position: relative;
+    background: var(--dark-800);
+  }
+
+  .home-features::before {
+    content: '';
     position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+  }
+
+  .premium-glow {
+    position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
     z-index: 0;
   }
-  .hero-content {
+
+  .feature-card-wrapper {
     position: relative;
     z-index: 1;
-    max-width: 800px;
   }
-  .hero-title {
-    font-size: 56px;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 24px;
-    color: #fff;
+
+  /* 3D Hover Efekti için Container */
+  .card-3d-container {
+    perspective: 1000px;
   }
-  .hero-title span {
-    color: var(--gold-300);
+
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
-  .hero-desc {
-    font-size: 20px;
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    line-height: 1.6;
+
+  .card-3d:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
   }
-  .hero-buttons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
+
+  /* Ekstra Altın Detaylar */
+  .gold-text {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .hero-btn {
-    padding: 16px 32px;
-    font-size: 18px;
-    font-weight: 800;
-    border-radius: 12px;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-  .hero-btn-primary {
-    background: linear-gradient(135deg, var(--gold-200), var(--gold-400));
-    color: #111;
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
-  }
-  .hero-btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
-  }
-  .hero-btn-secondary {
-    background: rgba(255,255,255,0.05);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-  }
-  .hero-btn-secondary:hover {
-    background: rgba(255,255,255,0.1);
-    transform: translateY(-3px);
-  }
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 80px;
-    width: 100%;
-    max-width: 1200px;
-  }
-  .feature-card {
-    background: rgba(20, 20, 20, 0.6);
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    padding: 32px;
-    border-radius: 20px;
-    text-align: left;
-    transition: transform 0.3s;
-    backdrop-filter: blur(10px);
-  }
-  .feature-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(212, 175, 55, 0.3);
-  }
-  .feature-icon {
-    font-size: 32px;
-    margin-bottom: 20px;
-    display: inline-block;
-    background: rgba(212, 175, 55, 0.1);
-    padding: 16px;
-    border-radius: 16px;
-    color: var(--gold-200);
-  }
-  .feature-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 12px;
-  }
-  .feature-desc {
-    color: var(--text-muted);
-    line-height: 1.5;
+
+  .stats-section {
+    padding: 60px 0;
+    background: var(--dark-700);
+    border-top: 1px solid rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.02);
   }
 </style>
 
-<div class="hero-section">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Finansal Özgürlüğe <br><span>İlk Adımınızı Atın</span></h1>
-    <p class="hero-desc">Borsa, yatırım stratejileri, zenginlik öğretileri ve binlerce yatırımcının deneyimlerini paylaştığı Türkiye'nin premium finans topluluğu.</p>
+<div class="hero">
+  <div class="hero-particles" id="particles-container">
+    <!-- JS ile particle eklenecek -->
+  </div>
+  
+  <div class="container hero-content">
+    <div class="hero-badge">
+      <span class="z-icon" style="width:20px;height:20px;font-size:0.8rem;margin-right:4px;">Z</span>
+      Türkiye'nin Premium Finans Topluluğu
+    </div>
     
-    <div class="hero-buttons">
-      <a href="/forum" class="hero-btn hero-btn-primary">Foruma Katıl</a>
-      <a href="/ogretiler" class="hero-btn hero-btn-secondary">Öğretileri Keşfet</a>
+    <h1 class="hero-title">
+      Finansal Özgürlüğe <br>
+      <span class="hero-gold">İlk Adımınızı Atın</span>
+    </h1>
+    
+    <p class="hero-subtitle">
+      Borsa, yatırım stratejileri, zenginlik öğretileri ve binlerce yatırımcının deneyimlerini paylaştığı elit ekosisteme katılın. Kendi finansal krallığınızı inşa etmeye bugün başlayın.
+    </p>
+    
+    <div class="hero-actions">
+      <a href="/forum" class="btn btn-gold">
+        Foruma Katıl
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px;"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+      <a href="/ogretiler" class="btn btn-outline">
+        Öğretileri Keşfet
+      </a>
     </div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">📈</div>
-        <h3 class="feature-title">Topluluk Odaklı Forum</h3>
-        <p class="feature-desc">Diğer yatırımcılarla fikir alışverişi yapın, stratejilerinizi tartışın ve yeni fırsatları ilk siz keşfedin.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-number">10K+</div>
+        <div class="hero-stat-label">Aktif Yatırımcı</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📚</div>
-        <h3 class="feature-title">Premium Kütüphane</h3>
-        <p class="feature-desc">Milyonerlerin zihin yapısını anlamak için özenle seçilmiş kitap, film ve belgesel arşivimize göz atın.</p>
+      <div class="hero-stat">
+        <div class="hero-stat-number">500+</div>
+        <div class="hero-stat-label">Premium İçerik</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🧮</div>
-        <h3 class="feature-title">Akıllı Hesaplayıcılar</h3>
-        <p class="feature-desc">Bileşik getiri, enflasyon, FIRE ve gerçek saatlik ücretinizi hesaplayarak hedeflerinize netlik kazandırın.</p>
+      <div class="hero-stat">
+        <div class="hero-stat-number">12</div>
+        <div class="hero-stat-label">Akıllı Hesaplayıcı</div>
       </div>
     </div>
   </div>
 </div>
+
+<section class="home-features">
+  <div class="premium-glow"></div>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">Platform Özellikleri</div>
+      <h2 class="section-title">Neden <span class="gold-text">Zengince</span>?</h2>
+      <p class="section-desc">Finansal okuryazarlığınızı zirveye taşımak için ihtiyacınız olan tüm araçlar, öğretiler ve vizyon tek bir platformda toplandı.</p>
+    </div>
+
+    <div class="grid-3 card-3d-container reveal">
+      <div class="card card-3d feature-card-wrapper">
+        <div class="card-icon">📈</div>
+        <h3 class="card-title">Stratejik Topluluk</h3>
+        <p class="card-text">Diğer yatırımcılarla fikir alışverişi yapın, derinlemesine analizleri inceleyin ve yeni piyasa fırsatlarını ilk siz keşfedin. Kaliteli bilgiye aracısız ulaşın.</p>
+      </div>
+
+      <div class="card card-3d feature-card-wrapper">
+        <div class="card-icon">🧠</div>
+        <h3 class="card-title">Milyoner Zihin Yapısı</h3>
+        <p class="card-text">Dünyanın en başarılı yatırımcılarının ve girişimcilerinin hayatlarını, kitaplarını ve felsefelerini incelediğimiz premium kütüphanemizle ufkunuzu genişletin.</p>
+      </div>
+
+      <div class="card card-3d feature-card-wrapper">
+        <div class="card-icon">🧮</div>
+        <h3 class="card-title">Akıllı Finans Araçları</h3>
+        <p class="card-text">Bileşik getiri, enflasyon tahribatı, finansal bağımsızlık (FIRE) ve gerçek saatlik ücretinizi hesaplayarak yatırımlarınıza matematiksel bir netlik kazandırın.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="grid-2" style="align-items: center; gap: 60px;">
+      <div class="reveal">
+        <h2 class="section-title">Finansal Geleceğinizi <br><span class="gold-text">Şansa Bırakmayın</span></h2>
+        <p class="section-desc" style="margin-bottom: 24px;">Zenginlik tesadüf değildir; doğru bilgi, disiplin ve zamanın birleşimidir. Zengince platformu, size sadece ne alıp satacağınızı değil, "nasıl düşüneceğinizi" öğretir.</p>
+        <ul style="margin-bottom: 32px; list-style: none; padding: 0;">
+          <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--text-primary);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Kanıtlanmış tasarruf ve yatırım modelleri
+          </li>
+          <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--text-primary);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Sermaye koruma ve risk yönetimi stratejileri
+          </li>
+          <li style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--text-primary);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Duygusal kontrol ve psikolojik dayanıklılık
+          </li>
+        </ul>
+        <a href="/kayit" class="btn btn-gold">Hemen Ücretsiz Katıl</a>
+      </div>
+      <div class="reveal" style="position: relative;">
+        <!-- Şık cam efektli kutu -->
+        <div style="background: var(--gradient-card); border: 1px solid rgba(212,175,55,0.2); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-gold); position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--gold-300); filter: blur(80px); opacity: 0.3;"></div>
+          <h3 style="font-family: var(--font-display); font-size: 2rem; color: var(--white); margin-bottom: 20px;">Bileşik Getirinin Gücü</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 30px; font-style: italic;">"Bileşik faiz dünyanın sekizinci harikasıdır. Onu anlayan kazanır, anlamayan bedelini öder." <br><br><span style="font-style: normal; color: var(--text-muted);">— Albert Einstein</span></p>
+          <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 20px; border: 1px solid rgba(255,255,255,0.05);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-primary);">
+              <span>Aylık Düzenli Yatırım:</span>
+              <span style="color: var(--gold-200); font-weight: bold;">5.000 ₺</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-primary);">
+              <span>Ort. Yıllık Getiri:</span>
+              <span style="color: var(--gold-200); font-weight: bold;">%45</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; margin-top: 10px; color: var(--text-primary);">
+              <span>10 Yıl Sonraki Toplam:</span>
+              <span style="color: var(--emerald); font-weight: bold; font-size: 1.2rem;">~17.5 Milyon ₺</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Reveal Animasyonu
+  document.addEventListener('DOMContentLoaded', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      const elementVisible = 100;
+      
+      reveals.forEach(reveal => {
+        const elementTop = reveal.getBoundingClientRect().top;
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add('active');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Sayfa yüklendiğinde kontrol et
+
+    // Particle efekti
+    const particlesContainer = document.getElementById('particles-container');
+    if(particlesContainer) {
+      for(let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'hero-particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = (Math.random() * 5) + 's';
+        particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+  });
+</script>
 
 <%- include('partials/footer') %>
