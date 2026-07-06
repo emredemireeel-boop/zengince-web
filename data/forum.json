@@ -339,10 +339,10 @@
       "title": "KYK borcu olan gençlere tavsiyeler",
       "category": "Tasarruf & Bütçe",
       "isHot": false,
-      "lastActivity": "1 gün önce",
-      "lastAuthor": "universite_mezunu",
+      "lastActivity": "Az önce",
+      "lastAuthor": "ED",
       "authorLevel": "Çaylak",
-      "entryCount": 22,
+      "entryCount": 23,
       "lastEntry": "Erken ödeme yaparsanız %20 indirim alıyorsunuz, bunu kaçırmayın.",
       "slugUrl": "/forum/f24",
       "viewCount": 380,
@@ -687,8 +687,17 @@
         "authorLevel": "Çaylak",
         "content": "Erken ödeme yaparsanız %20 indirim alıyorsunuz, bunu kaçırmayın.",
         "createdAt": "1 gün önce",
-        "upvotes": 14,
+        "upvotes": 15,
         "isThreadStarter": true
+      },
+      {
+        "id": "e1783363814059",
+        "authorUsername": "ED",
+        "authorLevel": "Çaylak",
+        "content": "yok be nerde o indirim",
+        "createdAt": "Az önce",
+        "upvotes": 1,
+        "isThreadStarter": false
       }
     ],
     "f25": [

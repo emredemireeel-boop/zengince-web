@@ -16,6 +16,19 @@
   --forum-card-shadow-hover: 0 16px 32px -4px rgba(212, 175, 55, 0.15), 0 8px 16px -4px rgba(212, 175, 55, 0.08);
 }
 
+/* Light Theme Forum Overrides */
+[data-theme="light"] {
+  --forum-card-bg: #FFFFFF;
+  --forum-card-border: #E2E8F0;
+  --forum-hover-primary: rgba(5, 150, 105, 0.1);
+  --forum-primary: #059669;
+  --forum-secondary: #F0F5F2;
+  --forum-foreground: #0F1A14;
+  --forum-text-muted: #7D8F85;
+  --forum-card-shadow: 0 2px 8px rgba(6, 78, 59, 0.06);
+  --forum-card-shadow-hover: 0 8px 24px rgba(5, 150, 105, 0.1), 0 4px 12px rgba(5, 150, 105, 0.06);
+}
+
 /* ── FOUC Prevention ── */
 /* Hero is hidden immediately via CSS when body has logged-in class */
 body.logged-in #hero {
@@ -28,6 +41,11 @@ body.logged-in #navbar {
   background: rgba(10, 10, 10, 0.95) !important;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] body.logged-in #navbar {
+  background: rgba(250, 252, 251, 0.95) !important;
+  border-bottom: 1px solid #E2E8F0 !important;
 }
 
 /* ── Topic Card ── */
@@ -167,12 +185,20 @@ body.logged-in #navbar {
   background: rgba(212, 175, 55, 0.05);
   transform: translateY(-1px);
 }
+[data-theme="light"] .forum-pagination a:hover {
+  background: rgba(5, 150, 105, 0.05);
+}
 .forum-pagination .page-current {
   background: linear-gradient(135deg, var(--forum-primary), #c9a02c);
   color: #111;
   font-weight: 800;
   border: none;
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+[data-theme="light"] .forum-pagination .page-current {
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
 }
 .forum-pagination .page-dots {
   color: var(--forum-text-muted);
@@ -207,6 +233,129 @@ body.logged-in #navbar {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(212, 175, 55, 0.4);
+}
+
+[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(5, 150, 105, 0.15);
+}
+[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(5, 150, 105, 0.3);
+}
+
+/* ── Sidebar Widget Styles ── */
+.sidebar-sozluk-widget {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+[data-theme="light"] .sidebar-sozluk-widget {
+  background: linear-gradient(135deg, rgba(5,150,105,0.06) 0%, #FFFFFF 100%);
+  border-color: rgba(5,150,105,0.15);
+}
+
+.sidebar-widget-badge {
+  display: inline-block;
+  padding: 3px 6px;
+  background: var(--gold-200);
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+[data-theme="light"] .sidebar-widget-badge {
+  background: #059669;
+  color: #FFFFFF;
+}
+
+.sidebar-widget-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+[data-theme="light"] .sidebar-widget-title {
+  color: #0F1A14;
+}
+
+.sidebar-widget-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+[data-theme="light"] .sidebar-widget-desc {
+  color: #7D8F85;
+}
+
+.sidebar-widget-link {
+  display: inline-block;
+  padding: 5px 10px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sidebar-widget-link:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+[data-theme="light"] .sidebar-widget-link {
+  background: rgba(5,150,105,0.08);
+  color: #059669;
+}
+
+[data-theme="light"] .sidebar-widget-link:hover {
+  background: rgba(5,150,105,0.15);
+}
+
+/* Widget label (type badges) — all green in light mode */
+.sidebar-widget-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold-200);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+[data-theme="light"] .sidebar-widget-label {
+  color: #059669 !important;
+}
+
+/* Girişimci avatar circle */
+.sidebar-avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-200), var(--gold-400));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .sidebar-avatar-circle {
+  background: linear-gradient(135deg, #10B981, #059669);
+}
+
+/* Leader avatar purple → green in light mode */
+[data-theme="light"] .forum-right-sidebar div[style*="background: #a855f7"],
+[data-theme="light"] .forum-right-sidebar div[style*="background: #22c55e"] {
+  /* These can't be overridden with CSS due to inline styles specificity,
+     but the new class-based approach handles all new widgets */
 }
 
 /* ══════════════════════════════════════════════════════════════════════

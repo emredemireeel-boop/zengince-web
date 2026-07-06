@@ -7,6 +7,35 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ── Theme Toggle (Dark/Light Mode) ────────────────────────────────────
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+
+      // Enable smooth transition
+      html.classList.add('theme-transition');
+
+      // Apply theme
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('zengince_theme', next);
+
+      // Remove transition class after animation completes
+      setTimeout(() => {
+        html.classList.remove('theme-transition');
+      }, 400);
+    });
+  }
+
+  // Enable transitions after initial paint (prevents FOUC flash)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      // Transitions are now safe to use
+    });
+  });
+
   // ── Navbar Scroll Effect ──────────────────────────────────────────────
   const navbar = document.querySelector('.navbar');
   if (navbar) {

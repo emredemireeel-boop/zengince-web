@@ -255,11 +255,11 @@
         
         <!-- Sözlük İpucu (Dinamik) -->
         <% if (sidebar && sidebar.sozluk) { %>
-        <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 12px;">
-          <div style="display: inline-block; padding: 3px 6px; background: var(--gold-200); color: #000; font-size: 10px; font-weight: 800; border-radius: 4px; margin-bottom: 8px;">SÖZLÜK</div>
-          <h3 style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;"><%= sidebar.sozluk.terim %></h3>
-          <p style="font-size: 11px; color: rgba(255,255,255,0.7); margin-bottom: 8px; line-height: 1.4;"><%= sidebar.sozluk.kisaTanim.substring(0, 90) %>...</p>
-          <a href="/sozluk/<%= sidebar.sozluk.slug %>" style="display: inline-block; padding: 5px 10px; background: rgba(255,255,255,0.1); color: #fff; font-size: 11px; font-weight: 600; border-radius: 6px; text-decoration: none;">Sözlükte Oku →</a>
+        <div class="sidebar-sozluk-widget">
+          <div class="sidebar-widget-badge">SÖZLÜK</div>
+          <h3 class="sidebar-widget-title"><%= sidebar.sozluk.terim %></h3>
+          <p class="sidebar-widget-desc"><%= sidebar.sozluk.kisaTanim.substring(0, 90) %>...</p>
+          <a href="/sozluk/<%= sidebar.sozluk.slug %>" class="sidebar-widget-link">Sözlükte Oku →</a>
         </div>
         <% } %>
 
@@ -293,9 +293,9 @@
         <!-- Usta Girişimci -->
         <% if (sidebar && sidebar.girisimci) { %>
         <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px;">
-          <div style="font-size: 10px; font-weight: 700; color: #a855f7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Usta Girişimci</div>
+          <div class="sidebar-widget-label">Usta Girişimci</div>
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #6d28d9); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; flex-shrink: 0;"><%= sidebar.girisimci.isim.charAt(0) %></div>
+            <div class="sidebar-avatar-circle"><%= sidebar.girisimci.isim.charAt(0) %></div>
             <div>
               <div style="font-size: 13px; font-weight: 700; color: var(--foreground);"><%= sidebar.girisimci.isim %></div>
               <div style="font-size: 10px; color: var(--text-muted);"><%= sidebar.girisimci.unvan.substring(0, 35) %></div>
@@ -309,7 +309,7 @@
         <!-- Kitap/Film/Belgesel Önerisi Rotator -->
         <% if (sidebar && sidebar.rotatorItems && sidebar.rotatorItems.length > 0) { %>
         <div id="rotator-container" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px; transition: opacity 0.5s ease;">
-          <div id="rotator-type" style="font-size: 10px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;"><%= sidebar.rotatorItems[0].type %></div>
+          <div id="rotator-type" class="sidebar-widget-label"><%= sidebar.rotatorItems[0].type %></div>
           <div id="rotator-title" style="font-size: 13px; font-weight: 700; color: var(--foreground); margin-bottom: 3px;"><%= sidebar.rotatorItems[0].baslik %></div>
           <div id="rotator-meta" style="font-size: 11px; color: var(--gold-200); margin-bottom: 5px;"><%= sidebar.rotatorItems[0].ust %></div>
           <p id="rotator-desc" style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 6px; height: 44px; overflow: hidden;"><%= sidebar.rotatorItems[0].ozet.substring(0, 80) %>...</p>
@@ -338,7 +338,7 @@
                   const item = items[idx];
                   
                   rType.innerText = item.type;
-                  rType.style.color = item.typeColor;
+                  // Color handled by CSS class .sidebar-widget-label (theme-aware)
                   rTitle.innerText = item.baslik;
                   rMeta.innerText = item.ust;
                   rDesc.innerText = item.ozet.substring(0, 80) + '...';
@@ -356,7 +356,7 @@
         <!-- Makale Önerisi -->
         <% if (sidebar && sidebar.makale) { %>
         <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px;">
-          <div style="font-size: 10px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Makale</div>
+          <div class="sidebar-widget-label">Makale</div>
           <div style="font-size: 13px; font-weight: 700; color: var(--foreground); margin-bottom: 4px;"><%= sidebar.makale.baslik.substring(0, 50) %><%= sidebar.makale.baslik.length > 50 ? '...' : '' %></div>
           <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 5px;"><%= sidebar.makale.yazar %> · <%= sidebar.makale.okumaSuresi %></div>
           <a href="/makaleler/<%= sidebar.makale.slug %>" style="display: inline-block; font-size: 10px; color: var(--gold-200); text-decoration: none; font-weight: 600;">Oku →</a>

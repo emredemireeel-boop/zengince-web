@@ -90,6 +90,23 @@
     }
     .z-toast.success { border-color: #22c55e; }
     .z-toast.error { border-color: #ef4444; }
+
+    /* Light mode toast */
+    [data-theme="light"] .z-toast {
+      background: rgba(255, 255, 255, 0.95);
+      color: #0F1A14;
+      border-left-color: #059669;
+      box-shadow: 0 10px 30px rgba(6,78,59,0.12);
+    }
+    [data-theme="light"] .z-toast.success { border-color: #22c55e; }
+    [data-theme="light"] .z-toast.error { border-color: #ef4444; }
+
+    /* Light mode footer disclaimer */
+    [data-theme="light"] .footer-disclaimer {
+      background: rgba(255,255,255,0.06) !important;
+      border-color: rgba(255,255,255,0.1) !important;
+      color: rgba(255,255,255,0.55) !important;
+    }
   </style>
 
   <script>

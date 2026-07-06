@@ -86,6 +86,401 @@
   --transition-fast: 0.2s var(--ease-out);
   --transition-normal: 0.4s var(--ease-out);
   --transition-slow: 0.6s var(--ease-out);
+
+  /* ── Dollar Green Corporate Palette ── */
+  --green-50: #ECFDF3;
+  --green-100: #D1FAE5;
+  --green-200: #A7F3D0;
+  --green-300: #6EE7B7;
+  --green-400: #34D399;
+  --green-500: #10B981;
+  --green-600: #059669;
+  --green-700: #047857;
+  --green-800: #065F46;
+  --green-900: #064E3B;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME — Dollar Green × White Corporate
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── FOUC Prevention ── */
+html:not([data-theme]) { visibility: hidden; }
+html[data-theme] { visibility: visible; }
+
+/* ── Theme Transition (enabled via JS after page load) ── */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.35s ease,
+              color 0.35s ease,
+              border-color 0.35s ease,
+              box-shadow 0.35s ease,
+              fill 0.35s ease,
+              stroke 0.35s ease !important;
+  transition-delay: 0s !important;
+}
+
+/* ── Light Theme Variable Overrides ─────────────────────────────────────── */
+[data-theme="light"] {
+  /* Core */
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+  --top-bar-bg: #FFFFFF;
+  --foreground: #0F1A14;
+  --background: #FAFCFB;
+
+  /* Gold → Green mapping */
+  --gold-100: #ECFDF3;
+  --gold-200: #34D399;
+  --gold-300: #059669;
+  --gold-400: #047857;
+  --gold-500: #065F46;
+  --gold-600: #064E3B;
+
+  /* Dark → Light mapping */
+  --dark-900: #F0F5F2;
+  --dark-800: #FAFCFB;
+  --dark-700: #F0F5F2;
+  --dark-600: #E8F0EC;
+  --dark-500: #E2E8F0;
+  --dark-400: #D1D9E0;
+  --dark-300: #CBD5E1;
+  --dark-200: #94A3B8;
+  --dark-100: #64748B;
+
+  /* Text */
+  --white: #0F1A14;
+  --white-pure: #FFFFFF;
+  --text-primary: #0F1A14;
+  --text-secondary: #475B52;
+  --text-muted: #7D8F85;
+
+  /* Gradients */
+  --gradient-gold: linear-gradient(135deg, #34D399 0%, #059669 50%, #047857 100%);
+  --gradient-gold-subtle: linear-gradient(135deg, rgba(5,150,105,0.1) 0%, rgba(16,185,129,0.03) 100%);
+  --gradient-dark: linear-gradient(180deg, #FAFCFB 0%, #F0F5F2 100%);
+  --gradient-hero: linear-gradient(135deg, #FAFCFB 0%, #ECF5EF 50%, #FAFCFB 100%);
+  --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #F7FBF9 100%);
+
+  /* Glass */
+  --glass-bg: rgba(255,255,255,0.7);
+  --glass-border: rgba(5,150,105,0.15);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(6,78,59,0.05), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(6,78,59,0.07);
+  --shadow-lg: 0 8px 30px rgba(6,78,59,0.1);
+  --shadow-gold: 0 4px 20px rgba(5,150,105,0.12);
+  --shadow-glow: 0 0 20px rgba(5,150,105,0.08);
+}
+
+/* ── Light Mode Component Overrides ─────────────────────────────────────── */
+
+/* Navbar */
+[data-theme="light"] .navbar.scrolled {
+  background: rgba(250,252,251,0.92);
+  border-bottom-color: #E2E8F0;
+}
+
+[data-theme="light"] .navbar-toggle span {
+  background: #0F1A14;
+}
+
+@media (max-width: 768px) {
+  [data-theme="light"] .navbar-nav {
+    background: rgba(250,252,251,0.98);
+    border-left-color: #E2E8F0;
+  }
+}
+
+/* Dropdown */
+[data-theme="light"] .nav-dropdown-content {
+  background-color: #FFFFFF;
+  box-shadow: 0 8px 30px rgba(6,78,59,0.1);
+}
+
+[data-theme="light"] .nav-dropdown-content::before {
+  background-color: #FFFFFF;
+  border-top-color: #E2E8F0;
+  border-left-color: #E2E8F0;
+}
+
+[data-theme="light"] .nav-dropdown-content a {
+  color: #475B52;
+}
+
+[data-theme="light"] .nav-dropdown-content a:hover {
+  background-color: #ECFDF3;
+  color: #059669;
+}
+
+/* Hero */
+[data-theme="light"] .hero::before {
+  background: radial-gradient(ellipse at 30% 50%, rgba(5,150,105,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(16,185,129,0.04) 0%, transparent 60%);
+}
+
+[data-theme="light"] .hero-particle {
+  background: var(--green-600);
+}
+
+[data-theme="light"] .hero-badge {
+  background: rgba(5,150,105,0.08);
+  border-color: rgba(5,150,105,0.15);
+}
+
+/* Buttons */
+[data-theme="light"] .btn-gold {
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .btn-gold:hover {
+  color: #FFFFFF;
+  box-shadow: 0 8px 30px rgba(5,150,105,0.3);
+}
+
+[data-theme="light"] .btn-outline {
+  border-color: #E2E8F0;
+}
+
+[data-theme="light"] .btn-outline:hover {
+  background: #ECFDF3;
+}
+
+/* Cards — All types: borders and shadows */
+[data-theme="light"] .card,
+[data-theme="light"] .book-card,
+[data-theme="light"] .film-card,
+[data-theme="light"] .quote-card,
+[data-theme="light"] .teaching-card,
+[data-theme="light"] .habit-card,
+[data-theme="light"] .featured-card,
+[data-theme="light"] .about-value-card {
+  border-color: #E2E8F0;
+  box-shadow: 0 1px 3px rgba(6,78,59,0.05), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+[data-theme="light"] .card:hover,
+[data-theme="light"] .book-card:hover,
+[data-theme="light"] .film-card:hover,
+[data-theme="light"] .quote-card:hover,
+[data-theme="light"] .habit-card:hover,
+[data-theme="light"] .featured-card:hover,
+[data-theme="light"] .about-value-card:hover {
+  border-color: rgba(5,150,105,0.25);
+  box-shadow: 0 4px 20px rgba(5,150,105,0.12);
+}
+
+/* Card inner elements */
+[data-theme="light"] .book-card-cover::before {
+  background: linear-gradient(135deg, rgba(5,150,105,0.06) 0%, rgba(250,252,251,0.7) 100%);
+}
+
+[data-theme="light"] .book-card-footer {
+  border-top-color: #E2E8F0;
+}
+
+[data-theme="light"] .film-card-poster {
+  background: linear-gradient(135deg, #E8F0EC 0%, #D1FAE5 100%);
+}
+
+[data-theme="light"] .film-card-imdb {
+  background: rgba(5,150,105,0.1);
+}
+
+[data-theme="light"] .quote-card::before {
+  color: var(--green-500);
+}
+
+[data-theme="light"] .teaching-card-detail {
+  background: rgba(5,150,105,0.04);
+  border-left-color: var(--green-600);
+}
+
+[data-theme="light"] .teaching-card-golden {
+  background: rgba(5,150,105,0.05);
+  border-color: rgba(5,150,105,0.12);
+}
+
+[data-theme="light"] .teaching-card-stat {
+  background: rgba(5,150,105,0.04);
+}
+
+[data-theme="light"] .teaching-card-toggle {
+  border-color: #E2E8F0;
+}
+
+[data-theme="light"] .teaching-card-toggle:hover {
+  border-color: var(--green-600);
+}
+
+[data-theme="light"] .habit-card-stat {
+  background: rgba(5,150,105,0.05);
+  border-left-color: var(--green-600);
+}
+
+/* Filter buttons */
+[data-theme="light"] .filter-btn {
+  background: #FFFFFF;
+  border-color: #E2E8F0;
+}
+
+[data-theme="light"] .filter-btn:hover {
+  border-color: rgba(5,150,105,0.3);
+}
+
+[data-theme="light"] .filter-btn.active {
+  color: #FFFFFF;
+}
+
+/* Featured card */
+[data-theme="light"] .featured-card-visual {
+  background: linear-gradient(135deg, rgba(5,150,105,0.05) 0%, #F0F5F2 100%);
+}
+
+[data-theme="light"] .featured-card-visual::after {
+  background: radial-gradient(circle at center, rgba(5,150,105,0.06), transparent 70%);
+}
+
+/* Carousel */
+[data-theme="light"] .quote-carousel-dot {
+  background: #E2E8F0;
+}
+
+/* CTA Section */
+[data-theme="light"] .cta-section {
+  background: linear-gradient(135deg, rgba(5,150,105,0.03) 0%, var(--background) 50%, rgba(5,150,105,0.02) 100%);
+}
+
+[data-theme="light"] .cta-section::before {
+  background: linear-gradient(90deg, transparent, var(--green-500), transparent);
+}
+
+/* Page Header */
+[data-theme="light"] .page-header::after {
+  background: linear-gradient(90deg, transparent, rgba(5,150,105,0.15), transparent);
+}
+
+/* CSS Book/Movie covers — keep visually contrasted */
+[data-theme="light"] .css-book-cover {
+  background: linear-gradient(135deg, var(--green-600) 0%, #064E3B 100%);
+}
+
+/* Footer — dark green bg in light mode */
+[data-theme="light"] .footer {
+  background: #064E3B;
+  border-top-color: rgba(255,255,255,0.08);
+}
+
+[data-theme="light"] .footer-brand,
+[data-theme="light"] .footer-title {
+  color: #D1FAE5;
+}
+
+[data-theme="light"] .footer-desc {
+  color: rgba(255,255,255,0.6);
+}
+
+[data-theme="light"] .footer-links a {
+  color: rgba(255,255,255,0.55);
+}
+
+[data-theme="light"] .footer-links a:hover {
+  color: #6EE7B7;
+}
+
+[data-theme="light"] .footer-copy {
+  color: rgba(255,255,255,0.45);
+}
+
+[data-theme="light"] .footer-bottom {
+  border-top-color: rgba(255,255,255,0.1);
+}
+
+[data-theme="light"] .footer-social a {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+}
+
+[data-theme="light"] .footer-social a:hover {
+  border-color: #6EE7B7;
+  color: #6EE7B7;
+  background: rgba(110,231,183,0.12);
+}
+
+/* ── Theme Toggle Button ─────────────────────────────────────────────── */
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border-radius: 100px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+  outline: none;
+}
+
+.theme-toggle:hover {
+  border-color: rgba(255,255,255,0.25);
+}
+
+[data-theme="light"] .theme-toggle {
+  background: #D1FAE5;
+  border-color: rgba(5,150,105,0.25);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  border-color: rgba(5,150,105,0.4);
+}
+
+.theme-toggle-knob {
+  position: absolute;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #F5D061;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+[data-theme="light"] .theme-toggle-knob {
+  left: calc(100% - 23px);
+  background: #059669;
+  box-shadow: 0 1px 4px rgba(5,150,105,0.3);
+}
+
+.toggle-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.toggle-icon .icon-moon {
+  color: #1a1a1a;
+}
+
+.toggle-icon .icon-sun {
+  color: #FFFFFF;
+  display: none;
+}
+
+[data-theme="light"] .toggle-icon .icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .toggle-icon .icon-sun {
+  display: block;
 }
 
 /* ── Reset & Base ──────────────────────────────────────────────────────── */
@@ -105,7 +500,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--dark-800);
+  background: var(--background);
   color: var(--text-primary);
   font-size: 16px;
   line-height: 1.75;
