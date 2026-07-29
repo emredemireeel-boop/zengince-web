@@ -102,6 +102,13 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Her içerik sayfası varsayılan olarak kendi temiz URL'sini kanonik adres kabul eder.
+// Rota özelinde verilen canonical değeri bu varsayılanı geçersiz kılar.
+app.use((req, res, next) => {
+  res.locals.canonical = `${SITE_URL}${req.path === '/' ? '' : req.path}`;
+  next();
+});
+
 // Production'da EJS view cache aktif et
 if (process.env.NODE_ENV === 'production') {
   app.enable('view cache');
