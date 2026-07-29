@@ -52,6 +52,9 @@
           <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
             💡 Neden Dinlemeli: <%= p.nedenDinle %>
           </p>
+          <a href="/podcastler/<%= p.slug %>" aria-label="<%= p.baslik %> podcast ayrıntılarını oku" style="display: inline-flex; margin-top: 18px; color: var(--gold-200); font-weight: 700; text-decoration: none;">
+            Ayrıntıları Oku <span aria-hidden="true" style="margin-left: 6px;">→</span>
+          </a>
         </div>
         <% }); %>
       </div>

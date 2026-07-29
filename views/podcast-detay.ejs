@@ -1,0 +1,68 @@
+<%- include('partials/header') %>
+
+<section class="page-header" style="padding-bottom: 36px; text-align: left;">
+  <div class="container">
+    <a href="/podcastler" style="display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px; color: var(--gold-200); font-weight: 600; text-decoration: none;">
+      <span aria-hidden="true">←</span> Podcastlere Dön
+    </a>
+  </div>
+</section>
+
+<main class="section" style="padding-top: 0;">
+  <div class="container">
+    <article style="max-width: 940px; margin: 0 auto;">
+      <header class="card" style="padding: clamp(28px, 5vw, 56px); margin-bottom: 32px; background: linear-gradient(145deg, <%= kategori.renk %>18 0%, rgba(20, 20, 20, 0.94) 68%); border-color: <%= kategori.renk %>40;">
+        <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+          <div aria-hidden="true" style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1;"><%= podcast.emoji %></div>
+          <div style="flex: 1; min-width: 260px;">
+            <span style="display: inline-block; margin-bottom: 16px; padding: 6px 14px; border-radius: 100px; color: <%= kategori.renk %>; background: <%= kategori.renk %>18; border: 1px solid <%= kategori.renk %>40; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+              <%= kategori.baslik %>
+            </span>
+            <h1 class="section-title" style="margin: 0 0 14px; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.08;"><%= podcast.baslik %></h1>
+            <p style="margin: 0; color: var(--text-secondary); font-size: 1.08rem;"><strong style="color: var(--white);"><%= podcast.sunucular %></strong> · <%= podcast.dil %></p>
+          </div>
+        </div>
+
+        <dl style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 32px 0 0;">
+          <div style="padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.04);">
+            <dt style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 5px;">Platform</dt>
+            <dd style="margin: 0; color: var(--white); font-weight: 650;"><%= podcast.platform %></dd>
+          </div>
+          <div style="padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.04);">
+            <dt style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 5px;">Bölüm Süresi</dt>
+            <dd style="margin: 0; color: var(--white); font-weight: 650;"><%= podcast.sure %></dd>
+          </div>
+          <div style="padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.04);">
+            <dt style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 5px;">Dil</dt>
+            <dd style="margin: 0; color: var(--white); font-weight: 650;"><%= podcast.dil %></dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="card" style="padding: clamp(26px, 4vw, 42px); margin-bottom: 28px;">
+        <h2 style="color: var(--white); font-family: var(--font-display); font-size: 1.8rem; margin: 0 0 18px;">Podcast Hakkında</h2>
+        <p style="font-size: 1.08rem; line-height: 1.85; color: var(--text-secondary); margin: 0;"><%= podcast.ozet %></p>
+      </section>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;">
+        <section class="card" style="padding: clamp(26px, 4vw, 38px); border-color: rgba(46, 204, 113, 0.24); background: linear-gradient(145deg, rgba(46, 204, 113, 0.08), rgba(20, 20, 20, 0.92));">
+          <h2 style="color: var(--emerald); font-family: var(--font-display); font-size: 1.45rem; margin: 0 0 16px;">Zenginlik Dersi</h2>
+          <p style="font-size: 1.02rem; line-height: 1.75; color: var(--text-primary); margin: 0;"><%= podcast.zenginlikDersi %></p>
+        </section>
+
+        <section class="card" style="padding: clamp(26px, 4vw, 38px); border-color: rgba(212, 175, 55, 0.25); background: linear-gradient(145deg, rgba(212, 175, 55, 0.08), rgba(20, 20, 20, 0.92));">
+          <h2 style="color: var(--gold-200); font-family: var(--font-display); font-size: 1.45rem; margin: 0 0 16px;">Neden Dinlemeli?</h2>
+          <p style="font-size: 1.02rem; line-height: 1.75; color: var(--text-primary); margin: 0;"><%= podcast.nedenDinle %></p>
+        </section>
+      </div>
+    </article>
+  </div>
+</main>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <%- include('partials/comments', { pageId: 'podcast_' + podcast.slug }) %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

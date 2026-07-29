@@ -593,6 +593,11 @@ app.get('/filmler', (req, res) => {
   });
 });
 
+// Eski film adresi artık belgesel arşivindeki kalıcı sayfaya yönlenir.
+app.get('/filmler/enron', (req, res) => {
+  res.redirect(301, '/belgeseller/enron');
+});
+
 app.get('/filmler/:slug', (req, res) => {
   const film = FILMLER.find(f => f.slug === req.params.slug);
   
@@ -668,6 +673,31 @@ app.get('/podcastler', (req, res) => {
     canonical: SITE_URL + '/podcastler',
     podcastler: PODCASTLER,
     kategoriler: PODCAST_KATEGORILER
+  });
+});
+
+app.get('/podcastler/:slug', (req, res) => {
+  const podcast = PODCASTLER.find(p => p.slug === req.params.slug);
+
+  if (!podcast) {
+    return res.status(404).render('hakkinda', {
+      title: '404 — Podcast Bulunamadı | Zengince',
+      desc: 'Aradığınız podcast önerisi bulunamadı.',
+      canonical: SITE_URL + '/podcastler'
+    });
+  }
+
+  res.render('podcast-detay', {
+    title: `${podcast.baslik} — Neden Dinlemelisiniz? | Zengince`,
+    desc: `${podcast.baslik}, ${podcast.sunucular} tarafından sunulan bir podcast. ${podcast.ozet}`,
+    canonical: `${SITE_URL}/podcastler/${podcast.slug}`,
+    path: '/podcastler',
+    podcast: podcast,
+    kategori: PODCAST_KATEGORILER[podcast.kategori] || {
+      baslik: 'Genel',
+      emoji: '🎧',
+      renk: '#D4AF37'
+    }
   });
 });
 
@@ -1031,6 +1061,11 @@ app.get('/sozluk', (req, res) => {
     sozluk: SOZLUK_TERIMLERI,
     kategoriler: SOZLUK_KATEGORILERI
   });
+});
+
+// Sözlüğün eski bağlantısını güncel ve kanonik terim sayfasına taşı.
+app.get('/sozluk/bilesik-getiri', (req, res) => {
+  res.redirect(301, '/sozluk/bilesik-faiz-compound-interest');
 });
 
 app.get('/sozluk/:slug', (req, res) => {
